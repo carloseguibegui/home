@@ -1,4 +1,4 @@
-*{
+* {
     font-family: 'Nunito', sans-serif;
 }
 
@@ -417,7 +417,7 @@ h6 {
         padding: 10px 0;
         margin: 10px 20px;
         background-color: var(--nav-dropdown-background-color);
-        transition: all 0.5s ease-in-out;
+        transition: all 0.3s ease-in-out;
     }
 
     .navmenu .dropdown ul ul {
@@ -461,7 +461,7 @@ h6 {
 --------------------------------------------------------------*/
 .footer {
     color: var(--default-color);
-    background: linear-gradient(45deg, var(--background-color) 0%, color-mix(in srgb, var(--surface-color), transparent 10%) 100%), url("../../../public/assets/img/footer-bg.jpg") center center no-repeat;
+    background: linear-gradient(45deg, var(--background-color) 0%, color-mix(in srgb, var(--surface-color), transparent 10%) 100%), url("../../../public/assets/img/footer-bg.webp") center center no-repeat;
     background-size: cover;
     font-size: 14px;
     padding-bottom: 50px;
@@ -659,7 +659,7 @@ h6 {
 --------------------------------------------------------------*/
 .page-title {
     color: var(--default-color);
-    background: linear-gradient(45deg, var(--background-color) 0%, color-mix(in srgb, var(--surface-color), transparent 10%) 100%), url("../../../public/assets/img/page-title-bg.jpg") top center no-repeat;
+    background: linear-gradient(45deg, var(--background-color) 0%, color-mix(in srgb, var(--surface-color), transparent 10%) 100%), url("../../../public/assets/img/page-title-bg.webp") top center no-repeat;
     background-size: cover;
     padding: 160px 0 80px 0;
     text-align: center;
@@ -719,7 +719,6 @@ section,
 --------------------------------------------------------------*/
 .section-title {
     text-align: center;
-    padding-bottom: 60px;
     position: relative;
 }
 
@@ -758,7 +757,7 @@ section,
     padding: 120px 0 60px 0;
     display: flex;
     align-items: center;
-    background: linear-gradient(45deg, var(--background-color) 0%, color-mix(in srgb, var(--surface-color), transparent 10%) 100%), url("../../../public/assets/img/hero-bg.jpg") center center no-repeat;
+    background: linear-gradient(45deg, var(--background-color) 0%, color-mix(in srgb, var(--surface-color), transparent 10%) 100%), url("../../../public/assets/img/hero-bg.webp") center center no-repeat;
     background-size: cover;
 }
 
@@ -1848,7 +1847,7 @@ h2 {
 #caracteristicas {
     position: relative;
     z-index: 2;
-    background: linear-gradient(309deg, #7c25ba 0%, color-mix(in srgb, #5845f5, transparent 10%) 100%), url("../../../public/assets/img/hero-bg.jpg") center center no-repeat;
+    background: linear-gradient(309deg, #7c25ba 0%, color-mix(in srgb, #5845f5, transparent 10%) 100%), url("../../../public/assets/img/hero-bg.webp") center center no-repeat;
     background-size: cover;
 }
 
