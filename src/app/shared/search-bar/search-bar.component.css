@@ -1,0 +1,31 @@
+input {
+    background-color: rgb(255 255 255 / 71%);
+    width: 83%;
+    padding: 5px !important;
+    border: 2px solid #fef4e500;
+    border-radius: 18px;
+    height: 2rem;
+    pointer-events: all;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 20px;
+    color: #4d4d4d;
+    text-align: center;
+    font-weight: 500;
+    text-align-last: center;
+    text-align: center;
+    margin-bottom: 0px;
+    outline: none;
+    box-shadow: none;
+    box-sizing: content-box;
+    transition: all 0.3s;
+    line-height: 1.15;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: uppercase;
+    text-indent: 0px;
+    text-shadow: none;
+    text-rendering: auto;
+    cursor: text;
+}

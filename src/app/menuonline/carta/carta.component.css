@@ -1,0 +1,132 @@
+*{
+    font-family: 'Caveat' !important;
+}
+.header {
+    background-color: #6B4226;
+    text-align: center;
+    padding: 2rem 1rem;
+}
+
+.logo {
+    width: 100px;
+    margin-bottom: 1rem;
+}
+
+.header h1 {
+    color: white;
+    font-size: 1.8rem;
+}
+
+.background-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: -1;
+    background-image: url('../../../../public/assets/clientes/requeterico/text1.webp');
+    filter: blur(1px) brightness(1);
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+}
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1rem;
+    padding: 2rem;
+}
+
+.menu-item {
+    background-color: #fff;
+    border-radius: 20px;
+    text-align: center;
+    padding: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.menu-item:hover {
+    transform: scale(1.05);
+}
+
+.menu-icon {
+    font-size: 2.5rem;
+    color: #6B4226;
+    margin-bottom: 0.5rem;
+}
+
+.menu-text {
+    color: #6B4226;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.fade.show {
+    opacity: 1;
+}
+
+.fade-in {
+    opacity: 0;
+    transition: opacity 0.18s ease-in-out;
+}
+
+.fade-in.show {
+    opacity: 1;
+}
+
+.text-brown {
+    color: #5C3A2E;
+}
+
+.hover-shadow:hover {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.transition {
+    transition: all 0.3s ease;
+}
+
+
+
+
+#logo {
+    border-radius: 37px;
+}
+
+.fade {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.fade.show {
+    opacity: 1;
+}
+
+#cat {
+    font-size: 14px;
+    text-transform: uppercase;
+    max-width: 190px;
+    height: 165px;
+    padding: 5px 15px;
+}
+
+.icon-nombre {
+    font-size: 3rem;
+}
+
+.categoria-label {
+    color: #6b4c3b;
+    font-size: 15px;
+}
+
+.categoria-div {
+    background: url("../../../../public/assets/clientes/requeterico/fondo-claro.webp");
+    align-content: end;
+}
+
+.icono {
+    height: 80px;
+}
+

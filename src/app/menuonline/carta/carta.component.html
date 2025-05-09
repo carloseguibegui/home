@@ -1,0 +1,19 @@
+<app-background [imageUrl]="'/assets/clientes/requeterico/text1.webp'"></app-background>
+<section *ngIf="!loading" class="content fade-in show" [class.fade]="true" [class.show]="visible" class="transition-container">
+    <app-header [src_path]="'assets/clientes/requeterico/logo0.webp'"></app-header>
+    <div class="container pt-4 pb-5">
+        <div class="row g-4 justify-content-center px-2">
+            @for (categoria of categorias; track categoria.label) {
+            <div class="col-6 " id="cat">
+                <a [routerLink]="['/menuonline', 'requeterico', 'carta', categoria.route]" class="text-decoration-none">
+                    <div class="text-center bg-white shadow rounded-4 p-3 h-100 hover-shadow transition categoria-div">
+                        <img class="img-fluid icono" src="{{categoria.icon}}" alt="{{categoria.label}}">
+                        <div class="fw-bold text-brown mt-2 categoria-label">{{ categoria.label }}</div>
+                    </div>
+                </a>
+            </div>
+            }
+        </div>
+    </div>
+    <app-copyright [marginBotClassDiv]="'mb-3'"></app-copyright>
+</section>

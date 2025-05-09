@@ -1,0 +1,25 @@
+.copyright {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    place-self: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.copyright a img {
+    max-width: 130px;
+    vertical-align: middle;
+    margin-bottom: 3px;
+    text-align: center;
+}
+
+.copyright a {
+    text-transform: uppercase;
+    color: #6b4c3b;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 13px;
+
+}
