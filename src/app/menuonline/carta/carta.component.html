@@ -1,0 +1,40 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+    rel="stylesheet">
+<link
+    href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Pacifico&display=swap"
+    rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<link href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css" rel="stylesheet">
+<link
+    href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Lobster&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Pacifico&display=swap"
+    rel="stylesheet">
+<link
+    href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Great+Vibes&family=Lobster&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Pacifico&family=Quicksand:wght@300..700&display=swap"
+    rel="stylesheet">
+<main class="fade-in show">
+    <div class="container pt-5 ">
+        <div class="text-center mb-4 mt-4">
+            <a [routerLink]="['menuonline/requeterico/carta/']"><img src="assets/clientes/requeterico/logo0.webp"
+                    alt="Requeterico" class="img-fluid" style="max-width: 210px;" id="logo"></a>
+        </div>
+    </div>
+    <div class="background-container">
+        <div class="container pt-4 pb-5">
+            <div class="row g-4 justify-content-center px-2">
+                @for (categoria of categorias; track categoria.label) {
+                <div class="col-6 " id="cat">
+                    <a [routerLink]="['menuonline/requeterico/carta/{{categoria.route}}']" class="text-decoration-none">
+                        <div
+                            class="text-center bg-white shadow rounded-4 p-3 h-100 hover-shadow transition categoria-div">
+                            <img class="img-fluid icono" src="{{categoria.icon}}" alt="{{categoria.label}}">
+                            <div class="fw-bold text-brown mt-2 categoria-label">{{ categoria.label }}</div>
+                        </div>
+                    </a>
+                </div>
+                }
+            </div>
+        </div>
+    </div>

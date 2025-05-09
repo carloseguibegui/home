@@ -1,0 +1,317 @@
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeoOeJxkP0rY9E1bOe1roRaVc3yZB91WjJwrn8uN0jz8z8bE"
+        crossorigin="anonymous"></script>
+    <base href="/">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Favicons -->
+    <link rel="icon" href="/src/assets/landing/1.png">
+    <link href="assets/landing/img/1.png" rel="apple-touch-icon">
+    <link href="assets/landing/img/1.png" rel="apple-touch-icon-precomposed">
+    <link href="assets/landing/img/1.png" rel="shortcut icon">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WZX0C2M1JR"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-WZX0C2M1JR');
+    </script>
+    <link href='https://fonts.googleapis.com/css?family=Nunito' rel='stylesheet'>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Marketingeros | Tu carta digital, sin límites</title>
+    <!-- SEO Meta Tags -->
+    <meta name="description"
+        content="Transformá tu carta física en un menú digital personalizado, multilingüe con IA. Ideal para restaurantes, cafés y bares que quieren destacarse.">
+    <meta name="keywords"
+        content="menú digital, carta digital personalizada, menú QR, carta multilingüe con IA, digitalización menú restaurante, menú interactivo, menú para bares, carta digital para cafés, solución menú digital, carta digital moderna">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="canonical" href="https://marketingeros.online/">
+
+    <!-- Open Graph (Redes sociales) -->
+    <meta property="og:title" content="Menú Digital Personalizado con IA | Marketingeros">
+    <meta property="og:description"
+        content="Ofrecé una carta digital moderna, personalizada y lista para traducirse automáticamente con IA.">
+    <meta property="og:url" content="https://www.marketingeros.online/">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://www.marketingeros.online/assets/img/FInal-02.jpg">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Menú Digital Personalizado con IA | Marketingeros">
+    <meta name="twitter:description"
+        content="Digitalizá tu menú: diseño único, traducción automática. Ideal para bares, cafés y restaurantes.">
+    <meta name="twitter:image" content="https://www.marketingeros.online/assets/img/FInal-02.jpg">
+
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+    <!-- Schema.org para SEO Local y Rich Snippets -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "LocalBusiness",
+            "name": "Marketingeros",
+            "url": "https://www.marketingeros.online",
+            "logo": "https://www.marketingeros.online/assets/landing/1.png",
+            "sameAs": [
+                "https://www.instagram.com/marketingeros.online"
+            ],
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "Av. 9 de Julio s/n, C1043",
+                "addressLocality": "Cdad. Autónoma de Buenos Aires",
+                "addressRegion": "Buenos Aires",
+                "postalCode": "C1043AFA",
+                "addressCountry": "Argentina"
+            }
+        }
+    </script>
+</head>
+<header id="header" class="header d-flex align-items-center fixed-top" [class.navbar-scrolled]="isScrolled">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center mt-2">
+        <a href="#" class="logo d-flex align-items-center me-auto"><img id="logo_home"
+                src="assets/landing/FInal-02-mini.png" alt="FInal-02-mini"></a>
+    </div>
+</header>
+<main class="main">
+    <section id="#" class="hero section accent-background py-0">
+        <div class="container">
+            <div id="banner-inicio" class="d-grid gy-4">
+                <div class="col-lg-6 col-sm-12 order-1 order-lg-1 d-flex flex-column justify-content-center">
+                    <h1 class="pt-5 mt-5" id="titulo" style="margin-top: 4rem !important;">
+                        <!-- ¿Todavía mostrás tu menú en PDF? -->
+                        ¿Todavía mostrás tu menú en PDF?
+                    </h1>
+                    <p>Tu carta merece más que un archivo estático. Transformala en una experiencia interactiva y
+                        moderna. Olvidate de lo obsoleto y descubrí una gestión tan simple y divertida que vas a querer
+                        cambiar todo.</p>
+                    <div class="d-grid gap-2 col-12 mx-auto">
+                        <a [routerLink]="['menuonline/requeterico/carta']"
+                            class="btn-get-started btn-lg btn-block text-center h5">¡PROBALO GRATIS!</a>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-sm-12 order-2 order-lg-2 hero-img pt-3 pb-3" style="margin-bottom: 130px;">
+                    <a [routerLink]="['menuonline/requeterico/carta']">
+                        <img id="banner" src="assets/landing/banner-landing.webp" class="img-fluid animated mx-0 w-100"
+                            alt="banner-landing"></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div id="caracteristicas" class="block-feature-twentyFour pb-80 lg-pb-40">
+        <div class="container lg">
+            <div class="row gx-xxl-5">
+                <div class="col-lg-4">
+                    <div id="disenio-hecho-a-tu-medida" class="card-style-eleven"
+                        style="background: #FFFFFF; box-shadow: 0px -25px 50px 20px rgba(0, 0, 0, 0.02); border-radius: 30px; padding: 30px 40px 24px; position: relative;padding: 20px 20px 20px; border-radius: 20px;margin-top: -100px;height: 25rem;align-content: center;">
+                        <img src="assets/landing/design.png" alt="Diseño a Medida"
+                            style="max-width: 55px; display: block;margin: 0; padding: 0; box-sizing: border-box;">
+                        <h2 class="mt-4" style="font-weight: bold;">Diseño hecho a tu medida</h2>
+                        <p class="m0" style="line-height: 30px; font-size: 18px;">Olvidate de los menús genéricos.
+                            Nosotros reflejamos la esencia de tu restaurante en cada detalle, para que tu carta sea tan
+                            única como tu propuesta gastronómica.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 mt-4">
+                    <div class="card-style-eleven"
+                        style="background: #FFFFFF; box-shadow: 0px -25px 50px 20px rgba(0, 0, 0, 0.02); border-radius: 30px; padding: 30px 40px 24px; position: relative;padding: 20px 20px 20px; border-radius: 20px;height: 25rem;align-content: center;">
+                        <img src="assets/landing/upload.png" alt="Diseño a Medida"
+                            style="max-width: 55px; display: block;margin: 0; padding: 0; box-sizing: border-box;">
+                        <h2 class="mt-4" style="font-weight: bold;">Subí tu carta. Nosotros nos encargamos del resto
+                        </h2>
+                        <p class="m0" style="line-height: 30px; font-size: 18px;">Mandanos tus platos, fotos y precios
+                            como estás acostumbrado. Nosotros lo convertimos en un menú digital moderno, lindo y
+                            funcional… sin que tengas que mover un dedo más.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 mt-4">
+                    <div class="card-style-eleven"
+                        style="background: #FFFFFF; box-shadow: 0px -25px 50px 20px rgba(0, 0, 0, 0.02); border-radius: 30px; padding: 30px 40px 24px; position: relative;padding: 20px 20px 20px; border-radius: 20px;margin-bottom: 4rem;height: 25rem;align-content: center;">
+                        <img src="assets/landing/story.png" alt="Diseño a Medida"
+                            style="max-width: 55px; display: block;margin: 0; padding: 0; box-sizing: border-box;">
+                        <h2 class="mt-4" style="font-weight: bold;">Menús que cuentan tu historia</h2>
+                        <p class="m0" style="line-height: 30px; font-size: 18px;">Convertí tu carta en una extensión de
+                            tu identidad: diseño único, cálido y con estilo propio.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section id="pricing" class="pricing section pt-5">
+        <div class="container section-title mb-0 pb-2 pt-3" data-aos="fade-up">
+            <p class="mb-4">Elegí tu plan</p>
+        </div>
+        <div class="container">
+            <div class="pricing-item col-12 px-4">
+                <h3>Estándar</h3>
+                <h4 style="color: #5846f9;"><sup>$USD</sup>80 <span style="font-weight: bold;color: #2c4964;">/ mes</span></h4>
+                <ul style="color:rgb(63, 63, 63)">
+                    <li><span style="font-weight: bold;">Diseño hecho a medida:<br>
+                            Nada de plantillas genéricas. Creamos un menú visualmente atractivo que representa la
+                            esencia de tu local.</span></li>
+                    <li><span style="font-weight: bold;">Carga completa del menú:<br>
+                            Nos pasás tu carta y fotos como estás acostumbrado, y nosotros lo armamos todo por
+                            vos.</span></li>
+                    <li><span style="font-weight: bold;">Traducción profesional:<br>
+                            Traducimos tu menú a varios idiomas con IA.</span></li>
+                    <li><span style="font-weight: bold;">Actualizaciones simples:<br>
+                            ¿Cambiaste un precio o un plato? Nos avisás y lo resolvemos por vos.</span></li>
+                    <li><span style="font-weight: bold;">Atención personalizada:<br>
+                            Te acompañamos de forma cercana para lo que necesites.</span></li>
+                </ul><a href="#contacto" class="buy-btn col-12 text-center" style="background:#5846f9;border: 1px solid #5846f9;color: white;">Activar mi carta digital</a>
+            </div>
+            <div class="col-12" data-aos="zoom-in" data-aos-delay="100"></div>
+        </div>
+    </section>
+    <section id="porque-elegirnos" class="pb-5 bg-white">
+        <div class="container section-title" data-aos="fade-up">
+            <h2>¿Por qué elegirnos?</h2>
+        </div>
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-12 px-3" style="line-height: 30px; font-size: 18px;">
+                    <p class="mb-3">Creamos un <strong>menú digital 100% a medida</strong>, adaptado a la identidad de
+                        tu marca. Nada de plantillas genéricas: tu carta se ve y se siente como vos.</p>
+                    <p class="mb-3"><strong>Vos mandás las fotos y los platos, nosotros hacemos el resto</strong>.
+                        Traducimos tu carta a varios idiomas usando IA con coherencia gastronómica.</p>
+                    <p class="mb-3">Todos nuestros planes incluyen <strong>QR personalizado</strong>, acceso rápido
+                        desde el celular y un <strong>sistema de pedidos moderno</strong>.</p>
+                    <!-- <p class="mb-0 fw-semibold text-success">Vos cocinás. Nosotros digitalizamos.</p> -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="faq" class="faq section mt-0">
+        <div class="container section-title" data-aos="fade-up">
+            <h2>Preguntas frecuentes</h2>
+        </div>
+        <div class="accordion" id="accordionExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-headingOne"><button class="accordion-button"
+                        type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true"
+                        aria-controls="collapseOne">¿Cómo funciona el servicio de menú digital?</button></h2>
+                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                    data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <strong>Vos nos enviás tu carta (texto, precios y fotos) y nosotros nos encargamos de armar un
+                            menú digital profesional, accesible desde un link o código QR. No necesitás saber de
+                            tecnología, nosotros lo hacemos por vos.</strong>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingTwo"><strong><button class="accordion-button collapsed"
+                            type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false"
+                            aria-controls="collapseTwo">¿Qué pasa si necesito actualizar un plato o un
+                            precio?</button></strong></h2>
+                <div id="collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingTwo"
+                    data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <strong><strong>Simple: nos pasás los cambios por WhatsApp o mail y los aplicamos por vos. Así
+                                mantenés tu carta siempre al día sin complicaciones.</strong></strong>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingThree"><strong><button class="accordion-button collapsed"
+                            type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree"
+                            aria-expanded="false" aria-controls="collapseThree">¿Puedo personalizar el diseño de mi
+                            menú?</button></strong></h2>
+                <div id="collapseThree" class="accordion-collapse collapse show" aria-labelledby="headingThree"
+                    data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <strong><strong>Claro. Diseñamos cada carta respetando tu identidad visual, estética y estilo
+                                gastronómico. Nada de plantillas genéricas, cada menú es único como tu
+                                restaurante.</strong></strong>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingFour"><strong><button class="accordion-button collapsed"
+                            type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false"
+                            aria-controls="collapseFour">¿Cómo acceden los clientes al menú digital?</button></strong>
+                </h2>
+                <div id="collapseFour" class="accordion-collapse collapse show" aria-labelledby="headingFour"
+                    data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <strong><strong>Te entregamos un link y un código QR personalizado para que lo imprimas o
+                                compartas. Tus clientes pueden escanearlo con su celular y ver la carta al instante, sin
+                                necesidad de apps.</strong></strong>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingFive"><strong><button class="accordion-button collapsed"
+                            type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false"
+                            aria-controls="collapseFive">¿Necesito tener conocimientos técnicos?</button></strong></h2>
+                <div id="collapseFive" class="accordion-collapse collapse show" aria-labelledby="headingFive"
+                    data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <strong><strong>Para nada. Nos ocupamos de todo el proceso: diseño, carga del menú, ajustes y
+                                soporte. Vos solo tenés que compartirnos tu carta y nosotros nos encargamos del
+                                resto.</strong></strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- <section id="contacto" class="contact section">
+        <div class="container section-title" data-aos="fade-up">
+            <h2><strong>¿Estás listo para dejar atrás el PDF?</strong></h2>
+            <p><strong>Contáctanos a través de nuestro <a target="_blank" href="https://wa.link/jepjoq">WhatsApp</a> o
+                    agendá una reunión acá abajo</strong></p>
+        </div>
+    </section> -->
+</main>
+<div class="floating_btn">
+    <strong><a target="_blank" href="https://wa.link/jepjoq">
+            <div class="contact_icon">
+                <i class="bi bi-whatsapp"></i>
+            </div>
+        </a></strong>
+</div>
+<footer id="footer" class="footer accent-background">
+
+    <div class="container footer-top">
+        <div class="row gy-4">
+            <div class="col-lg-4 col-md-12 footer-about">
+                <a href="#hero" class="logo d-flex align-items-center">
+                    <span class="sitename">Marketingeros</span>
+                </a>
+                <div class="social-links d-flex mt-4">
+                    <!-- <a href=""><i class="bi bi-twitter-x"></i></a> -->
+                    <!-- <a href=""><i class="bi bi-facebook"></i></a> -->
+                    <a href="https://www.instagram.com/marketingeros.online" target="_blank"><i
+                            class="bi bi-instagram"></i></a>
+                    <!-- <a href=""><i class="bi bi-linkedin"></i></a> -->
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-12 footer-contact text-center text-md-start">
+                <h4>Contactanos</h4>
+                <p><strong>Email:</strong> <span>info&#64;marketingeros.online</span></p>
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+    <div class="container copyright text-center mt-4">
+        <p>© <span>Copyright</span> <strong class="px-1 sitename">Marketingeros</strong> <span>Todos los derechos
+                reservados</span></p>
+    </div>
+
+</footer>
