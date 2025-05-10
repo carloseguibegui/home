@@ -1,8 +1,9 @@
 <app-background [imageUrl]="'/assets/clientes/requeterico/text1.webp'"></app-background>
-<section class="fade-in show">
-<!-- <app-slider [categoria_actual]="nombreCategoria" [categorias]="categorias"></app-slider> -->
-<app-header [src_path]="'assets/clientes/requeterico/logo0.webp'"></app-header>
-<app-search-bar [item_placeholder]="item_placeholder" (search)="onSearch($event)"></app-search-bar>
+<section *ngIf="!loading" class="content fade-in" [class.fade]="true" [class.show]="visible"
+    class="transition-container">
+    <!-- <app-slider [categoria_actual]="nombreCategoria" [categorias]="categorias"></app-slider> -->
+    <app-header [src_path]="'assets/clientes/requeterico/logo0.webp'"></app-header>
+    <app-search-bar [item_placeholder]="item_placeholder" (search)="onSearch($event)"></app-search-bar>
     <div class="container py-4">
         <div class="row g-4 mt-3">
             @for (item of items; track item.nombre) {

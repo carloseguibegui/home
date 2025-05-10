@@ -1,24 +1,25 @@
-import { Component, Injectable, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-// import { SearchBarComponent } from "../search-bar/search-bar.component";
+import { Component, Injectable, OnInit, Renderer2 } from '@angular/core';
+import { ActivatedRoute, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { CopyrightComponent } from '../../shared/copyright/copyright.component';
 import { HeaderComponent } from "../../shared/header/header.component";
 import { BackgroundComponent } from "../../shared/background/background.component";
 import { SearchBarComponent } from "../../shared/search-bar/search-bar.component";
-
-
+import { Router, NavigationEnd, NavigationCancel, NavigationError, NavigationStart } from '@angular/router';
+import { filter } from 'rxjs/operators';
+// import { SearchBarComponent } from "../search-bar/search-bar.component";
 @Component({
   selector: 'app-categoria',
   templateUrl: './categoria.component.html',
   styleUrl: './categoria.component.css',
   standalone: true,
-  imports: [CommonModule, RouterModule, CopyrightComponent, HeaderComponent, BackgroundComponent, SearchBarComponent]
+  imports: [CommonModule, RouterModule, CopyrightComponent, HeaderComponent, BackgroundComponent, SearchBarComponent, RouterOutlet]
 })
 @Injectable({ providedIn: 'root' })
 export class CategoriaComponent implements OnInit {
-  
+  loading = false;
+  visible = false;
   nombreCategoria: string = '';
   items: any[] = [];
   itemsOriginales: any[] = [];
@@ -816,7 +817,7 @@ export class CategoriaComponent implements OnInit {
     // }
   ];
 
-  constructor(private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute, private router: Router, private renderer: Renderer2) {
   }
 
   ngOnInit() {
@@ -827,6 +828,20 @@ export class CategoriaComponent implements OnInit {
     this.itemsOriginales = [...this.items];
     const random_index = Math.floor(Math.random() * this.items.length);
     this.item_placeholder = this.items[random_index]?.nombre || '';
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationStart) {
+        this.loading = true;
+      } else if (
+        event instanceof NavigationEnd ||
+        event instanceof NavigationCancel ||
+        event instanceof NavigationError
+      ) {
+        this.loading = false;
+      }
+    });
+    setTimeout(() => {
+      this.visible = true;
+    }, 10); // delay corto para permitir que se aplique la clase "fade" primero
   }
 
   onSearch(term: string) {
@@ -880,6 +895,25 @@ export class CategoriaComponent implements OnInit {
         this.container.style.transformOrigin = 'center center';
       }
     }, 300); // igual a la duración del transition
+  }
+
+  ngAfterViewInit(): void {
+    this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe(() => {
+        const content = document.querySelector('.fade-in');
+        if (content) {
+          content.classList.remove('show'); // reinicia
+          void (content as HTMLElement).offsetWidth;
+          this.renderer.addClass(content, 'show'); // activa animación
+        }
+        if (this.router.events instanceof NavigationEnd) {
+          const body = document.body;
+          body.classList.remove('fade-in');
+          void body.offsetWidth; // fuerza reflow para reiniciar animación
+          body.classList.add('fade-in');
+        }
+      });
   }
 
 
