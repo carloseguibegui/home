@@ -1,8 +1,8 @@
 <app-background [imageUrl]="'/assets/clientes/requeterico/text1.webp'"></app-background>
 <section *ngIf="!loading" class="content fade-in" [class.fade]="true" [class.show]="visible"
     class="transition-container">
-    <!-- <app-slider [categoria_actual]="nombreCategoria" [categorias]="categorias"></app-slider> -->
     <app-header [src_path]="'assets/clientes/requeterico/logo0.webp'"></app-header>
+    <app-slider [categoria_actual]="nombreCategoria"></app-slider>
     <app-search-bar [item_placeholder]="item_placeholder" (search)="onSearch($event)"></app-search-bar>
     <div class="container py-4">
         <div class="row g-4 mt-3">
@@ -51,3 +51,8 @@
     </div>
     <app-copyright [marginBotClassDiv]="'mb-5'"></app-copyright>
 </section>
+
+<!-- <a class="to-top" href="#s1">
+    <svg viewBox="0 0 24 24">
+        <path d="M13,20H11V8L5.5,13.5L4.08,12.08L12,4.16L19.92,12.08L18.5,13.5L13,8V20Z"></path>
+    </svg></a> -->

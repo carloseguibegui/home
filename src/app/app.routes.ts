@@ -6,6 +6,8 @@ import { CategoriaComponent } from './menuonline/categoria/categoria.component';
 export const routes: Routes = [
     { path: '', component: InicioComponent },
     { path: 'menuonline/:cliente/carta', component: CartaComponent },
-    { path: 'menuonline/:cliente/carta/:categoria', component: CategoriaComponent },
+  {
+    path: 'menuonline/:cliente/carta/:categoria', component: CategoriaComponent, runGuardsAndResolvers: 'always'
+    },
     { path: '**', component: InicioComponent }
   ];

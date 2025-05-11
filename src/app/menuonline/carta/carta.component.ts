@@ -38,7 +38,7 @@ export class CartaComponent {
     });
     setTimeout(() => {
       this.visible = true;
-    }, 10); // delay corto para permitir que se aplique la clase "fade" primero
+    }, 10); // delay corto para permitir que se aplique la clase "fade" primero    
   }
 
   ngAfterViewInit(): void {

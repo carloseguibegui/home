@@ -8,13 +8,14 @@ import { BackgroundComponent } from "../../shared/background/background.componen
 import { SearchBarComponent } from "../../shared/search-bar/search-bar.component";
 import { Router, NavigationEnd, NavigationCancel, NavigationError, NavigationStart } from '@angular/router';
 import { filter } from 'rxjs/operators';
+import { SliderComponent } from "../../shared/slider/slider.component";
 // import { SearchBarComponent } from "../search-bar/search-bar.component";
 @Component({
   selector: 'app-categoria',
   templateUrl: './categoria.component.html',
   styleUrl: './categoria.component.css',
   standalone: true,
-  imports: [CommonModule, RouterModule, CopyrightComponent, HeaderComponent, BackgroundComponent, SearchBarComponent, RouterOutlet]
+  imports: [CommonModule, RouterModule, CopyrightComponent, HeaderComponent, BackgroundComponent, SearchBarComponent, RouterOutlet, SliderComponent]
 })
 @Injectable({ providedIn: 'root' })
 export class CategoriaComponent implements OnInit {
