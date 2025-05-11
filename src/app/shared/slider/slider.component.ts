@@ -1,11 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CategoriaComponent } from '../../menuonline/categoria/categoria.component';
 
 @Component({
   selector: 'app-slider',
-  imports:[CommonModule,RouterLink],
+  imports:[CommonModule],
   templateUrl: './slider.component.html',
   styleUrls: ['./slider.component.css']
 })
@@ -38,7 +38,7 @@ export class SliderComponent implements OnInit {
       const activeItem = this.scrollContainer.nativeElement.querySelector('.slider-item.active');
       if (activeItem) {
         activeItem.scrollIntoView({
-          behavior: 'smooth',
+          behavior: 'instant',
           block: 'nearest',
           inline: 'center'
         });

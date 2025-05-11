@@ -116,11 +116,12 @@ p {
     overflow-x: auto;
     scroll-behavior: smooth;
     padding: 1rem 0;
+    /* justify-self: center; */
 }
 
 .scroll-track {
     display: inline-flex;
-    gap: 1.5rem;
+    gap: 1rem;
     padding: 0 1rem;
 }
 
@@ -139,7 +140,7 @@ p {
 
 .slider-item.active .menu-item {
     border: 2px solid #6b4c3b;
-    box-shadow: 0 2px 8px rgba(107, 76, 59, 0.2);
+    box-shadow: 0 2px 8px rgba(107, 76, 59, 0.4);
 }
 
 .menu-item {
