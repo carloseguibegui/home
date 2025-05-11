@@ -6,7 +6,8 @@
     display: flex;
     scroll-snap-type: x mandatory;
     /* margin-left: 15px; */
-    scroll-padding: 0 16px; /* Añadir padding para alineación */
+    scroll-padding: 0 16px;
+    /* Añadir padding para alineación */
 }
 
 .scroll-container::-webkit-scrollbar {
@@ -18,7 +19,7 @@
     gap: 16px;
     padding: 0 16px;
     transition: scroll-left 0.3s ease;
-        /* Para animación suave */
+    /* Para animación suave */
 }
 
 .menu-item {
@@ -44,13 +45,16 @@
     padding: 8px 12px;
     cursor: pointer;
     transition: background 0.3s ease;
-    margin-right: 16px; /* Espacio después de cada ítem */
+    margin-right: 16px;
+    /* Espacio después de cada ítem */
 
 }
+
 .menu-item:first-child {
     margin-left: 16px;
-    /* Espaciado inicial */ }
-    
+    /* Espaciado inicial */
+}
+
 .menu-item.active {
     border: 2px solid;
     border-color: #6b4c3b;
@@ -86,7 +90,8 @@
         font-size: 12px;
     }
 }
-a{
+
+a {
     text-decoration: none;
 }
 
@@ -105,4 +110,65 @@ p {
 .categoria-div {
     background: url("../../../../public/assets/clientes/requeterico/fondo-claro.webp");
     align-content: end;
+}
+/* slider.component.css */
+.scroll-container {
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding: 1rem 0;
+}
+
+.scroll-track {
+    display: inline-flex;
+    gap: 1.5rem;
+    padding: 0 1rem;
+}
+
+.slider-item {
+    opacity: 0.7;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.slider-item.active {
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+.slider-item.active .menu-item {
+    border: 2px solid #6b4c3b;
+    box-shadow: 0 2px 8px rgba(107, 76, 59, 0.2);
+}
+
+.menu-item {
+    background: #f5f5f5;
+    border-radius: 50%;
+    width: 75px;
+    height: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.category-icon {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+
+.category-label {
+    font-size: 0.8rem;
+    color: #6b4c3b;
+    font-weight: 600;
+    margin-top: 0.5rem;
+    text-align: center;
+    max-width: 100px;
+}
+
+a {
+    text-decoration: none;
+    cursor: pointer;
 }

@@ -6,6 +6,7 @@ import { CopyrightComponent } from '../../shared/copyright/copyright.component';
 import { filter } from 'rxjs/operators';
 import { HeaderComponent } from "../../shared/header/header.component";
 import { BackgroundComponent } from "../../shared/background/background.component";
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-carta',
@@ -19,12 +20,13 @@ export class CartaComponent {
   cliente: string = '';
   isViewVisible = false;
   loading = false;
-  constructor(private route: ActivatedRoute, categoriaComponent: CategoriaComponent, private router: Router, private renderer: Renderer2) {
+  constructor(private route: ActivatedRoute, categoriaComponent: CategoriaComponent, private router: Router, private renderer: Renderer2, private titleService: Title) {
     this.categorias = categoriaComponent.data
   }
 
   ngOnInit(): void {
     this.cliente = this.route.snapshot.paramMap.get('cliente') || '';
+    this.actualizarTitulo(`${this.cliente.charAt(0).toUpperCase() + this.cliente.slice(1) } | Carta Digital`);
     this.router.events.subscribe(event => {
       if (event instanceof NavigationStart) {
         this.loading = true;
@@ -39,6 +41,9 @@ export class CartaComponent {
     setTimeout(() => {
       this.visible = true;
     }, 10); // delay corto para permitir que se aplique la clase "fade" primero    
+  }
+  actualizarTitulo(nuevoTitulo: string): void {
+    this.titleService.setTitle(nuevoTitulo);
   }
 
   ngAfterViewInit(): void {
