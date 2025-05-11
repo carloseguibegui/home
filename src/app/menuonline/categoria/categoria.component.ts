@@ -10,7 +10,6 @@ import { Router, NavigationEnd, NavigationCancel, NavigationError, NavigationSta
 import { filter } from 'rxjs/operators';
 import { ScrollToTopComponent } from "../../shared/scroll-to-top/scroll-to-top.component";
 import { SliderComponent } from "../../shared/slider/slider.component";
-// import { SearchBarComponent } from "../search-bar/search-bar.component";
 @Component({
   selector: 'app-categoria',
   templateUrl: './categoria.component.html',
@@ -403,13 +402,13 @@ export class CategoriaComponent implements OnInit {
         //   imagen: 'assets/clientes/requeterico/',
         // small_imagen: 'assets/clientes/requeterico/'
         // },
-        // {
-        //   nombre: 'Tostón con salmón y alcaparras',
-        //   descripcion: '',
-        //   precio: 7800,
-        //   imagen: 'assets/clientes/requeterico/',
-        // small_imagen: 'assets/clientes/requeterico/'
-        // },
+        {
+          nombre: 'Tostón con salmón y alcaparras',
+          descripcion: 'Rebanada de pan artesanal levemente tostado, con una base suave de queso crema, láminas de salmón ahumado y un toque de alcaparras que aportan el equilibrio perfecto entre lo cremoso, lo salado y lo fresco. Una opción elegante y sabrosa para disfrutar a cualquier hora',
+          precio: 7800,
+          imagen: 'assets/clientes/requeterico/sand_tost_salm.webp',
+          small_imagen: 'assets/clientes/requeterico/sand_tost_salm-small.webp'
+        },
         // {
         //   nombre: 'Lomito solo con fritas',
         //   descripcion: '',
@@ -510,49 +509,49 @@ export class CategoriaComponent implements OnInit {
         // },
       ]
     },
-    // {
-    //   label: 'Tartas',
-    //   icon: 'assets/clientes/requeterico/icono5.webp',
-    //   route: 'tartas',
-    //   nombre: 'tartas',
-    //   productos: [
-    //     {
-    //       nombre: 'Calabaza, puerro y muzzarella',
-    //       descripcion: '',
-    //       precio: 8000,
-    //       imagen: 'assets/clientes/requeterico/',
-    //small_imagen: 'assets/clientes/requeterico/'
-    //     },
-    //     {
-    //       nombre: 'Espinaca',
-    //       descripcion: '',
-    //       precio: 8000,
-    //       imagen: 'assets/clientes/requeterico/',
-    //small_imagen: 'assets/clientes/requeterico/'
-    //     },
-    //     {
-    //       nombre: 'Mix de vegetales',
-    //       descripcion: '',
-    //       precio: 8000,
-    //       imagen: 'assets/clientes/requeterico/',
-    //small_imagen: 'assets/clientes/requeterico/'
-    //     },
-    //     {
-    //       nombre: 'Brocoli',
-    //       descripcion: '',
-    //       precio: 8000,
-    //       imagen: 'assets/clientes/requeterico/',
-    //small_imagen: 'assets/clientes/requeterico/'
-    //     },
-    //     {
-    //       nombre: 'Choclo y zapallo',
-    //       descripcion: '',
-    //       precio: 8000,
-    //       imagen: 'assets/clientes/requeterico/',
-    //small_imagen: 'assets/clientes/requeterico/'
-    //     },
-    //   ]
-    // },
+    {
+      label: 'Tartas',
+      icon: 'assets/clientes/requeterico/icono-tarta.png',
+      route: 'tartas',
+      nombre: 'tartas',
+      productos: [
+        //     {
+        //       nombre: 'Calabaza, puerro y muzzarella',
+        //       descripcion: '',
+        //       precio: 8000,
+        //       imagen: 'assets/clientes/requeterico/',
+        //small_imagen: 'assets/clientes/requeterico/'
+        //     },
+        //     {
+        //       nombre: 'Espinaca',
+        //       descripcion: '',
+        //       precio: 8000,
+        //       imagen: 'assets/clientes/requeterico/',
+        //small_imagen: 'assets/clientes/requeterico/'
+        //     },
+        {
+          nombre: 'Mix de vegetales',
+          descripcion: 'Una porción generosa, sabrosa y equilibrada. Preparada con una selección de vegetales frescos salteados y una capa cremosa de muzzarella derretida sobre una base casera dorada al horno. Ideal para una comida liviana pero reconfortante',
+          precio: 8000,
+          imagen: 'assets/clientes/requeterico/tarta_mix_veg.webp',
+          small_imagen: 'assets/clientes/requeterico/tarta_mix_veg-small.webp'
+        },
+        //     {
+        //       nombre: 'Brocoli',
+        //       descripcion: '',
+        //       precio: 8000,
+        //       imagen: 'assets/clientes/requeterico/',
+        //small_imagen: 'assets/clientes/requeterico/'
+        //     },
+        //     {
+        //       nombre: 'Choclo y zapallo',
+        //       descripcion: '',
+        //       precio: 8000,
+        //       imagen: 'assets/clientes/requeterico/',
+        //small_imagen: 'assets/clientes/requeterico/'
+        //     },
+      ]
+    },
     {
       label: 'Pastelería',
       icon: 'assets/clientes/requeterico/icono3.webp',
@@ -636,6 +635,13 @@ export class CategoriaComponent implements OnInit {
           imagen: 'assets/clientes/requeterico/a5.webp',
           small_imagen: 'assets/clientes/requeterico/a5-small.webp'
         },
+        {
+          nombre: 'Cookies Rellenas de Nutella (x3)',
+          descripcion: 'Tres deliciosas galletas caseras, crocantes por fuera y con un corazón suave y generoso de Nutella derretida. Perfectas para acompañar tu café o disfrutar como un capricho dulce en cualquier momento del día.',
+          precio: 5000,
+          imagen: 'assets/clientes/requeterico/paste_cnut.webp',
+          small_imagen: 'assets/clientes/requeterico/paste_cnut-small.webp'
+        },
         // {
         //   nombre: 'Tarta de coco con dulce de leche',
         //   descripcion: '',
@@ -700,6 +706,13 @@ export class CategoriaComponent implements OnInit {
           imagen: 'assets/clientes/requeterico/budin-ingles.webp',
           small_imagen: 'assets/clientes/requeterico/budin-ingles-small.webp'
         },
+        {
+          nombre: 'Pan de Molde Integral',
+          descripcion: 'Nuestro pan de molde integral es suave, esponjoso y lleno de sabor. Hecho con harinas integrales y semillas seleccionadas, es la base perfecta para tus tostadas o sandwiches. Rico en fibra, natural y horneado con dedicación cada día',
+          precio: 4600,
+          imagen: 'assets/clientes/requeterico/rinc_pan_molde.webp',
+          small_imagen: 'assets/clientes/requeterico/rinc_pan_molde-small.webp'
+        },
         // {
         //   nombre: 'Tarta de Manzana Integral',
         //   descripcion: 'Base crocante de harina integral cubierta con manzanas frescas, canela y un toque de azúcar rubio. Dulce, aromática y natural',
@@ -752,13 +765,41 @@ export class CategoriaComponent implements OnInit {
       productos: [
         {
           nombre: 'Merienda Integral',
-          descripcion: 'Tazón de yogur natural con granola crocante y pasas de uva, acompañado de queso crema suave y mermelada. Se sirve con dos tostadas integrales levemente doradas. Un desayuno o merienda nutritiva, equilibrada y deliciosa',
+          descripcion: 'Una opción rica y equilibrada: latte espumoso, tostadas integrales con queso y mermelada, jugo de naranja exprimido y un cremoso yogur con granola crocante. Ideal para disfrutar con calma y cuidar tu bienestar',
           precio: 7000,
-          imagen: 'assets/clientes/requeterico/merienda-integral.webp',
-          small_imagen: 'assets/clientes/requeterico/merienda-integral-small.webp'
+          imagen: 'assets/clientes/requeterico/mer_int.webp',
+          small_imagen: 'assets/clientes/requeterico/mer_int-small.webp'
+        },
+        {
+          nombre: 'Merienda Proteica',
+          descripcion: 'Energía, sabor y frescura en cada bocado: disfrutá de un avocado toast con palta fresca, huevo revuelto y tomates cherry, acompañado de un latte espumoso y un jugo de naranja exprimido. Ideal para quienes buscan una opción saludable y nutritiva sin resignar el placer',
+          precio: 7000,
+          imagen: 'assets/clientes/requeterico/mer_prot.webp',
+          small_imagen: 'assets/clientes/requeterico/mer_prot-small.webp'
+        },
+        {
+          nombre: 'Merienda Requeterica',
+          descripcion: 'Una pausa deliciosa y reconfortante: incluye un cremoso latte con arte en taza, jugo de naranja exprimido al momento y una porción de nuestra torta artesanal a elección. Perfecta para disfrutar en buena compañía o regalarte un momento solo para vos',
+          precio: 7000,
+          imagen: 'assets/clientes/requeterico/mer_req.webp',
+          small_imagen: 'assets/clientes/requeterico/mer_req-small.webp'
+        },
+        {
+          nombre: 'Merienda Clásica',
+          descripcion: 'La combinación infalible de siempre: dos medialunas frescas y doradas, un latte cremoso y un jugo de naranja recién exprimido. Simple, deliciosa y perfecta para cualquier momento del día',
+          precio: 7000,
+          imagen: 'assets/clientes/requeterico/mer_cla.webp',
+          small_imagen: 'assets/clientes/requeterico/mer_cla-small.webp'
+        },
+        {
+          nombre: 'Merienda Clásica',
+          descripcion: 'La combinación infalible de siempre: dos medialunas frescas y doradas, un latte cremoso y un jugo de naranja recién exprimido. Simple, deliciosa y perfecta para cualquier momento del día',
+          precio: 7000,
+          imagen: 'assets/clientes/requeterico/mer_cla.webp',
+          small_imagen: 'assets/clientes/requeterico/mer_cla-small.webp'
         },
       ]
-    }
+    },
     // {
     //   label: 'Rincón celíaco',
     //   icon: '',
@@ -810,6 +851,116 @@ export class CategoriaComponent implements OnInit {
     //     },
     //   ]
     // }
+    {
+      label: 'Empanadas',
+      icon: 'assets/clientes/requeterico/icono-emp.png',
+      route: 'empanadas',
+      nombre: 'empanadas',
+      productos: [
+        {
+          nombre: 'Empanadas Artesanales - Sabores a Elección',
+          descripcion: 'Crujientes por fuera y sabrosas por dentro. Nuestras empanadas caseras vienen en una variedad de sabores para todos los gustos:\n\n🥩 Carne jugosa,\n🧀 Jamón y queso derretido,\n🐔 Pollo especiado,\n🌽 Humita cremosa,\n🌿 Verdura con un toque de queso,\n🧅 Cebolla y queso fundido,\n🍅 Capresse con albahaca fresca.\nElegí tu combinación favorita y disfrutá de un clásico irresistible.',
+          precio: 4000,
+          imagen: 'assets/clientes/requeterico/emp_carne.webp',
+          small_imagen: 'assets/clientes/requeterico/emp_carne-small.webp'
+        },
+      ]
+    },
+    {
+      label: 'Pastas',
+      icon: 'assets/clientes/requeterico/icono-pasta.png',
+      route: 'pastas',
+      nombre: 'pastas',
+      productos: [
+        {
+          nombre: 'Sorrentinos de Jamón y Queso',
+          descripcion: 'Clásicos y reconfortantes, nuestros sorrentinos artesanales de jamón y queso vienen acompañados con la salsa que elijas: crema suave, fileto casero, bolognesa con carne o nuestra exclusiva salsa Requeterica, una irresistible combinación de crema, jamón y hongos. El sabor de siempre con un toque gourmet',
+          precio: 4000,
+          imagen: 'assets/clientes/requeterico/pasta_sorr.webp',
+          small_imagen: 'assets/clientes/requeterico/pasta_sorr-small.webp'
+        },
+        // {
+        //   nombre: 'Ravioles de Calabaza, Verdeo y Muzzarella',
+        //   descripcion: 'Delicados y sabrosos, estos ravioles rellenos con calabaza asada, verdeo fresco y muzzarella derretida se convierten en una experiencia única al combinarlos con la salsa de tu preferencia: fileto casero, crema suave, bolognesa tradicional o nuestra exclusiva salsa Requeterica, con crema, jamón y hongos. Un plato lleno de sabor y calidez',
+        //   precio: 4000,
+        //   imagen: 'assets/clientes/requeterico/pasta_rav_cal.webp',
+        //   small_imagen: 'assets/clientes/requeterico/pasta_rav_cal-small.webp'
+        // },
+        // {
+        //   nombre: 'Espaguetis Caseros',
+        //   descripcion: 'Clásicos y siempre bienvenidos. Nuestros espaguetis al dente se sirven con la salsa que elijas: fileto artesanal con tomates frescos, cremosa salsa blanca, bolognesa con carne cocida a fuego lento, o la irresistible salsa Requeterica con crema, jamón y hongos. Un plato reconfortante que nunca falla',
+        //   precio: 4000,
+        //   imagen: 'assets/clientes/requeterico/pasta_esp.webp',
+        //   small_imagen: 'assets/clientes/requeterico/pasta_esp-small.webp'
+        // },
+        // {
+        //   nombre: 'Canelones (x3 unidades)',
+        //   descripcion: 'Tres generosos canelones rellenos con una deliciosa mezcla casera (preguntá por nuestras variedades del día), cubiertos con la salsa de tu preferencia: suave crema, clásico fileto, sabrosa bolognesa o la exclusiva salsa Requeterica con crema, jamón y hongos. Un plato abundante y lleno de sabor que te abraza en cada bocado',
+        //   precio: 4000,
+        //   imagen: 'assets/clientes/requeterico/pasta_cane.webp',
+        //   small_imagen: 'assets/clientes/requeterico/pasta_cane-small.webp'
+        // },
+      ]
+    },
+    {
+      label: 'Milanesas',
+      icon: 'assets/clientes/requeterico/icono-mila.png',
+      route: 'milanesas',
+      nombre: 'milanesas',
+      productos: [
+        {
+          nombre: 'Milanesa con papas fritas',
+          descripcion: 'Clásica y reconfortante: milanesa dorada y crocante, de pollo o ternera, servida con una porción generosa de papas fritas crujientes. Una opción infalible que nunca falla, perfecta para los que aman los sabores tradicionales bien hechos',
+          precio: 4000,
+          imagen: 'assets/clientes/requeterico/mila_cla.webp',
+          small_imagen: 'assets/clientes/requeterico/mila_cla-small.webp'
+        },
+        // {
+        //   nombre: 'Milanesa Requeterica',
+        //   descripcion: 'Nuestra versión gourmet de un clásico: milanesa de pollo o ternera cubierta con muzzarella fundida, champiñones salteados y tomates cherry confitados. Acompañada de papas fritas crocantes. Un plato lleno de sabor, ideal para los que buscan algo diferente sin dejar lo tradicional',
+        //   precio: 4000,
+        //   imagen: 'assets/clientes/requeterico/mila_req.webp',
+        //   small_imagen: 'assets/clientes/requeterico/mila_req-small.webp'
+        // },
+        // {
+        //   nombre: 'Milanesa Napolitana',
+        //   descripcion: 'Clásica y siempre deliciosa. Milanesa de pollo o ternera, cubierta con salsa de tomate casera, jamón cocido y abundante muzzarella gratinada. Servida con una generosa porción de papas fritas doradas. Un plato que nunca falla',
+        //   precio: 4000,
+        //   imagen: 'assets/clientes/requeterico/mila_napo.webp',
+        //   small_imagen: 'assets/clientes/requeterico/mila_napo-small.webp'
+        // },
+      ]
+    },
+    // {
+    //   label: 'ensaladas',
+    //   icon: 'assets/clientes/requeterico/icono6.webp',
+    //   route: 'ensaladas',
+    //   nombre: 'ensaladas',
+    //   productos: [
+    //     {
+    //       nombre: 'Ensalada Caesar',
+    //       descripcion: 'Una opción fresca, sabrosa y súper abundante. Lleva croutones crocantes, tiras de pechuga de pollo grillada, hojas de lechuga fresca, huevo duro y nuestro aderezo Caesar casero, cremoso y lleno de sabor. Ideal para comer liviano sin quedarte con hambre',
+    //       precio: 4000,
+    //       imagen: 'assets/clientes/requeterico/ensa_caes.webp',
+    //       small_imagen: 'assets/clientes/requeterico/ensa_caes-small.webp'
+    //     },
+    //   ]
+    // },
+    // {
+    //   label: '',
+    //   icon: 'assets/clientes/requeterico/icono6.webp',
+    //   route: '',
+    //   nombre: '',
+    //   productos: [
+    //     {
+    //       nombre: '',
+    //       descripcion: '',
+    //       precio: 4000,
+    //       imagen: 'assets/clientes/requeterico/xxxxx.webp',
+    //       small_imagen: 'assets/clientes/requeterico/xxxxx-small.webp'
+    //     },
+    //   ]
+    // },
     // {
     //   label: 'Rinconcito Integral',
     //   icon: 'assets/clientes/requeterico/icono6.webp',

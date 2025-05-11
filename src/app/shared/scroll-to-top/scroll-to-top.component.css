@@ -13,7 +13,7 @@
   transform: translateY(15px);
   transition: all 300ms ease-out;
   overflow: hidden;
-  background: #D6B588;
+  background: #A67C52;
 
   &::after {
     content: '↑';
@@ -26,7 +26,7 @@
     align-items: center;
     justify-content: center;
     font-size: 24px;
-    color: #663C1F;
+    color: #ffd7a1;
     transition: all 300ms ease-out;
   }
 
