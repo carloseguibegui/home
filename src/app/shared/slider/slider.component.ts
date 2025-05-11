@@ -19,7 +19,7 @@ export class SliderComponent implements OnInit {
     private route: ActivatedRoute,
     categoriaComponent: CategoriaComponent
   ) {
-    this.categorias = categoriaComponent.data
+    this.categorias = [...categoriaComponent.data, ...categoriaComponent.data, ...categoriaComponent.data, ...categoriaComponent.data, ...categoriaComponent.data]
   }
 
   ngOnInit() {
@@ -40,7 +40,7 @@ export class SliderComponent implements OnInit {
         activeItem.scrollIntoView({
           behavior: 'instant',
           block: 'nearest',
-          inline: 'center'
+          inline: 'start'
         });
       }
     }, 0);
