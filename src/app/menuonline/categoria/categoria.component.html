@@ -2,7 +2,7 @@
 <section *ngIf="!loading" class="content fade-in" [class.fade]="true" [class.show]="visible"
     class="transition-container">
     <app-header [src_path]="'assets/clientes/requeterico/logo0.webp'"></app-header>
-    <app-slider [categoria_actual]="nombreCategoria"></app-slider>
+    <app-slider></app-slider>
     <app-search-bar [item_placeholder]="item_placeholder" (search)="onSearch($event)"></app-search-bar>
     <div class="container py-4">
         <div class="row g-4 mt-3">
