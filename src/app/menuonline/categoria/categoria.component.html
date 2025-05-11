@@ -44,9 +44,10 @@
         </div>
         <!-- Lightbox -->
         <div class="lightbox" [class.show]="lightboxVisible" [class.hide]="!lightboxVisible && lightboxImage"
-            (click)="closeLightbox()">
-            <span class="close-btn" (click)="closeLightbox()">&times;</span>
-            <img class="lightbox-content" [src]="lightboxImage" />
+            (click)="closeLightbox($event)">
+            <span class="close-btn">&times;</span>
+            <img class="lightbox-content" [src]="lightboxImage" (dblclick)="toggleZoom()" [style.transform]="zoomTransform"
+                [style.cursor]="zoomLevel === 1 ? 'zoom-in' : 'zoom-out'" />
         </div>
     </div>
     <app-copyright [marginBotClassDiv]="'mb-5'"></app-copyright>

@@ -11,9 +11,8 @@
                 <div class="col-lg-6 order-1 order-lg-1 d-flex flex-column justify-content-center">
                     <h1 class="pt-5 mt-5" id="titulo" style="margin-top: 4rem !important;">Decile chau 👋 al PDF
                     </h1>
-                    <p>Transformá tu carta en algo más que un menú. Hacela dinámica, visual y fácil de actualizar sin
-                        complicaciones.Olvidate de imprimir menús cada vez que hay un cambio. La gestión digital te da
-                        libertad y eficiencia.</p>
+                    <p>Dejá atrás el papel: transformamos tu carta en un menú digital que tus clientes pueden abrir con solo escanear un código
+                    QR.</p>
                     <div class="d-grid gap-2 col-12 mx-auto">
                         <a [routerLink]="['menuonline/requeterico/carta']"
                             class="btn-get-started btn-lg btn-block text-center h5">¡PROBALO
@@ -22,7 +21,7 @@
                 </div>
                 <div class="col-lg-6 order-2 order-lg-2 hero-img pt-3 pb-3 d-flex flex-column justify-content-center"
                     style="margin-bottom: 130px;">
-                    <a href="https://marketingeros-soluciones-digitales.github.io/requeterico-menu/"
+                    <a [routerLink]="['menuonline/requeterico/carta']"
                         target="_blank"><img id="banner" src="assets/landing/banner-landing.webp"
                             class="img-fluid animated mx-0 w-100" alt="banner-landing"></a>
                 </div>
@@ -33,33 +32,31 @@
         <div class="container lg">
             <div class="row gx-xxl-5">
                 <div class="col-lg-4 mt-4">
-                    <div id="disenio-hecho-a-tu-medida" class="card-style-eleven caracteristicas"
+                    <div id="disenio-hecho-a-tu-medida" class="card-style-eleven caracteristicas hover-effect"
                         style="background: #FFFFFF; box-shadow: 0px -25px 50px 20px rgba(0, 0, 0, 0.02); border-radius: 30px; padding: 30px 40px 24px; position: relative;padding: 20px 20px 20px; border-radius: 20px;margin-top: -100px;height: 22rem;align-content: center;">
                         <img src="assets/landing/design.webp" alt="Diseño a Medida"
                             style="max-width: 55px; display: block;margin: 0; padding: 0; box-sizing: border-box;">
-                        <h2 class="mt-4" style="font-weight: bold;">Diseño hecho a tu medida</h2>
-                        <p class="m0" style="line-height: 30px; font-size: 18px;">Tu carta adaptada a todos los
-                            dispositivos, optimizada para cargar rápido y verse impecable.</p>
+                        <h2 class="mt-4" style="font-weight: bold;">Menú visual con tu identidad</h2>
+                        <p class="m0" style="line-height: 30px; font-size: 18px;">Diseños adaptables que resaltan tus productos con imágenes profesionales y fondos uniformes, creados para reflejar tu marca.</p>
                     </div>
                 </div>
                 <div class="col-lg-4 mt-4">
-                    <div class="card-style-eleven caracteristicas"
+                    <div class="card-style-eleven caracteristicas hover-effect"
                         style="background: #FFFFFF; box-shadow: 0px -25px 50px 20px rgba(0, 0, 0, 0.02); border-radius: 30px; padding: 30px 40px 24px; position: relative;padding: 20px 20px 20px; border-radius: 20px;height: 22rem;align-content: center;">
                         <img src="assets/landing/upload.webp" alt="Diseño a Medida"
                             style="max-width: 55px; display: block;margin: 0; padding: 0; box-sizing: border-box;">
                         <h2 class="mt-4" style="font-weight: bold;">Subí tu carta. Nosotros nos encargamos del resto
                         </h2>
-                        <p class="m0" style="line-height: 30px; font-size: 18px;">Mandanos tus platos, fotos y precios.
-                            Nosotros lo convertimos en un menú digital moderno, lindo y funcional.</p>
+                        <p class="m0" style="line-height: 30px; font-size: 18px;">Envíanos tus imágenes: las mejoramos con IA, corregimos fondos y creamos un menú visualmente armonioso.</p>
                     </div>
                 </div>
                 <div class="col-lg-4 mt-4">
-                    <div class="card-style-eleven caracteristicas"
+                    <div class="card-style-eleven caracteristicas hover-effect"
                         style="background: #FFFFFF; box-shadow: 0px -25px 50px 20px rgba(0, 0, 0, 0.02); border-radius: 30px; padding: 30px 40px 24px; position: relative;padding: 20px 20px 20px; border-radius: 20px;margin-bottom: 4rem;height: 22rem;align-content: center;">
                         <img src="assets/landing/story.webp" alt="Diseño a Medida"
                             style="max-width: 55px; display: block;margin: 0; padding: 0; box-sizing: border-box;">
-                        <h2 class="mt-4" style="font-weight: bold;">Convertí tu carta en una herramienta de ventas</h2>
-                        <p class="m0" style="line-height: 30px; font-size: 18px;"></p>
+                        <h2 class="mt-4" style="font-weight: bold;">Productos que se venden solos</h2>
+                        <p class="m0" style="line-height: 30px; font-size: 18px;">Fotos mejoradas con IA y presentación profesional: hacemos que tus platos sean irresistibles a primera vista.</p>
                     </div>
                 </div>
             </div>
@@ -99,26 +96,49 @@
     </section>
     <section id="porque-elegirnos" class="pb-5 bg-white">
         <div class="container section-title mb-5" data-aos="fade-up">
-            <h2>¿Por qué elegirnos?</h2>
+            <h2 class="text-center mb-4">¿Por qué elegirnos?</h2>
         </div>
+    
         <div class="container">
-            <div class="row align-items-center">
-                <div class="col-12 px-3" style="line-height: 30px; font-size: 18px;">
-                    <p class="mb-3">Creamos un <strong>menú digital 100% a medida</strong>, adaptado a la identidad
-                        de
-                        tu marca.
-                        Nada de plantillas genéricas: tu carta se ve y se siente como vos.</p>
-                    <p class="mb-3"><strong>Vos mandás las fotos y los platos, nosotros hacemos el resto</strong>.
-                        Traducimos tu
-                        carta a varios idiomas usando IA con coherencia gastronómica.</p>
-                    <p class="mb-3">Todos nuestros planes incluyen <strong>QR personalizado</strong>, acceso rápido
-                        desde el
-                        celular y un <strong>sistema de pedidos moderno</strong>.</p>
-                    <p class="mb-0 fw-semibold text-success">Vos cocinás. Nosotros digitalizamos.</p>
+            <div class="row gx-xxl-5 justify-content-center">
+                <!-- Card 1 -->
+                <div class="col-lg-4 mt-4">
+                    <div class="card-style-eleven caracteristicas hover-effect"
+                        style="background: #FFFFFF; box-shadow: 0px -25px 50px 20px rgba(0, 0, 0, 0.02); border-radius: 20px; padding: 20px; height: 22rem; align-content: center;">
+                        <img src="assets/landing/design.webp" alt="Diseño a Medida"
+                            style="max-width: 55px; display: block;">
+                        <h2 class="mt-4" style="font-weight: bold;">Diseño 100% a medida</h2>
+                        <p style="line-height: 30px; font-size: 18px;">Creamos tu menú desde cero, usando tus colores, logo y estilo único para que refleje la
+                            identidad de tu marca.</p>
+                    </div>
+                </div>
+    
+                <!-- Card 2 -->
+                <div class="col-lg-4 mt-4">
+                    <div class="card-style-eleven caracteristicas hover-effect"
+                        style="background: #FFFFFF; box-shadow: 0px -25px 50px 20px rgba(0, 0, 0, 0.02); border-radius: 20px; padding: 20px; height: 22rem; align-content: center;">
+                        <img src="assets/landing/robot-ia.png" alt="Fotos + Traducción"
+                            style="max-width: 55px; display: block;">
+                        <h2 class="mt-4" style="font-weight: bold;">Fotos + Traducción inteligente</h2>
+                        <p style="line-height: 30px; font-size: 18px;">Tus fotos se convierten en imágenes de catálogo con nuestro proceso de edición asistido por IA. Corregimos fondos,
+                        igualamos la iluminación y aplicamos filtros coherentes con tu marca, transformando incluso fotos simples tomadas con
+                        celular en presentaciones gourmet</p>
+                    </div>
+                </div>
+    
+                <!-- Card 3 -->
+                <div class="col-lg-4 mt-4"><div class="card-style-eleven caracteristicas hover-effect"
+                    style="background: #FFFFFF; box-shadow: 0px -25px 50px 20px rgba(0, 0, 0, 0.02); border-radius: 20px; padding: 20px; height: 22rem; align-content: center;">
+                    <img src="assets/landing/garantizar.png" alt="Fotos + Traducción" style="max-width: 55px; display: block;">
+                    <h2 class="mt-4" style="font-weight: bold;">Proceso simple, resultado premium</h2>
+                    <p style="line-height: 30px; font-size: 18px;">Nos envías fotos de tus platos, tu menú. Nosotros editamos, diseñamos y optimizamos. Recibís un menú digital premium listo para impresionar. Simple para vos, impecable para tus clientes.</p>
+                </div>
                 </div>
             </div>
         </div>
     </section>
+    
+    
     <section id="faq" class="faq section mt-0">
         <div class="container section-title mb-5" data-aos="fade-up">
             <h2>Preguntas frecuentes</h2>
@@ -208,15 +228,42 @@
             </div>
         </div>
     </section>
-    <section id="contacto" class="contact section">
+    <!-- <section id="contacto" class="contact section">
         <div class="container section-title" data-aos="fade-up">
             <h2><strong>¿Listo para digitalizar tu carta?</strong></h2>
             <p><strong>Contáctanos a través de nuestro <a target="_blank"
                         href="https://api.whatsapp.com/send?phone=542494655254&text=%C2%A1Hola%20%F0%9F%91%8B%20Estoy%20buscando%20un%20men%C3%BA%20digital%20moderno%20para%20mi%20negocio.%20%C2%BFPodemos%20hablar%3F">WhatsApp</a>
                 </strong></p>
         </div>
-        <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+    </section> -->
+    <section id="contacto" class="contact section py-6 bg-opacity-10">
+        <div class="container">
+            <div class="row justify-content-center" data-aos="fade-up">
+                <div class="col-12 col-md-10 col-lg-8 text-center">
+                    <!-- Título destacado -->
+                    <h2 class="display-5 fw-bold mb-4">
+                        Tu menú profesional está a un mensaje de distancia
+                    </h2>
+    
+                    <!-- Texto de apoyo -->
+                    <p class="lead mb-5">
+                       Envianos tu menú por WhatsApp y transforma tu carta en una experiencia visual profesional.
+                    </p>
+    
+                    <!-- Botón prominente con icono -->
+                    <a href="https://api.whatsapp.com/send?phone=542494655254&text=%C2%A1Hola%20%F0%9F%91%8B%20Estoy%20buscando%20un%20men%C3%BA%20digital%20moderno%20para%20mi%20negocio.%20%C2%BFPodemos%20hablar%3F"
+                        target="_blank" class="btn btn-lg px-5 py-3 d-inline-flex align-items-center"
+                        style="transition: all 0.3s;border: 2px solid #5846f9; border-radius: 40px;">
+                        <div style="margin-right: 1rem;">
+                            <i class="bi bi-whatsapp my-float"></i>
+                        </div>
+                        ¡Hablemos por WhatsApp!
+                    </a>
+                </div>
+            </div>
+        </div>
     </section>
+    
 </main>
 <div class="floating_btn">
     <strong><a target="_blank" href="https://wa.link/jepjoq">

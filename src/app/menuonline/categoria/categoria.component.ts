@@ -19,6 +19,8 @@ import { SliderComponent } from "../../shared/slider/slider.component";
 })
 @Injectable({ providedIn: 'root' })
 export class CategoriaComponent implements OnInit {
+  zoomLevel: number = 1;
+  zoomTransform: string = 'scale(1)';
   loading = false;
   visible = false;
   nombreCategoria: string = '';
@@ -791,13 +793,13 @@ export class CategoriaComponent implements OnInit {
           imagen: 'assets/clientes/requeterico/mer_cla.webp',
           small_imagen: 'assets/clientes/requeterico/mer_cla-small.webp'
         },
-        {
-          nombre: 'Merienda Clásica',
-          descripcion: 'La combinación infalible de siempre: dos medialunas frescas y doradas, un latte cremoso y un jugo de naranja recién exprimido. Simple, deliciosa y perfecta para cualquier momento del día',
-          precio: 7000,
-          imagen: 'assets/clientes/requeterico/mer_cla.webp',
-          small_imagen: 'assets/clientes/requeterico/mer_cla-small.webp'
-        },
+        // {
+        //   nombre: 'Merienda Clásica',
+        //   descripcion: 'La combinación infalible de siempre: dos medialunas frescas y doradas, un latte cremoso y un jugo de naranja recién exprimido. Simple, deliciosa y perfecta para cualquier momento del día',
+        //   precio: 7000,
+        //   imagen: 'assets/clientes/requeterico/mer_cla.webp',
+        //   small_imagen: 'assets/clientes/requeterico/mer_cla-small.webp'
+        // },
       ]
     },
     // {
@@ -1029,25 +1031,23 @@ export class CategoriaComponent implements OnInit {
     this.lightboxVisible = true;
     document.body.style.overflow = 'hidden'; // Bloquea scroll
   }
+  // Método para alternar zoom
+  toggleZoom() {
+    this.zoomLevel = this.zoomLevel === 1 ? 2 : 1;
+    this.zoomTransform = `scale(${this.zoomLevel})`;
+  }
+  closeLightbox(event: MouseEvent) {
+    const target = event.target as HTMLElement;
+    if (target.classList.contains('lightbox')) {
+      this.lightboxVisible = false;
+      this.zoomLevel = 1;
+      this.zoomTransform = 'scale(1)';
+      document.body.style.overflow = '';
 
-  closeLightbox() {
-    this.lightboxVisible = false;
-
-    setTimeout(() => {
-      this.lightboxImage = ''; // para ocultar completamente la imagen después del fade,
-      this.lightboxImage = ''; // para ocultar completamente la imagen después del fade
-      document.body.style.overflow = ''; // Restaura scroll
-      document.body.style.zoom = '100%';
-      document.body.style.transform = 'none';
-      document.body.style.transformOrigin = '';
-      if (this.container) {
-        this.container.style.zoom = '100%';
-        this.container.style.transform = 'none';
-        this.container.style.transformOrigin = '';
-        this.container.style.transform = 'scale(1)';
-        this.container.style.transformOrigin = 'center center';
-      }
-    }, 300); // igual a la duración del transition
+      setTimeout(() => {
+        this.lightboxImage = '';
+      }, 300);
+    }
   }
 
   ngAfterViewInit(): void {
