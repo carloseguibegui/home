@@ -19,6 +19,8 @@ import { SliderComponent } from "../../shared/slider/slider.component";
 })
 @Injectable({ providedIn: 'root' })
 export class CategoriaComponent implements OnInit {
+  private lastTap = 0;
+  doubleTapTimeout: any = null;
   zoomLevel: number = 1;
   zoomTransform: string = 'scale(1)';
   loading = false;
@@ -1030,12 +1032,10 @@ export class CategoriaComponent implements OnInit {
     this.lightboxImage = imageUrl;
     this.lightboxVisible = true;
     document.body.style.overflow = 'hidden'; // Bloquea scroll
+    this.applyPerformanceHacks(); // Aplica optimizaciones
   }
-  // Método para alternar zoom
-  toggleZoom() {
-    this.zoomLevel = this.zoomLevel === 1 ? 2 : 1;
-    this.zoomTransform = `scale(${this.zoomLevel})`;
-  }
+  
+
   closeLightbox(event: MouseEvent) {
     const target = event.target as HTMLElement;
     if (target.classList.contains('lightbox')) {
@@ -1068,6 +1068,99 @@ export class CategoriaComponent implements OnInit {
         }
       });
   }
+  private isDragging = false;
+  private startX = 0;
+  private startY = 0;
+  private offsetX = 0;
+  private offsetY = 0;
+  resetZoom() {
+    this.zoomLevel = 1;
+    this.zoomTransform = 'scale(1)';
+  }
+  toggleZoom() {
+    if (this.zoomLevel === 1) {
+      this.zoomLevel = 2;
+    } else {
+      this.zoomLevel = 1;
+      this.offsetX = 0;
+      this.offsetY = 0;
+    }
+    this.updateTransform();
+  }
 
+  handleDoubleTap(event: TouchEvent) {
+    const currentTime = new Date().getTime();
+    const tapLength = currentTime - this.lastTap;
+
+    if (tapLength < 300 && tapLength > 0) {
+      event.preventDefault();
+      this.toggleZoom();
+      this.lastTap = 0;
+    } else {
+      this.lastTap = currentTime;
+    }
+  }
+  startDrag(event: MouseEvent | TouchEvent) {
+    if (this.zoomLevel === 1) return;
+    const img = event.target as HTMLElement;
+    img.classList.add('panning');
+    this.isDragging = true;
+    const clientX = this.getClientX(event);
+    const clientY = this.getClientY(event);
+
+    this.startX = clientX - this.offsetX;
+    this.startY = clientY - this.offsetY;
+  }
+
+  onDrag(event: MouseEvent | TouchEvent) {
+    if (!this.isDragging || this.zoomLevel === 1) return;
+
+    event.preventDefault();
+    const clientX = this.getClientX(event);
+    const clientY = this.getClientY(event);
+
+    this.offsetX = clientX - this.startX;
+    this.offsetY = clientY - this.startY;
+    this.updateTransform();
+  }
+
+  endDrag() {
+    this.isDragging = false;
+    const img = document.querySelector('.lightbox-content');
+    if (img) {
+      img.classList.remove('panning');
+      // Pequeño timeout para suavizar la transición final
+      setTimeout(() => {
+        img.classList.add('smooth-transition');
+      }, 50);
+    }
+  }
+
+  private getClientX(event: MouseEvent | TouchEvent): number {
+    return event instanceof MouseEvent ? event.clientX : event.touches[0].clientX;
+  }
+
+  private getClientY(event: MouseEvent | TouchEvent): number {
+    return event instanceof MouseEvent ? event.clientY : event.touches[0].clientY;
+  }
+
+  private updateTransform() {
+    this.zoomTransform = `
+    translate3d(${this.offsetX}px, ${this.offsetY}px, 0)
+    scale(${this.zoomLevel})
+  `;
+    // this.zoomTransform = `
+    //   scale(${this.zoomLevel})
+    //   translate(${this.offsetX}px, ${this.offsetY}px)
+    // `;
+  }
+
+  private applyPerformanceHacks() {
+    const img = document.querySelector('.lightbox-content') as HTMLElement;
+    if (img) {
+      // Fuerza la aceleración por hardware
+      img.style.transform = 'translateZ(0)';
+    }
+  }
 
 }

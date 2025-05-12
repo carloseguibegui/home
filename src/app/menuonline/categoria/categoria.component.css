@@ -1,3 +1,6 @@
+html {
+    scroll-behavior: smooth; }
+
 * {
     font-family: 'Caveat' !important;
 }
@@ -219,4 +222,49 @@
 
 .fade-in {
     transition: opacity 1s ease-in-out !important;
+}
+
+.lightbox-content {
+    /* transition: transform 0.2s ease-in-out; */
+    transform-origin: center center;
+    /* touch-action: manipulation; */
+    user-select: none;
+    touch-action: none;
+    /* Permite el control manual del desplazamiento */
+    cursor: grab;
+    /* Permite el control manual del desplazamiento */
+    transition: transform 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+    will-change: transform;
+    /* Optimiza para transformaciones */
+    backface-visibility: hidden;
+    /* Mejora rendimiento en móviles */
+    transform: translateZ(0);
+    /* Activa aceleración por hardware */
+}
+
+.lightbox {
+    overflow: auto;
+    /* Permite scroll cuando la imagen es más grande */
+    touch-action: none;
+    /* Desactiva el comportamiento táctil por defecto */
+}
+
+.lightbox-content:active {
+    cursor: grabbing;
+}
+
+.lightbox-content.panning {
+    transition: none;
+    /* Desactiva transición durante el arrastre */
+}
+
+.lightbox-content.smooth-transition {
+    transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.lightbox {
+    -webkit-overflow-scrolling: touch;
+    /* Mejor scroll en iOS */
+    overscroll-behavior: contain;
+    /* Evita scroll de la página padre */
 }

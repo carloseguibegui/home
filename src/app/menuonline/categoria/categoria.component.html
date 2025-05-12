@@ -45,9 +45,10 @@
         <!-- Lightbox -->
         <div class="lightbox" [class.show]="lightboxVisible" [class.hide]="!lightboxVisible && lightboxImage"
             (click)="closeLightbox($event)">
-            <span class="close-btn">&times;</span>
-            <img class="lightbox-content" [src]="lightboxImage" (dblclick)="toggleZoom()" [style.transform]="zoomTransform"
-                [style.cursor]="zoomLevel === 1 ? 'zoom-in' : 'zoom-out'" />
+            <img class="lightbox-content" [src]="lightboxImage" (dblclick)="toggleZoom()"
+                (touchstart)="handleDoubleTap($event); startDrag($event)" (mousedown)="startDrag($event)"
+                (touchmove)="onDrag($event)" (mousemove)="onDrag($event)" (touchend)="endDrag()" (mouseup)="endDrag()"
+                (mouseleave)="endDrag()" [style.transform]="zoomTransform" [style.cursor]="zoomLevel === 1 ? 'zoom-in' : 'grab'" />
         </div>
     </div>
     <app-copyright [marginBotClassDiv]="'mb-5'"></app-copyright>
