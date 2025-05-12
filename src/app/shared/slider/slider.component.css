@@ -50,7 +50,7 @@
 }
 
 .menu-item:first-child {
-    margin-left: 16px !important;
+    /* margin-left: 16px !important; */
     /* Espaciado inicial */
 }
 

@@ -5,7 +5,7 @@
                 [class.active]="isActiveCategory(categoria.route)">
                 <a [href]="'/menuonline/' + cliente + '/carta/' + categoria.route" class="category-link"
                     [class.active]="isActiveCategory(categoria.route)">
-                    <div class="menu-item mx-0" [class.active]="isActiveCategory(categoria.route)"
+                    <div class="menu-item mx-1" [class.active]="isActiveCategory(categoria.route)"
                         [ngStyle]="{ 'background': 'url(/assets/clientes/' + cliente + '/fondo-claro.webp)' }">
                         <img [src]="categoria.icon" [alt]="categoria.label" class="category-icon">
                     </div>
