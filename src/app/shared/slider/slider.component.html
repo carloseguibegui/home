@@ -2,7 +2,7 @@
     <div class="scroll-track">
         <div *ngFor="let categoria of categorias" class="slider-item"
             [class.active]="isActiveCategory(categoria.route)">
-            <a [href]="'/menuonline/requeterico/carta/' + categoria.route" class="category-link"
+            <a [href]="'/menuonline/' + cliente + '/carta/' + categoria.route" class="category-link"
                 [class.active]="isActiveCategory(categoria.route)">
                 <div class="menu-item" [class.active]="isActiveCategory(categoria.route)">
                     <img [src]="categoria.icon" [alt]="categoria.label" class="category-icon">

@@ -106,11 +106,6 @@ p {
     font-weight: bold;
 }
 
-
-.categoria-div {
-    background: url("../../../../public/assets/clientes/requeterico/fondo-claro.webp");
-    align-content: end;
-}
 /* slider.component.css */
 .scroll-container {
     overflow-x: auto;
@@ -126,7 +121,7 @@ p {
 }
 
 .slider-item {
-    opacity: 0.7;
+    opacity: 0.85;
     transition: all 0.3s ease;
     display: flex;
     flex-direction: column;
@@ -144,7 +139,8 @@ p {
 }
 
 .menu-item {
-    background: #f5f5f5;
+    /* background: #f5f5f5; */
+    background: url("../../../../public/assets/clientes/requeterico/fondo-claro.webp");
     border-radius: 50%;
     width: 75px;
     height: 75px;

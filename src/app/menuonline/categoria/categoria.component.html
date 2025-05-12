@@ -1,7 +1,7 @@
-<app-background [imageUrl]="'/assets/clientes/requeterico/text1.webp'"></app-background>
+<app-background [imageUrl]="'/assets/clientes/'+ cliente +'/text1.webp'"></app-background>
 <section *ngIf="!loading" class="content fade-in" [class.fade]="true" [class.show]="visible"
     class="transition-container">
-    <app-header [src_path]="'assets/clientes/requeterico/logo0.webp'"></app-header>
+    <app-header [cliente]="cliente" [src_path]="'assets/clientes/'+ cliente +'/logo0.webp'"></app-header>
     <app-slider></app-slider>
     <app-search-bar [item_placeholder]="item_placeholder" (search)="onSearch($event)"></app-search-bar>
     <div class="container py-4">
@@ -16,8 +16,7 @@
                     </div>
                     <!-- Contenido encima -->
                     <div class="blurred-img card-body text-center px-4 pb-5 position-relative" id="cuerpo-card"
-                        style="z-index: 2;">
-                        <!-- <img src="fondo-claro.webp" alt="" loading="lazy" class="fondo-card fondo-card-textura" /> -->
+                        [ngStyle]="{ 'background-image': 'url(/assets/clientes/' + cliente + '/fondo-claro.webp)' }">
                         <div id="card-nombre" class="pt-4 pb-2 px-1">
                             <div class="card-title fw-bold text-uppercase" style="color: #6b4c3b;">
                                 {{ item.nombre }}
@@ -34,11 +33,8 @@
                 </div>
             </div>
             }
-            <!-- [routerLink]="['/']" -->
-            <a [routerLink]="['/menuonline', 'requeterico', 'carta']"
+            <a [routerLink]="['/menuonline', cliente, 'carta']"
                 class="btn button-add-cart checkout-button boton-volver">
-                <!-- <i class="bi bi-arrow-left"></i> -->
-                <!-- <i class="fa fa-undo px-2 py-1" aria-hidden="true"></i> -->
                 VOLVER
             </a>
         </div>

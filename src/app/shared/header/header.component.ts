@@ -9,5 +9,6 @@ import { RouterLink } from '@angular/router';
 })
 export class HeaderComponent {
   @Input() src_path: string = '';
+  @Input() cliente: string = '';
 
 }

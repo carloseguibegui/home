@@ -37,7 +37,7 @@ export class CategoriaComponent implements OnInit {
   lightboxVisible = false;
   lightboxImage: string = '';
   container = document.querySelector('.container') as HTMLElement;
-  private cliente: any;
+  cliente: any;
   private categoria: any;
   
   constructor(private menuService: MenuService,private route: ActivatedRoute, private router: Router, private renderer: Renderer2) {

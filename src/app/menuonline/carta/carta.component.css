@@ -17,19 +17,6 @@
     font-size: 1.8rem;
 }
 
-.background-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: -1;
-    background-image: url('../../../../public/assets/clientes/requeterico/text1.webp');
-    filter: blur(1px) brightness(1);
-    background-size: cover;
-    background-position: center;
-    height: 100vh;
-}
-
 .menu-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
@@ -102,7 +89,6 @@
 }
 
 .categoria-div {
-    background: url("../../../../public/assets/clientes/requeterico/fondo-claro.webp");
     align-content: end;
 }
 

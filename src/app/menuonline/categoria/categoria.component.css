@@ -46,8 +46,8 @@ html {
 
 
 #cuerpo-card {
-    background: url("../../../../public/assets/clientes/requeterico/fondo-claro.webp");
     font-weight: bold;
+    z-index: 2;
 }
 
 #card-nombre div {

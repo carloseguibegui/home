@@ -13,7 +13,7 @@ export class SliderComponent implements OnInit {
   @ViewChild('scrollContainer') scrollContainer!: ElementRef;
   categorias: any[] = [];
   currentCategory: string | null = null;
-
+  cliente: string = ''
   constructor(
     public router: Router,
     private route: ActivatedRoute,
@@ -23,8 +23,8 @@ export class SliderComponent implements OnInit {
   }
 
   ngOnInit() {
-    const cliente = this.route.snapshot.paramMap.get('cliente') || '';
-    this.menuService.loadMenu(cliente);
+    this.cliente = this.route.snapshot.paramMap.get('cliente') || '';
+    this.menuService.loadMenu(this.cliente);
     this.menuService.menuData$.subscribe(data => {
       this.categorias = data;
       this.categorias = [...this.categorias, ...this.categorias, ...this.categorias, ...this.categorias, ...this.categorias]
