@@ -1,7 +1,10 @@
+import { CommonModule } from '@angular/common';
 import { Component, HostListener, OnInit, Renderer2, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-scroll-to-top',
+  imports: [CommonModule],
   templateUrl: './scroll-to-top.component.html',
   styleUrl: './scroll-to-top.component.css'
 })
@@ -12,10 +15,15 @@ export class ScrollToTopComponent implements OnInit, AfterViewInit {
   private pathLength!: number;
   private readonly offset = 300;
   private isVisible = false;
+  cliente: string = '';
+  constructor(private renderer: Renderer2, private route: ActivatedRoute) { }
 
-  constructor(private renderer: Renderer2) { }
+  get clienteClass(): string {
+    return `cliente-${this.cliente.toLowerCase()}`;
+  }
 
   ngOnInit(): void {
+    this.cliente = this.route.snapshot.paramMap.get('cliente') || '';
     this.setupScrollListener();
   }
 

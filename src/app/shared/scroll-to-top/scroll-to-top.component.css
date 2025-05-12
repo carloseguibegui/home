@@ -6,14 +6,12 @@
   width: 46px;
   cursor: pointer;
   border-radius: 50%;
-  box-shadow: inset 0 0 0 2px #ffd7a1;
   z-index: 999;
   opacity: 0;
   visibility: hidden;
   transform: translateY(15px);
   transition: all 300ms ease-out;
   overflow: hidden;
-  background: #A67C52;
 
   &::after {
     content: '↑';
@@ -26,7 +24,6 @@
     align-items: center;
     justify-content: center;
     font-size: 24px;
-    color: #ffd7a1;
     transition: all 300ms ease-out;
   }
 
@@ -37,8 +34,38 @@
   }
 
   .progress-circle path {
-    stroke: #663C1F;
     stroke-width: 4;
     fill: none;
   }
 }
+
+/* Estilos específicos para clientes */
+
+/* Cliente: requeterico */
+.cliente-requeterico {
+  --progress-bg-color: #A67C52;
+  --progress-border-color: #ffd7a1;
+  --progress-arrow-color: #ffd7a1;
+  --progress-circle-color: #663C1F;
+
+  .progress-wrap {
+    box-shadow: inset 0 0 0 2px #ffd7a1;
+    background: var(--progress-bg-color);
+
+    &::after {
+      color: var(--progress-circle-color);
+    }
+
+    .progress-circle path {
+      stroke: var(--progress-circle-color);
+    }
+
+  }
+}
+  /* Cliente: otroCliente (ejemplo para futuros clientes) */
+  .cliente-otroCliente {
+    --progress-bg-color: #1E88E5;
+    --progress-border-color: #90CAF9;
+    --progress-arrow-color: #FFFFFF;
+    --progress-circle-color: #1565C0;
+  }
