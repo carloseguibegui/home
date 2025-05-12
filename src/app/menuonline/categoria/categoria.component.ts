@@ -37,20 +37,19 @@ export class CategoriaComponent implements OnInit {
   lightboxVisible = false;
   lightboxImage: string = '';
   container = document.querySelector('.container') as HTMLElement;
-  
+  private cliente: any;
+  private categoria: any;
   
   constructor(private menuService: MenuService,private route: ActivatedRoute, private router: Router, private renderer: Renderer2) {
   }
   
   ngOnInit() {
-    const cliente = this.route.snapshot.paramMap.get('cliente') || '';
-    const categoria = this.route.snapshot.paramMap.get('categoria') || '';
-    console.log('categoria',categoria)
-    this.menuService.loadMenu(cliente);
+    this.cliente = this.route.snapshot.paramMap.get('cliente') || '';
+    this.categoria = this.route.snapshot.paramMap.get('categoria') || '';
+    this.menuService.loadMenu(this.cliente);
     this.menuService.menuData$.subscribe(data => {
       this.data = data;
-      console.log('data',this.data)
-      const objeto_categoria = this.data.find((item: { route: string; }) => item.route === categoria)
+      const objeto_categoria = this.data.find((item: { route: string; }) => item.route === this.categoria)
       console.log("objeto_categoria", objeto_categoria)
       this.nombreCategoria = objeto_categoria.nombre;
       this.items = objeto_categoria.productos || [];

@@ -27,7 +27,6 @@ export class SliderComponent implements OnInit {
     this.menuService.loadMenu(cliente);
     this.menuService.menuData$.subscribe(data => {
       this.categorias = data;
-      console.log('categorias', this.categorias)
       this.categorias = [...this.categorias, ...this.categorias, ...this.categorias, ...this.categorias, ...this.categorias]
       this.detectRouteChanges();
     });
