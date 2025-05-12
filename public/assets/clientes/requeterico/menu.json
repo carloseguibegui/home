@@ -1,0 +1,426 @@
+[
+  {
+    "label": "Cafés",
+    "icon": "assets/clientes/requeterico/icono1.webp",
+    "route": "cafes",
+    "nombre": "cafés",
+    "productos": [
+      {
+        "nombre": "Capuccino",
+        "descripcion": "Clásico e irresistible. Una mezcla perfecta de espresso intenso, leche vaporizada y una generosa capa de espuma suave y cremosa. Ideal para quienes disfrutan de un café equilibrado, con cuerpo y textura sedosa en cada sorbo",
+        "precio": 6500,
+        "imagen": "assets/clientes/requeterico/c2.webp",
+        "small_imagen": "assets/clientes/requeterico/c2-small.webp"
+      },
+      {
+        "nombre": "Submarino",
+        "descripcion": "Café suave, preparado con agua caliente para un sabor Una barra de chocolate que se derrite lentamente en leche caliente. Ritual irresistible de sabor",
+        "precio": 4800,
+        "imagen": "assets/clientes/requeterico/c1.webp",
+        "small_imagen": "assets/clientes/requeterico/c1-small.webp"
+      },
+      {
+        "nombre": "Frappe Americano",
+        "descripcion": "Helado de americana, café, leche, crema e hielo batidos hasta lograr una bebida suave y espumosa. Refrescante y con carácter",
+        "precio": 4800,
+        "imagen": "assets/clientes/requeterico/f1.webp",
+        "small_imagen": "assets/clientes/requeterico/f1-small.webp"
+      },
+      {
+        "nombre": "Frappe de Dulce de Leche",
+        "descripcion": "Helado de dulce de leche, café, leche, crema e hielo. Una combinación cremosa y golosa, perfecta para los amantes del sabor argentino",
+        "precio": 4800,
+        "imagen": "assets/clientes/requeterico/f1.webp",
+        "small_imagen": "assets/clientes/requeterico/f1-small.webp"
+      },
+      {
+        "nombre": "Frappe de Chocolate",
+        "descripcion": "Helado de chocolate, café, leche, crema e hielo. Intenso y dulce, ideal para los que buscan algo bien chocolatoso",
+        "precio": 4800,
+        "imagen": "assets/clientes/requeterico/f1.webp",
+        "small_imagen": "assets/clientes/requeterico/f1-small.webp"
+      },
+      {
+        "nombre": "Flat White",
+        "descripcion": "Bebida cremosa con doble shot de espresso y leche vaporizada finamente texturizada. Un equilibrio perfecto entre intensidad y suavidad, ideal para los amantes del café con leche",
+        "precio": 4800,
+        "imagen": "assets/clientes/requeterico/flat-white.webp",
+        "small_imagen": "assets/clientes/requeterico/flat-white-small.webp"
+      },
+      {
+        "nombre": "Café Irlandés",
+        "descripcion": "Un clásico internacional con carácter: café espresso intenso, whisky irlandés suave y una capa de crema espesa. Perfecto para tardes frías o un momento especial con amigos",
+        "precio": 5200,
+        "imagen": "assets/clientes/requeterico/cafe-irlandes.webp",
+        "small_imagen": "assets/clientes/requeterico/cafe-irlandes-small.webp"
+      },
+      {
+        "nombre": "Café Requeterico",
+        "descripcion": "Nuestro café insignia: blend artesanal de granos seleccionados, con aroma intenso, cuerpo equilibrado y notas sutiles a chocolate y frutos secos. Preparado con esmero por nuestros baristas.",
+        "precio": 3500,
+        "imagen": "assets/clientes/requeterico/cafe-requeterico.webp",
+        "small_imagen": "assets/clientes/requeterico/cafe-requeterico-small.webp"
+      }
+    ]
+  },
+  {
+    "label": "Tortas",
+    "icon": "assets/clientes/requeterico/icono2.webp",
+    "route": "tortas",
+    "nombre": "Tortas",
+    "productos": [
+      {
+        "nombre": "Cheescake con Frutos Rojos",
+        "descripcion": "Base de galletas crocantes, crema de queso suave y untuosa, coronada con un coulis artesanal de frutos rojos. Un postre fresco y elegante, ideal para quienes buscan un sabor equilibrado y sofisticado",
+        "precio": 7500,
+        "imagen": "assets/clientes/requeterico/t18.webp",
+        "small_imagen": "assets/clientes/requeterico/t18-small.webp"
+      },
+      {
+        "nombre": "Torta Carrot Cake",
+        "descripcion": "Tres capaz de suave bizcochuelo de zanahoria, rellenas con nuestra clásica crema de queso y coronadas con nueces seleccionadas. Un clásico irresistible de Requeterico",
+        "precio": 7500,
+        "imagen": "assets/clientes/requeterico/t3.webp",
+        "small_imagen": "assets/clientes/requeterico/t3-small.webp"
+      },
+      {
+        "nombre": "Tarta de manzana",
+        "descripcion": "Clásica tarta artesanal con base de masa suave, rellena de crema pastelera y manzanas frescas caramelizadas con un toque de canela. Un sabor reconfortante que nunca pasa de moda",
+        "precio": 7500,
+        "imagen": "assets/clientes/requeterico/t9.webp",
+        "small_imagen": "assets/clientes/requeterico/t9-small.webp"
+      },
+      {
+        "nombre": "Tarta de Frutillas",
+        "descripcion": "Base crocante con dulce de leche, crema y frutillas seleccionadas frescas. Un postre simple y delicioso que resalta lo mejor de esta fruta",
+        "precio": 7500,
+        "imagen": "assets/clientes/requeterico/t1.webp",
+        "small_imagen": "assets/clientes/requeterico/t1-small.webp"
+      },
+      {
+        "nombre": "Lemon Pie",
+        "descripcion": "Base de masa dulce, rellena con crema de limón bien cítrica y cubierta con merengue italiano dorado. Un equilibrio perfecto entre dulzura y acidez",
+        "precio": 7500,
+        "imagen": "assets/clientes/requeterico/t2.webp",
+        "small_imagen": "assets/clientes/requeterico/t2-small.webp"
+      },
+      {
+        "nombre": "Brunet",
+        "descripcion": "Brownie intenso con dulce de leche y mousse de chocolate semiamargo. Una explosión de texturas y sabores para fanáticos del chocolate",
+        "precio": 7500,
+        "imagen": "assets/clientes/requeterico/t0.webp",
+        "small_imagen": "assets/clientes/requeterico/t0-small.webp"
+      },
+      {
+        "nombre": "Torta de chocolate",
+        "descripcion": "Bizcochuelo húmedo de chocolate relleno con crema, dulce de leche y trocitos de chocolate. Una tentación para quienes buscan puro sabor",
+        "precio": 7500,
+        "imagen": "assets/clientes/requeterico/t11.webp",
+        "small_imagen": "assets/clientes/requeterico/t11-small.webp"
+      },
+      {
+        "nombre": "Torta Oreo",
+        "descripcion": "Capas de bizcochuelo de chocolate y crema con galletas Oreo trozadas. Dulce, crocante y cremosa, ideal para los fans de esta famosa galletita",
+        "precio": 7500,
+        "imagen": "assets/clientes/requeterico/t4.webp",
+        "small_imagen": "assets/clientes/requeterico/t4-small.webp"
+      },
+      {
+        "nombre": "Red Velvet",
+        "descripcion": "Bizcochuelo rojo aterciopelado, relleno con clásica crema de queso. Una torta tan linda como deliciosa",
+        "precio": 7500,
+        "imagen": "assets/clientes/requeterico/t15.webp",
+        "small_imagen": "assets/clientes/requeterico/t15-small.webp"
+      },
+      {
+        "nombre": "Marquise con dulce de leche, crema y frutos rojos",
+        "descripcion": "Textura intensa y sedosa de marquise de chocolate, combinada con dulce de leche, crema y el toque ácido de frutos rojos",
+        "precio": 7500,
+        "imagen": "assets/clientes/requeterico/t16.webp",
+        "small_imagen": "assets/clientes/requeterico/t16-small.webp"
+      },
+      {
+        "nombre": "Rogel",
+        "descripcion": "Capas finas y crujientes de masa hojaldrada, rellenas con abundante dulce de leche y cubiertas con merengue italiano suave y dorado. Una combinación clásica y perfecta de crocante, cremoso y dulce",
+        "precio": 7500,
+        "imagen": "assets/clientes/requeterico/t17.webp",
+        "small_imagen": "assets/clientes/requeterico/t17-small.webp"
+      },
+      {
+        "nombre": "Postre tipo Balcarce",
+        "descripcion": "Capas de pionono suave intercaladas con dulce de leche, crema chantilly, merengue crocante y castañas de cajú. Una combinación equilibrada de texturas y sabores que reinterpreta el clásico Balcarce con el sello artesanal de Requeterico",
+        "precio": 7500,
+        "imagen": "assets/clientes/requeterico/t14.webp",
+        "small_imagen": "assets/clientes/requeterico/t14-small.webp"
+      },
+      {
+        "nombre": "Torta Mousse de Banana Split",
+        "descripcion": "Suave mousse de banana, dulce de leche y chocolate sobre base de bizcochuelo esponjoso. Inspiración en el clásico postre helado",
+        "precio": 7500,
+        "imagen": "assets/clientes/requeterico/t7.webp",
+        "small_imagen": "assets/clientes/requeterico/t7-small.webp"
+      },
+      {
+        "nombre": "Torta Brownie con dulce de leche y merengue",
+        "descripcion": "Brownie intenso con capa generosa de dulce de leche y merengue tostado. Textura crocante por fuera, fundente por dentro",
+        "precio": 7500,
+        "imagen": "assets/clientes/requeterico/t10.webp",
+        "small_imagen": "assets/clientes/requeterico/t10-small.webp"
+      },
+      {
+        "nombre": "Torta Block",
+        "descripcion": "Capas de chocolate, dulce de leche y marquise de vainilla. Una torta con historia, para los que aman los sabores de siempre",
+        "precio": 7500,
+        "imagen": "assets/clientes/requeterico/t13.webp",
+        "small_imagen": "assets/clientes/requeterico/t13-small.webp"
+      },
+      {
+        "nombre": "Marquisse  Oreo",
+        "descripcion": "Base crocante de galletitas Oreo, crema suave de chocolate y un topping de galletas trituradas. Un postre intenso y cremoso, favorito entre los más golosos",
+        "precio": 7500,
+        "imagen": "assets/clientes/requeterico/marquisse-oreo.webp",
+        "small_imagen": "assets/clientes/requeterico/marquisse-oreo-small.webp"
+      }
+    ]
+  },
+  {
+    "label": "Jugos",
+    "icon": "assets/clientes/requeterico/icono7.webp",
+    "route": "jugos",
+    "nombre": "Jugos",
+    "productos": [
+      {
+        "nombre": "Jugo de naranja",
+        "descripcion": "Naranjas frescas exprimidas al momento, con todo su jugo natural",
+        "precio": 5200,
+        "imagen": "assets/clientes/requeterico/j1.webp",
+        "small_imagen": "assets/clientes/requeterico/j1-small.webp"
+      },
+      {
+        "nombre": "Jugo especial verde",
+        "descripcion": "Una combinación energética de frutos rojos, espinaca fresca y jugo natural de naranja",
+        "precio": 5500,
+        "imagen": "assets/clientes/requeterico/s1.webp",
+        "small_imagen": "assets/clientes/requeterico/s1-small.webp"
+      },
+      {
+        "nombre": "Limonada con menta y jengibre",
+        "descripcion": "Limones frescos y hojas de menta, para una bebida refrescante y cítrica",
+        "precio": 5200,
+        "imagen": "assets/clientes/requeterico/j2.webp",
+        "small_imagen": "assets/clientes/requeterico/j2-small.webp"
+      }
+    ]
+  },
+  {
+    "label": "Sandwichs Calientes",
+    "icon": "assets/clientes/requeterico/icono4.webp",
+    "route": "tostados-sandwiches",
+    "nombre": "Tostados & Sandwiches",
+    "productos": [
+      {
+        "nombre": "Tostado de miga",
+        "descripcion": "Jamón cocido y queso fundido, entre pan crujiente, un clásico irresistible",
+        "precio": 7500,
+        "imagen": "assets/clientes/requeterico/tost1.webp",
+        "small_imagen": "assets/clientes/requeterico/tost1-small.webp"
+      },
+      {
+        "nombre": "Tostado Requeterico",
+        "descripcion": "Pan de campo dorado y crujiente, con jamón cocido natural y queso fundido en su punto justo. Un clásico irresistible, ideal para acompañar con café o jugos naturales en cualquier momento del día",
+        "precio": 7800,
+        "imagen": "assets/clientes/requeterico/tostado-requeterico.webp",
+        "small_imagen": "assets/clientes/requeterico/tostado-requeterico-small.webp"
+      },
+      {
+        "nombre": "Tostón con salmón y alcaparras",
+        "descripcion": "Rebanada de pan artesanal levemente tostado, con una base suave de queso crema, láminas de salmón ahumado y un toque de alcaparras que aportan el equilibrio perfecto entre lo cremoso, lo salado y lo fresco. Una opción elegante y sabrosa para disfrutar a cualquier hora",
+        "precio": 7800,
+        "imagen": "assets/clientes/requeterico/sand_tost_salm.webp",
+        "small_imagen": "assets/clientes/requeterico/sand_tost_salm-small.webp"
+      }
+    ]
+  },
+  {
+    "label": "Tartas",
+    "icon": "assets/clientes/requeterico/icono-tarta.png",
+    "route": "tartas",
+    "nombre": "tartas",
+    "productos": [
+      {
+        "nombre": "Mix de vegetales",
+        "descripcion": "Una porción generosa, sabrosa y equilibrada. Preparada con una selección de vegetales frescos salteados y una capa cremosa de muzzarella derretida sobre una base casera dorada al horno. Ideal para una comida liviana pero reconfortante",
+        "precio": 8000,
+        "imagen": "assets/clientes/requeterico/tarta_mix_veg.webp",
+        "small_imagen": "assets/clientes/requeterico/tarta_mix_veg-small.webp"
+      }
+    ]
+  },
+  {
+    "label": "Pastelería",
+    "icon": "assets/clientes/requeterico/icono3.webp",
+    "route": "pastelería",
+    "nombre": "pastelería",
+    "productos": [
+      {
+        "nombre": "Avocado toast",
+        "descripcion": "Tostada de pan integral con una base generosa de palta fresca, coronada con huevo y un mix de semillas. Una propuesta liviana, nutritiva y llena de sabor natural",
+        "precio": 7000,
+        "imagen": "assets/clientes/requeterico/avocado-toast.webp",
+        "small_imagen": "assets/clientes/requeterico/avocado-toast-small.webp"
+      },
+      {
+        "nombre": "Alfajor masa sableé",
+        "descripcion": "Dos capas de masa sableé, suave y delicada, que se deshace en la boca. Relleno con abundante dulce de leche y bañado en chocolate. Una combinación artesanal perfecta para los amantes de lo clásico",
+        "precio": 3500,
+        "imagen": "assets/clientes/requeterico/a1.webp",
+        "small_imagen": "assets/clientes/requeterico/a1-small.webp"
+      },
+      {
+        "nombre": "Alfajor santafecino",
+        "descripcion": "Capas finas de masa crujiente rellenas con dulce de leche repostero, coronadas con un glaseado artesanal. Una joya tradicional argentina, con el toque irresistible de Requeterico",
+        "precio": 3500,
+        "imagen": "assets/clientes/requeterico/a7.webp",
+        "small_imagen": "assets/clientes/requeterico/a7-small.webp"
+      },
+      {
+        "nombre": "Alfajor de masa integral con dulce de leche",
+        "descripcion": "Una versión más rústica y nutritiva del clásico: masa integral suave al paladar, con dulce de leche cremoso en su interior. Una opción equilibrada sin perder dulzura ni sabor",
+        "precio": 3500,
+        "imagen": "assets/clientes/requeterico/a1.webp",
+        "small_imagen": "assets/clientes/requeterico/a1-small.webp"
+      },
+      {
+        "nombre": "Alfajor de nuez",
+        "descripcion": "Masa suave de nuez molida, con un relleno generoso de dulce de leche y un baño de glasé o chocolate. Una experiencia intensa y elegante que destaca por su sabor y textura",
+        "precio": 5000,
+        "imagen": "assets/clientes/requeterico/a5.webp",
+        "small_imagen": "assets/clientes/requeterico/a5-small.webp"
+      },
+      {
+        "nombre": "Cookies Rellenas de Nutella (x3)",
+        "descripcion": "Tres deliciosas galletas caseras, crocantes por fuera y con un corazón suave y generoso de Nutella derretida. Perfectas para acompañar tu café o disfrutar como un capricho dulce en cualquier momento del día.",
+        "precio": 5000,
+        "imagen": "assets/clientes/requeterico/paste_cnut.webp",
+        "small_imagen": "assets/clientes/requeterico/paste_cnut-small.webp"
+      }
+    ]
+  },
+  {
+    "label": "Rinconcito Integral",
+    "icon": "assets/clientes/requeterico/icono6.webp",
+    "route": "rinconcito-integral",
+    "nombre": "rinconcito-integral",
+    "productos": [
+      {
+        "nombre": "Pastafrola integral",
+        "descripcion": "Clásica tarta de masa integral con azúcar mascabo, rellena con dulce de membrillo artesanal. Una versión más saludable sin perder el sabor de siempre",
+        "precio": 5500,
+        "imagen": "assets/clientes/requeterico/a3.webp",
+        "small_imagen": "assets/clientes/requeterico/a3-small.webp"
+      },
+      {
+        "nombre": "Pepas integrales",
+        "descripcion": "Galletitas elaboradas con harina integral, endulzadas con azúcar rubio y rellenas con dulce de membrillo. Una opción nutritiva para acompañar el mate o el café",
+        "precio": 4000,
+        "imagen": "assets/clientes/requeterico/a4.webp",
+        "small_imagen": "assets/clientes/requeterico/a4-small.webp"
+      },
+      {
+        "nombre": "Budín Inglés",
+        "descripcion": "Budín casero esponjoso con frutas abrillantadas y frutos secos, horneado lentamente para lograr una textura húmeda y un sabor tradicional. Ideal para acompañar un té o café",
+        "precio": 4600,
+        "imagen": "assets/clientes/requeterico/budin-ingles.webp",
+        "small_imagen": "assets/clientes/requeterico/budin-ingles-small.webp"
+      },
+      {
+        "nombre": "Pan de Molde Integral",
+        "descripcion": "Nuestro pan de molde integral es suave, esponjoso y lleno de sabor. Hecho con harinas integrales y semillas seleccionadas, es la base perfecta para tus tostadas o sandwiches. Rico en fibra, natural y horneado con dedicación cada día",
+        "precio": 4600,
+        "imagen": "assets/clientes/requeterico/rinc_pan_molde.webp",
+        "small_imagen": "assets/clientes/requeterico/rinc_pan_molde-small.webp"
+      }
+    ]
+  },
+  {
+    "label": "desayunos\nmeriendas",
+    "icon": "assets/clientes/requeterico/meriendas4.webp",
+    "route": "meriendas",
+    "nombre": "meriendas",
+    "productos": [
+      {
+        "nombre": "Merienda Integral",
+        "descripcion": "Una opción rica y equilibrada: latte espumoso, tostadas integrales con queso y mermelada, jugo de naranja exprimido y un cremoso yogur con granola crocante. Ideal para disfrutar con calma y cuidar tu bienestar",
+        "precio": 7000,
+        "imagen": "assets/clientes/requeterico/mer_int.webp",
+        "small_imagen": "assets/clientes/requeterico/mer_int-small.webp"
+      },
+      {
+        "nombre": "Merienda Proteica",
+        "descripcion": "Energía, sabor y frescura en cada bocado: disfrutá de un avocado toast con palta fresca, huevo revuelto y tomates cherry, acompañado de un latte espumoso y un jugo de naranja exprimido. Ideal para quienes buscan una opción saludable y nutritiva sin resignar el placer",
+        "precio": 7000,
+        "imagen": "assets/clientes/requeterico/mer_prot.webp",
+        "small_imagen": "assets/clientes/requeterico/mer_prot-small.webp"
+      },
+      {
+        "nombre": "Merienda Requeterica",
+        "descripcion": "Una pausa deliciosa y reconfortante: incluye un cremoso latte con arte en taza, jugo de naranja exprimido al momento y una porción de nuestra torta artesanal a elección. Perfecta para disfrutar en buena compañía o regalarte un momento solo para vos",
+        "precio": 7000,
+        "imagen": "assets/clientes/requeterico/mer_req.webp",
+        "small_imagen": "assets/clientes/requeterico/mer_req-small.webp"
+      },
+      {
+        "nombre": "Merienda Clásica",
+        "descripcion": "La combinación infalible de siempre: dos medialunas frescas y doradas, un latte cremoso y un jugo de naranja recién exprimido. Simple, deliciosa y perfecta para cualquier momento del día",
+        "precio": 7000,
+        "imagen": "assets/clientes/requeterico/mer_cla.webp",
+        "small_imagen": "assets/clientes/requeterico/mer_cla-small.webp"
+      }
+    ]
+  },
+  {
+    "label": "Empanadas",
+    "icon": "assets/clientes/requeterico/icono-emp.png",
+    "route": "empanadas",
+    "nombre": "empanadas",
+    "productos": [
+      {
+        "nombre": "Empanadas Artesanales - Sabores a Elección",
+        "descripcion": "Crujientes por fuera y sabrosas por dentro. Nuestras empanadas caseras vienen en una variedad de sabores para todos los gustos:\n\n🥩 Carne jugosa,\n🧀 Jamón y queso derretido,\n🐔 Pollo especiado,\n🌽 Humita cremosa,\n🌿 Verdura con un toque de queso,\n🧅 Cebolla y queso fundido,\n🍅 Capresse con albahaca fresca.\nElegí tu combinación favorita y disfrutá de un clásico irresistible.",
+        "precio": 4000,
+        "imagen": "assets/clientes/requeterico/emp_carne.webp",
+        "small_imagen": "assets/clientes/requeterico/emp_carne-small.webp"
+      }
+    ]
+  },
+  {
+    "label": "Pastas",
+    "icon": "assets/clientes/requeterico/icono-pasta.png",
+    "route": "pastas",
+    "nombre": "pastas",
+    "productos": [
+      {
+        "nombre": "Sorrentinos de Jamón y Queso",
+        "descripcion": "Clásicos y reconfortantes, nuestros sorrentinos artesanales de jamón y queso vienen acompañados con la salsa que elijas: crema suave, fileto casero, bolognesa con carne o nuestra exclusiva salsa Requeterica, una irresistible combinación de crema, jamón y hongos. El sabor de siempre con un toque gourmet",
+        "precio": 4000,
+        "imagen": "assets/clientes/requeterico/pasta_sorr.webp",
+        "small_imagen": "assets/clientes/requeterico/pasta_sorr-small.webp"
+      }
+    ]
+  },
+  {
+    "label": "Milanesas",
+    "icon": "assets/clientes/requeterico/icono-mila.png",
+    "route": "milanesas",
+    "nombre": "milanesas",
+    "productos": [
+      {
+        "nombre": "Milanesa con papas fritas",
+        "descripcion": "Clásica y reconfortante: milanesa dorada y crocante, de pollo o ternera, servida con una porción generosa de papas fritas crujientes. Una opción infalible que nunca falla, perfecta para los que aman los sabores tradicionales bien hechos",
+        "precio": 4000,
+        "imagen": "assets/clientes/requeterico/mila_cla.webp",
+        "small_imagen": "assets/clientes/requeterico/mila_cla-small.webp"
+      }
+    ]
+  }
+]

@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CategoriaComponent } from '../../menuonline/categoria/categoria.component';
+import { MenuService } from '../../services/menu.service';
 
 @Component({
   selector: 'app-slider',
@@ -17,13 +17,20 @@ export class SliderComponent implements OnInit {
   constructor(
     public router: Router,
     private route: ActivatedRoute,
-    categoriaComponent: CategoriaComponent
+    private menuService: MenuService
   ) {
-    this.categorias = [...categoriaComponent.data, ...categoriaComponent.data, ...categoriaComponent.data, ...categoriaComponent.data, ...categoriaComponent.data]
+    
   }
 
   ngOnInit() {
-    this.detectRouteChanges();
+    const cliente = this.route.snapshot.paramMap.get('cliente') || '';
+    this.menuService.loadMenu(cliente);
+    this.menuService.menuData$.subscribe(data => {
+      this.categorias = data;
+      console.log('categorias', this.categorias)
+      this.categorias = [...this.categorias, ...this.categorias, ...this.categorias, ...this.categorias, ...this.categorias]
+      this.detectRouteChanges();
+    });
   }
 
   private detectRouteChanges() {

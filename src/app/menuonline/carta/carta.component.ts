@@ -1,12 +1,12 @@
 import { Component, Input, Renderer2 } from '@angular/core';
 import { ActivatedRoute, RouterModule, RouterOutlet, Router, NavigationEnd, NavigationCancel, NavigationError, NavigationStart } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { CategoriaComponent } from '../categoria/categoria.component';
 import { CopyrightComponent } from '../../shared/copyright/copyright.component';
 import { filter } from 'rxjs/operators';
 import { HeaderComponent } from "../../shared/header/header.component";
 import { BackgroundComponent } from "../../shared/background/background.component";
 import { Title } from '@angular/platform-browser';
+import { MenuService } from '../../services/menu.service';
 
 @Component({
   selector: 'app-carta',
@@ -16,16 +16,22 @@ import { Title } from '@angular/platform-browser';
 })
 export class CartaComponent {
   visible = false;
-  categorias: any;
+  categorias: any[] = [];
   cliente: string = '';
   isViewVisible = false;
   loading = false;
-  constructor(private route: ActivatedRoute, categoriaComponent: CategoriaComponent, private router: Router, private renderer: Renderer2, private titleService: Title) {
-    this.categorias = categoriaComponent.data
+  constructor(private menuService: MenuService, private route: ActivatedRoute, private router: Router, private renderer: Renderer2, private titleService: Title) {
+
   }
 
   ngOnInit(): void {
     this.cliente = this.route.snapshot.paramMap.get('cliente') || '';
+    console.log(this.cliente)
+    this.menuService.loadMenu(this.cliente);
+    this.menuService.menuData$.subscribe(data => {
+      this.categorias = data;
+      console.log('categorias',this.categorias)
+    });
     this.actualizarTitulo(`${this.cliente.charAt(0).toUpperCase() + this.cliente.slice(1) } | Carta Digital`);
     this.router.events.subscribe(event => {
       if (event instanceof NavigationStart) {
