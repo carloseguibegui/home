@@ -20,8 +20,10 @@ export class CartaComponent {
   cliente: string = '';
   isViewVisible = false;
   loading = false;
-  constructor(private menuService: MenuService, private route: ActivatedRoute, private router: Router, private renderer: Renderer2, private titleService: Title) {
+  constructor(private menuService: MenuService, private route: ActivatedRoute, private router: Router, private renderer: Renderer2, private titleService: Title) {}
 
+  get clienteClass(): string {
+    return `cliente-${this.cliente.toLowerCase()}`;
   }
 
   ngOnInit(): void {
@@ -30,7 +32,6 @@ export class CartaComponent {
     this.menuService.loadMenu(this.cliente);
     this.menuService.menuData$.subscribe(data => {
       this.categorias = data;
-      console.log('categorias',this.categorias)
     });
     this.actualizarTitulo(`${this.cliente.charAt(0).toUpperCase() + this.cliente.slice(1) } | Carta Digital`);
     this.router.events.subscribe(event => {

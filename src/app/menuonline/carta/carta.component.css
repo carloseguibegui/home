@@ -1,8 +1,5 @@
-*{
-    font-family: 'Caveat' !important;
-}
+/* estructura */
 .header {
-    background-color: #6B4226;
     text-align: center;
     padding: 2rem 1rem;
 }
@@ -13,7 +10,6 @@
 }
 
 .header h1 {
-    color: white;
     font-size: 1.8rem;
 }
 
@@ -24,53 +20,9 @@
     padding: 2rem;
 }
 
-.menu-item {
-    background-color: #fff;
-    border-radius: 20px;
-    text-align: center;
-    padding: 1rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s ease-in-out;
-    cursor: pointer;
-}
-
-.menu-item:hover {
-    transform: scale(1.05);
-}
-
-.menu-icon {
-    font-size: 2.5rem;
-    color: #6B4226;
-    margin-bottom: 0.5rem;
-}
-
-.menu-text {
-    color: #6B4226;
-    font-weight: bold;
-    font-size: 0.9rem;
-}
-
-.text-brown {
-    color: #5C3A2E;
-}
-
-.hover-shadow:hover {
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-}
-
 .transition {
     transition: all 0.3s ease;
 }
-
-
-
-
-#logo {
-    border-radius: 37px;
-}
-
-
-
 #cat {
     font-size: 14px;
     text-transform: uppercase;
@@ -82,9 +34,7 @@
 .icon-nombre {
     font-size: 3rem;
 }
-
 .categoria-label {
-    color: #6b4c3b;
     font-size: 15px;
 }
 
@@ -96,3 +46,30 @@
     height: 80px;
 }
 
+
+/* clientes */
+
+/* requeterico */
+.cliente-requeterico{
+    --text-color: #6B4226;
+    --text-color-brown:#5C3A2E;
+    --font-family: 'Caveat' !important;
+
+    * {
+        font-family: 'Caveat' !important;
+    }
+    .cliente-requeterico{
+        font-family: var(--font-family);
+    }
+    .menu-text {
+        color: var(--text-color);
+    }
+    .categoria-label {
+        color: var(--text-color);
+    }
+    .text-brown {
+        color: var(--text-color-brown);
+    }
+}
+
+/*  */

@@ -1,9 +1,8 @@
 input {
     font-size: 14px;
-    background-color: rgb(255 255 255 / 71%);
     width: 83%;
     padding: 5px !important;
-    border: 2px solid #fef4e500;
+    border: 2px solid;
     border-radius: 18px;
     height: 2rem;
     pointer-events: all;
@@ -11,7 +10,6 @@ input {
     margin-right: auto;
     margin-left: auto;
     margin-top: 5px;
-    color: #4d4d4d;
     text-align: center;
     font-weight: 500;
     text-align-last: center;
@@ -29,4 +27,27 @@ input {
     text-shadow: none;
     text-rendering: auto;
     cursor: text;
+}
+
+
+/* Estilos específicos para clientes */
+
+/* Cliente: requeterico */
+.cliente-requeterico {
+    --input-bg-color: rgb(255 250 240 / 80%);
+    --input-border-color: #fef4e500;
+    --input-text-color: #4d4d4d;
+
+    input{
+        background-color: var(--input-bg-color);
+        border-color: var(--input-border-color);
+        color: var(--input-text-color);
+    }
+}
+
+/* Cliente: otroCliente (ejemplo para futuros clientes) */
+.cliente-otroCliente {
+    --input-bg-color: rgb(230 245 255 / 80%);
+    --input-border-color: #1e88e5;
+    --input-text-color: #1e88e5;
 }

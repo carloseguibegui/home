@@ -31,7 +31,9 @@ export class SliderComponent implements OnInit {
       this.detectRouteChanges();
     });
   }
-
+  get clienteClass(): string {
+    return `cliente-${this.cliente.toLowerCase()}`;
+  }
   private detectRouteChanges() {
     this.route.paramMap.subscribe(params => {
       this.currentCategory = params.get('categoria'); // Ajusta el nombre del parámetro de ruta

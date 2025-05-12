@@ -1,4 +1,5 @@
 <app-background [imageUrl]="'/assets/clientes/'+ cliente +'/text1.webp'"></app-background>
+<div [ngClass]="clienteClass" class="carta-container">
 <section *ngIf="!loading" class="content fade-in" [class.fade]="true" [class.show]="visible"
     class="transition-container">
     <app-header [cliente]="cliente" [src_path]="'assets/clientes/'+ cliente +'/logo0.webp'"></app-header>
@@ -49,4 +50,5 @@
     </div>
     <app-copyright [marginBotClassDiv]="'mb-5'"></app-copyright>
 </section>
+</div>
 <app-scroll-to-top></app-scroll-to-top>

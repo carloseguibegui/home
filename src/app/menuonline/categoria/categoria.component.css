@@ -1,9 +1,6 @@
 html {
     scroll-behavior: smooth; }
 
-* {
-    font-family: 'Caveat' !important;
-}
 
 #cart-item {
     position: relative;
@@ -62,14 +59,11 @@ html {
     text-align: center;
     float: none;
     width: 140px;
-    /* height: 55px; */
     position: relative;
     margin: auto;
     margin-top: 38px;
     font-size: 1.8rem;
-    background-color: #6b4c3b;
     border: none;
-    color: wheat;
     font-weight: 600;
 }
 
@@ -77,14 +71,12 @@ html {
 
 .boton-volver {
     justify-self: anchor-center;
-    background-color: #a67c52;
     text-align: center;
     font-size: 21px;
-    color: #fef4e5;
     float: none;
     padding: 9px;
     letter-spacing: 1px;
-    border-top: 0px solid #fef4e5;
+    border-top: 0px solid;
     height: 50px;
     margin: 0;
     position: fixed;
@@ -94,11 +86,6 @@ html {
     overflow: hidden;
     z-index: 5;
     font-weight: 600;
-}
-
-
-.div-carta {
-    border-color: #a5805b;
 }
 
 .lightbox {
@@ -137,35 +124,12 @@ html {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 }
 
-.close-btn {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    font-size: 40px;
-    color: white;
-    cursor: pointer;
-    z-index: 1001;
-    transition: transform 0.2s ease;
-}
-
-.close-btn:hover {
-    transform: scale(1.2);
-}
-
 .fondo-card {
     width: 100%;
     aspect-ratio: 1/1;
     display: block;
     object-position: center;
     object-fit: cover;
-    /* position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: 1;
-    object-position: center; */
 }
 
 .fondo-card-textura {
@@ -184,34 +148,6 @@ html {
     background-repeat: no-repeat;
     background-size: cover;
 }
-
-/* .blurred-load::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    opacity: 0;
-    animation: pulse 1s infinite;
-    background-color: white;
-}
-
-@keyframes pulse {
-    0% {
-        opacity: 0;
-    }
-
-    50% {
-        opacity: 0.1;
-    }
-
-    100% {
-        opacity: 0;
-    }
-}
-
-
-.blurred-load.loaded > img {
-    opacity: 1;
-    } */
 
 .blurred-load img {
     aspect-ratio: 1 / 1;
@@ -267,4 +203,60 @@ html {
     /* Mejor scroll en iOS */
     overscroll-behavior: contain;
     /* Evita scroll de la página padre */
+}
+
+
+/* Estilos específicos para clientes */
+
+/* Cliente: requeterico */
+.cliente-requeterico {
+    --primary-color: #6b4c3b;
+    --secondary-color: #a67c52;
+    --text-color: #f5deb3;
+    --border-color: #a5805b;
+
+    *{
+        font-family: 'Caveat' !important;
+    }
+
+    .cliente-requeterico{
+        font-family: 'Caveat' !important
+    }
+    #boton-card {
+        background-color: var(--primary-color);
+        color: var(--text-color);
+    }
+
+    .boton-volver {
+        background-color: var(--secondary-color);
+        color: var(--text-color);
+        border-top-color: var(--text-color);
+    }
+
+    .div-carta {
+        border-color: var(--border-color);
+    }
+}
+
+/* Cliente: otroCliente (ejemplo para futuros clientes) */
+.cliente-otroCliente {
+    --primary-color: #1e88e5;
+    --secondary-color: #1565c0;
+    --text-color: #ffffff;
+    --border-color: #90caf9;
+
+    #boton-card {
+        background-color: var(--primary-color);
+        color: var(--text-color);
+    }
+
+    .boton-volver {
+        background-color: var(--secondary-color);
+        color: var(--text-color);
+        border-top-color: var(--text-color);
+    }
+
+    .div-carta {
+        border-color: var(--border-color);
+    }
 }

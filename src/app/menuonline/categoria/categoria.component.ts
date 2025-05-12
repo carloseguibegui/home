@@ -42,7 +42,9 @@ export class CategoriaComponent implements OnInit {
   
   constructor(private menuService: MenuService,private route: ActivatedRoute, private router: Router, private renderer: Renderer2) {
   }
-  
+  get clienteClass(): string {
+    return `cliente-${this.cliente.toLowerCase()}`;
+  }
   ngOnInit() {
     this.cliente = this.route.snapshot.paramMap.get('cliente') || '';
     this.categoria = this.route.snapshot.paramMap.get('categoria') || '';
