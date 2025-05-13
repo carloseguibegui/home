@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Auth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged } from '@angular/fire/auth';
+import { Auth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, GoogleAuthProvider, signInWithPopup } from '@angular/fire/auth';
 import { Router } from '@angular/router'; // Importar Router
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -72,11 +72,25 @@ export class LoginComponent implements OnInit {
         console.log('Usuario registrado:', userCredential.user);
         alert('Registro exitoso');
         this.toggleMode(); // Cambiar a la vista de login después del registro
-        this.router.navigate(['/auth/login']); // Redirigir al componente de login
       })
       .catch((error) => {
         console.error('Error al registrarse:', error);
         alert('Error al registrarse: ' + error.message);
+      });
+  }
+
+  // Manejar el inicio de sesión con Google
+  onGoogleLogin() {
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(this.auth, provider)
+      .then((result) => {
+        console.log('Inicio de sesión con Google exitoso:', result.user);
+        // alert('Inicio de sesión con Google exitoso');
+        this.router.navigate(['/admin']); // Redirigir al componente Admin
+      })
+      .catch((error) => {
+        console.error('Error al iniciar sesión con Google:', error);
+        alert('Error al iniciar sesión con Google: ' + error.message);
       });
   }
 }
