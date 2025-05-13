@@ -1,4 +1,4 @@
-import { Component, Injectable, Input, OnInit, Renderer2 } from '@angular/core';
+import { Component, Injectable, OnInit, Renderer2 } from '@angular/core';
 import { ActivatedRoute, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -16,7 +16,7 @@ import { MenuService } from '../../services/menu.service';
   templateUrl: './categoria.component.html',
   styleUrl: './categoria.component.css',
   standalone: true,
-  imports: [CommonModule, RouterModule, CopyrightComponent, HeaderComponent, BackgroundComponent, SearchBarComponent, RouterOutlet, ScrollToTopComponent, SliderComponent]
+  imports: [CommonModule, RouterModule, CopyrightComponent, HeaderComponent, BackgroundComponent, SearchBarComponent, ScrollToTopComponent, SliderComponent]
 })
 @Injectable({ providedIn: 'root' })
 export class CategoriaComponent implements OnInit {

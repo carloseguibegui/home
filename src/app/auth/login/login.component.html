@@ -1,0 +1,11 @@
+<div class="login-card">
+    <h1 class="login-title">Iniciar Sesión</h1>
+    <form (submit)="onLogin()">
+        <input name="email" type="email" [(ngModel)]="email" placeholder="Correo electrónico" class="login-input" required />
+        <input name="password" type="password" [(ngModel)]="password" placeholder="Contraseña" class="login-input" required />
+        <button type="submit" class="login-button">Entrar</button>
+    </form>
+    <p class="login-footer">
+        ¿No tienes cuenta? <a (click)="onRegister()">Regístrate aquí</a>
+    </p>
+</div>

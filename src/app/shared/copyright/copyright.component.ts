@@ -3,7 +3,7 @@ import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-copyright',
-  imports: [RouterLink],
+  imports: [],
   templateUrl: './copyright.component.html',
   styleUrl: './copyright.component.css'
 })
