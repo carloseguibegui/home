@@ -1,3 +1,7 @@
+* {
+    font-family: 'Nunito', sans-serif;
+}
+
 .login-container {
     display: flex;
     justify-content: center;
@@ -56,4 +60,26 @@
 .login-footer a {
     color: var(--link-color, #007bff);
     cursor: pointer;
+}
+
+.gradient-custom {
+    background: linear-gradient(45deg, #5846f9 0%, color-mix(in srgb, #7c25ba, transparent 10%) 100%), url("../../../../public/assets/landing/hero-bg.webp") center center no-repeat;
+    background-size: cover;
+    /* fallback for old browsers */
+    /* background: #6a11cb; */
+
+    /* Chrome 10-25, Safari 5.1-6 */
+    /* background: -webkit-linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1)); */
+
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    /* background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1)) */
+}
+
+
+.divider:after,
+.divider:before {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #eee;
 }

@@ -6,41 +6,6 @@
     "nombre": "cafés",
     "productos": [
       {
-        "nombre": "Capuccino",
-        "descripcion": "Clásico e irresistible. Una mezcla perfecta de espresso intenso, leche vaporizada y una generosa capa de espuma suave y cremosa. Ideal para quienes disfrutan de un café equilibrado, con cuerpo y textura sedosa en cada sorbo",
-        "precio": 6500,
-        "imagen": "assets/clientes/requeterico/c2.webp",
-        "small_imagen": "assets/clientes/requeterico/c2-small.webp"
-      },
-      {
-        "nombre": "Submarino",
-        "descripcion": "Café suave, preparado con agua caliente para un sabor Una barra de chocolate que se derrite lentamente en leche caliente. Ritual irresistible de sabor",
-        "precio": 4800,
-        "imagen": "assets/clientes/requeterico/c1.webp",
-        "small_imagen": "assets/clientes/requeterico/c1-small.webp"
-      },
-      {
-        "nombre": "Frappe Americano",
-        "descripcion": "Helado de americana, café, leche, crema e hielo batidos hasta lograr una bebida suave y espumosa. Refrescante y con carácter",
-        "precio": 4800,
-        "imagen": "assets/clientes/requeterico/f1.webp",
-        "small_imagen": "assets/clientes/requeterico/f1-small.webp"
-      },
-      {
-        "nombre": "Frappe de Dulce de Leche",
-        "descripcion": "Helado de dulce de leche, café, leche, crema e hielo. Una combinación cremosa y golosa, perfecta para los amantes del sabor argentino",
-        "precio": 4800,
-        "imagen": "assets/clientes/requeterico/f1.webp",
-        "small_imagen": "assets/clientes/requeterico/f1-small.webp"
-      },
-      {
-        "nombre": "Frappe de Chocolate",
-        "descripcion": "Helado de chocolate, café, leche, crema e hielo. Intenso y dulce, ideal para los que buscan algo bien chocolatoso",
-        "precio": 4800,
-        "imagen": "assets/clientes/requeterico/f1.webp",
-        "small_imagen": "assets/clientes/requeterico/f1-small.webp"
-      },
-      {
         "nombre": "Flat White",
         "descripcion": "Bebida cremosa con doble shot de espresso y leche vaporizada finamente texturizada. Un equilibrio perfecto entre intensidad y suavidad, ideal para los amantes del café con leche",
         "precio": 4800,
@@ -48,18 +13,252 @@
         "small_imagen": "assets/clientes/requeterico/flat-white-small.webp"
       },
       {
-        "nombre": "Café Irlandés",
-        "descripcion": "Un clásico internacional con carácter: café espresso intenso, whisky irlandés suave y una capa de crema espesa. Perfecto para tardes frías o un momento especial con amigos",
-        "precio": 5200,
-        "imagen": "assets/clientes/requeterico/cafe-irlandes.webp",
-        "small_imagen": "assets/clientes/requeterico/cafe-irlandes-small.webp"
-      },
-      {
         "nombre": "Café Requeterico",
         "descripcion": "Nuestro café insignia: blend artesanal de granos seleccionados, con aroma intenso, cuerpo equilibrado y notas sutiles a chocolate y frutos secos. Preparado con esmero por nuestros baristas.",
         "precio": 3500,
         "imagen": "assets/clientes/requeterico/cafe-requeterico.webp",
         "small_imagen": "assets/clientes/requeterico/cafe-requeterico-small.webp"
+      },
+      {
+        "nombre": "Espresso Lungo (Shot de café + agua) 90 cc.",
+        "descripcion": "Café espresso largo, preparado con un shot de café y agua.",
+        "precio": 3000,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Espresso Cortado (Shot de café + leche vaporizada) 90 cc.",
+        "descripcion": "Café espresso cortado con una pequeña cantidad de leche vaporizada.",
+        "precio": 3000,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Long Black (Doble shot de café + agua) 200 cc.",
+        "descripcion": "Café long black, preparado con doble shot de café y agua.",
+        "precio": 3900,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Flat White (Doble shot de café + leche vaporizada + espuma)",
+        "descripcion": "Café flat white con doble shot de café, leche vaporizada y una fina capa de espuma.",
+        "precio": 3900,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Latte 200 cc.",
+        "descripcion": "Café latte con leche vaporizada.",
+        "precio": 3500,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Latte XL 300 cc.",
+        "descripcion": "Café latte de mayor tamaño con leche vaporizada.",
+        "precio": 4200,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Lagrima chica 90 cc.",
+        "descripcion": "Café con leche con predominancia de leche.",
+        "precio": 3000,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Lagrima mediana 200 cc.",
+        "descripcion": "Café con leche de tamaño mediano con predominancia de leche.",
+        "precio": 3500,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Lagrima XL 300 cc.",
+        "descripcion": "Café con leche de gran tamaño con predominancia de leche.",
+        "precio": 3900,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Café en vaso comestible",
+        "descripcion": "Café servido en un vaso comestible.",
+        "precio": 4200,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Café en vaso comestible oreo",
+        "descripcion": "Café servido en un vaso comestible con sabor a oreo.",
+        "precio": 4500,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Submarino",
+        "descripcion": "Leche caliente con una barra de chocolate para disolver.",
+        "precio": 4000,
+        "imagen": "assets/clientes/requeterico/c1.webp",
+        "small_imagen": "assets/clientes/requeterico/c1-small.webp"
+      },
+      {
+        "nombre": "Té con leche",
+        "descripcion": "Té servido con leche.",
+        "precio": 3800,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Crema",
+        "descripcion": "Porción de crema.",
+        "precio": 700,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Leche de almendras",
+        "descripcion": "Opción de leche de almendras.",
+        "precio": 800,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      }
+    ]
+  },
+  {
+    "label": "Cafés Especiales",
+    "icon": "assets/clientes/requeterico/icono-cafe-esp.png",
+    "route": "cafes-especiales",
+    "nombre": "cafés especiales",
+    "productos": [
+      {
+        "nombre": "Capuccino",
+        "descripcion": "Clásico e irresistible. Una mezcla perfecta de espresso intenso, leche vaporizada y una generosa capa de espuma suave y cremosa. Ideal para quienes disfrutan de un café equilibrado, con cuerpo y textura sedosa en cada sorbo",
+        "precio": 6500,
+        "imagen": "assets/clientes/requeterico/c2.webp",
+        "small_imagen": "assets/clientes/requeterico/c2-small.webp"
+      },
+      {
+        "nombre": "Moka Negro",
+        "descripcion": "Café, chocolate negro y leche emulsionada.",
+        "precio": 5200,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Moka Blanco",
+        "descripcion": "Café, chocolate blanco y leche emulsionada.",
+        "precio": 5200,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Caramel Latte",
+        "descripcion": "Café, caramelo y leche emulsionada.",
+        "precio": 5200,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Irlandés",
+        "descripcion": "Café, whisky, crema y canela.",
+        "precio": 6200,
+        "imagen": "assets/clientes/requeterico/cafe-irlandes.webp",
+        "small_imagen": "assets/clientes/requeterico/cafe-irlandes-small.webp"
+      },
+      {
+        "nombre": "Baileys",
+        "descripcion": "Café, Baileys, crema y cacao.",
+        "precio": 6200,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Requeterico",
+        "descripcion": "Café, Tía María Cream, crema y chocolate.",
+        "precio": 5200,
+        "imagen": "assets/clientes/requeterico/cafe-requeterico.webp",
+        "small_imagen": "assets/clientes/requeterico/cafe-requeterico-small.webp"
+      }
+    ]
+  },
+  {
+    "label": "Tés",
+    "icon": "assets/clientes/requeterico/icono-te1.png",
+    "route": "tes",
+    "nombre": "Tés",
+    "productos": [
+      {
+        "nombre": "Té verde - Té negro",
+        "descripcion": "Selección de té verde y té negro.",
+        "precio": 2800,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Jardín de otoño",
+        "descripcion": "Té verde, limón, jengibre y pétalos de caléndula.",
+        "precio": 2800,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Rosalía",
+        "descripcion": "Té Oolong, hibiscus, arándanos y pétalos de rosa.",
+        "precio": 2800,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Ananda",
+        "descripcion": "Té negro, naranjas y flores de azahar.",
+        "precio": 2800,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Sol de Oriente",
+        "descripcion": "Té negro, canela en rama, cardamomo y pimienta rosa.",
+        "precio": 2800,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      }
+    ]
+  },
+  {
+    "label": "Cafés Fríos",
+    "icon": "assets/clientes/requeterico/icono-cafe-fr.png",
+    "route": "cafes-frios",
+    "nombre": "cafes-fríos",
+    "productos": [
+      {
+        "nombre": "Frappe Americana",
+        "descripcion": "Helado de americana, café, leche, crema y hielo.",
+        "precio": 5200,
+        "imagen": "assets/clientes/requeterico/f1.webp",
+        "small_imagen": "assets/clientes/requeterico/f1-small.webp"
+      },
+      {
+        "nombre": "Frappe de Dulce de Leche",
+        "descripcion": "Helado de dulce de leche, café, leche, crema y hielo.",
+        "precio": 5200,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Frappe de Chocolate",
+        "descripcion": "Helado de chocolate, café, leche, crema y hielo.",
+        "precio": 5200,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Cold Coffee",
+        "descripcion": "Café, hielo y crema.",
+        "precio": 4300,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
       }
     ]
   },
@@ -119,11 +318,46 @@
         "small_imagen": "assets/clientes/requeterico/t11-small.webp"
       },
       {
+        "nombre": "Torta Mousse de Chocolate",
+        "descripcion": "Combinación perfecta de mousse aireado de chocolate con base de bizcochuelo suave. Un clásico elegante e irresistible",
+        "precio": 7500,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
         "nombre": "Torta Oreo",
         "descripcion": "Capas de bizcochuelo de chocolate y crema con galletas Oreo trozadas. Dulce, crocante y cremosa, ideal para los fans de esta famosa galletita",
         "precio": 7500,
-        "imagen": "assets/clientes/requeterico/t4.webp",
-        "small_imagen": "assets/clientes/requeterico/t4-small.webp"
+        "imagen": "assets/clientes/requeterico/torta_oreo.webp",
+        "small_imagen": "assets/clientes/requeterico/torta_oreo-small.webp"
+      },
+      {
+        "nombre": "Chocotorta",
+        "descripcion": "Típico postre argentino con galletitas Chocolinas, dulce de leche y queso crema. Simple, fresco y amado por todos",
+        "precio": 7500,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Torta Mousse de Chocolate Blanco con Frutos",
+        "descripcion": "Suave mousse de chocolate blanco sobre base de bizcochuelo húmedo, con frutos rojos frescos por encima. Un equilibrio delicado entre lo dulce y lo ácido",
+        "precio": 7500,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Torta Bariloche",
+        "descripcion": "Bizcochuelo de chocolate, crema bariloche y chocolate Marroc. Sabor intenso y textura suave para un viaje dulce al sur",
+        "precio": 7500,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Torta 3 Mousse",
+        "descripcion": "Tres capas de mousse: chocolate negro, blanco y con leche, sobre una base de bizcochuelo. Una experiencia completa para los amantes del cacao",
+        "precio": 7500,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
       },
       {
         "nombre": "Red Velvet",
@@ -131,6 +365,20 @@
         "precio": 7500,
         "imagen": "assets/clientes/requeterico/t15.webp",
         "small_imagen": "assets/clientes/requeterico/t15-small.webp"
+      },
+      {
+        "nombre": "Selva Negra",
+        "descripcion": "Bizcochuelo de chocolate con crema chantilly, cerezas y virutas de chocolate. Un clásico centroeuropeo con alma argentina",
+        "precio": 7500,
+        "imagen": "assets/clientes/requeterico/t11.webp",
+        "small_imagen": "assets/clientes/requeterico/t11-small.webp"
+      },
+      {
+        "nombre": "Cheescake de Maracuyá",
+        "descripcion": "Frescura tropical en una torta cremosa con base de galleta, rellena con cheesecake suave y cobertura de maracuyá natural",
+        "precio": 7500,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
       },
       {
         "nombre": "Marquise con dulce de leche, crema y frutos rojos",
@@ -154,6 +402,13 @@
         "small_imagen": "assets/clientes/requeterico/t14-small.webp"
       },
       {
+        "nombre": "Tiramisú",
+        "descripcion": "",
+        "precio": 7500,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
         "nombre": "Torta Mousse de Banana Split",
         "descripcion": "Suave mousse de banana, dulce de leche y chocolate sobre base de bizcochuelo esponjoso. Inspiración en el clásico postre helado",
         "precio": 7500,
@@ -168,6 +423,20 @@
         "small_imagen": "assets/clientes/requeterico/t10-small.webp"
       },
       {
+        "nombre": "Key lime pie",
+        "descripcion": "Base de masa crocante con una sedosa crema de lima y cobertura de merengue. Refrescante y equilibrada",
+        "precio": 7500,
+        "imagen": "assets/clientes/requeterico/t5.webp",
+        "small_imagen": "assets/clientes/requeterico/t5-small.webp"
+      },
+      {
+        "nombre": "Torta Moka",
+        "descripcion": "Bizcochuelo de chocolate, crema de chocolate y mousse de café. El toque justo entre lo dulce y el aroma intenso del café",
+        "precio": 7500,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
         "nombre": "Torta Block",
         "descripcion": "Capas de chocolate, dulce de leche y marquise de vainilla. Una torta con historia, para los que aman los sabores de siempre",
         "precio": 7500,
@@ -175,19 +444,33 @@
         "small_imagen": "assets/clientes/requeterico/t13-small.webp"
       },
       {
+        "nombre": "Torta de Nuez",
+        "descripcion": "Bizcochuelo húmedo con nueces seleccionadas y crema. Un clásico tradicional que nunca falla",
+        "precio": 7500,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
         "nombre": "Marquisse  Oreo",
         "descripcion": "Base crocante de galletitas Oreo, crema suave de chocolate y un topping de galletas trituradas. Un postre intenso y cremoso, favorito entre los más golosos",
         "precio": 7500,
         "imagen": "assets/clientes/requeterico/marquisse-oreo.webp",
         "small_imagen": "assets/clientes/requeterico/marquisse-oreo-small.webp"
+      },
+      {
+        "nombre": "Marquise Nutella",
+        "descripcion": "Una delicia intensa de marquise de chocolate con el inconfundible sabor a Nutella. Suave,cremosa y tentadora",
+        "precio": 7500,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
       }
     ]
   },
   {
-    "label": "Jugos",
+    "label": "Jugos\nbebidas",
     "icon": "assets/clientes/requeterico/icono7.webp",
-    "route": "jugos",
-    "nombre": "Jugos",
+    "route": "jugos-bebidas",
+    "nombre": "jugos y bebidas",
     "productos": [
       {
         "nombre": "Jugo de naranja",
@@ -197,11 +480,32 @@
         "small_imagen": "assets/clientes/requeterico/j1-small.webp"
       },
       {
-        "nombre": "Jugo especial verde",
-        "descripcion": "Una combinación energética de frutos rojos, espinaca fresca y jugo natural de naranja",
-        "precio": 5500,
-        "imagen": "assets/clientes/requeterico/s1.webp",
-        "small_imagen": "assets/clientes/requeterico/s1-small.webp"
+        "nombre": "Jugo de Pomelo",
+        "descripcion": "Jugos naturales disponibles en sabores clásicos como naranja, pomelo, multifruta, durazno y manzana. Refrescantes y llenos de vitaminas.",
+        "precio": 5200,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Jugo de Multifruta",
+        "descripcion": "Jugos naturales disponibles en sabores clásicos como naranja, pomelo, multifruta, durazno y manzana. Refrescantes y llenos de vitaminas.",
+        "precio": 5200,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Jugo de Durazno",
+        "descripcion": "Jugos naturales disponibles en sabores clásicos como naranja, pomelo, multifruta, durazno y manzana. Refrescantes y llenos de vitaminas.",
+        "precio": 5200,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Jugo de Manzana",
+        "descripcion": "Jugos naturales disponibles en sabores clásicos como naranja, pomelo, multifruta, durazno y manzana. Refrescantes y llenos de vitaminas.",
+        "precio": 5200,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
       },
       {
         "nombre": "Limonada con menta y jengibre",
@@ -209,6 +513,62 @@
         "precio": 5200,
         "imagen": "assets/clientes/requeterico/j2.webp",
         "small_imagen": "assets/clientes/requeterico/j2-small.webp"
+      },
+      {
+        "nombre": "Jarra de limonada",
+        "descripcion": "Una generosa jarra de limonada casera, ideal para compartir. Refrescante, natural y deliciosa.",
+        "precio": 8000,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Jugo Verde",
+        "descripcion": "Mezcla saludable de frutos rojos, espinaca y naranja. Un combo perfecto para revitalizar tu cuerpo.",
+        "precio": 5500,
+        "imagen": "assets/clientes/requeterico/s1.webp",
+        "small_imagen": "assets/clientes/requeterico/s1-small.webp"
+      },
+      {
+        "nombre": "Jugo de Kiwi",
+        "descripcion": "Delicioso jugo que combina naranja, banana y kiwi. Frutal, dulce y lleno de energía.",
+        "precio": 5500,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Jugo de Zanahoria",
+        "descripcion": "Refrescante y nutritivo jugo de mandarina, pera, zanahoria y naranja. Ideal para una dosis de vitaminas.",
+        "precio": 5500,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Jugo de Pomelo",
+        "descripcion": "Sabroso mix de pomelo rosado, arándanos y banana. Refrescante y naturalmente dulce.",
+        "precio": 5500,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Gaseosa Línea Coca 500 cc",
+        "descripcion": "Gaseosa clásica en su presentación de 500 cc. Refrescante y con todo su sabor original.",
+        "precio": 3100,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Gaseosa Saborizada 500 cc",
+        "descripcion": "Bebidas gaseosas con sabores frutales en formato de 500 cc. Perfectas para acompañar tus comidas.",
+        "precio": 3100,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Agua con o sin gas 500 cc",
+        "descripcion": "Agua mineral en su versión con o sin gas. Hidratación pura y natural.",
+        "precio": 2800,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
       }
     ]
   },
@@ -238,6 +598,118 @@
         "precio": 7800,
         "imagen": "assets/clientes/requeterico/sand_tost_salm.webp",
         "small_imagen": "assets/clientes/requeterico/sand_tost_salm-small.webp"
+      },
+      {
+        "nombre": "Tostado Árabe (XL)",
+        "descripcion": "Tostado de gran tamaño en pan árabe.",
+        "precio": 7500,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Tostado con crudo",
+        "descripcion": "Tostado con jamón crudo.",
+        "precio": 8000,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Tostado Requetérico",
+        "descripcion": "Pan brioche embebido en huevo y azúcar con jamón y muzzarella tostado.",
+        "precio": 7800,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Tostado en pan focaccia (lomito ahumado y queso)",
+        "descripcion": "Tostado con lomito ahumado y queso en pan focaccia.",
+        "precio": 8200,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Lomito solo con fritas",
+        "descripcion": "Lomito solo acompañado de papas fritas.",
+        "precio": 12000,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Lomito con jamón y queso con fritas",
+        "descripcion": "Lomito con jamón y queso acompañado de papas fritas.",
+        "precio": 13000,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Lomito completo con fritas",
+        "descripcion": "Lomito completo (con jamón, queso, tomate, lechuga y huevo) acompañado de papas fritas.",
+        "precio": 15000,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Pechuga sola con fritas",
+        "descripcion": "Pechuga sola acompañada de papas fritas.",
+        "precio": 12000,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Pechuga jamón y queso con fritas",
+        "descripcion": "Pechuga con jamón y queso acompañada de papas fritas.",
+        "precio": 13000,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Pechuga completa con fritas",
+        "descripcion": "Pechuga completa (con jamón, queso, tomate, lechuga y huevo) acompañada de papas fritas.",
+        "precio": 15000,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Hamburguesa sola con fritas",
+        "descripcion": "Hamburguesa sola acompañada de papas fritas.",
+        "precio": 11000,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Hamburguesa jamón y queso con fritas",
+        "descripcion": "Hamburguesa con jamón y queso acompañada de papas fritas.",
+        "precio": 12000,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Hamburguesa completa con fritas",
+        "descripcion": "Hamburguesa completa (con jamón, queso, tomate, lechuga y huevo) acompañada de papas fritas.",
+        "precio": 14000,
+        "imagen": "assets/clientes/requeterico/san_ham_comp.webp",
+        "small_imagen": "assets/clientes/requeterico/san_ham_comp-small.webp"
+      },
+      {
+        "nombre": "Opcional: Tomate, lechuga, rucula",
+        "descripcion": "Adicional de tomate, lechuga o rúcula para tu sandwich.",
+        "precio": 700,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Papas cheddar",
+        "descripcion": "Papas fritas cubiertas con salsa cheddar.",
+        "precio": 9000,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Papas Requetéricas",
+        "descripcion": "Papas fritas con aderezo especial Requetérico.",
+        "precio": 9000,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
       }
     ]
   },
@@ -248,11 +720,39 @@
     "nombre": "tartas",
     "productos": [
       {
+        "nombre": "Calabaza, puerro y muzzarella",
+        "descripcion": "Deliciosa tarta casera con base de masa quebrada y relleno de calabaza, puerro y queso muzzarella. Una combinación clásica y reconfortante.",
+        "precio": 8000,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Espinaca",
+        "descripcion": "Tradicional tarta de espinaca con queso y especias. Una opción vegetariana, nutritiva y llena de sabor.",
+        "precio": 8000,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
         "nombre": "Mix de vegetales",
         "descripcion": "Una porción generosa, sabrosa y equilibrada. Preparada con una selección de vegetales frescos salteados y una capa cremosa de muzzarella derretida sobre una base casera dorada al horno. Ideal para una comida liviana pero reconfortante",
         "precio": 8000,
         "imagen": "assets/clientes/requeterico/tarta_mix_veg.webp",
         "small_imagen": "assets/clientes/requeterico/tarta_mix_veg-small.webp"
+      },
+      {
+        "nombre": "Brócoli",
+        "descripcion": "Nutritiva tarta de brócoli con queso y especias. Una forma deliciosa de disfrutar este saludable vegetal.",
+        "precio": 8000,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Choclo y zapallo",
+        "descripcion": "Reconfortante tarta con la dulzura natural del choclo y la suavidad del zapallo. Una combinación tradicional argentina.",
+        "precio": 8000,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
       }
     ]
   },
@@ -263,46 +763,326 @@
     "nombre": "pastelería",
     "productos": [
       {
-        "nombre": "Avocado toast",
-        "descripcion": "Tostada de pan integral con una base generosa de palta fresca, coronada con huevo y un mix de semillas. Una propuesta liviana, nutritiva y llena de sabor natural",
+        "nombre": "Medialuna",
+        "descripcion": "Clásica medialuna.",
+        "precio": 1100,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Medialuna con jamón y queso",
+        "descripcion": "Medialuna rellena de jamón y queso.",
+        "precio": 3000,
+        "imagen": "assets/clientes/requeterico/paste_medjyq.webp",
+        "small_imagen": "assets/clientes/requeterico/paste_medjyq-small.webp"
+      },
+      {
+        "nombre": "Roll relleno con pastelera, manzanas y pasas",
+        "descripcion": "Rollo dulce relleno de crema pastelera, manzanas y pasas.",
+        "precio": 4800,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Tostadas de pan blanco o integral con semillas, con queso crema o manteca y mermelada",
+        "descripcion": "Tostadas de pan blanco o integral con semillas, acompañadas de queso crema o manteca y mermelada.",
+        "precio": 4700,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Avocado Toast",
+        "descripcion": "Tostada con aguacate.",
         "precio": 7000,
         "imagen": "assets/clientes/requeterico/avocado-toast.webp",
         "small_imagen": "assets/clientes/requeterico/avocado-toast-small.webp"
       },
       {
-        "nombre": "Alfajor masa sableé",
-        "descripcion": "Dos capas de masa sableé, suave y delicada, que se deshace en la boca. Relleno con abundante dulce de leche y bañado en chocolate. Una combinación artesanal perfecta para los amantes de lo clásico",
+        "nombre": "Alfajor de maicena",
+        "descripcion": "Clásico alfajor de maicena relleno de dulce de leche.",
         "precio": 3500,
-        "imagen": "assets/clientes/requeterico/a1.webp",
-        "small_imagen": "assets/clientes/requeterico/a1-small.webp"
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
       },
       {
-        "nombre": "Alfajor santafecino",
-        "descripcion": "Capas finas de masa crujiente rellenas con dulce de leche repostero, coronadas con un glaseado artesanal. Una joya tradicional argentina, con el toque irresistible de Requeterico",
+        "nombre": "Alfajor masa Sablée",
+        "descripcion": "Delicado alfajor de masa sablée relleno de dulce de leche.",
         "precio": 3500,
-        "imagen": "assets/clientes/requeterico/a7.webp",
-        "small_imagen": "assets/clientes/requeterico/a7-small.webp"
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Alfajor de coco con dulce de leche",
+        "descripcion": "Alfajor con sabor a coco y relleno de dulce de leche.",
+        "precio": 3500,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Alfajor Santafesino",
+        "descripcion": "Tradicional alfajor santafesino relleno de dulce de leche.",
+        "precio": 3500,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
       },
       {
         "nombre": "Alfajor de masa integral con dulce de leche",
-        "descripcion": "Una versión más rústica y nutritiva del clásico: masa integral suave al paladar, con dulce de leche cremoso en su interior. Una opción equilibrada sin perder dulzura ni sabor",
+        "descripcion": "Alfajor elaborado con masa integral y relleno de dulce de leche.",
         "precio": 3500,
-        "imagen": "assets/clientes/requeterico/a1.webp",
-        "small_imagen": "assets/clientes/requeterico/a1-small.webp"
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
       },
       {
         "nombre": "Alfajor de nuez",
-        "descripcion": "Masa suave de nuez molida, con un relleno generoso de dulce de leche y un baño de glasé o chocolate. Una experiencia intensa y elegante que destaca por su sabor y textura",
+        "descripcion": "Alfajor con nueces y relleno de dulce de leche.",
         "precio": 5000,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Tarta de coco con dulce de leche",
+        "descripcion": "Tarta con base crocante, dulce de leche y coco rallado.",
+        "precio": 5500,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Tarta cabsha",
+        "descripcion": "Tarta de chocolate rellena de dulce de leche y cubierta de merengue.",
+        "precio": 5500,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Pastafrola",
+        "descripcion": "Clásica tarta de membrillo.",
+        "precio": 5000,
+        "imagen": "assets/clientes/requeterico/a3.webp",
+        "small_imagen": "assets/clientes/requeterico/a3-small.webp"
+      },
+      {
+        "nombre": "Cuadrado de ricota",
+        "descripcion": "Delicado cuadrado de ricota.",
+        "precio": 6500,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Cuadrado de maní",
+        "descripcion": "Cuadrado a base de chocolate, dulce de leche, maní y ganache de chocolate blanco.",
+        "precio": 6500,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Cuadrado de coco y brownie",
+        "descripcion": "Combinación de coco y brownie en un delicioso cuadrado.",
+        "precio": 6500,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Crumble de manzana",
+        "descripcion": "Crumble de manzana tibio y reconfortante.",
+        "precio": 5500,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Budín hamburgués con chips de chocolate",
+        "descripcion": "Esponjoso budín hamburgués con trozos de chocolate.",
+        "precio": 4500,
+        "imagen": "assets/clientes/requeterico/t12.webp",
+        "small_imagen": "assets/clientes/requeterico/t12-small.webp"
+      },
+      {
+        "nombre": "Budín inglés bañado en chocolate blanco",
+        "descripcion": "Budín inglés bañado en suave chocolate blanco.",
+        "precio": 4500,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Budín de banana y chips de chocolate",
+        "descripcion": "Budín con sabor a banana y trozos de chocolate.",
+        "precio": 4000,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Budín de naranja y jengibre",
+        "descripcion": "Budín con el toque cítrico de la naranja y el picante del jengibre.",
+        "precio": 4000,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Budín de limón y arándanos",
+        "descripcion": "Budín con el sabor fresco del limón y los arándanos.",
+        "precio": 4000,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Budín de limón y amapolas",
+        "descripcion": "Budín con el aroma del limón y semillas de amapola.",
+        "precio": 4000,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Budín de manzana",
+        "descripcion": "Clásico budín de manzana.",
+        "precio": 4000,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Budín de harina integral y naranja",
+        "descripcion": "Budín elaborado con harina integral y sabor a naranja.",
+        "precio": 4000,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Budín de coco y dulce de leche",
+        "descripcion": "Budín con sabor a coco y dulce de leche.",
+        "precio": 4000,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Scons",
+        "descripcion": "Deliciosos scons.",
+        "precio": 4000,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Scons con queso parmesano",
+        "descripcion": "Scons con un toque de queso parmesano.",
+        "precio": 4500,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Brownie",
+        "descripcion": "Clásico brownie de chocolate.",
+        "precio": 4500,
+        "imagen": "assets/clientes/requeterico/a2.webp",
+        "small_imagen": "assets/clientes/requeterico/a2.webp"
+      },
+      {
+        "nombre": "Brownie de chocolate blanco y limón",
+        "descripcion": "Brownie con chocolate blanco y un toque cítrico de limón.",
+        "precio": 4500,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Cookies brownie",
+        "descripcion": "Galletas con sabor a brownie.",
+        "precio": 4000,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Cookies Red Velvet",
+        "descripcion": "Galletas Red Velvet.",
+        "precio": 4000,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Carrot cookies",
+        "descripcion": "Galletas de zanahoria.",
+        "precio": 4000,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Cookies de avena y pasas (x3)",
+        "descripcion": "Tres galletas de avena y pasas.",
+        "precio": 4000,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Cookies de naranja y jengibre (x4)",
+        "descripcion": "Cuatro galletas de naranja y jengibre.",
+        "precio": 4000,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Cookies rellenas de Nutella (x3)",
+        "descripcion": "Tres galletas rellenas de Nutella.",
+        "precio": 4000,
+        "imagen": "assets/clientes/requeterico/paste_cnut.webp",
+        "small_imagen": "assets/clientes/requeterico/paste_cnut-small.webp"
+      },
+      {
+        "nombre": "Alfajor brownie",
+        "descripcion": "Alfajor con masa de brownie y relleno de dulce de leche.",
+        "precio": 4500,
         "imagen": "assets/clientes/requeterico/a5.webp",
         "small_imagen": "assets/clientes/requeterico/a5-small.webp"
       },
       {
-        "nombre": "Cookies Rellenas de Nutella (x3)",
-        "descripcion": "Tres deliciosas galletas caseras, crocantes por fuera y con un corazón suave y generoso de Nutella derretida. Perfectas para acompañar tu café o disfrutar como un capricho dulce en cualquier momento del día.",
-        "precio": 5000,
-        "imagen": "assets/clientes/requeterico/paste_cnut.webp",
-        "small_imagen": "assets/clientes/requeterico/paste_cnut-small.webp"
+        "nombre": "Alfajor Oreo",
+        "descripcion": "Alfajor con sabor a Oreo.",
+        "precio": 4500,
+        "imagen": "assets/clientes/requeterico/a6.webp",
+        "small_imagen": "assets/clientes/requeterico/a6-small.webp"
+      },
+      {
+        "nombre": "Alfajor Chocotorta",
+        "descripcion": "Alfajor con sabor a Chocotorta.",
+        "precio": 4500,
+        "imagen": "assets/clientes/requeterico/a7.webp",
+        "small_imagen": "assets/clientes/requeterico/a7-small.webp"
+      },
+      {
+        "nombre": "Alfajor de Pistacho",
+        "descripcion": "Alfajor con sabor a pistacho y relleno de dulce de leche.",
+        "precio": 4900,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Alfajor de Pistacho con frambuesa",
+        "descripcion": "Alfajor con sabor a pistacho, frambuesa y relleno de dulce de leche.",
+        "precio": 4900,
+        "imagen": "assets/clientes/requeterico/paste_alf_pist.webp",
+        "small_imagen": "assets/clientes/requeterico/paste_alf_pist-small.webp"
+      },
+      {
+        "nombre": "Bowl con yogurt natural, granola y frutas",
+        "descripcion": "Bowl con yogurt natural, granola y variedad de frutas frescas.",
+        "precio": 6500,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Cupcake relleno con Nutella y Rocklets",
+        "descripcion": "Cupcake relleno de Nutella y cubierto de Rocklets.",
+        "precio": 5500,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Alfajor Baileys",
+        "descripcion": "Alfajor con un toque de Baileys.",
+        "precio": 4900,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Lemon Cookies",
+        "descripcion": "Galletas de limón.",
+        "precio": 1100,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
       }
     ]
   },
@@ -316,8 +1096,8 @@
         "nombre": "Pastafrola integral",
         "descripcion": "Clásica tarta de masa integral con azúcar mascabo, rellena con dulce de membrillo artesanal. Una versión más saludable sin perder el sabor de siempre",
         "precio": 5500,
-        "imagen": "assets/clientes/requeterico/a3.webp",
-        "small_imagen": "assets/clientes/requeterico/a3-small.webp"
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
       },
       {
         "nombre": "Pepas integrales",
@@ -327,18 +1107,239 @@
         "small_imagen": "assets/clientes/requeterico/a4-small.webp"
       },
       {
-        "nombre": "Budín Inglés",
-        "descripcion": "Budín casero esponjoso con frutas abrillantadas y frutos secos, horneado lentamente para lograr una textura húmeda y un sabor tradicional. Ideal para acompañar un té o café",
-        "precio": 4600,
-        "imagen": "assets/clientes/requeterico/budin-ingles.webp",
-        "small_imagen": "assets/clientes/requeterico/budin-ingles-small.webp"
-      },
-      {
         "nombre": "Pan de Molde Integral",
         "descripcion": "Nuestro pan de molde integral es suave, esponjoso y lleno de sabor. Hecho con harinas integrales y semillas seleccionadas, es la base perfecta para tus tostadas o sandwiches. Rico en fibra, natural y horneado con dedicación cada día",
         "precio": 4600,
         "imagen": "assets/clientes/requeterico/rinc_pan_molde.webp",
         "small_imagen": "assets/clientes/requeterico/rinc_pan_molde-small.webp"
+      },
+      {
+        "nombre": "Tarta de Manzana",
+        "descripcion": "Jugosa tarta con manzanas frescas y un toque de canela, sobre una base crocante.",
+        "precio": 6000,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Budín de Naranja",
+        "descripcion": "Esponjoso budín con el sabor cítrico y refrescante de la naranja.",
+        "precio": 4000,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Brownie Fit",
+        "descripcion": "Brownie elaborado con ingredientes integrales, una opción deliciosa y más saludable.",
+        "precio": 5000,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Tarta de dulce de leche y coco",
+        "descripcion": "Exquisita tarta con una abundante capa de dulce de leche y una cubierta de coco rallado.",
+        "precio": 6000,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Tarta con frutos rojos",
+        "descripcion": "Deliciosa tarta rellena de una variedad de frutos rojos frescos y ligeramente ácidos.",
+        "precio": 6000,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Alfajor integral relleno con dulce de leche",
+        "descripcion": "Alfajor elaborado con harina integral y relleno de suave dulce de leche.",
+        "precio": 3500,
+        "imagen": "assets/clientes/requeterico/a1.webp",
+        "small_imagen": "assets/clientes/requeterico/a1-small.webp"
+      }
+    ]
+  },
+  {
+    "label": "Rincón Celíaco",
+    "icon": "assets/clientes/requeterico/icono-rinc-celi.png",
+    "route": "rincon-celiaco",
+    "nombre": "Rincón Celíaco",
+    "productos": [
+      {
+        "nombre": "Brownies",
+        "descripcion": "Deliciosos brownies elaborados sin gluten, conservando todo su sabor y textura.",
+        "precio": 4000,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Pastafrola",
+        "descripcion": "Clásica pastafrola ahora en versión sin gluten, rellena del tradicional dulce.",
+        "precio": 4000,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Alfajores",
+        "descripcion": "Suaves alfajores sin gluten rellenos de dulce de leche.",
+        "precio": 4000,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Tarta de dulce de coco",
+        "descripcion": "Exquisita tarta sin gluten con dulce de leche y coco rallado.",
+        "precio": 4000,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Empanadas",
+        "descripcion": "Sabrosas empanadas sin gluten con variedad de rellenos.",
+        "precio": 4000,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Sandwiches",
+        "descripcion": "Variedad de sandwiches elaborados con pan sin gluten y rellenos deliciosos.",
+        "precio": 4000,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Croissant con jamón y queso",
+        "descripcion": "Delicado croissant sin gluten relleno de jamón y queso.",
+        "precio": 4000,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      }
+    ]
+  },
+  {
+    "label": "Pizzas",
+    "icon": "assets/clientes/requeterico/fondo-claro.webp",
+    "route": "pizzas",
+    "nombre": "Pizzas",
+    "productos": [
+      {
+        "nombre": "Muzzarella",
+        "descripcion": "Clásica pizza con abundante muzzarella y aceitunas.",
+        "precio": 11000,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Especial",
+        "descripcion": "Pizza con muzzarella, jamón, morrón y aceitunas.",
+        "precio": 12000,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Requetérica",
+        "descripcion": "Pizza con muzzarella, jamón, cebolla caramelizada y roquefort.",
+        "precio": 13000,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Rúcula",
+        "descripcion": "Pizza con muzzarella, jamón crudo, rúcula y parmesano.",
+        "precio": 13000,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      }
+    ]
+  },
+  {
+    "label": "Cervezas",
+    "icon": "assets/clientes/requeterico/fondo-claro.webp",
+    "route": "cervezas",
+    "nombre": "Cervezas",
+    "productos": [
+      {
+        "nombre": "Heineken 1 Lt.",
+        "descripcion": "Botella de cerveza Heineken de un litro.",
+        "precio": 7500,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Heineken lata 473cc",
+        "descripcion": "Lata de cerveza Heineken de 473 centímetros cúbicos.",
+        "precio": 4500,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Imperial 1 Lt",
+        "descripcion": "Botella de cerveza Imperial de un litro.",
+        "precio": 6000,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Imperial lata 473cc (IPA, Roja, Rubia, Stout)",
+        "descripcion": "Lata de cerveza Imperial de 473 centímetros cúbicos. Consultar variedades disponibles (IPA, Roja, Rubia, Stout).",
+        "precio": 4000,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      }
+    ]
+  },
+  {
+    "label": "Helados",
+    "icon": "assets/clientes/requeterico/fondo-claro.webp",
+    "route": "helados",
+    "nombre": "Helados",
+    "productos": [
+      {
+        "nombre": "Dulce de leche, frutilla, chocolate, americana (2 bochas)",
+        "descripcion": "Selección de dos bochas de helado a elegir entre dulce de leche, frutilla, chocolate y americana.",
+        "precio": 5500,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Brownie (Con helado de americana y frutos rojos)",
+        "descripcion": "Delicioso brownie acompañado de una bocha de helado americana y frutos rojos frescos.",
+        "precio": 7200,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Apple Crumble (Con helado de Americana)",
+        "descripcion": "Crumble de manzana tibio servido con una refrescante bocha de helado americana.",
+        "precio": 7200,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Copa Banana Split (Helado de Americana, dulce de leche, banana y chocolate)",
+        "descripcion": "Clásica copa con helado americana, dulce de leche, rodajas de banana fresca y salsa de chocolate.",
+        "precio": 6200,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Don Pedro (Helado de americana, Whisky y nueces)",
+        "descripcion": "Copa con helado americana, un toque de whisky y nueces crocantes.",
+        "precio": 5500,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Copa Brownie (Brownie, helado de americana, frutos rojos)",
+        "descripcion": "Copa con trozos de brownie, helado americana y una selección de frutos rojos.",
+        "precio": 6200,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Copa Maracuyá (Brownie de chocolate blanco, helado de americana y maracuyá)",
+        "descripcion": "Exótica copa con brownie de chocolate blanco, helado americana y salsa de maracuyá.",
+        "precio": 6200,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
       }
     ]
   },
@@ -385,11 +1386,39 @@
     "nombre": "empanadas",
     "productos": [
       {
-        "nombre": "Empanadas Artesanales - Sabores a Elección",
-        "descripcion": "Crujientes por fuera y sabrosas por dentro. Nuestras empanadas caseras vienen en una variedad de sabores para todos los gustos:\n\n🥩 Carne jugosa,\n🧀 Jamón y queso derretido,\n🐔 Pollo especiado,\n🌽 Humita cremosa,\n🌿 Verdura con un toque de queso,\n🧅 Cebolla y queso fundido,\n🍅 Capresse con albahaca fresca.\nElegí tu combinación favorita y disfrutá de un clásico irresistible.",
-        "precio": 4000,
+        "nombre": "Carne",
+        "descripcion": "Empanada rellena de jugoso carne.",
+        "precio": 2000,
         "imagen": "assets/clientes/requeterico/emp_carne.webp",
         "small_imagen": "assets/clientes/requeterico/emp_carne-small.webp"
+      },
+      {
+        "nombre": "Jamón y queso",
+        "descripcion": "Empanada rellena de clásico jamón y queso.",
+        "precio": 2000,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Pollo",
+        "descripcion": "Empanada rellena de sabroso pollo.",
+        "precio": 2000,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Pollo - Cebolla y queso",
+        "descripcion": "Empanada con un relleno de pollo, cebolla y queso.",
+        "precio": 2000,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Verdura - Caprese - Humita",
+        "descripcion": "Variedad de empanadas con rellenos de verdura, caprese (tomate, muzzarella y albahaca) y humita.",
+        "precio": 2000,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
       }
     ]
   },
@@ -405,6 +1434,41 @@
         "precio": 4000,
         "imagen": "assets/clientes/requeterico/pasta_sorr.webp",
         "small_imagen": "assets/clientes/requeterico/pasta_sorr-small.webp"
+      },
+      {
+        "nombre": "Ravioles de calabaza, verdeo y muzzarella",
+        "descripcion": "Sabrosos ravioles con un relleno de calabaza, verdeo y muzzarella.",
+        "precio": 10000,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Espaguetis",
+        "descripcion": "Clásicos espaguetis.",
+        "precio": 10000,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Canelones (x3)",
+        "descripcion": "Tres unidades de canelones rellenos.",
+        "precio": 12000,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Salsas: Crema - Fileto o Requetérica (Crema, jamón y hongos)",
+        "descripcion": "Elige tu salsa para acompañar tu pasta: crema, fileto o la especial Requetérica (crema, jamón y hongos).",
+        "precio": 4000,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Bolognesa",
+        "descripcion": "Clásica salsa bolognesa a base de carne.",
+        "precio": 4000,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
       }
     ]
   },
@@ -420,6 +1484,56 @@
         "precio": 4000,
         "imagen": "assets/clientes/requeterico/mila_cla.webp",
         "small_imagen": "assets/clientes/requeterico/mila_cla-small.webp"
+      },
+      {
+        "nombre": "Requetérica: Muzzarella, champiñón y cherrys confitados + fritas",
+        "descripcion": "Milanesa de ternera o pollo cubierta con muzzarella, champiñones y tomates cherrys confitados, acompañada de papas fritas.",
+        "precio": 14500,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Napolitana: Salsa de tomate, jamón, muzzarella + fritas",
+        "descripcion": "Milanesa de ternera o pollo cubierta con salsa de tomate, jamón y muzzarella, acompañada de papas fritas.",
+        "precio": 14500,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      }
+    ]
+  },
+  {
+    "label": "Licuados",
+    "icon": "assets/clientes/requeterico/fondo-claro.webp",
+    "route": "licuados",
+    "nombre": "Licuados",
+    "productos": [
+      {
+        "nombre": "Banana / Multifruta / Durazno / Frutilla",
+        "descripcion": "Licuado a base de banana, multifruta, durazno o frutilla (a elección).",
+        "precio": 5200,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Milkshake: Helado batido con leche",
+        "descripcion": "Milkshake cremoso a base de helado batido con leche.",
+        "precio": 5500,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Licuado Requetérico (Banana, dulce de leche y chocolate)",
+        "descripcion": "Licuado especial Requetérico con banana, dulce de leche y chocolate.",
+        "precio": 5500,
+        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
+        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+      },
+      {
+        "nombre": "Ensalada de Fruta",
+        "descripcion": "Refrescante ensalada con variedad de frutas frescas de estación.",
+        "precio": 5800,
+        "imagen": "assets/clientes/requeterico/lic_ens.webp",
+        "small_imagen": "assets/clientes/requeterico/lic_ens-small.webp"
       }
     ]
   }
