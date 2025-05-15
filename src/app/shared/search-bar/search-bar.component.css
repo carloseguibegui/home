@@ -29,6 +29,9 @@ input {
     cursor: text;
 }
 
+input[type="text"] {
+  padding-right: 2.5rem; /* Espacio para la cruz */
+}
 
 /* Estilos específicos para clientes */
 

@@ -18,11 +18,11 @@
 
 .spinner {
     border: 8px solid #ffffff;
-    border-top: 8px solid #5705e6;
+    border-top: 8px solid #7c3aed;
     border-radius: 50%;
     width: 56px;
     height: 56px;
-    animation: spin 1s linear infinite;
+    animation: spin 0.7s linear infinite;
 }
 
 @keyframes spin {

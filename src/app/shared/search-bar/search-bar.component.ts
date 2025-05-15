@@ -27,4 +27,8 @@ export class SearchBarComponent {
   get clienteClass(): string {
     return `cliente-${this.cliente.toLowerCase()}`;
   }
+  clearSearch() {
+    this.searchTerm = '';
+    this.search.emit('');
+  }
 }

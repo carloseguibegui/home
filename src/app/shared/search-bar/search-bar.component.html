@@ -1,7 +1,12 @@
 <div [ngClass]="clienteClass" class="carta-container">
-    <div class="w-full flex justify-center">
+    <div class="w-full flex justify-center relative">
         <input type="text" [placeholder]="'Buscar producto. Ej: ' + item_placeholder" [(ngModel)]="searchTerm"
             (input)="onInputChange(searchTerm)"
-            class="w-full max-w-md p-3 rounded-xl bg-gray-100 text-gray-700 placeholder-gray-400 shadow-md focus:outline-none focus:ring-2 focus:ring-yellow-400"    />
+            class="w-full max-w-md p-3 rounded-xl bg-gray-100 text-gray-700 placeholder-gray-400 shadow-md focus:outline-none focus:ring-2 focus:ring-yellow-400 pr-10" />
+            <!-- <span *ngIf="searchTerm"
+                class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-700 text-2xl cursor-pointer select-none"
+                (click)="clearSearch()" aria-label="Borrar búsqueda" tabindex="0" role="button">
+                <i class="bi bi-x-circle-fill"></i>
+            </span> -->
     </div>
 </div>
