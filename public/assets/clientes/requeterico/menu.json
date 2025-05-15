@@ -758,7 +758,7 @@
   },
   {
     "label": "Pastelería",
-    "icon": "assets/clientes/requeterico/icono3.webp",
+    "icon": "assets/clientes/requeterico/icono-roll.webp",
     "route": "pastelería",
     "nombre": "pastelería",
     "productos": [

@@ -128,7 +128,7 @@
   },
   {
     "label": "Cafés Especiales",
-    "icon": "assets/clientes/requeterico/icono-cafe-esp.png",
+    "icon": "assets/clientes/requeterico/icono-cafe-esp.webp",
     "route": "cafes-especiales",
     "nombre": "cafés especiales",
     "productos": [
@@ -185,7 +185,7 @@
   },
   {
     "label": "Tés",
-    "icon": "assets/clientes/requeterico/icono-te1.png",
+    "icon": "assets/clientes/requeterico/icono-te1.webp",
     "route": "tes",
     "nombre": "Tés",
     "productos": [
@@ -228,7 +228,7 @@
   },
   {
     "label": "Cafés Fríos",
-    "icon": "assets/clientes/requeterico/icono-cafe-fr.png",
+    "icon": "assets/clientes/requeterico/icono-cafe-fr.webp",
     "route": "cafes-frios",
     "nombre": "cafes-fríos",
     "productos": [
@@ -701,8 +701,8 @@
         "nombre": "Papas cheddar",
         "descripcion": "Papas fritas cubiertas con salsa cheddar.",
         "precio": 9000,
-        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
-        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+        "imagen": "assets/clientes/requeterico/papas_cheddar.webp",
+        "small_imagen": "assets/clientes/requeterico/papas_cheddar-small.webp"
       },
       {
         "nombre": "Papas Requetéricas",
@@ -715,7 +715,7 @@
   },
   {
     "label": "Tartas",
-    "icon": "assets/clientes/requeterico/icono-tarta.png",
+    "icon": "assets/clientes/requeterico/icono-tarta.webp",
     "route": "tartas",
     "nombre": "tartas",
     "productos": [
@@ -744,8 +744,8 @@
         "nombre": "Brócoli",
         "descripcion": "Nutritiva tarta de brócoli con queso y especias. Una forma deliciosa de disfrutar este saludable vegetal.",
         "precio": 8000,
-        "imagen": "assets/clientes/requeterico/fondo-claro.webp",
-        "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
+        "imagen": "assets/clientes/requeterico/tarta_brocoli.webp",
+        "small_imagen": "assets/clientes/requeterico/tarta_brocoli-small.webp"
       },
       {
         "nombre": "Choclo y zapallo",
@@ -758,7 +758,7 @@
   },
   {
     "label": "Pastelería",
-    "icon": "assets/clientes/requeterico/icono3.webp",
+    "icon": "assets/clientes/requeterico/icono-roll.webp",
     "route": "pastelería",
     "nombre": "pastelería",
     "productos": [
@@ -1159,7 +1159,7 @@
   },
   {
     "label": "Rincón Celíaco",
-    "icon": "assets/clientes/requeterico/icono-rinc-celi.png",
+    "icon": "assets/clientes/requeterico/icono-rinc-celi.webp",
     "route": "rincon-celiaco",
     "nombre": "Rincón Celíaco",
     "productos": [
@@ -1216,7 +1216,7 @@
   },
   {
     "label": "Pizzas",
-    "icon": "assets/clientes/requeterico/fondo-claro.webp",
+    "icon": "assets/clientes/requeterico/icono-pizza.webp",
     "route": "pizzas",
     "nombre": "Pizzas",
     "productos": [
@@ -1252,7 +1252,7 @@
   },
   {
     "label": "Cervezas",
-    "icon": "assets/clientes/requeterico/fondo-claro.webp",
+    "icon": "assets/clientes/requeterico/icono-cerveza.webp",
     "route": "cervezas",
     "nombre": "Cervezas",
     "productos": [
@@ -1288,7 +1288,7 @@
   },
   {
     "label": "Helados",
-    "icon": "assets/clientes/requeterico/fondo-claro.webp",
+    "icon": "assets/clientes/requeterico/icono-helado.webp",
     "route": "helados",
     "nombre": "Helados",
     "productos": [
@@ -1353,8 +1353,8 @@
         "nombre": "Merienda Integral",
         "descripcion": "Una opción rica y equilibrada: latte espumoso, tostadas integrales con queso y mermelada, jugo de naranja exprimido y un cremoso yogur con granola crocante. Ideal para disfrutar con calma y cuidar tu bienestar",
         "precio": 7000,
-        "imagen": "assets/clientes/requeterico/mer_int.webp",
-        "small_imagen": "assets/clientes/requeterico/mer_int-small.webp"
+        "imagen": "assets/clientes/requeterico/merienda_integral.webp",
+        "small_imagen": "assets/clientes/requeterico/merienda_integral-small.webp"
       },
       {
         "nombre": "Merienda Proteica",
@@ -1381,7 +1381,7 @@
   },
   {
     "label": "Empanadas",
-    "icon": "assets/clientes/requeterico/icono-emp.png",
+    "icon": "assets/clientes/requeterico/icono-emp.webp",
     "route": "empanadas",
     "nombre": "empanadas",
     "productos": [
@@ -1410,12 +1410,26 @@
         "nombre": "Pollo - Cebolla y queso",
         "descripcion": "Empanada con un relleno de pollo, cebolla y queso.",
         "precio": 2000,
+        "imagen": "assets/clientes/requeterico/empanada_cebolla_queso.webp",
+        "small_imagen": "assets/clientes/requeterico/empanada_cebolla_queso-small.webp"
+      },
+      {
+        "nombre": "Verdura",
+        "descripcion": "Empanada rellena de verduras.",
+        "precio": 2000,
+        "imagen": "assets/clientes/requeterico/empanada_verdura.webp",
+        "small_imagen": "assets/clientes/requeterico/empanada_verdura-small.webp"
+      },
+      {
+        "nombre": "Caprese",
+        "descripcion": "Empanada rellena de tomate, albahaca y muzzarella.",
+        "precio": 2000,
         "imagen": "assets/clientes/requeterico/fondo-claro.webp",
         "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
       },
       {
-        "nombre": "Verdura - Caprese - Humita",
-        "descripcion": "Variedad de empanadas con rellenos de verdura, caprese (tomate, muzzarella y albahaca) y humita.",
+        "nombre": "Humita",
+        "descripcion": "Empanada rellena de humita.",
         "precio": 2000,
         "imagen": "assets/clientes/requeterico/fondo-claro.webp",
         "small_imagen": "assets/clientes/requeterico/fondo-claro-small.webp"
@@ -1424,7 +1438,7 @@
   },
   {
     "label": "Pastas",
-    "icon": "assets/clientes/requeterico/icono-pasta.png",
+    "icon": "assets/clientes/requeterico/icono-pasta.webp",
     "route": "pastas",
     "nombre": "pastas",
     "productos": [
@@ -1474,7 +1488,7 @@
   },
   {
     "label": "Milanesas",
-    "icon": "assets/clientes/requeterico/icono-mila.png",
+    "icon": "assets/clientes/requeterico/icono-mila.webp",
     "route": "milanesas",
     "nombre": "milanesas",
     "productos": [
@@ -1503,7 +1517,7 @@
   },
   {
     "label": "Licuados",
-    "icon": "assets/clientes/requeterico/fondo-claro.webp",
+    "icon": "assets/clientes/requeterico/icono-licuado.webp",
     "route": "licuados",
     "nombre": "Licuados",
     "productos": [

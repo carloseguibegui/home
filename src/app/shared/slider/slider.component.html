@@ -1,15 +1,17 @@
-<div [ngClass]="clienteClass" class="carta-container">
-    <div class="scroll-container" #scrollContainer>
+<div [@fadeInOut] [ngClass]="clienteClass" class="carta-container">
+    <div  class="scroll-container" #scrollContainer>
         <div class="scroll-track">
             <div *ngFor="let categoria of categorias" class="slider-item"
                 [class.active]="isActiveCategory(categoria.route)">
-                <a [href]="'/menuonline/' + cliente + '/carta/' + categoria.route" class="category-link"
+                <a  
+                [routerLink]="['/menuonline', cliente, 'carta', categoria.route]"
+                class="category-link"
                     [class.active]="isActiveCategory(categoria.route)">
                     <div class="menu-item mx-1" [class.active]="isActiveCategory(categoria.route)"
                         [ngStyle]="{ 'background': 'url(/assets/clientes/' + cliente + '/fondo-claro.webp)' }">
-                        <img [src]="categoria.icon" [alt]="categoria.label" class="category-icon">
+                        <img [src]="categoria.icon" [alt]="categoria.nombre" class="category-icon">
                     </div>
-                    <p class="category-label">{{ categoria.label }}</p>
+                    <p class="category-label">{{ categoria.nombre }}</p>
                 </a>
             </div>
         </div>

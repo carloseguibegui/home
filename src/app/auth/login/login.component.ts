@@ -1,66 +1,76 @@
 import { Component, OnInit } from '@angular/core';
-import { Auth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, GoogleAuthProvider, signInWithPopup } from '@angular/fire/auth';
-import { Router } from '@angular/router'; // Importar Router
+import { Auth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, UserCredential, signOut } from '@angular/fire/auth';
+import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { trigger, transition, style, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-login',
   imports: [CommonModule, FormsModule],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
+  animations: [
+    trigger('fadeInOut', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('300ms ease-in', style({ opacity: 1 }))
+      ]),
+      transition(':leave', [
+        animate('300ms ease-out', style({ opacity: 0 }))
+      ])
+    ])
+  ]
 })
 export class LoginComponent implements OnInit {
-  isLogin: boolean = true; // Estado para alternar entre login y registro
+  isLogin: boolean = true;
   email: string = '';
   password: string = '';
-  confirmPassword: string = ''; // Solo para registro
-  currentUser: any = null; // Almacena el usuario autenticado
+  confirmPassword: string = '';
+  currentUser: any = null;
+  isLoading: boolean = false;
 
-  constructor(private auth: Auth, private router: Router) { } // Inyectar Router
+  constructor(private auth: Auth, private router: Router) { }
 
   ngOnInit() {
-    // Escuchar cambios en el estado de autenticación
+    // Persistencia automática de sesión (incluye Google)
     onAuthStateChanged(this.auth, (user) => {
       if (user) {
         console.log('Usuario persistido:', user);
-        this.currentUser = user; // Guardar el usuario autenticado
-        this.router.navigate(['/admin']); // Redirigir al componente Admin si está autenticado
+        this.currentUser = user;
+        this.router.navigate(['/admin']);
       } else {
-        console.log('No hay usuario autenticado');
         this.currentUser = null;
       }
     });
   }
 
-  // Alternar entre login y registro
   toggleMode() {
     this.isLogin = !this.isLogin;
     this.clearFields();
   }
 
-  // Limpiar los campos del formulario
   clearFields() {
     this.email = '';
     this.password = '';
     this.confirmPassword = '';
   }
 
-  // Manejar el login
   onLogin() {
+    this.isLoading = true;
     signInWithEmailAndPassword(this.auth, this.email, this.password)
-      .then((userCredential) => {
+      .then((userCredential: UserCredential) => {
+        this.isLoading = false;
         console.log('Usuario autenticado:', userCredential.user);
-        alert('Inicio de sesión exitoso');
-        this.router.navigate(['/admin']); // Redirigir al componente Admin
+        this.router.navigate(['/admin']);
       })
       .catch((error) => {
+        this.isLoading = false;
         console.error('Error al iniciar sesión:', error);
         alert('Error al iniciar sesión: ' + error.message);
       });
   }
 
-  // Manejar el registro
   onRegister() {
     if (this.password !== this.confirmPassword) {
       alert('Las contraseñas no coinciden');
@@ -68,10 +78,10 @@ export class LoginComponent implements OnInit {
     }
 
     createUserWithEmailAndPassword(this.auth, this.email, this.password)
-      .then((userCredential) => {
+      .then((userCredential: UserCredential) => {
         console.log('Usuario registrado:', userCredential.user);
         alert('Registro exitoso');
-        this.toggleMode(); // Cambiar a la vista de login después del registro
+        this.toggleMode();
       })
       .catch((error) => {
         console.error('Error al registrarse:', error);
@@ -79,7 +89,6 @@ export class LoginComponent implements OnInit {
       });
   }
 
-  // Manejar el inicio de sesión con Google
   onGoogleLogin() {
     const provider = new GoogleAuthProvider();
     signInWithPopup(this.auth, provider)
@@ -91,6 +100,19 @@ export class LoginComponent implements OnInit {
       .catch((error) => {
         console.error('Error al iniciar sesión con Google:', error);
         alert('Error al iniciar sesión con Google: ' + error.message);
+      });
+  }
+
+  // Método para cerrar sesión
+  logout() {
+    signOut(this.auth)
+      .then(() => {
+        this.currentUser = null;
+        this.router.navigate(['/auth/login']);
+      })
+      .catch((error) => {
+        console.error('Error al cerrar sesión:', error);
+        alert('Error al cerrar sesión: ' + error.message);
       });
   }
 }

@@ -10,6 +10,7 @@ html {
     margin-bottom: 80px;
     border-radius: 33px;
     background-size: contain;
+    place-items: center;
 }
 
 #card-descripcion {

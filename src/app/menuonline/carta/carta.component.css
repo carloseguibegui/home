@@ -23,6 +23,7 @@
 .transition {
     transition: all 0.3s ease;
 }
+
 #cat {
     font-size: 14px;
     text-transform: uppercase;
@@ -34,6 +35,7 @@
 .icon-nombre {
     font-size: 3rem;
 }
+
 .categoria-label {
     font-size: 15px;
 }
@@ -46,30 +48,68 @@
     height: 80px;
 }
 
+.loader-overlay {
+    position: fixed;
+    z-index: 9999;
+    inset: 0;
+    background: #7c3aed;
+    /* Violeta */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.5s;
+}
+
+.loader-logo {
+    width: 180px;
+    height: auto;
+    opacity: 0;
+    animation: fadeInMove 1.2s forwards;
+}
+
+@keyframes fadeInMove {
+    0% {
+        opacity: 0;
+        transform: translateY(40px) scale(0.9);
+    }
+
+    60% {
+        opacity: 1;
+        transform: translateY(-10px) scale(1.05);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
 
 /* clientes */
 
 /* requeterico */
-.cliente-requeterico{
+.cliente-requeterico {
     --text-color: #6B4226;
-    --text-color-brown:#5C3A2E;
+    --text-color-brown: #5C3A2E;
     --font-family: 'Caveat' !important;
 
     * {
         font-family: 'Caveat' !important;
     }
-    .cliente-requeterico{
+
+    .cliente-requeterico {
         font-family: var(--font-family);
     }
+
     .menu-text {
         color: var(--text-color);
     }
+
     .categoria-label {
         color: var(--text-color);
     }
+
     .text-brown {
         color: var(--text-color-brown);
     }
 }
-
-/*  */

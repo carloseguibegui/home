@@ -83,3 +83,7 @@
     height: 1px;
     background: #eee;
 }
+
+button[disabled] {
+    cursor: not-allowed !important;
+    opacity: 0.7; }

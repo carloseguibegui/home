@@ -1,68 +1,72 @@
-<section class="vh-100 gradient-custom">
-    <div class="container py-5 h-100">
-        <div class="row d-flex justify-content-center align-items-center h-100">
-            <div class="col-12 col-md-8 col-lg-8 col-xl-6">
-                <div class="card bg-dark text-white" style="border-radius: 1rem;">
-                    <div class="card-body p-4 text-center">
+<div [@fadeInOut]>
+    <section class="vh-100 gradient-custom">
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 col-md-8 col-lg-8 col-xl-6">
+                    <div class="card  text-white" style="border-radius: 1rem;background-color: #3d0053;">
+                        <div class="card-body p-4 text-center">
 
-                        <div class="mb-md-5 mt-md-4 pb-5">
-                            <h2 class="fw-bold mb-2 text-uppercase">{{ isLogin ? 'Login' : 'Registro' }}</h2>
-                            <p class="text-white-50 mb-5">
-                                {{ isLogin ? 'Inicia sesión' : 'Crea una cuenta' }}
-                            </p>
+                            <div class="mb-md-5 mt-md-4 pb-5">
+                                <h2 class="fw-bold mb-2 text-uppercase">{{ isLogin ? 'Login' : 'Registro' }}</h2>
+                                <p class="text-white-50 mb-5">
+                                    {{ isLogin ? 'Inicia sesión' : 'Crea una cuenta' }}
+                                </p>
 
-                            <form (submit)="isLogin ? onLogin() : onRegister()">
-                                <!-- Email -->
-                                <div data-mdb-input-init class="form-outline form-white mb-4">
-                                    <input name="email" type="email" [(ngModel)]="email"
-                                        placeholder="Correo electrónico" class="form-control form-control-lg"
-                                        required />
-                                </div>
+                                <form #loginForm="ngForm" (ngSubmit)="isLogin ? onLogin() : onRegister()">
+                                    <!-- Email -->
+                                    <div class="form-outline form-white mb-4">
+                                        <input name="email" type="email" [(ngModel)]="email"
+                                            placeholder="Correo electrónico" class="form-control form-control-lg"
+                                            required #emailInput="ngModel" />
+                                    </div>
 
-                                <!-- Contraseña -->
-                                <div data-mdb-input-init class="form-outline form-white mb-4">
-                                    <input name="password" type="password" [(ngModel)]="password"
-                                        placeholder="Contraseña" class="form-control form-control-lg" required />
-                                </div>
+                                    <!-- Contraseña -->
+                                    <div class="form-outline form-white mb-4">
+                                        <input name="password" type="password" [(ngModel)]="password"
+                                            placeholder="Contraseña" class="form-control form-control-lg" required
+                                            #passwordInput="ngModel" />
+                                    </div>
 
-                                <!-- Confirmar contraseña (solo para registro) -->
-                                <div *ngIf="!isLogin" data-mdb-input-init class="form-outline form-white mb-4">
-                                    <input name="confirmPassword" type="password" [(ngModel)]="confirmPassword"
-                                        placeholder="Confirmar contraseña" class="form-control form-control-lg"
-                                        required />
-                                </div>
+                                    <!-- Confirmar contraseña (solo para registro) -->
+                                    <div *ngIf="!isLogin" class="form-outline form-white mb-4">
+                                        <input name="confirmPassword" type="password" [(ngModel)]="confirmPassword"
+                                            placeholder="Confirmar contraseña" class="form-control form-control-lg"
+                                            required #confirmPasswordInput="ngModel" />
+                                    </div>
 
-                                <!-- Botón de acción -->
-                                <button data-mdb-button-init data-mdb-ripple-init
-                                    class="btn btn-outline-light btn-lg px-5" type="submit">
-                                    {{ isLogin ? 'Ingresar' : 'Registrarse' }}
-                                </button>
-
-                                <div class="divider d-flex align-items-center my-4">
-                                    <p class="text-center fw-bold mx-3 mb-0 ">O</p>
-                                </div>
-                            </form>
-                            <div class="d-flex justify-content-center text-center mt-4 pt-1">
+                                    <!-- Botón de acción -->
+                                    <button data-mdb-button-init data-mdb-ripple-init
+                                    class="btn btn-lg btn-block py-3 px-5 text-white"
+                                    style="background-color: #8e00ff;" type="submit"
+                                    [disabled]="loginForm.invalid || isLoading">
+                                        <span *ngIf="isLoading" class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                                    Ingresar</button>
+                                </form>
+                                <!-- <div class="divider d-flex align-items-center my-4">
+                                <p class="text-center fw-bold mx-3 mb-0 ">O</p>
+                            </div> -->
+                                <!-- <div class="d-flex justify-content-center text-center mt-4 pt-1">
                                 <button (click)="onGoogleLogin()" data-mdb-button-init data-mdb-ripple-init
                                     class="btn btn-lg btn-block py-3 px-5 text-white"
                                     style="background-color: #8e00ff;" type="submit"><i class="bi bi-google"></i>
                                     Inicia sesión con Google</button>
+                            </div> -->
                             </div>
-                        </div>
 
-                        <!-- Alternar entre login y registro -->
-                        <div>
-                            <p class="mb-0">
-                                {{ isLogin ? '¿No tienes una cuenta?' : '¿Ya tienes una cuenta?' }}
-                                <a (click)="toggleMode()" class="text-white-50 fw-bold">
-                                    {{ isLogin ? 'Regístrate aquí' : 'Inicia sesión aquí' }}
-                                </a>
-                            </p>
-                        </div>
+                            <!-- Alternar entre login y registro -->
+                            <!-- <div>
+                                <p class="mb-0">
+                                    {{ isLogin ? '¿No tienes una cuenta?' : '¿Ya tienes una cuenta?' }}
+                                    <a (click)="toggleMode()" class="text-white-50 fw-bold">
+                                        {{ isLogin ? 'Regístrate aquí' : 'Inicia sesión aquí' }}
+                                    </a>
+                                </p>
+                            </div> -->
 
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+</div>

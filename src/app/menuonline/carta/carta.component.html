@@ -1,9 +1,9 @@
 <app-background [imageUrl]="'/assets/clientes/' + cliente + '/text1.webp'"></app-background>
-<div [ngClass]="clienteClass" class="carta-container">
-    <section *ngIf="!loading" class="content fade-in show" [class.fade]="true" [class.show]="visible"
-        class="transition-container">
+<app-spinner [@fadeInOut]  *ngIf="loading"></app-spinner>
+<div [@fadeInOut]  [ngClass]="clienteClass" class="carta-container">
+    <section *ngIf="!loading" class="content fade-in show" [class.fade]="true" [class.show]="visible" class="transition-container">
         <app-header [src_path]="'assets/clientes/' + cliente + '/logo0.webp'"></app-header>
-        <div class="container pt-4 pb-5">
+        <div  class="container pt-4 pb-5">
             <div class="row g-4 justify-content-center px-2">
                 @for (categoria of categorias; track categoria.label) {
                 <div class="col-6 " id="cat">
@@ -18,6 +18,6 @@
                 }
             </div>
         </div>
-        <app-copyright [marginBotClassDiv]="'mb-3'"></app-copyright>
+        <app-copyright *ngIf="!loading"  [marginBotClassDiv]="'mb-3'"></app-copyright>
     </section>
 </div>

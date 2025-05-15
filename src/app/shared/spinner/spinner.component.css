@@ -1,0 +1,32 @@
+/* spinner */
+.spinner-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: #7c3aed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.spinner-logo {
+    width: 120px;
+    margin-bottom: 32px;
+    animation: fadeInMove 1.2s forwards;
+}
+
+.spinner {
+    border: 8px solid #ffffff;
+    border-top: 8px solid #5705e6;
+    border-radius: 50%;
+    width: 56px;
+    height: 56px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    100% {
+        transform: rotate(360deg);
+    }
+}

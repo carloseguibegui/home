@@ -14,7 +14,9 @@ import { getMessaging, provideMessaging } from '@angular/fire/messaging';
 import { getPerformance, providePerformance } from '@angular/fire/performance';
 import { getStorage, provideStorage } from '@angular/fire/storage';
 import { getRemoteConfig, provideRemoteConfig } from '@angular/fire/remote-config';
-
+import { bootstrapApplication } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { provideAnimations } from '@angular/platform-browser/animations';
 // Firebase configuration (replace with your Firebase project details)
 const firebaseConfig = {
   apiKey: "AIzaSyBvQO0EP5UTi4NVb7UL0gqqD6sPACu_tgQ",
@@ -37,5 +39,7 @@ export const appConfig: ApplicationConfig = {
     // 6LfYbjcrAAAAACGrfbQc-CT4hKpA0ZEDAy1aMchc
     return initializeAppCheck(undefined, { provider, isTokenAutoRefreshEnabled: true });
   }), provideFirestore(() => getFirestore()), provideFunctions(() => getFunctions()), provideMessaging(() => getMessaging()), providePerformance(() => getPerformance()), provideStorage(() => getStorage()), provideRemoteConfig(() => getRemoteConfig()), // Provide Firestore],
+    provideAnimations(),
+    provideClientHydration()
   ],
 };

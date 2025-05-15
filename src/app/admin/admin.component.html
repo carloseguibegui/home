@@ -1,30 +1,39 @@
-<div class="carta-container admin-container">
-    <!-- Logo del cliente -->
-    <div class="logo-container">
-        <img [src]="logoUrl" alt="Logo del cliente" class="logo" />
+<div [@fadeInOut]>
+
+    <!-- <app-header></app-header> -->
+    <div class="d-flex justify-content-center text-center mt-4 pt-1">
+        <button (click)="logout()" data-mdb-button-init data-mdb-ripple-init
+            class="btn btn-lg btn-block py-3 px-5 text-white" style="background-color: #8e00ff;" type="submit">
+            Cerrar sesión</button>
     </div>
+    <div class="carta-container admin-container">
+        <!-- Logo del cliente -->
+        <div class="logo-container">
+            <img [src]="logoUrl" alt="Logo del cliente" class="logo" />
+        </div>
 
-    <!-- Título -->
-    <h1 class="carta-title admin-title">¿Qué te gustaría hacer?</h1>
+        <!-- Título -->
+        <h1 class="carta-title admin-title">¿Qué te gustaría hacer?</h1>
 
-    <!-- Opciones -->
-    <div class="d-flex flex-column">
-        <div class="carta-card option-card col-sm-12 col-md-8 col-lg-8" (click)="navigateTo('carta')">
-            <img src="assets/icons/carta-icon.png" alt="Carta" class="carta-icon option-icon" />
-            <p class="carta-text option-text">Carta</p>
+        <!-- Opciones -->
+        <div class="d-flex flex-column">
+            <div class="carta-card option-card col-sm-12 col-md-8 col-lg-8" (click)="navigateTo('carta')">
+                <img src="assets/icons/carta-icon.png" alt="Carta" class="carta-icon option-icon" />
+                <p class="carta-text option-text">Carta</p>
+            </div>
+            <div class="carta-card option-card col-sm-12 col-md-8 col-lg-8" (click)="navigateTo('voucher')">
+                <img src="assets/icons/voucher-icon.png" alt="Voucher" class="carta-icon option-icon" />
+                <p class="carta-text option-text">Regalar Voucher</p>
+            </div>
+            <div class="carta-card option-card col-sm-12 col-md-8 col-lg-8" (click)="navigateTo('whatsapp')">
+                <img src="assets/icons/whatsapp-icon.png" alt="WhatsApp" class="carta-icon option-icon" />
+                <p class="carta-text option-text">WhatsApp</p>
+            </div>
         </div>
-        <div class="carta-card option-card col-sm-12 col-md-8 col-lg-8" (click)="navigateTo('voucher')">
-            <img src="assets/icons/voucher-icon.png" alt="Voucher" class="carta-icon option-icon" />
-            <p class="carta-text option-text">Regalar Voucher</p>
-        </div>
-        <div class="carta-card option-card col-sm-12 col-md-8 col-lg-8" (click)="navigateTo('whatsapp')">
-            <img src="assets/icons/whatsapp-icon.png" alt="WhatsApp" class="carta-icon option-icon" />
-            <p class="carta-text option-text">WhatsApp</p>
-        </div>
+
+        <!-- Footer -->
+        <footer class="carta-footer admin-footer">
+            <p>Powered by <span class="powered-by">Tu Marca</span></p>
+        </footer>
     </div>
-
-    <!-- Footer -->
-    <footer class="carta-footer admin-footer">
-        <p>Powered by <span class="powered-by">Tu Marca</span></p>
-    </footer>
 </div>

@@ -11,15 +11,33 @@ import { filter } from 'rxjs/operators';
 import { ScrollToTopComponent } from "../../shared/scroll-to-top/scroll-to-top.component";
 import { SliderComponent } from "../../shared/slider/slider.component";
 import { MenuService } from '../../services/menu.service';
+import { trigger, transition, style, animate } from '@angular/animations';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+import { SpinnerComponent } from "../../shared/spinner/spinner.component";
+
+
 @Component({
   selector: 'app-categoria',
   templateUrl: './categoria.component.html',
   styleUrl: './categoria.component.css',
   standalone: true,
-  imports: [CommonModule, RouterModule, CopyrightComponent, HeaderComponent, BackgroundComponent, SearchBarComponent, ScrollToTopComponent, SliderComponent]
+  imports: [CommonModule, RouterModule, CopyrightComponent, HeaderComponent, BackgroundComponent, SearchBarComponent, ScrollToTopComponent, SliderComponent, SpinnerComponent],
+  animations: [
+    trigger('fadeInOut', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('200ms ease-in', style({ opacity: 1 }))
+      ]),
+      transition(':leave', [
+        animate('200ms ease-out', style({ opacity: 0 }))
+      ])
+    ])
+  ]
 })
 @Injectable({ providedIn: 'root' })
 export class CategoriaComponent implements OnInit {
+  private destroy$ = new Subject<void>();
   data: any = []
   private lastTap = 0;
   doubleTapTimeout: any = null;
@@ -38,27 +56,60 @@ export class CategoriaComponent implements OnInit {
   lightboxImage: string = '';
   container = document.querySelector('.container') as HTMLElement;
   cliente: any;
-  private categoria: any;
-  
-  constructor(private menuService: MenuService,private route: ActivatedRoute, private router: Router, private renderer: Renderer2) {
+  categoria: string = '';
+  private lastCliente: string = '';
+  categoriaKey: string = '';
+
+
+
+
+
+  constructor(private menuService: MenuService, private route: ActivatedRoute, private router: Router, private renderer: Renderer2) {
   }
   get clienteClass(): string {
     return `cliente-${this.cliente.toLowerCase()}`;
   }
   ngOnInit() {
-    this.cliente = this.route.snapshot.paramMap.get('cliente') || '';
-    this.categoria = this.route.snapshot.paramMap.get('categoria') || '';
-    this.menuService.loadMenu(this.cliente);
-    this.menuService.menuData$.subscribe(data => {
-      this.data = data;
-      const objeto_categoria = this.data.find((item: { route: string; }) => item.route === this.categoria)
-      console.log("objeto_categoria", objeto_categoria)
-      this.nombreCategoria = objeto_categoria.nombre;
-      this.items = objeto_categoria.productos || [];
-      this.itemsOriginales = [...this.items];
-      const random_index = Math.floor(Math.random() * this.items.length);
-      this.item_placeholder = this.items[random_index]?.nombre || '';
-    });
+    this.loading = true; // Mostrar spinner al iniciar
+    this.route.paramMap
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(params => {
+        const nuevoCliente = params.get('cliente') || '';
+        const nuevaCategoria = params.get('categoria') || '';
+
+        this.cliente = nuevoCliente;
+        this.categoria = nuevaCategoria;
+        this.categoriaKey = nuevaCategoria + '-' + Date.now();
+
+        if (nuevoCliente !== this.lastCliente || !this.data.length) {
+          this.lastCliente = nuevoCliente;
+          this.menuService.loadMenuFirestore(nuevoCliente);
+        }
+
+        this.menuService.menuData$
+          .pipe(takeUntil(this.destroy$))
+          .subscribe(data => {
+            this.data = data;
+            this.categorias = data.map((item: any) => ({
+              nombre: item.nombre,
+              route: item.route,
+              icon: item.icon
+            }));
+            if (data && data.length > 0) {
+              this.loading = false; // Ocultar spinner cuando llegan las categorías
+            }
+
+            const objeto_categoria = this.data.find((item: { route: string; }) => item.route === this.categoria)
+            if (objeto_categoria) {
+              this.nombreCategoria = objeto_categoria.nombre;
+              this.items = objeto_categoria.productos || [];
+              this.itemsOriginales = [...this.items];
+              const random_index = Math.floor(Math.random() * this.items.length);
+              this.item_placeholder = this.items[random_index]?.nombre || '';
+            }
+          });
+      });
+
     this.router.events.subscribe(event => {
       if (event instanceof NavigationStart) {
         this.loading = true;
@@ -70,9 +121,10 @@ export class CategoriaComponent implements OnInit {
         this.loading = false;
       }
     });
+
     setTimeout(() => {
       this.visible = true;
-    }, 10); // delay corto para permitir que se aplique la clase "fade" primero
+    }, 10);
   }
 
   onSearch(term: string) {
@@ -108,7 +160,7 @@ export class CategoriaComponent implements OnInit {
     document.body.style.overflow = 'hidden'; // Bloquea scroll
     this.applyPerformanceHacks(); // Aplica optimizaciones
   }
-  
+
 
   closeLightbox(event: MouseEvent) {
     const target = event.target as HTMLElement;
@@ -235,6 +287,10 @@ export class CategoriaComponent implements OnInit {
       // Fuerza la aceleración por hardware
       img.style.transform = 'translateZ(0)';
     }
+  }
+
+  onCategoriaSeleccionada(categoriaRoute: string) {
+    this.router.navigate(['/menuonline', this.cliente, 'carta', categoriaRoute]);
   }
 
 }
