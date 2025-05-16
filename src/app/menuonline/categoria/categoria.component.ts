@@ -1,12 +1,12 @@
 import { Component, Injectable, OnInit, Renderer2 } from '@angular/core';
-import { ActivatedRoute, RouterOutlet } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { CopyrightComponent } from '../../shared/copyright/copyright.component';
 import { HeaderComponent } from "../../shared/header/header.component";
 import { BackgroundComponent } from "../../shared/background/background.component";
 import { SearchBarComponent } from "../../shared/search-bar/search-bar.component";
-import { Router, NavigationEnd, NavigationCancel, NavigationError, NavigationStart } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { ScrollToTopComponent } from "../../shared/scroll-to-top/scroll-to-top.component";
 import { SliderComponent } from "../../shared/slider/slider.component";
@@ -62,8 +62,6 @@ export class CategoriaComponent implements OnInit {
 
 
 
-
-
   constructor(private menuService: MenuService, private route: ActivatedRoute, private router: Router, private renderer: Renderer2) {
   }
   get clienteClass(): string {
@@ -106,21 +104,24 @@ export class CategoriaComponent implements OnInit {
               this.itemsOriginales = [...this.items];
               const random_index = Math.floor(Math.random() * this.items.length);
               this.item_placeholder = this.items[random_index]?.nombre || '';
+              setTimeout(() => {
+                this.loading = false; // Ocultar spinner con un pequeño delay para evitar parpadeo de iconos
+              }, 800);
             }
           });
       });
 
-    this.router.events.subscribe(event => {
-      if (event instanceof NavigationStart) {
-        this.loading = true;
-      } else if (
-        event instanceof NavigationEnd ||
-        event instanceof NavigationCancel ||
-        event instanceof NavigationError
-      ) {
-        this.loading = false;
-      }
-    });
+    // this.router.events.subscribe(event => {
+    //   if (event instanceof NavigationStart) {
+    //     this.loading = true;
+    //   } else if (
+    //     event instanceof NavigationEnd ||
+    //     event instanceof NavigationCancel ||
+    //     event instanceof NavigationError
+    //   ) {
+    //     this.loading = false;
+    //   }
+    // });
 
     setTimeout(() => {
       this.visible = true;

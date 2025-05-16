@@ -46,7 +46,9 @@ export class CartaComponent {
       this.categorias = data;
       console.log('Datos del menú:', data);
       if (data && data.length > 0) {
-        this.loading = false; // Ocultar spinner cuando llegan las categorías
+        setTimeout(() => {
+          this.loading = false; // Ocultar spinner con un pequeño delay para evitar parpadeo de iconos
+        }, 800);
       }
     });
     // Solo carga si no hay datos en caché
@@ -54,17 +56,6 @@ export class CartaComponent {
       this.menuService.loadCategorias(this.cliente);
     }
     this.actualizarTitulo(`${this.cliente.charAt(0).toUpperCase() + this.cliente.slice(1) } | Carta Digital`);
-    this.router.events.subscribe(event => {
-      if (event instanceof NavigationStart) {
-        this.loading = true;
-      } else if (
-        event instanceof NavigationEnd ||
-        event instanceof NavigationCancel ||
-        event instanceof NavigationError
-      ) {
-        this.loading = false;
-      }
-    });
     setTimeout(() => {
       this.visible = true;
     }, 10); // delay corto para permitir que se aplique la clase "fade" primero    

@@ -17,6 +17,7 @@ import { getRemoteConfig, provideRemoteConfig } from '@angular/fire/remote-confi
 import { bootstrapApplication } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideAnimations } from '@angular/platform-browser/animations';
+
 // Firebase configuration (replace with your Firebase project details)
 const firebaseConfig = {
   apiKey: "AIzaSyBvQO0EP5UTi4NVb7UL0gqqD6sPACu_tgQ",
@@ -40,6 +41,6 @@ export const appConfig: ApplicationConfig = {
     return initializeAppCheck(undefined, { provider, isTokenAutoRefreshEnabled: true });
   }), provideFirestore(() => getFirestore()), provideFunctions(() => getFunctions()), provideMessaging(() => getMessaging()), providePerformance(() => getPerformance()), provideStorage(() => getStorage()), provideRemoteConfig(() => getRemoteConfig()), // Provide Firestore],
     provideAnimations(),
-    provideClientHydration()
+    provideClientHydration(),
   ],
 };
