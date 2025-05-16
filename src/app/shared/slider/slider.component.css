@@ -204,3 +204,16 @@ a {
         color: var(--text-color);
     }
 }
+
+.sticky-slider {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Frequeterico%2Ftext1.webp?alt=media&token=ae3fb9d5-5966-4c65-9cd5-0828443bc57b');
+    background-size: cover;
+    /* O el color de fondo de tu slider */
+    .scroll-container{
+        padding-bottom: 0;
+        padding-top: 2rem;
+    }
+}

@@ -2,8 +2,8 @@
   position: fixed;
   right: 10px;
   bottom: 70px;
-  height: 46px;
-  width: 46px;
+  height: 60px;
+  width: 60px;
   cursor: pointer;
   border-radius: 50%;
   z-index: 999;
@@ -23,7 +23,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 24px;
+    font-size: 40px;
     transition: all 300ms ease-out;
   }
 
@@ -43,13 +43,13 @@
 
 /* Cliente: requeterico */
 .cliente-requeterico {
-  --progress-bg-color: #A67C52;
-  --progress-border-color: #ffd7a1;
-  --progress-arrow-color: #ffd7a1;
-  --progress-circle-color: #663C1F;
+  --progress-bg-color: #442814;
+  /* --progress-border-color: #663C1F; */
+  /* --progress-arrow-color: #663C1F; */
+  --progress-circle-color: #ffffff;
 
   .progress-wrap {
-    box-shadow: inset 0 0 0 2px #ffd7a1;
+    box-shadow: inset 0 0 0 3px #442814;
     background: var(--progress-bg-color);
 
     &::after {

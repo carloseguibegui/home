@@ -3,24 +3,13 @@ import { Component, ElementRef, Input, OnInit, Output, ViewChild, EventEmitter, 
 import { ActivatedRoute, Router } from '@angular/router';
 import { RouterModule } from '@angular/router';
 import { trigger, transition, style, animate } from '@angular/animations';
-
+import { HostListener } from '@angular/core';
 @Component({
   selector: 'app-slider',
   imports: [CommonModule, RouterModule],
   templateUrl: './slider.component.html',
   styleUrls: ['./slider.component.css'],
-  standalone: true,
-  animations: [
-    trigger('fadeInOut', [
-      transition(':enter', [
-        style({ opacity: 0 }),
-        animate('200ms ease-in', style({ opacity: 1 }))
-      ]),
-      transition(':leave', [
-        animate('200ms ease-out', style({ opacity: 0 }))
-      ])
-    ])
-  ]
+  standalone: true
 })
 export class SliderComponent implements OnInit {
   @ViewChild('scrollContainer') scrollContainer!: ElementRef;
@@ -30,23 +19,28 @@ export class SliderComponent implements OnInit {
   @Input() categoriaActual: string = '';
   @Output() categoriaSeleccionada = new EventEmitter<string>();
   cardImage = 'https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Frequeterico%2Ffondo-claro.webp?alt=media&token=839efda5-c17b-4fb1-bfb6-6605379525f7'
+  backgroundImage = 'https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Frequeterico%2Ftext1.webp?alt=media&token=ae3fb9d5-5966-4c65-9cd5-0828443bc57b';
+  isSticky = false;
   constructor(
     public router: Router,
     private route: ActivatedRoute,
   ) { }
-
   ngOnInit() {
   }
   ngAfterViewInit() {
     this.scrollToActiveCategory();
   }
-
+  
   ngOnChanges(changes: SimpleChanges) {
     if (changes['categoriaActual'] && !changes['categoriaActual'].firstChange) {
       this.scrollToActiveCategory();
     }
   }
-
+  
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    this.isSticky = window.scrollY > 100; // Cambia 100 por los píxeles que quieras
+  }
   get clienteClass(): string {
     return `cliente-${this.cliente.toLowerCase()}`;
   }
@@ -56,7 +50,7 @@ export class SliderComponent implements OnInit {
       const activeItem = this.scrollContainer?.nativeElement.querySelector('.slider-item.active');
       if (activeItem) {
         activeItem.scrollIntoView({
-          behavior: 'smooth',
+          behavior: 'instant',
           block: 'nearest',
           inline: 'center'
         });
@@ -70,5 +64,6 @@ export class SliderComponent implements OnInit {
 
   seleccionarCategoria(route: string) {
     this.categoriaSeleccionada.emit(route);
+    window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll arriba al seleccionar
   }
 }

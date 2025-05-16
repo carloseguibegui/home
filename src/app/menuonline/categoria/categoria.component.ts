@@ -27,10 +27,10 @@ import { SpinnerComponent } from "../../shared/spinner/spinner.component";
     trigger('fadeInOut', [
       transition(':enter', [
         style({ opacity: 0 }),
-        animate('200ms ease-in', style({ opacity: 1 }))
+        animate('0ms ease-in', style({ opacity: 1 }))
       ]),
       transition(':leave', [
-        animate('200ms ease-out', style({ opacity: 0 }))
+        animate('800ms ease-out', style({ opacity: 0 }))
       ])
     ])
   ]
@@ -46,7 +46,7 @@ export class CategoriaComponent implements OnInit {
   doubleTapTimeout: any = null;
   zoomLevel: number = 1;
   zoomTransform: string = 'scale(1)';
-  loading = false;
+  loading = true;
   visible = false;
   nombreCategoria: string = '';
   items: any[] = [];
@@ -60,86 +60,91 @@ export class CategoriaComponent implements OnInit {
   container = document.querySelector('.container') as HTMLElement;
   cliente: any;
   categoria: string = '';
-  private lastCliente: string = '';
   categoriaKey: string = '';
+  private lastCategoria: string = '';
 
 
 
   constructor(private menuService: MenuService, private route: ActivatedRoute, private router: Router, private renderer: Renderer2) {
   }
-  get clienteClass(): string {
-    return `cliente-${this.cliente.toLowerCase()}`;
-  }
+
   ngOnInit() {
-    this.loading = true; // Mostrar spinner al iniciar
+    this.loading = true;
     this.route.paramMap
       .pipe(takeUntil(this.destroy$))
       .subscribe(params => {
-        const nuevoCliente = params.get('cliente') || '';
+        this.cliente = params.get('cliente') || '';
         const nuevaCategoria = params.get('categoria') || '';
 
-        this.cliente = nuevoCliente;
         this.categoria = nuevaCategoria;
         this.categoriaKey = nuevaCategoria + '-' + Date.now();
 
-        if (nuevoCliente !== this.lastCliente || !this.data.length) {
-          this.lastCliente = nuevoCliente;
-          this.menuService.loadMenuFirestore(nuevoCliente);
+        // Intenta cargar categorías desde localStorage primero
+        const cache_categorias = localStorage.getItem(`categorias_${this.cliente}`);
+        const cache_data = localStorage.getItem(`data_${this.cliente}_${this.categoria}`);
+        if ((cache_categorias && cache_data)) {
+          this.categorias = JSON.parse(cache_categorias || '[]');
+          this.data = JSON.parse(cache_data || '[]');
+          setTimeout(() => {
+            this.loading = false;
+          }, 500);
+        } else {
+          // Actualiza la última categoría
+          this.lastCategoria = this.categoria;
+          // Solo llama al servicio si no hay cache
+          this.menuService.loadMenuFirestore(this.cliente);
+          this.menuService.menuData$
+            .pipe(takeUntil(this.destroy$))
+            .subscribe(data => {
+              this.data = data;
+              this.categorias = data.map((item: any) => ({
+                nombre: item.nombre,
+                route: item.route,
+                icon: item.icon
+              }));
+              if (data && data.length > 0) {
+                localStorage.setItem(`categorias_${this.cliente}`, JSON.stringify(this.categorias));
+                localStorage.setItem(`data_${this.cliente}_${this.categoria}`, JSON.stringify(this.data));
+                setTimeout(() => {
+                  this.loading = false;
+                }, 500);
+              }
+              const objeto_categoria = this.data.find((item: { route: string; }) => item.route === this.categoria);
+              if (objeto_categoria) {
+                this.nombreCategoria = objeto_categoria.nombre;
+                this.items = objeto_categoria.productos || [];
+                this.itemsOriginales = [...this.items];
+                const random_index = Math.floor(Math.random() * this.items.length);
+                this.item_placeholder = this.items[random_index]?.nombre || '';
+              }
+            });
         }
-
-        this.menuService.menuData$
-          .pipe(takeUntil(this.destroy$))
-          .subscribe(data => {
-            this.data = data;
-            this.categorias = data.map((item: any) => ({
-              nombre: item.nombre,
-              route: item.route,
-              icon: item.icon
-            }));
-            if (data && data.length > 0) {
-              this.loading = false; // Ocultar spinner cuando llegan las categorías
-            }
-
-            const objeto_categoria = this.data.find((item: { route: string; }) => item.route === this.categoria)
-            if (objeto_categoria) {
-              this.nombreCategoria = objeto_categoria.nombre;
-              this.items = objeto_categoria.productos || [];
-              this.itemsOriginales = [...this.items];
-              const random_index = Math.floor(Math.random() * this.items.length);
-              this.item_placeholder = this.items[random_index]?.nombre || '';
-              setTimeout(() => {
-                this.loading = false; // Ocultar spinner con un pequeño delay para evitar parpadeo de iconos
-              }, 800);
-            }
-          });
+        const objeto_categoria = this.data.find((item: { route: string; }) => item.route === this.categoria);
+        if (objeto_categoria) {
+          this.nombreCategoria = objeto_categoria.nombre;
+          this.items = objeto_categoria.productos || [];
+          this.itemsOriginales = [...this.items];
+          const random_index = Math.floor(Math.random() * this.items.length);
+          this.item_placeholder = this.items[random_index]?.nombre || '';
+        }
+        setTimeout(() => {
+          this.visible = true;
+        }, 10);
       });
+  }
 
-    // this.router.events.subscribe(event => {
-    //   if (event instanceof NavigationStart) {
-    //     this.loading = true;
-    //   } else if (
-    //     event instanceof NavigationEnd ||
-    //     event instanceof NavigationCancel ||
-    //     event instanceof NavigationError
-    //   ) {
-    //     this.loading = false;
-    //   }
-    // });
-
-    setTimeout(() => {
-      this.visible = true;
-    }, 10);
+  get clienteClass(): string {
+    return `cliente-${this.cliente.toLowerCase()}`;
   }
 
   onSearch(term: string) {
-    console.log(term)
     this.searchTerm = term;
     this.isLoading = true;
 
-    setTimeout(() => { // Simula un pequeño delay
-      this.buscarProducto();
-      this.isLoading = false;
-    }, 300); // 300ms de espera para "loading"
+    this.buscarProducto();
+    // setTimeout(() => { // Simula un pequeño delay
+      // this.isLoading = false;
+    // }, 300); // 300ms de espera para "loading"
   }
 
   buscarProducto() {
@@ -294,6 +299,7 @@ export class CategoriaComponent implements OnInit {
   }
 
   onCategoriaSeleccionada(categoriaRoute: string) {
+    this.loading = true; // Activa el spinner
     this.router.navigate(['/menuonline', this.cliente, 'carta', categoriaRoute]);
   }
 

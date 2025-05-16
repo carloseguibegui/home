@@ -36,7 +36,6 @@ export class LoginComponent implements OnInit {
     // Persistencia automática de sesión (incluye Google)
     onAuthStateChanged(this.auth, (user) => {
       if (user) {
-        console.log('Usuario persistido:', user);
         this.currentUser = user;
         this.router.navigate(['/admin']);
       } else {
@@ -61,7 +60,6 @@ export class LoginComponent implements OnInit {
     signInWithEmailAndPassword(this.auth, this.email, this.password)
       .then((userCredential: UserCredential) => {
         this.isLoading = false;
-        console.log('Usuario autenticado:', userCredential.user);
         this.router.navigate(['/admin']);
       })
       .catch((error) => {
@@ -79,7 +77,6 @@ export class LoginComponent implements OnInit {
 
     createUserWithEmailAndPassword(this.auth, this.email, this.password)
       .then((userCredential: UserCredential) => {
-        console.log('Usuario registrado:', userCredential.user);
         alert('Registro exitoso');
         this.toggleMode();
       })
@@ -93,7 +90,6 @@ export class LoginComponent implements OnInit {
     const provider = new GoogleAuthProvider();
     signInWithPopup(this.auth, provider)
       .then((result) => {
-        console.log('Inicio de sesión con Google exitoso:', result.user);
         // alert('Inicio de sesión con Google exitoso');
         this.router.navigate(['/admin']); // Redirigir al componente Admin
       })

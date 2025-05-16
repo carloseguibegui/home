@@ -15,14 +15,7 @@ export class MenuService {
   private menuCache: { [cliente: string]: any[] } = {};
   private categoriasCache: { [cliente: string]: any[] } = {};
 
-  constructor(private firestore: Firestore) {
-    // const cache = localStorage.getItem('categoriasCache');
-    // if (cache) {
-    //   this.categoriasCache = JSON.parse(cache);
-    // // Opcional: emitir los datos para el último cliente usado
-    // // this.categoriasData.next(this.categoriasCache[ultimoCliente]);
-    // }
-  }
+  constructor(private firestore: Firestore) {}
 
   async loadMenuFirestore(cliente: string) {
     // Si ya está en caché, úsalo y no consultes Firestore
@@ -56,7 +49,6 @@ export class MenuService {
   async loadCategorias(cliente: string) {
     // Si ya está en caché, úsalo y no consultes Firestore
     if (this.categoriasCache[cliente]) {
-      console.log('Usando caché para categorías');
       this.categoriasData.next(this.categoriasCache[cliente]);
       return;
     }

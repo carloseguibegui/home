@@ -19,10 +19,10 @@ import { SpinnerComponent } from "../../shared/spinner/spinner.component";
     trigger('fadeInOut', [
       transition(':enter', [
         style({ opacity: 0 }),
-        animate('200ms ease-in', style({ opacity: 1 }))
+        animate('0ms ease-in', style({ opacity: 1 }))
       ]),
       transition(':leave', [
-        animate('200ms ease-out', style({ opacity: 0 }))
+        animate('400ms ease-out', style({ opacity: 0 }))
       ])
     ])
   ]
@@ -45,19 +45,28 @@ export class CartaComponent {
   ngOnInit(): void {
     this.cliente = this.route.snapshot.paramMap.get('cliente') || '';
     this.loading = true; // Mostrar spinner al iniciar
-    this.menuService.categoriasData$.subscribe(data => {
-      this.categorias = data;
-      console.log('Datos del menú:', data);
-      if (data && data.length > 0) {
-        setTimeout(() => {
-          this.loading = false; // Ocultar spinner con un pequeño delay para evitar parpadeo de iconos
-        }, 800);
-      }
-    });
-    // Solo carga si no hay datos en caché
-    if (!this.menuService['categoriasCache'][this.cliente]) {
+
+    // Intenta cargar desde localStorage primero
+    const cache = localStorage.getItem(`categorias_${this.cliente}`);
+    if (cache) {
+      this.categorias = JSON.parse(cache);
+      setTimeout(() => {
+        this.loading = false;
+      }, 300); 
+    } else {
+      // Solo llama al servicio si no hay cache
       this.menuService.loadCategorias(this.cliente);
+      this.menuService.categoriasData$.subscribe(data => {
+        this.categorias = data;
+        if (data && data.length > 0) {
+          localStorage.setItem(`categorias_${this.cliente}`, JSON.stringify(data));
+          setTimeout(() => {
+            this.loading = false;
+          }, 300); 
+        }
+      });
     }
+
     this.actualizarTitulo(`${this.cliente.charAt(0).toUpperCase() + this.cliente.slice(1) } | Carta Digital`);
     setTimeout(() => {
       this.visible = true;
@@ -67,22 +76,5 @@ export class CartaComponent {
     this.titleService.setTitle(nuevoTitulo);
   }
 
-  ngAfterViewInit(): void {
-    this.router.events
-      .pipe(filter(event => event instanceof NavigationEnd))
-      .subscribe(() => {
-        const content = document.querySelector('.fade-in');
-        if (content) {
-          content.classList.remove('show'); // reinicia
-          void (content as HTMLElement).offsetWidth;
-          this.renderer.addClass(content, 'show'); // activa animación
-        }
-        if (this.router.events instanceof NavigationEnd) {
-          const body = document.body;
-          body.classList.remove('fade-in');
-          void body.offsetWidth; // fuerza reflow para reiniciar animación
-          body.classList.add('fade-in');
-        }
-      });
-  }
+
 }

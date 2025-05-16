@@ -1,4 +1,4 @@
-<div [@fadeInOut] [ngClass]="clienteClass" class="carta-container">
+<div  [ngClass]="[clienteClass, isSticky ? 'sticky-slider' : '']" class="carta-container">
     <div  class="scroll-container" #scrollContainer>
         <div class="scroll-track">
             <div *ngFor="let categoria of categorias" class="slider-item"
@@ -6,6 +6,7 @@
                 <a  
                 [routerLink]="['/menuonline', cliente, 'carta', categoria.route]"
                 class="category-link"
+                (click)="seleccionarCategoria(categoria.route)"
                     [class.active]="isActiveCategory(categoria.route)">
                     <div class="menu-item mx-1" [class.active]="isActiveCategory(categoria.route)"
                         [ngStyle]="{ 'background': 'url(' + cardImage + ')' }">
