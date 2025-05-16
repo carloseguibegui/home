@@ -1,15 +1,15 @@
-<app-background [imageUrl]="'/assets/clientes/' + cliente + '/text1.webp'"></app-background>
+<app-background [imageUrl]="backgroundImage"></app-background>
 <app-spinner [@fadeInOut]  *ngIf="loading"></app-spinner>
 <div [@fadeInOut]  [ngClass]="clienteClass" class="carta-container">
     <section *ngIf="!loading" class="content fade-in show" [class.fade]="true" [class.show]="visible" class="transition-container">
-        <app-header [src_path]="'assets/clientes/' + cliente + '/logo0.webp'"></app-header>
+        <app-header [src_path]="logoImage"></app-header>
         <div  class="container pt-4 pb-5">
             <div class="row g-4 justify-content-center px-2">
                 @for (categoria of categorias; track categoria.label) {
                 <div class="col-6 " id="cat">
                     <a [routerLink]="['/menuonline', cliente, 'carta', categoria.route]" class="text-decoration-none">
                         <div class="text-center bg-white shadow rounded-4 p-3 h-100 hover-shadow transition categoria-div"
-                            [ngStyle]="{ 'background-image': 'url(/assets/clientes/' + cliente + '/fondo-claro.webp)' }">
+                            [ngStyle]="{ 'background-image': 'url(' + cardImage + ')' }">
                             <img class="img-fluid icono" src="{{categoria.icon}}" alt="{{categoria.label}}">
                             <div class="fw-bold text-brown mt-2 categoria-label">{{ categoria.label }}</div>
                         </div>

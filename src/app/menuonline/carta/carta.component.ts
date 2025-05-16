@@ -28,6 +28,9 @@ import { SpinnerComponent } from "../../shared/spinner/spinner.component";
   ]
 })
 export class CartaComponent {
+  cardImage ='https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Frequeterico%2Ffondo-claro.webp?alt=media&token=839efda5-c17b-4fb1-bfb6-6605379525f7'
+  logoImage ='https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Frequeterico%2Flogo0.webp?alt=media&token=5a1f3250-7d01-4e31-98a8-979227048f0d'
+  backgroundImage = 'https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Frequeterico%2Ftext1.webp?alt=media&token=ae3fb9d5-5966-4c65-9cd5-0828443bc57b';
   visible = false;
   categorias: any[] = [];
   cliente: string = '';

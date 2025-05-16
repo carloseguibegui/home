@@ -1,10 +1,10 @@
-<app-background [imageUrl]="'/assets/clientes/'+ cliente +'/text1.webp'"></app-background>
+<app-background [imageUrl]="backgroundImage"></app-background>
 <app-spinner [@fadeInOut] *ngIf="loading"></app-spinner>
 <div [@fadeInOut]>
     <div [ngClass]="clienteClass" class="carta-container">
         <section *ngIf="!loading" class="content fade-in" [class.fade]="true" [class.show]="visible"
             class="transition-container">
-            <app-header [cliente]="cliente" [src_path]="'assets/clientes/'+ cliente +'/logo0.webp'"></app-header>
+            <app-header [cliente]="cliente" [src_path]="logoImage"></app-header>
             <app-slider [categorias]="categorias" [cliente]="cliente" [categoriaActual]="categoria">
             </app-slider>
             <app-search-bar [item_placeholder]="item_placeholder" (search)="onSearch($event)"></app-search-bar>
@@ -21,7 +21,7 @@
                             </div>
                             <!-- Contenido encima -->
                             <div class="blurred-img card-body text-center px-4 pb-5 position-relative" id="cuerpo-card"
-                                [ngStyle]="{ 'background-image': 'url(/assets/clientes/' + cliente + '/fondo-claro.webp)' }">
+                                [ngStyle]="{ 'background-image': 'url(' + cardImage + ')' }">
                                 <div id="card-nombre" class="pt-4 pb-2 px-1">
                                     <div class="card-title fw-bold text-uppercase">
                                         {{ item.nombre }}

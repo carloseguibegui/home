@@ -8,7 +8,7 @@
                 class="category-link"
                     [class.active]="isActiveCategory(categoria.route)">
                     <div class="menu-item mx-1" [class.active]="isActiveCategory(categoria.route)"
-                        [ngStyle]="{ 'background': 'url(/assets/clientes/' + cliente + '/fondo-claro.webp)' }">
+                        [ngStyle]="{ 'background': 'url(' + cardImage + ')' }">
                         <img [src]="categoria.icon" [alt]="categoria.nombre" class="category-icon">
                     </div>
                     <p class="category-label">{{ categoria.nombre }}</p>
