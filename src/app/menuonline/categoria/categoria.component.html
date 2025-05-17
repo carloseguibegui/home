@@ -47,7 +47,7 @@
                 <!-- Lightbox -->
                 <div class="lightbox" [class.show]="lightboxVisible" [class.hide]="!lightboxVisible && lightboxImage"
                     (click)="closeLightbox($event)">
-                    <span class="lightbox-close" (click)="closeLightbox($event)" aria-label="Cerrar" tabindex="0" role="button"
+                    <span *ngIf="zoomLevel === 1" class="lightbox-close" (click)="closeLightbox($event)" aria-label="Cerrar" tabindex="0" role="button"
                         style="position: absolute; top: 24px; right: 32px; font-size: 2.5rem; color: #fff; z-index: 10; cursor: pointer; user-select: none;">
                         &times;
                     </span>
