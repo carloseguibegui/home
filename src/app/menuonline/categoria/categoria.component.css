@@ -239,6 +239,35 @@ html {
     }
 }
 
+.cliente-restaurante {
+    --primary-color: #ff5722;
+    --secondary-color: #ff9800;
+    --text-color: #ffffff;
+    --border-color: #ffc107;
+
+    *{
+        font-family: "Dancing Script", cursive;
+        color: var(--text-color);
+    }
+
+    #boton-card {
+        background-color: var(--primary-color);
+        color: var(--text-color);
+    }
+
+    .boton-volver {
+        background-color: var(--secondary-color);
+        color: var(--text-color);
+        border-top-color: var(--text-color);
+    }
+
+    .div-carta {
+        border-color: var(--border-color);
+    }
+
+    #cuerpo-card{background-position-x: center;}
+}
+
 /* Cliente: otroCliente (ejemplo para futuros clientes) */
 .cliente-otroCliente {
     --primary-color: #1e88e5;

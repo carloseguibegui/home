@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { HeaderComponent } from "../shared/header/header.component";
 import { AuthService } from '../services/auth.service';
 import { trigger, transition, style, animate } from '@angular/animations';
+import { CopyrightComponent } from "../shared/copyright/copyright.component";
 
 @Component({
   selector: 'app-admin',
@@ -18,7 +19,8 @@ import { trigger, transition, style, animate } from '@angular/animations';
         animate('300ms ease-out', style({ opacity: 0 }))
       ])
     ])
-  ]
+  ],
+  imports: [CopyrightComponent]
 })
 export class AdminComponent {
   logoUrl: string = 'assets/logos/default-logo.png'; // Ruta por defecto del logo

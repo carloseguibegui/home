@@ -30,16 +30,26 @@ import { SpinnerComponent } from "../../shared/spinner/spinner.component";
         animate('0ms ease-in', style({ opacity: 1 }))
       ]),
       transition(':leave', [
-        animate('800ms ease-out', style({ opacity: 0 }))
+        animate('300ms ease-out', style({ opacity: 0 }))
+      ])
+    ]),
+    trigger('fadeContent', [
+      transition(':enter', [
+        style({ opacity: 0, transform: 'translateY(30px)' }),
+        // animate('600ms 100ms cubic-bezier(0.23, 1, 0.32, 1)', style({ opacity: 1, transform: 'none' }))
+        animate('1200ms ease-in', style({ opacity: 1 }))
+      ]),
+      transition(':leave', [
+        animate('0ms ease-out', style({ opacity: 0 }))
       ])
     ])
   ]
 })
 @Injectable({ providedIn: 'root' })
 export class CategoriaComponent implements OnInit {
-  cardImage = 'https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Frequeterico%2Ffondo-claro.webp?alt=media&token=839efda5-c17b-4fb1-bfb6-6605379525f7'
-  logoImage = 'https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Frequeterico%2Flogo0.webp?alt=media&token=5a1f3250-7d01-4e31-98a8-979227048f0d'
-  backgroundImage = 'https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Frequeterico%2Ftext1.webp?alt=media&token=ae3fb9d5-5966-4c65-9cd5-0828443bc57b';
+  cardImage = ''
+  logoImage = ''
+  backgroundImage = ''
   private destroy$ = new Subject<void>();
   data: any = []
   private lastTap = 0;
@@ -61,7 +71,6 @@ export class CategoriaComponent implements OnInit {
   cliente: any;
   categoria: string = '';
   categoriaKey: string = '';
-  private lastCategoria: string = '';
 
 
 
@@ -70,10 +79,25 @@ export class CategoriaComponent implements OnInit {
 
   ngOnInit() {
     this.loading = true;
+    const now = Date.now();
+    const lastCache = Number(localStorage.getItem('lastCacheClear') || '0');
+    const twelveHours = 60 * 60 * 1000 *  12; // 12 horas en milisegundos
+    if (!lastCache || now - lastCache > twelveHours) {
+      // Borra solo las claves relacionadas al menú/categorías
+      Object.keys(localStorage).forEach(key => {
+        if (key.startsWith('categorias_') || key.startsWith('data_')) {
+          localStorage.removeItem(key);
+        }
+      });
+      localStorage.setItem('lastCacheClear', now.toString());
+    }
     this.route.paramMap
       .pipe(takeUntil(this.destroy$))
       .subscribe(params => {
         this.cliente = params.get('cliente') || '';
+        this.cardImage = `https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2F${this.cliente}%2Ffondo-claro.webp?alt=media&token=839efda5-c17b-4fb1-bfb6-6605379525f`
+        this.logoImage = `https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2F${this.cliente}%2Flogo0.webp?alt=media&token=5a1f3250-7d01-4e31-98a8-979227048f0`
+        this.backgroundImage = `https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2F${this.cliente}%2Fbackground_image.webp?alt=media&token=ae3fb9d5-5966-4c65-9cd5-0828443bc57b`
         const nuevaCategoria = params.get('categoria') || '';
 
         this.categoria = nuevaCategoria;
@@ -83,14 +107,14 @@ export class CategoriaComponent implements OnInit {
         const cache_categorias = localStorage.getItem(`categorias_${this.cliente}`);
         const cache_data = localStorage.getItem(`data_${this.cliente}_${this.categoria}`);
         if ((cache_categorias && cache_data)) {
+          console.log('Cargando desde cache');
           this.categorias = JSON.parse(cache_categorias || '[]');
           this.data = JSON.parse(cache_data || '[]');
           setTimeout(() => {
             this.loading = false;
           }, 500);
         } else {
-          // Actualiza la última categoría
-          this.lastCategoria = this.categoria;
+          console.log('Cargando desde Firestore');
           // Solo llama al servicio si no hay cache
           this.menuService.loadMenuFirestore(this.cliente);
           this.menuService.menuData$
@@ -139,11 +163,11 @@ export class CategoriaComponent implements OnInit {
 
   onSearch(term: string) {
     this.searchTerm = term;
-    this.isLoading = true;
+    // this.isLoading = true;
 
     this.buscarProducto();
     // setTimeout(() => { // Simula un pequeño delay
-      // this.isLoading = false;
+    // this.isLoading = false;
     // }, 300); // 300ms de espera para "loading"
   }
 
@@ -299,6 +323,10 @@ export class CategoriaComponent implements OnInit {
   }
 
   onCategoriaSeleccionada(categoriaRoute: string) {
+    if (categoriaRoute === this.categoria) {
+      // Es la misma categoría, no hacer nada
+      return
+    }
     this.loading = true; // Activa el spinner
     this.router.navigate(['/menuonline', this.cliente, 'carta', categoriaRoute]);
   }

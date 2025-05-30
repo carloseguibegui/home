@@ -113,3 +113,19 @@
         color: var(--text-color-brown);
     }
 }
+
+.cliente-restaurante {
+    --text-color: #dadada;
+    --text-color-brown: #eaeaea;
+    --font-family: "Dancing Script", cursive;
+
+    * {
+        font-family:var(--font-family);
+        color: var(--text-color);
+    }
+
+
+    .text-brown {
+        color: var(--text-color-brown);
+    }
+}

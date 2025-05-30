@@ -1,6 +1,6 @@
 <app-background [imageUrl]="backgroundImage"></app-background>
 <app-spinner [@fadeInOut] *ngIf="loading"></app-spinner>
-<div [@fadeInOut]>
+<div [@fadeContent]>
     <div [ngClass]="clienteClass" class="carta-container">
         <section *ngIf="!loading" class="content fade-in" [class.fade]="true" [class.show]="visible"
             class="transition-container">

@@ -18,14 +18,16 @@ export class SliderComponent implements OnInit {
   @Input() cliente: string = '';
   @Input() categoriaActual: string = '';
   @Output() categoriaSeleccionada = new EventEmitter<string>();
-  cardImage = 'https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Frequeterico%2Ffondo-claro.webp?alt=media&token=839efda5-c17b-4fb1-bfb6-6605379525f7'
-  backgroundImage = 'https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Frequeterico%2Ftext1.webp?alt=media&token=ae3fb9d5-5966-4c65-9cd5-0828443bc57b';
+  cardImage = ""
+  backgroundImage = ""
   isSticky = false;
   constructor(
     public router: Router,
     private route: ActivatedRoute,
   ) { }
   ngOnInit() {
+    this.cardImage = `https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2F${this.cliente}%2Ffondo-claro.webp?alt=media`
+    this.backgroundImage = `https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2F${this.cliente}%2Fbackground_image.webp?alt=media`
   }
   ngAfterViewInit() {
     this.scrollToActiveCategory();
