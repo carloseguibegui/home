@@ -15,7 +15,7 @@ export class MenuService {
   private menuCache: { [cliente: string]: any[] } = {};
   private categoriasCache: { [cliente: string]: any[] } = {};
 
-  constructor(private firestore: Firestore) {}
+  constructor(private firestore: Firestore) { }
 
   async loadMenuFirestore(cliente: string) {
     // Si ya está en caché, úsalo y no consultes Firestore
@@ -38,7 +38,9 @@ export class MenuService {
         return seccionData;
       });
 
-      const menuData = await Promise.all(menuPromises);
+      let menuData = await Promise.all(menuPromises);
+      // Filtra las categorías que no son visibles
+      menuData = menuData.filter(cat => cat['esVisible'] !== false);
       this.menuCache[cliente] = menuData; // Guarda en caché
       this.menuData.next(menuData);
     } finally {
