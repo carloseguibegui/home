@@ -186,11 +186,11 @@ a {
 }
 
 /* Cliente: otroCliente (ejemplo para futuros clientes) */
-.cliente-otroCliente {
+.cliente-restaurante {
     --primary-color: #1e88e5;
     --secondary-color: rgba(30, 136, 229, 0.4);
     --text-color: #1e88e5;
-
+    --slider-bg: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Frestaurante%2Ftext1.webp?alt=media');
     .slider-item.active .menu-item {
         border: 2px solid var(--primary-color);
         box-shadow: 0 6px 6px var(--secondary-color);

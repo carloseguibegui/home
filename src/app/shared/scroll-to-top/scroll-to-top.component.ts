@@ -13,7 +13,7 @@ export class ScrollToTopComponent implements OnInit, AfterViewInit {
   @ViewChild('progressPath') progressPath!: ElementRef<SVGPathElement>;
 
   private pathLength!: number;
-  private readonly offset = 300;
+  private readonly offset = 1300;
   private isVisible = false;
   cliente: string = '';
   constructor(private renderer: Renderer2, private route: ActivatedRoute) { }
