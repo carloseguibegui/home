@@ -13,7 +13,7 @@
                 <div class="row g-4 mt-3">
                     @for (item of items; track item.nombre) {
                     <div class="col-md-4 px-4 text-center " id="cart-item">
-                        <div class="card shadow-sm border-4 rounded-5 overflow-hidden div-carta position-relative"
+                        <div class="card shadow-sm border-5 rounded-5 overflow-hidden div-carta position-relative"
                             style="max-width: 400px;">
                             <div class="blurred-load text-center position-relative" (click)="openLightbox(item.imagen)"
                                 [style.backgroundImage]="'url(' + item.small_imagen + ')'">

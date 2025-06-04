@@ -34,7 +34,10 @@ export class MenuService {
         const seccionData = seccionDoc.data();
         const productosRef = collection(this.firestore, `clientes/${cliente}/categoria/${seccionDoc.id}/productos`);
         const productosSnap = await getDocs(productosRef);
-        seccionData['productos'] = productosSnap.docs.map(prod => prod.data());
+        let productos = productosSnap.docs.map(prod => prod.data());
+        // Ordena los productos alfabéticamente por nombre
+        productos = productos.sort((a, b) => (a['nombre'] || '').localeCompare(b['nombre'] || ''));
+        seccionData['productos'] = productos;
         return seccionData;
       });
 

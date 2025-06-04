@@ -173,8 +173,9 @@ export class CategoriaComponent implements OnInit {
 
   buscarProducto() {
     const termino = this.searchTerm.trim().toLowerCase();
-
-    if (!termino) {
+    // Normaliza el término de búsqueda quitando acentos
+    const terminoNormalizado = termino.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    if (!terminoNormalizado) {
       this.items = [...this.itemsOriginales];
       return;
     }
@@ -183,7 +184,8 @@ export class CategoriaComponent implements OnInit {
 
     this.items = this.itemsOriginales.filter((producto: any) => {
       const textoProducto = `${producto.nombre} ${producto.descripcion}`.toLowerCase();
-      return palabras.every(palabra => textoProducto.includes(palabra));
+      const textoNormalizado = textoProducto.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+      return palabras.every(palabra => textoNormalizado.includes(palabra));
     });
   }
 
