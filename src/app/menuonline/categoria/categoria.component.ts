@@ -81,7 +81,7 @@ export class CategoriaComponent implements OnInit {
     this.loading = true;
     const now = Date.now();
     const lastCache = Number(localStorage.getItem('lastCacheClear') || '0');
-    const twelveHours = 1 * 60 * 1000 *  1; //horas en milisegundos
+    const twelveHours = 1 * 60 * 1000 * 1; //horas en milisegundos
     if (!lastCache || now - lastCache > twelveHours) {
       // Borra solo las claves relacionadas al menú/categorías
       Object.keys(localStorage).forEach(key => {
@@ -136,8 +136,16 @@ export class CategoriaComponent implements OnInit {
               const objeto_categoria = this.data.find((item: { route: string; }) => item.route === this.categoria);
               if (objeto_categoria) {
                 this.nombreCategoria = objeto_categoria.nombre;
-                this.items = objeto_categoria.productos || [];
-                this.itemsOriginales = [...this.items];
+                let productos = objeto_categoria.productos || [];
+                // Aplica la lógica especial solo si la categoría es 'tostados-sandwiches'
+                if ((objeto_categoria.route || '').toLowerCase() === 'tostados-sandwiches') {
+                  const tostados = productos.filter((p: any) => (p.nombre || '').toLowerCase().includes('tostado'));
+                  // const ciabattas = productos.filter((p: any) => (p.nombre || '').toLowerCase().includes('ciabatta') || (p.nombre || '').toLowerCase().includes('sandwich'));
+                  const otros = productos.filter((p: any) => !((p.nombre || '').toLowerCase().includes('tostado')));
+                  productos = [...tostados, ...otros];
+                }
+                this.items = productos;
+                this.itemsOriginales = [...productos];
                 const random_index = Math.floor(Math.random() * this.items.length);
                 this.item_placeholder = this.items[random_index]?.nombre || '';
               }
