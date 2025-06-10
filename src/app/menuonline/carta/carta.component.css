@@ -117,15 +117,27 @@
 .cliente-restaurante {
     --text-color: #dadada;
     --text-color-brown: #eaeaea;
-    --font-family: "Dancing Script", cursive;
+    --font-family: "Playfair Display", serif;
+    --marron-oscuro:#3E2C1C;
+    --fuente-principal:#3E2C1C;
+    --fuente-secundaria:#5A4535;
+    --fondo-card:#F5E2C0;
+    --sombra-card:#F5E2C0;
 
+    
     * {
         font-family:var(--font-family);
         color: var(--text-color);
+        font-optical-sizing: auto;
+        font-style: normal;
     }
 
 
     .text-brown {
-        color: var(--text-color-brown);
+        color: var(--marron-oscuro);
+    }
+
+    .categoria-div{
+        background-size: cover;
     }
 }

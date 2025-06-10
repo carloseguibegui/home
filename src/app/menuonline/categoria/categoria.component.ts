@@ -138,7 +138,7 @@ export class CategoriaComponent implements OnInit {
                 this.nombreCategoria = objeto_categoria.nombre;
                 let productos = objeto_categoria.productos || [];
                 // Aplica la lógica especial solo si la categoría es 'tostados-sandwiches'
-                if ((objeto_categoria.route || '').toLowerCase() === 'tostados-sandwiches') {
+                if ((objeto_categoria.route || '').toLowerCase() === 'tostados-sandwiches' && (this.cliente || '').toLowerCase() === 'requeterico') {
                   const tostados = productos.filter((p: any) => (p.nombre || '').toLowerCase().includes('tostado'));
                   // const ciabattas = productos.filter((p: any) => (p.nombre || '').toLowerCase().includes('ciabatta') || (p.nombre || '').toLowerCase().includes('sandwich'));
                   const otros = productos.filter((p: any) => !((p.nombre || '').toLowerCase().includes('tostado')));

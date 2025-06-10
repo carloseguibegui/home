@@ -13,7 +13,7 @@
                 <div class="row g-4 mt-3">
                     @for (item of items; track item.nombre) {
                     <div class="col-md-4 px-4 text-center " id="cart-item">
-                        <div class="card shadow-sm border-5 rounded-5 overflow-hidden div-carta position-relative"
+                        <div class="card shadow-sm border-3 rounded-5 overflow-hidden div-carta position-relative"
                             style="max-width: 400px;">
                             <div class="blurred-load text-center position-relative" (click)="openLightbox(item.imagen)"
                                 [style.backgroundImage]="'url(' + item.small_imagen + ')'">
@@ -21,14 +21,14 @@
                                     class="img-fluid w-100 object-fit-cover" />
                             </div>
                             <!-- Contenido encima -->
-                            <div class="blurred-img card-body text-center px-4 pb-5 position-relative" id="cuerpo-card"
+                            <div class="blurred-img card-body text-center px-4 pb-4 position-relative" id="cuerpo-card"
                                 [ngStyle]="{ 'background-image': 'url(' + cardImage + ')' }">
-                                <div id="card-nombre" class="pt-4 pb-2 px-1">
+                                <div id="card-nombre" class="pb-2 px-1">
                                     <div class="card-title fw-bold text-uppercase">
                                         {{ item.nombre }}
                                     </div>
                                 </div>
-                                <div id="card-descripcion" class="pt-2">
+                                <div id="card-descripcion">
                                     <i class="bi bi-quote"></i>
                                     {{ item.descripcion }}.
                                 </div>
