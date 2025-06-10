@@ -44,6 +44,9 @@ export class MenuService {
       let menuData = await Promise.all(menuPromises);
       // Filtra las categorías que no son visibles
       menuData = menuData.filter(cat => cat['esVisible'] !== false);
+      // Ordena las categorías por displayOrder
+      menuData = menuData.sort((a, b) => (a['displayOrder'] ?? 9999) - (b['displayOrder'] ?? 9999));
+      console.log('Menu data:', menuData);
       this.menuCache[cliente] = menuData; // Guarda en caché
       this.menuData.next(menuData);
     } finally {
@@ -65,9 +68,14 @@ export class MenuService {
       categorias.push({ id: categoriaDoc.id, ...categoriaDoc.data() });
     }
 
-    this.categoriasCache[cliente] = categorias; // Guarda en caché
+    // Filtra las categorías que no son visibles
+    const categoriasVisibles = categorias.filter(cat => cat['esVisible'] !== false);
+    // Ordena las categorías por displayOrder
+    const categoriasOrdenadas = categoriasVisibles.sort((a, b) => (a['displayOrder'] ?? 9999) - (b['displayOrder'] ?? 9999));
+
+    this.categoriasCache[cliente] = categoriasOrdenadas; // Guarda en caché
     localStorage.setItem('categoriasCache', JSON.stringify(this.categoriasCache));
-    this.categoriasData.next(categorias);
+    this.categoriasData.next(categoriasOrdenadas);
   }
 
   clearCache(cliente?: string) {

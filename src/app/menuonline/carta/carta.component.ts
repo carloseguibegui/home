@@ -53,6 +53,7 @@ export class CartaComponent {
     const cache = localStorage.getItem(`categorias_${this.cliente}`);
     if (cache) {
       this.categorias = JSON.parse(cache);
+      console.log('Categorias desde cache:', this.categorias);
       setTimeout(() => {
         this.loading = false;
       }, 300); 
