@@ -17,9 +17,29 @@
 
 .copyright a {
     text-transform: uppercase;
-    color: #6b4c3b;
     text-decoration: none;
     font-weight: 600;
     font-size: 13px;
 
+}
+
+:host-context(.cliente-requeterico) {
+    color: var(--text-color);
+    font-family: 'Caveat', cursive;
+
+    .copyright a {
+        color: #6b4c3b;
+    }
+}
+
+:host-context(.cliente-city_tandil) {
+    --primary-color: #ffffff;
+    --secondary-color: #F2C057;
+    font-family: 'Montserrat', sans-serif !important;
+    color: var(--secondary-color);
+    font-family: Arial, sans-serif;
+
+    .copyright a {
+        color: var(--secondary-color);
+    }
 }

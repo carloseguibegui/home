@@ -141,3 +141,39 @@
         background-size: cover;
     }
 }
+
+
+/* Cliente: city */
+.cliente-city_tandil {
+    --text-color: #ffffff;
+    --text-color-brown: #eaeaea;
+    --font-family: "Montserrat", serif;
+    --marron-oscuro: #d1d1d0;
+    --fuente-principal: #3E2C1C;
+    --fuente-secundaria: #5A4535;
+    --fondo-card: #F5E2C0;
+    --sombra-card: #F5E2C0;
+    --primary-color: #6c6c6c;
+    --secondary-color: rgb(65, 110, 44);
+    /* --text-color: white; */
+
+    * {
+        font-family: var(--font-family);
+        color: var(--text-color);
+        font-optical-sizing: auto;
+        font-style: normal;
+    }
+
+
+    .text-brown {
+        color: var(--marron-oscuro);
+    }
+
+    .categoria-div {
+        background-size: cover;
+    }
+
+    a{
+        color: var(--text-color);
+    }
+}

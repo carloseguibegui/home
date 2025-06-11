@@ -208,7 +208,6 @@ html {
 
 
 /* Estilos específicos para clientes */
-
 /* Cliente: requeterico */
 .cliente-requeterico {
     --primary-color: #6b4c3b;
@@ -216,13 +215,14 @@ html {
     --text-color: #f5deb3;
     --border-color: #6b4c3b;
 
-    *{
+    * {
         font-family: 'Caveat' !important;
     }
 
-    .cliente-requeterico{
+    .cliente-requeterico {
         font-family: 'Caveat' !important
     }
+
     #boton-card {
         background-color: var(--primary-color);
         color: var(--text-color);
@@ -236,6 +236,51 @@ html {
 
     .div-carta {
         border-color: var(--border-color);
+    }
+}
+
+/* Cliente: CITY */
+.cliente-city_tandil {
+    --primary-color: #ffffff;
+    --secondary-color: #F2C057;
+    --text-color: #f5deb3;
+    --border-color: #F2C057;
+    --color-3: #4C9A2A;
+    --oscuro-color: #212121;
+
+    * {
+        font-family: 'Montserrat', sans-serif !important;
+        color: var(--primary-color);
+    }
+
+    .cliente-city_tandil {
+        font-family: 'Montserrat', sans-serif !important
+    }
+
+    #boton-card {
+        background-color: var(--secondary-color);
+        color: var(--oscuro-color);
+        font-family: 'Lato', sans-serif !important;
+    }
+
+    .boton-volver {
+        background-color: var(--secondary-color);
+        color: var(--primary-color);
+        border-top-color: var(--secondary-color);
+    }
+
+    .boton-volver i{
+        color: var(--primary-color);
+    }
+    .div-carta {
+        border-color: var(--border-color);
+    }
+    
+    #card-descripcion {
+        font-family: 'Lato', sans-serif !important;
+    }
+    #card-descripcion i {
+        color: var(--secondary-color);
     }
 }
 

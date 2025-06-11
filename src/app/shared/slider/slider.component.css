@@ -159,6 +159,19 @@ a {
     place-items: center;
 }
 
+
+.sticky-slider {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-size: cover;
+
+    /* O el color de fondo de tu slider */
+    .scroll-container {
+        padding-bottom: 0;
+        padding-top: 2rem;
+    }
+}
 /* Estilos específicos para clientes */
 
 /* Cliente: requeterico */
@@ -183,14 +196,22 @@ a {
     p {
         color: var(--text-color);
     }
+
+   
 }
 
-/* Cliente: otroCliente (ejemplo para futuros clientes) */
+.cliente-requeterico.sticky-slider {
+    background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Frequeterico%2Fbackground_image.webp?alt=media') !important;
+}
+
+
+/* Cliente: restaurante */
 .cliente-restaurante {
-    --primary-color: #1e88e5;
-    --secondary-color: rgba(30, 136, 229, 0.4);
-    --text-color: #1e88e5;
-    --slider-bg: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Frestaurante%2Ftext1.webp?alt=media');
+    --primary-color: #6c6c6c;
+    --secondary-color: rgb(65, 110, 44);
+    --text-color: white;
+    --slider-bg: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Frestaurante%2Fbackground_image.webp?alt=media');
+
     .slider-item.active .menu-item {
         border: 2px solid var(--primary-color);
         box-shadow: 0 6px 6px var(--secondary-color);
@@ -203,17 +224,41 @@ a {
     p {
         color: var(--text-color);
     }
+
+    .sticky-slider {
+        background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Frestaurante%2Fbackground_image.webp?alt=media') !important;
+    }
 }
 
-.sticky-slider {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Frequeterico%2Ftext1.webp?alt=media&token=ae3fb9d5-5966-4c65-9cd5-0828443bc57b');
-    background-size: cover;
-    /* O el color de fondo de tu slider */
-    .scroll-container{
-        padding-bottom: 0;
-        padding-top: 2rem;
+
+/* Cliente: city */
+.cliente-city_tandil {
+    --primary-color: #ffffff;
+    --secondary-color: #F2C057;
+    --text-color: white;
+    --slider-bg: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fcity_tandil%2Fbackground_image.webp?alt=media');
+
+    .slider-item.active .menu-item {
+        border: 2px solid var(--primary-color);
+        box-shadow: 0 6px 6px var(--secondary-color);
     }
+
+    .category-label {
+        color: var(--text-color);
+    }
+
+    p,a {
+        color: var(--text-color);
+    }
+    .category-label{
+        color: var(--text-color);
+    }
+
+    .sticky-slider {
+        background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fcity_tandil%2Fbackground_image.webp?alt=media') !important;
+    }
+}
+
+.cliente-city_tandil.sticky-slider {
+    background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fcity_tandil%2Fbackground_image.webp?alt=media') !important;
 }

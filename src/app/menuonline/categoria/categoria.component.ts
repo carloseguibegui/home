@@ -81,7 +81,7 @@ export class CategoriaComponent implements OnInit {
     this.loading = true;
     const now = Date.now();
     const lastCache = Number(localStorage.getItem('lastCacheClear') || '0');
-    const twelveHours = 60 * 60 * 1000 * 12; //horas en milisegundos
+    const twelveHours = 60 * 60 * 1000 * 24; //horas en milisegundos
     if (!lastCache || now - lastCache > twelveHours) {
       // Borra solo las claves relacionadas al menú/categorías
       Object.keys(localStorage).forEach(key => {
