@@ -3,7 +3,9 @@
     position: fixed;
     inset: 0;
     z-index: 9999;
-    background: #7c3aed;
+    background: linear-gradient(120deg, #d000ff 0%, #6600ff 100%);
+    background-size: 200% 200%;
+    animation: gradientMove 1s ease-in-out infinite alternate;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -28,5 +30,15 @@
 @keyframes spin {
     100% {
         transform: rotate(360deg);
+    }
+}
+
+@keyframes gradientMove {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    100% {
+        background-position: 100% 50%;
     }
 }

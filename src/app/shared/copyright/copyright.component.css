@@ -43,3 +43,14 @@
         color: var(--secondary-color);
     }
 }
+:host-context(.cliente-mi_granito_de_cafe) {
+    --primary-color: #ffffff;
+    --secondary-color: #F2C057;
+    font-family: 'Montserrat', sans-serif !important;
+    color: var(--secondary-color);
+    font-family: Arial, sans-serif;
+
+    .copyright a {
+        color: var(--primary-color);
+    }
+}

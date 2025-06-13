@@ -1,5 +1,6 @@
 html {
-    scroll-behavior: smooth; }
+    scroll-behavior: smooth;
+}
 
 
 #cart-item {
@@ -121,7 +122,7 @@ html {
     width: auto;
     height: auto;
     object-fit: contain;
-    border-radius: 10px;
+    border-radius: 2rem;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 }
 
@@ -267,74 +268,92 @@ html {
         background-color: var(--secondary-color);
         color: var(--primary-color);
         border-top-color: var(--secondary-color);
+        font-family: "Lato", sans-serif !important;
     }
 
-    .boton-volver i{
+    .boton-volver i {
         color: var(--primary-color);
     }
+
     .div-carta {
         border-color: var(--border-color);
     }
-    
+
     #card-descripcion {
         font-family: 'Lato', sans-serif !important;
     }
+
     #card-descripcion i {
         color: var(--secondary-color);
     }
+
+    .lightbox-content {
+        border: 2px solid var(--primary-color);
+        box-shadow: 0 0px 10px 3px var(--primary-color);
+    }
 }
 
-.cliente-restaurante {
-    --primary-color: #ff5722;
-    --secondary-color: #ff9800;
-    --text-color: #ffffff;
-    --border-color: #ffc107;
 
-    *{
-        font-family: "Dancing Script", cursive;
-        color: var(--text-color);
+
+
+/* Cliente: mi granito de cafe */
+.cliente-mi_granito_de_cafe {
+    --primary-color: #4f342f;
+    --secondary-color: #ffffff;
+    --text-color: #f5deb3;
+    --border-color: #7f3b0e;
+    --oscuro-color: #4f342f;
+
+    * {
+        font-family: 'Raleway', sans-serif !important;
+        color: var(--primary-color);
+        text-transform: uppercase;
+    }
+
+    .cliente-city_tandil {
+        font-family: 'Raleway', sans-serif !important
     }
 
     #boton-card {
-        background-color: var(--primary-color);
-        color: var(--text-color);
+        background-color: var(--oscuro-color);
+        color: var(--secondary-color);
+        font-family: 'Roboto', sans-serif !important;
+        font-size: 1.3rem;
     }
 
     .boton-volver {
-        background-color: var(--secondary-color);
-        color: var(--text-color);
-        border-top-color: var(--text-color);
+        background-color: var(--primary-color);
+        color: var(--secondary-color);
+        border-top-color: var(--secondary-color);
+        font-family: "Roboto", sans-serif !important;
+    }
+
+    .boton-volver i {
+        color: var(--secondary-color);
     }
 
     .div-carta {
         border-color: var(--border-color);
     }
 
-    #cuerpo-card{background-position-x: center;}
-}
-
-/* Cliente: otroCliente (ejemplo para futuros clientes) */
-.cliente-otroCliente {
-    --primary-color: #1e88e5;
-    --secondary-color: #1565c0;
-    --text-color: #ffffff;
-    --border-color: #90caf9;
-
-    #boton-card {
-        background-color: var(--primary-color);
-        color: var(--text-color);
+    #card-descripcion {
+        font-family: 'Roboto', sans-serif !important;
     }
 
-    .boton-volver {
-        background-color: var(--secondary-color);
-        color: var(--text-color);
-        border-top-color: var(--text-color);
+    #card-descripcion i {
+        color: var(--secondary-color);
     }
 
-    .div-carta {
-        border-color: var(--border-color);
+    .lightbox-content {
+        border: 2px solid var(--primary-color);
+        box-shadow: 0 0px 10px 3px var(--primary-color);
+    }
+
+    .blurred-load img {
+        object-position: bottom;
     }
 }
+
 
 .lightbox-close {
     position: absolute;

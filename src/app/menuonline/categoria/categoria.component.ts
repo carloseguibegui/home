@@ -15,7 +15,8 @@ import { trigger, transition, style, animate } from '@angular/animations';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { SpinnerComponent } from "../../shared/spinner/spinner.component";
-
+import { Firestore, doc, getDoc } from '@angular/fire/firestore';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-categoria',
@@ -30,14 +31,15 @@ import { SpinnerComponent } from "../../shared/spinner/spinner.component";
         animate('0ms ease-in', style({ opacity: 1 }))
       ]),
       transition(':leave', [
-        animate('300ms ease-out', style({ opacity: 0 }))
+        animate('500ms ease-out', style({ opacity: 0 }))
       ])
     ]),
     trigger('fadeContent', [
       transition(':enter', [
-        style({ opacity: 0, transform: 'translateY(30px)' }),
+        // style({ opacity: 0, transform: 'translateY(30px)' }),
+        style({ opacity: 0}),
         // animate('600ms 100ms cubic-bezier(0.23, 1, 0.32, 1)', style({ opacity: 1, transform: 'none' }))
-        animate('1200ms ease-in', style({ opacity: 1 }))
+        animate('0ms ease-in', style({ opacity: 1 }))
       ]),
       transition(':leave', [
         animate('0ms ease-out', style({ opacity: 0 }))
@@ -71,10 +73,40 @@ export class CategoriaComponent implements OnInit {
   cliente: any;
   categoria: string = '';
   categoriaKey: string = '';
+  nombreCliente: string = '';
 
+  constructor(
+    private menuService: MenuService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private renderer: Renderer2,
+    private firestore: Firestore,
+    private titleService: Title
+  ) {
+  }
 
+  async obtenerNombreCliente() {
+    if (!this.cliente) return;
+    try {
+      const clienteRef = doc(this.firestore, `clientes/${this.cliente}`);
+      const clienteSnap = await getDoc(clienteRef);
+      let nombre = this.cliente.charAt(0).toUpperCase() + this.cliente.slice(1);
+      if (clienteSnap.exists()) {
+        const data: any = clienteSnap.data();
+        if (data && data.nombreCliente) {
+          nombre = data.nombreCliente;
+        }
+      }
+      this.nombreCliente = nombre.toUpperCase();
+      this.actualizarTitulo();
+    } catch (e) {
+      this.nombreCliente = this.cliente.charAt(0).toUpperCase() + this.cliente.slice(1);
+      this.actualizarTitulo();
+    }
+  }
 
-  constructor(private menuService: MenuService, private route: ActivatedRoute, private router: Router, private renderer: Renderer2) {
+  actualizarTitulo() {
+    this.titleService.setTitle(`${this.nombreCliente} | Carta Digital`);
   }
 
   ngOnInit() {
@@ -93,8 +125,9 @@ export class CategoriaComponent implements OnInit {
     }
     this.route.paramMap
       .pipe(takeUntil(this.destroy$))
-      .subscribe(params => {
+      .subscribe(async params => {
         this.cliente = params.get('cliente') || '';
+        await this.obtenerNombreCliente();
         this.cardImage = `https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2F${this.cliente}%2Ffondo-claro.webp?alt=media&token=839efda5-c17b-4fb1-bfb6-6605379525f`
         this.logoImage = `https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2F${this.cliente}%2Flogo0.webp?alt=media&token=5a1f3250-7d01-4e31-98a8-979227048f0`
         this.backgroundImage = `https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2F${this.cliente}%2Fbackground_image.webp?alt=media&token=ae3fb9d5-5966-4c65-9cd5-0828443bc57b`

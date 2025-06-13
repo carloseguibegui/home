@@ -172,6 +172,7 @@ a {
         padding-top: 2rem;
     }
 }
+
 /* Estilos específicos para clientes */
 
 /* Cliente: requeterico */
@@ -197,7 +198,7 @@ a {
         color: var(--text-color);
     }
 
-   
+
 }
 
 .cliente-requeterico.sticky-slider {
@@ -240,18 +241,20 @@ a {
 
     .slider-item.active .menu-item {
         border: 2px solid var(--primary-color);
-        box-shadow: 0 6px 6px var(--secondary-color);
+        box-shadow: 0 3px 5px var(--primary-color);
     }
 
     .category-label {
         color: var(--text-color);
     }
 
-    p,a {
+    .category-label {
         color: var(--text-color);
     }
-    .category-label{
-        color: var(--text-color);
+
+    p,
+    a {
+        color: var(--secondary-color) !important;
     }
 
     .sticky-slider {
@@ -261,4 +264,34 @@ a {
 
 .cliente-city_tandil.sticky-slider {
     background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fcity_tandil%2Fbackground_image.webp?alt=media') !important;
+}
+
+.cliente-mi_granito_de_cafe {
+    --primary-color: #4f342f;
+    --secondary-color: #ffffff;
+    --text-color: #f5deb3;
+    --border-color: #7f3b0e;
+    --oscuro-color: #4f342f;
+
+    .slider-item.active .menu-item {
+        border: 2px solid var(--secondary-color);
+        box-shadow: 0 3px 5px var(--text-color);
+    }
+
+    .category-label {
+        color: var(--text-color);
+    }
+
+    .category-label {
+        color: var(--text-color);
+    }
+
+    p,
+    a {
+        color: var(--secondary-color) !important;
+    }
+}
+
+.cliente-mi_granito_de_cafe.sticky-slider {
+    background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fmi_granito_de_cafe%2Fbackground_image.webp?alt=media') !important;
 }
