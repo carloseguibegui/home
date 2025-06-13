@@ -13,10 +13,15 @@
         background-size: contain;
     }
 }
-
 :host-context(.cliente-mi_granito_de_cafe) {
     .background-container {
         filter: brightness(0.9) blur(1px);
         transform: scale(1.1);
     }
+}
+
+:host-context(.cliente-capitano) {
+    .background-container {
+            background-size: contain;
+        }
 }

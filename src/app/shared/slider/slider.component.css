@@ -295,3 +295,43 @@ a {
 .cliente-mi_granito_de_cafe.sticky-slider {
     background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fmi_granito_de_cafe%2Fbackground_image.webp?alt=media') !important;
 }
+
+
+
+/* Cliente: city */
+.cliente-capitano {
+    --primary-color: #ffffff;
+    --secondary-color: #c8ac78;
+    --text-color: white;
+    --slider-bg: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fcapitano%2Fbackground_image.webp?alt=media');
+
+    * {
+            font-family: "Urbanist",
+                sans-serif !important;
+    }
+    .slider-item.active .menu-item {
+        border: 2px solid var(--primary-color);
+        box-shadow: 0 3px 5px var(--primary-color);
+    }
+
+    .category-label {
+        color: var(--text-color);
+    }
+
+    .category-label {
+        color: var(--text-color);
+    }
+
+    p,
+    a {
+        color: var(--secondary-color) !important;
+    }
+
+    .sticky-slider {
+        background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fcapitano%2Fbackground_image.webp?alt=media') !important;
+    }
+}
+
+.cliente-capitano.sticky-slider {
+    background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fcapitano%2Fbackground_image.webp?alt=media') !important;
+}

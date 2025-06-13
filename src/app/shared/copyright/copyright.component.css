@@ -42,13 +42,23 @@
     .copyright a {
         color: var(--secondary-color);
     }
-}
-:host-context(.cliente-mi_granito_de_cafe) {
+}:host-context(.cliente-mi_granito_de_cafe) {
     --primary-color: #ffffff;
     --secondary-color: #F2C057;
     font-family: 'Montserrat', sans-serif !important;
     color: var(--secondary-color);
-    font-family: Arial, sans-serif;
+    font-family: Arial, sans-serif; 
+
+    .copyright a {
+        color: var(--primary-color);
+    }
+}
+
+:host-context(.cliente-capitano) {
+    --primary-color: #ffffff;
+    --secondary-color: #c8ac78;
+    font-family: 'Urbanist', sans-serif !important;
+    color: var(--secondary-color);
 
     .copyright a {
         color: var(--primary-color);

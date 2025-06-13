@@ -266,7 +266,7 @@ html {
 
     .boton-volver {
         background-color: var(--secondary-color);
-        color: var(--primary-color);
+        color: var(--oscuro-color);
         border-top-color: var(--secondary-color);
         font-family: "Lato", sans-serif !important;
     }
@@ -292,8 +292,6 @@ html {
         box-shadow: 0 0px 10px 3px var(--primary-color);
     }
 }
-
-
 
 
 /* Cliente: mi granito de cafe */
@@ -354,6 +352,63 @@ html {
     }
 }
 
+/* Cliente: capitano */
+.cliente-capitano {
+    --primary-color: #c8ac78;
+    --secondary-color: #ffffff;
+    --text-color: #c8ac78;
+    --border-color: #c8ac78;
+    --oscuro-color: #ffffff;
+
+    * {
+        font-family: 'Urbanist', sans-serif !important;
+        color: var(--primary-color);
+        text-transform: uppercase;
+    }
+
+    .cliente-city_tandil {
+        font-family: 'Urbanist', sans-serif !important
+    }
+
+    #boton-card {
+        background-color: var(--oscuro-color);
+        color: var(--primary-color);
+        font-family: 'Urbanist', sans-serif !important;
+        font-size: 1.3rem;
+    }
+
+    .boton-volver {
+        background-color: var(--primary-color);
+        color: var(--secondary-color);
+        border-top-color: var(--secondary-color);
+        font-family: "Urbanist", sans-serif !important;
+    }
+
+    .boton-volver i {
+        color: var(--secondary-color);
+    }
+
+    .div-carta {
+        border-color: var(--border-color);
+    }
+
+    #card-descripcion {
+        font-family: 'Urbanist', sans-serif !important;
+    }
+
+    #card-descripcion i {
+        color: var(--secondary-color);
+    }
+
+    .lightbox-content {
+        border: 2px solid var(--primary-color);
+        box-shadow: 0 0px 10px 3px var(--primary-color);
+    }
+
+    .blurred-load img {
+        object-position: bottom;
+    }
+}
 
 .lightbox-close {
     position: absolute;

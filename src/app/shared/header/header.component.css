@@ -1,0 +1,5 @@
+:host-context(.cliente-capitano) {
+    #logo {
+        max-width: 260px !important;
+    }
+}

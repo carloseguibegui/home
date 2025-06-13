@@ -3,9 +3,9 @@
     position: fixed;
     inset: 0;
     z-index: 9999;
-    background: linear-gradient(120deg, #d000ff 0%, #6600ff 100%);
+    background: linear-gradient(95deg, #d000ff 0%, #6600ff 100%);
     background-size: 200% 200%;
-    animation: gradientMove 1s ease-in-out infinite alternate;
+    animation: gradientMove .8s ease-in-out infinite alternate;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -13,9 +13,15 @@
 }
 
 .spinner-logo {
-    width: 120px;
+    width: 98px;
+    height: 98px;
     margin-bottom: 32px;
     animation: fadeInMove 1.2s forwards;
+    background-image: url('../../../../public/assets/landing/FInal-05.webp');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: block;
 }
 
 .spinner {
@@ -42,3 +48,24 @@
         background-position: 100% 50%;
     }
 }
+
+
+/* capitano
+:host-context(.cliente-capitano) {
+    .spinner-overlay {
+        background: linear-gradient(120deg, #c8ac78 0%, #ffffff 100%) !important;
+    }
+
+    .spinner {
+        border-top: 8px solid #c8ac78 !important;
+    }
+
+}
+
+:host-context(.cliente-capitano) .spinner-logo {
+    background-image: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fcapitano%2Flogo01.webp?alt=media&token=f4a3b223-5b28-4d47-9658-72c3af0ed4ff');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: block;
+} */

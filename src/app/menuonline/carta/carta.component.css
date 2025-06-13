@@ -215,3 +215,43 @@
         color: var(--text-color);
     }
 }
+
+
+
+
+/* capitano */
+.cliente-capitano {
+    --text-color: #c8ac78;
+    --text-color-brown: #eaeaea;
+    --font-family: "Urbanist",
+            sans-serif;
+    --marron-oscuro: #d1d1d0;
+    --fuente-principal: #3E2C1C;
+    --fuente-secundaria: #5A4535;
+    --fondo-card: #F5E2C0;
+    --sombra-card: #F5E2C0;
+    --primary-color: #6c6c6c;
+    --secondary-color: #F2C057;
+    /* --text-color: white; */
+    --light-color: #ac6331;
+
+    * {
+        font-family: var(--font-family);
+        color: var(--text-color);
+        font-optical-sizing: auto;
+        font-style: normal;
+    }
+
+
+    .text-brown {
+        color: var(--text-color);
+    }
+
+    .categoria-div {
+        background-size: cover;
+    }
+
+    a {
+        color: var(--text-color);
+    }
+}
