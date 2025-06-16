@@ -8,7 +8,7 @@
                 @for (categoria of categorias; track categoria.nombre) {
                 <div class="col-6 " id="cat">
                     <a [routerLink]="['/menuonline', cliente, 'carta', categoria.route]" class="text-decoration-none">
-                        <div class="text-center bg-white shadow rounded-4 p-3 h-100 hover-shadow transition categoria-div"
+                        <div class="text-center bg-white shadow p-3 h-100 hover-shadow transition categoria-div"
                             [ngStyle]="{ 'background-image': 'url(' + cardImage + ')' }">
                             <img class="img-fluid icono" src="{{categoria.icon}}" alt="{{categoria.nombre}}">
                             <div class="fw-bold text-brown mt-2 categoria-label">{{ categoria.nombre }}</div>

@@ -42,10 +42,14 @@
 
 .categoria-div {
     align-content: end;
+    align-content: center;
+    border-radius: 36px;
 }
-
+.img-fluid{
+    margin-bottom:5px;
+}
 .icono {
-    height: 80px;
+    height: 60px;
 }
 
 .loader-overlay {
@@ -179,7 +183,7 @@
 }
 
 
-/* Cliente: city */
+/* Cliente: mi_granito_de_cafe */
 .cliente-mi_granito_de_cafe {
     --text-color: #4f342f;
     --text-color-brown: #eaeaea;
@@ -245,6 +249,49 @@
 
     .text-brown {
         color: var(--text-color);
+    }
+
+    .categoria-div {
+        background-size: cover;
+    }
+
+    a {
+        color: var(--text-color);
+    }
+}
+
+
+/* cientochenta */
+.cliente-cientochenta {
+    --verde-hoja:#4b7200;
+    --cafe-tostado-claro:#A77E58;
+    --negro-carbon-suave:#2E2E2E;
+    --beige-claro:#F1DDC2;
+    --blanco-calido:#FDFBF8;
+    --text-color: #A77E58;
+    --text-color-brown: #eaeaea;
+    --font-family: "Poppins",
+        sans-serif;
+    --marron-oscuro: #d1d1d0;
+    --fuente-principal: #3E2C1C;
+    --fuente-secundaria: #5A4535;
+    --fondo-card: #F5E2C0;
+    --sombra-card: #F5E2C0;
+    --primary-color: #6c6c6c;
+    --secondary-color: #F2C057;
+    /* --text-color: white; */
+    --light-color: #ac6331;
+
+    * {
+        font-family: var(--font-family);
+        color: var(--text-color);
+        font-optical-sizing: auto;
+        font-style: normal;
+    }
+
+
+    .text-brown {
+        color: var(--verde-hoja);
     }
 
     .categoria-div {

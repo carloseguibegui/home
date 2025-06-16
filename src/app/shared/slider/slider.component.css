@@ -335,3 +335,50 @@ a {
 .cliente-capitano.sticky-slider {
     background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fcapitano%2Fbackground_image.webp?alt=media') !important;
 }
+
+
+
+
+/* Cliente: city */
+.cliente-cientochenta {
+    --verde-hoja: #4b7200;
+    --cafe-tostado-claro: #A77E58;
+    --negro-carbon-suave: #2E2E2E;
+    --primary-color: #ffffff;
+    --secondary-color: #c8ac78;
+    --text-color: white;
+    --slider-bg: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fcientochenta%2Fbackground_image.webp?alt=media');
+
+    * {
+        font-family: "Poppins",
+            sans-serif !important;
+    }
+
+    .slider-item.active .menu-item {
+        border: 2px solid var(--negro-carbon-suave);
+        box-shadow: 0 3px 5px var(--negro-carbon-suave);
+    }
+
+    .category-label {
+        color: var(--cafe-tostado-claro);
+    }
+
+    .category-label {
+        color: var(--cafe-tostado-claro);
+    }
+
+    p,
+    a {
+        color: var(--cafe-tostado-claro) !important;
+    }
+
+    .sticky-slider {
+        background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fcientochenta%2Fbackground_image.webp?alt=media') !important;
+    }
+}
+
+.cliente-cientochenta.sticky-slider {
+    background-image: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fcientochenta%2Fbackground_image.webp?alt=media') !important;
+    background-size: cover !important;
+    background-position: center;
+}

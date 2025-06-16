@@ -1,5 +1,15 @@
-:host-context(.cliente-capitano) {
+#logo{
+    max-width: 260px;
+}
+
+:host-context(.cliente-requeterico) {
+    #logo {
+        max-width: 210px !important;
+    }
+}
+
+/* :host-context(.cliente-capitano) {
     #logo {
         max-width: 260px !important;
     }
-}
+} */

@@ -31,7 +31,7 @@ import { Title } from '@angular/platform-browser';
         animate('0ms ease-in', style({ opacity: 1 }))
       ]),
       transition(':leave', [
-        animate('500ms ease-out', style({ opacity: 0 }))
+        animate('300ms ease-out', style({ opacity: 0 }))
       ])
     ]),
     trigger('fadeContent', [

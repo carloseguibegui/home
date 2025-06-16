@@ -41,7 +41,7 @@ export class SliderComponent implements OnInit {
   
   @HostListener('window:scroll', [])
   onWindowScroll() {
-    this.isSticky = window.scrollY > 100; // Cambia 100 por los píxeles que quieras
+    this.isSticky = window.scrollY > 135; // Cambia 100 por los píxeles que quieras
   }
   get clienteClass(): string {
     return `cliente-${this.cliente.toLowerCase()}`;

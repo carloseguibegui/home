@@ -272,7 +272,7 @@ html {
     }
 
     .boton-volver i {
-        color: var(--primary-color);
+        color: var(--oscuro-color);
     }
 
     .div-carta {
@@ -308,7 +308,7 @@ html {
         text-transform: uppercase;
     }
 
-    .cliente-city_tandil {
+    .cliente-mi_granito_de_cafe {
         font-family: 'Raleway', sans-serif !important
     }
 
@@ -408,6 +408,73 @@ html {
     .blurred-load img {
         object-position: bottom;
     }
+}
+
+
+/* Cliente: cientochenta */
+.cliente-cientochenta {
+    --verde-hoja: #4b7200;
+    --cafe-tostado-claro: #A77E58;
+    --negro-carbon-suave: #2E2E2E;
+    --primary-color: #c8ac78;
+    --secondary-color: #ffffff;
+    --text-color: #c8ac78;
+    --border-color: #c8ac78;
+    --oscuro-color: #ffffff;
+
+    * {
+        font-family: 'Lato', sans-serif !important;
+        color: var(--cafe-tostado-claro);
+        text-transform: uppercase;
+    }
+
+    .cliente-city_tandil {
+        font-family: 'Lato', sans-serif !important
+    }
+
+    #boton-card {
+        background-color: var(--cafe-tostado-claro);
+        color: var(--oscuro-color);
+        font-family: 'Lato', sans-serif !important;
+        font-size: 1.3rem;
+    }
+
+    .boton-volver {
+        background-color: var(--cafe-tostado-claro);
+        color: var(--negro-carbon-suave);
+        border-top-color: var(--negro-carbon-suave);
+        font-family: "Lato", sans-serif !important;
+    }
+
+    .boton-volver i {
+        color: var(--negro-carbon-suave);
+    }
+
+    .div-carta {
+        border-color: var(--cafe-tostado-claro);
+    }
+
+    #card-title{
+        color: var(--negro-carbon-suave);
+    }
+
+    #card-descripcion {
+        color: var(--negro-carbon-suave);
+        font-family: 'Lato', sans-serif !important;
+    }
+
+    #card-descripcion i {
+        color: var(--verde-hoja);
+    }
+
+    .lightbox-content {
+        border: 2px solid var(--primary-color);
+        box-shadow: 0 0px 10px 3px var(--primary-color);
+    }
+
+    /* .blurred-load img {
+        object-position: bottom;
+    } */
 }
 
 .lightbox-close {

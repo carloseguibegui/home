@@ -128,10 +128,31 @@
   }
 }
 
-
-/* Cliente: capitano */ 
+/* Cliente: capitano */
 .cliente-capitano {
   --progress-bg-color: #c8ac78;
+  /* --progress-border-color: #663C1F; */
+  /* --progress-arrow-color: #663C1F; */
+  --progress-circle-color: #ffffff;
+
+  .progress-wrap {
+    box-shadow: inset 0 0 0 3px #ffffff;
+    background: var(--progress-bg-color);
+
+    &::after {
+      color: var(--progress-circle-color);
+    }
+
+    .progress-circle path {
+      stroke: var(--progress-circle-color);
+    }
+
+  }
+}
+
+/* Cliente: cientochenta */
+.cliente-cientochenta {
+  --progress-bg-color: #A77E58;
   /* --progress-border-color: #663C1F; */
   /* --progress-arrow-color: #663C1F; */
   --progress-circle-color: #ffffff;

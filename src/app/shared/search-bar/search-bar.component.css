@@ -48,9 +48,21 @@ input[type="text"] {
     }
 }
 
-/* Cliente: otroCliente (ejemplo para futuros clientes) */
-.cliente-otroCliente {
-    --input-bg-color: rgb(230 245 255 / 80%);
-    --input-border-color: #1e88e5;
-    --input-text-color: #1e88e5;
+
+
+
+
+/* Cliente: requeterico */
+.cliente-cientochenta {
+    --verde-hoja:#4b7200;
+    --cafe-tostado-claro:#A77E58;
+    --negro-carbon-suave:#2E2E2E;
+    --font-family: "Poppins",
+            sans-serif;
+    input {
+        font-family: var(--font-family);
+        background-color: white;
+        border-color: var(--cafe-tostado-claro);
+        color: var(--negro-carbon-suave);
+    }
 }

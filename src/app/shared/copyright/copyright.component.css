@@ -23,6 +23,28 @@
 
 }
 
+.copyright-logo {
+    width: 130px;
+    height: 40px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: block;
+    background-image: url('../../../../public/assets/landing/FInal-02.png');
+}
+
+
+.copyright{
+    align-items: center;
+    place-content: center;
+}
+
+.copyright div{
+    margin-left: 5px;
+    margin-right: 5px;
+    text-transform: uppercase;
+}
+
 :host-context(.cliente-requeterico) {
     color: var(--text-color);
     font-family: 'Caveat', cursive;
@@ -30,6 +52,10 @@
     .copyright a {
         color: #6b4c3b;
     }
+}
+
+:host-context(.cliente-requeterico) .copyright-logo {
+    background-image: url('../../../../public/assets/landing/FInal-02.png');
 }
 
 :host-context(.cliente-city_tandil) {
@@ -42,12 +68,14 @@
     .copyright a {
         color: var(--secondary-color);
     }
-}:host-context(.cliente-mi_granito_de_cafe) {
+}
+
+:host-context(.cliente-mi_granito_de_cafe) {
     --primary-color: #ffffff;
     --secondary-color: #F2C057;
     font-family: 'Montserrat', sans-serif !important;
     color: var(--secondary-color);
-    font-family: Arial, sans-serif; 
+    font-family: Arial, sans-serif;
 
     .copyright a {
         color: var(--primary-color);
@@ -63,4 +91,27 @@
     .copyright a {
         color: var(--primary-color);
     }
+}
+
+:host-context(.cliente-capitano) .copyright-logo {
+    background-image: url('../../../../public/assets/landing/FInal-02.png');
+}
+
+:host-context(.cliente-cientochenta) {
+    --verde-hoja: #4b7200;
+    --primary-color: #ffffff;
+    --secondary-color: #c8ac78;
+    *{
+        color: var(--verde-hoja);
+        font-family: 'Poppins', sans-serif !important;
+        
+    }
+
+    .copyright a {
+        color: var(--verde-hoja);
+    }
+}
+
+:host-context(.cliente-cientochenta) .copyright-logo {
+    background-image: url('../../../../public/assets/landing/logo-marketingeros3.webp');
 }
