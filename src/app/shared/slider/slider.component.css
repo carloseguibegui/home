@@ -298,7 +298,7 @@ a {
 
 
 
-/* Cliente: city */
+/* Cliente: capitano */
 .cliente-capitano {
     --primary-color: #ffffff;
     --secondary-color: #c8ac78;
@@ -381,4 +381,45 @@ a {
     background-image: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fcientochenta%2Fbackground_image.webp?alt=media') !important;
     background-size: cover !important;
     background-position: center;
+}
+
+
+/* Cliente: plaza_hotel_tandil */
+.cliente-plaza_hotel_tandil {
+    --primary-color: #ffffff;
+    --secondary-color: #c8ac78;
+    --text-color: white;
+    --negro:black;
+    --marmol:#fffcf0;
+    --slider-bg: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fplaza_hotel_tandil%2Fbackground_image.webp?alt=media');
+
+    * {
+        font-family: "GFS Didot", serif !important;
+    }
+
+    .slider-item.active .menu-item {
+        border: 2px solid var(--negro);
+        box-shadow: 0 3px 5px var(--negro);
+    }
+
+    .category-label {
+        color: var(--negro);
+    }
+
+    .category-label {
+        color: var(--negro);
+    }
+
+    p,
+    a {
+        color: var(--negro) !important;
+    }
+
+    .sticky-slider {
+        background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fplaza_hotel_tandil%2Fbackground_image.webp?alt=media') !important;
+    }
+}
+
+.cliente-plaza_hotel_tandil.sticky-slider {
+    background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fplaza_hotel_tandil%2Fbackground_image.webp?alt=media') !important;
 }

@@ -66,3 +66,16 @@ input[type="text"] {
         color: var(--negro-carbon-suave);
     }
 }
+
+/* Cliente: plaza_hotel_tandil */
+.cliente-plaza_hotel_tandil {
+    --font-family: Lato, sans-serif;
+    --negro:black;
+
+    input {
+        font-family: var(--font-family);
+        background-color: white;
+        border-color: var(--negro);
+    color: var(--negro);
+    }
+}

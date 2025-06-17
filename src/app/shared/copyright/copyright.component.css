@@ -115,3 +115,22 @@
 :host-context(.cliente-cientochenta) .copyright-logo {
     background-image: url('../../../../public/assets/landing/logo-marketingeros3.webp');
 }
+
+:host-context(.cliente-plaza_hotel_tandil) {
+    --negro:black;
+
+    * {
+        color: var(--negro);
+        font-family: "GFS Didot",
+            serif !important;
+
+    }
+
+    .copyright a {
+        color: var(--negro);
+    }
+}
+
+:host-context(.cliente-plaza_hotel_tandil) .copyright-logo {
+    background-image: url('../../../../public/assets/landing/logo-marketingeros3.webp');
+}

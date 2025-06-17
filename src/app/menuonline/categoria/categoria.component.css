@@ -454,7 +454,7 @@ html {
         border-color: var(--cafe-tostado-claro);
     }
 
-    #card-title{
+    .card-title{
         color: var(--negro-carbon-suave);
     }
 
@@ -468,14 +468,83 @@ html {
     }
 
     .lightbox-content {
-        border: 2px solid var(--primary-color);
-        box-shadow: 0 0px 10px 3px var(--primary-color);
+        border: 2px solid var(--cafe-tostado-claro);
+        box-shadow: 0 0px 10px 3px var(--cafe-tostado-claro);
     }
 
     /* .blurred-load img {
         object-position: bottom;
     } */
 }
+
+/* Cliente: plaza_hotel_tandil */
+.cliente-plaza_hotel_tandil {
+    --negro: black;
+    --primary-color: #c8ac78;
+    --secondary-color: #ffffff;
+    --text-color: #c8ac78;
+    --border-color: #c8ac78;
+    --oscuro-color: #ffffff;
+    --marmol: #fffcf0;
+
+    * {
+        font-family: 'Lato', sans-serif !important;
+        color: var(--negro);
+        text-transform: uppercase;
+    }
+
+    .cliente-city_tandil {
+        font-family: 'Lato', sans-serif !important
+    }
+
+    #boton-card {
+        background-color: var(--negro);
+        color: var(--secondary-color);
+        font-family: 'Lato', sans-serif !important;
+        font-size: 1.3rem;
+    }
+
+    .boton-volver {
+        background-color: var(--negro);
+        color: var(--secondary-color);
+        border-top-color: var(--secondary-color);
+        font-family: "Lato", sans-serif !important;
+    }
+
+    .boton-volver i {
+        color: var(--secondary-color);
+        font-family: "GFS Didot", serif !important;
+    }
+
+    .div-carta {
+        border-color: var(--negro);
+    }
+
+    .card-title {
+        color: var(--negro);
+        font-family: "GFS Didot",serif !important;
+    }
+
+    #card-descripcion {
+        color: var(--negro);
+        font-family: 'Lato', sans-serif !important;
+    }
+
+    #card-descripcion i {
+        color: var(--verde-hoja);
+    }
+
+    .lightbox-content {
+        border: 2px solid var(--marmol);
+        box-shadow: 0 0px 10px 3px var(--marmol);
+    }
+
+    /* .blurred-load img {
+        object-position: bottom;
+    } */
+}
+
+
 
 .lightbox-close {
     position: absolute;
