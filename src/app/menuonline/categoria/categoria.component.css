@@ -508,12 +508,11 @@ html {
         background-color: var(--negro);
         color: var(--secondary-color);
         border-top-color: var(--secondary-color);
-        font-family: "Lato", sans-serif !important;
+        font-family: "GFS Didot", serif !important;
     }
 
     .boton-volver i {
         color: var(--secondary-color);
-        font-family: "GFS Didot", serif !important;
     }
 
     .div-carta {
