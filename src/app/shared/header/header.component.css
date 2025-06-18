@@ -13,3 +13,9 @@
         max-width: 260px !important;
     }
 } */
+
+:host-context(.cliente-nexus_cafe_tandil) {
+    #logo {
+        max-width: 115px !important;
+    }
+}

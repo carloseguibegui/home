@@ -134,3 +134,23 @@
 :host-context(.cliente-plaza_hotel_tandil) .copyright-logo {
     background-image: url('../../../../public/assets/landing/logo-marketingeros3.webp');
 }
+
+:host-context(.cliente-nexus_cafe_tandil) {
+    --ambar: #D8A45F;
+
+    * {
+        color: var(--ambar);
+        font-family: "Poppins",
+            sans-serif !important;
+
+    }
+
+    .copyright a {
+        color: var(--ambar);
+    }
+}
+
+:host-context(.cliente-nexus_cafe_tandil) .copyright-logo {
+    background-image: url('../../../../public/assets/landing/FInal-02.png');
+}
+

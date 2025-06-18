@@ -79,3 +79,17 @@ input[type="text"] {
     color: var(--negro);
     }
 }
+
+/* Cliente: nexus_cafe_tandil */
+.cliente-nexus_cafe_tandil {
+    --font-family: Lato, sans-serif;
+    --negro: black;
+    --ambar: #D8A45F;
+
+    input {
+        font-family: var(--font-family);
+        background-color: white;
+        border-color: var(--ambar);
+        color: var(--negro);
+    }
+}

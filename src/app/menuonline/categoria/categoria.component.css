@@ -206,7 +206,16 @@ html {
     overscroll-behavior: contain;
     /* Evita scroll de la página padre */
 }
-
+.lightbox-close {
+    position: absolute;
+    top: 24px;
+    right: 32px;
+    font-size: 2.5rem;
+    color: #fff;
+    z-index: 10;
+    cursor: pointer;
+    user-select: none;
+}
 
 /* Estilos específicos para clientes */
 /* Cliente: requeterico */
@@ -543,15 +552,74 @@ html {
     } */
 }
 
+/* Cliente: nexus_cafe_tandil */
+.cliente-nexus_cafe_tandil {
+    --gris: #2d2d2b;
+    --blanco-hueso: #D8D6D3;
+    --primary-color: #c8ac78;
+    --secondary-color: #ffffff;
+    --text-color: #c8ac78;
+    --border-color: #c8ac78;
+    --ambar: #D8A45F;
 
+    * {
+        font-family: 'Lato', sans-serif !important;
+        color: var(--blanco-hueso);
+        text-transform: uppercase;
+    }
 
-.lightbox-close {
-    position: absolute;
-    top: 24px;
-    right: 32px;
-    font-size: 2.5rem;
-    color: #fff;
-    z-index: 10;
-    cursor: pointer;
-    user-select: none;
+    .cliente-city_tandil {
+        font-family: 'Lato', sans-serif !important
+    }
+
+    #boton-card {
+        background-color:var(--gris);
+        color: var(--ambar);
+        font-family: 'Lato', sans-serif !important;
+        font-size: 1.3rem;
+    }
+
+    .boton-volver {
+        background-color: black;
+        color: var(--blanco-hueso);
+        border-top-color: var(--blanco-hueso);
+    }
+
+    .boton-volver i {
+        color: var(--secondary-color);
+    }
+
+    .div-carta {
+        border-color: var(--ambar);
+    }
+
+    .card-title {
+        color: var(--blanco-hueso);
+        font-family: "Poppins", sans-serif !important;
+    }
+
+    #card-descripcion {
+        color: var(--blanco-hueso);
+        font-family: 'Lato', sans-serif !important;
+    }
+
+    #card-descripcion i {
+        color: var(--verde-hoja);
+    }
+
+    .lightbox-content {
+        border: 2px solid var(--ambar);
+        box-shadow: 0 0px 10px 3px var(--ambar);
+    }
+
+    /* .blurred-load img {
+        object-position: bottom;
+    } */
+
+    #cuerpo-card{
+        background-size: cover !important;
+    }
+
+    
 }
+
