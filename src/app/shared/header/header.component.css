@@ -25,3 +25,9 @@
         max-width: 220px !important;
     }
 }
+
+:host-context(.cliente-1823_castillo_morisco_tandil) {
+    #logo {
+        width: 225px !important;
+    }
+}

@@ -110,3 +110,18 @@ input[type="text"] {
         color: var(--gris);
     }
 }
+
+/* Cliente: 1823_castillo_morisco_tandil */
+.cliente-1823_castillo_morisco_tandil {
+    --marron: #8E5838;
+    --detalle: #a66d44;
+    --blanco:white;
+    --font-family: 'Crimson Pro',serif;
+
+    input {
+        font-family: var(--font-family);
+        background-color: white;
+        border-color: var(--marron);
+        color: var(--marron);
+    }
+}

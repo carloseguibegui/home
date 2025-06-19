@@ -518,3 +518,49 @@ a {
     background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fojo_cafe_tandil%2Fbackground_image.webp?alt=media') !important;
     background-position: bottom !important;
 }
+
+/* Cliente: 1823_castillo_morisco_tandil */
+.cliente-1823_castillo_morisco_tandil {
+    --detalle:#a66d44;
+    --marron: #8E5838;
+    --gris: #3c3c3c;
+    --primary-color: #ffffff;
+    --secondary-color: #c8ac78;
+    --text-color: white;
+    --negro: black;
+    --marmol: #fffcf0;
+    --ambar: #D8A45F;
+    --blanco-hueso: #D8D6D3;
+    --slider-bg: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2F1823_castillo_morisco_tandil%2Fbackground_image.webp?alt=media');
+
+    * {
+        font-family: "Playfair Display", serif !important;
+    }
+
+    .slider-item.active .menu-item {
+        border: 2px solid var(--primary-color);
+        box-shadow: 0 3px 5px var(--primary-color);
+    }
+
+    .category-label {
+        color: var(--primary-color);
+    }
+
+    .category-label {
+        color: var(--primary-color);
+    }
+
+    p,
+    a {
+        color: var(--primary-color) !important;
+    }
+
+    .sticky-slider {
+        background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2F1823_castillo_morisco_tandil%2Fbackground_image.webp?alt=media') !important;
+    }
+}
+
+.cliente-1823_castillo_morisco_tandil.sticky-slider {
+    background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2F1823_castillo_morisco_tandil%2Fbackground_image.webp?alt=media') !important;
+    background-size: cover !important;
+}

@@ -375,3 +375,28 @@
         background-size: cover;
     }
 }
+
+
+/* 1823_castillo_morisco_tandil */
+.cliente-1823_castillo_morisco_tandil {
+    --gris: #3c3c3c;
+    --marron: #8E5838;
+    --tipografia: #fdede0;
+    --font-family: "Playfair Display", serif;
+    --ambar: #D8A45F;
+
+    * {
+        font-family: var(--font-family);
+        color: var(--marron);
+        font-optical-sizing: auto;
+        font-style: normal;
+    }
+
+    .text-brown {
+        color: var(--marron);
+    }
+
+    .categoria-div {
+        background-size: cover;
+    }
+}
