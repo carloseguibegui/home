@@ -19,3 +19,9 @@
         max-width: 115px !important;
     }
 }
+
+:host-context(.cliente-ojo_cafe_tandil) {
+    #logo {
+        max-width: 220px !important;
+    }
+}

@@ -623,3 +623,76 @@ html {
     
 }
 
+
+
+
+
+/* Cliente: ojo_cafe_tandil */
+.cliente-ojo_cafe_tandil {
+    --gris: #3c3c3c;
+    --blanco: #fdede0;
+    --primary-color: #c8ac78;
+    --secondary-color: #ffffff;
+    --text-color: #c8ac78;
+    --ambar: #D8A45F;
+
+    * {
+        font-family: 'Inter', sans-serif !important;
+        color: var(--gris);
+        text-transform: uppercase;
+    }
+
+    .cliente-city_tandil {
+        font-family: 'Inter', sans-serif !important
+    }
+
+    #boton-card {
+        background-color: var(--gris);
+        color: var(--ambar);
+        font-family: 'Inter', sans-serif !important;
+        font-size: 1.3rem;
+    }
+
+    .boton-volver {
+        background-color: var(--blanco);
+        color: var(--gris);
+        border-top-color: var(--gris);
+    }
+
+    .boton-volver i {
+        color: var(--gris);
+    }
+
+    .div-carta {
+        border-color: var(--ambar);
+    }
+
+    .card-title {
+        color: var(--gris);
+        font-family: "Fredoka", sans-serif !important;
+    }
+
+    #card-descripcion {
+        color: var(--gris);
+        font-family: 'Inter', sans-serif !important;
+    }
+
+    #card-descripcion i {
+        color: var(--ambar);
+    }
+
+    .lightbox-content {
+        border: 2px solid var(--blanco);
+        box-shadow: 0 0px 10px 3px var(--blanco);
+    }
+
+    /* .blurred-load img {
+        object-position: bottom;
+    } */
+
+    #cuerpo-card {
+        background-size: cover !important;
+    }
+
+
+}

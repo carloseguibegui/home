@@ -8,6 +8,7 @@ import { AdminComponent } from './admin/admin.component';
 
 export const routes: Routes = [
   { path: '', component: InicioComponent },
+  { path: 'menuonline/', pathMatch: 'full', component: InicioComponent },
   { path: 'menuonline/:cliente', pathMatch: 'full', redirectTo: 'menuonline/:cliente/carta'},
   { path: 'menuonline/:cliente/carta', component: CartaComponent },
   { path: 'menuonline/:cliente/carta/:categoria', component: CategoriaComponent, runGuardsAndResolvers: 'always'},

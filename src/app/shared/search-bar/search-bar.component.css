@@ -93,3 +93,20 @@ input[type="text"] {
         color: var(--negro);
     }
 }
+
+/* Cliente: ojo_cafe_tandil */
+.cliente-ojo_cafe_tandil {
+    --font-family: 'Inter',
+        sans-serif;
+    --negro: black;
+    --primary-color: #fdede0;
+    --ambar: #D8A45F;
+    --gris: #3c3c3c;
+
+    input {
+        font-family: var(--font-family);
+        background-color: white;
+        border-color: var(--primary-color);
+        color: var(--gris);
+    }
+}
