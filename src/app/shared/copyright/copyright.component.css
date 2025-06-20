@@ -192,3 +192,23 @@
 :host-context(.cliente-1823_castillo_morisco_tandil) .copyright-logo {
     background-image: url('../../../../public/assets/landing/FInal-02.png');
 }
+
+:host-context(.cliente-time_coffee_tandil) {
+    --tipografia: #ffffff;
+
+    * {
+        color: var(--tipografia);
+        font-family: "Montserrat",
+        sans-serif !important;
+        font-weight: bold;
+
+    }
+
+    .copyright a {
+        color: var(--tipografia);
+    }
+}
+
+:host-context(.cliente-time_coffee_tandil) .copyright-logo {
+    background-image: url('../../../../public/assets/landing/FInal-02.png');
+}

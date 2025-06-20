@@ -31,3 +31,14 @@
         width: 225px !important;
     }
 }
+
+:host-context(.cliente-time_coffee_tandil) {
+    #logo {
+        width: 280px !important;
+        max-width: 280px !important;
+    }
+    .text-center{
+        margin-top:3rem !important;
+        margin-bottom:3rem !important;
+    }
+}

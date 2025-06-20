@@ -700,9 +700,11 @@ html {
 
 /* 1823_castillo_morisco_tandil */
 .cliente-1823_castillo_morisco_tandil {
-    --detalle:#a66d44;
+    /* --detalle:#a66d44; */
     --blanco: #ffffff;
-    --marron: #8E5838;
+    --marron-oscuro: #8E5838;
+    --marron: #c57422;
+    --detalle:#D38529;
 
     * {
         font-family: 'Crimson Pro', serif !important;
@@ -715,14 +717,14 @@ html {
     }
 
     #boton-card {
-        background-color: var(--detalle);
+        background-color: var(--marron);
         color: var(--blanco);
         font-family: 'Crimson Pro', serif !important;
-        font-size: 1.3rem;
+        font-size: 1.5rem;
     }
 
     .boton-volver {
-        background-color: var(--detalle);
+        background-color: var(--marron-oscuro);
         color: var(--blanco);
         border-top-color: var(--blanco);
     }
@@ -736,8 +738,8 @@ html {
     }
 
     .card-title {
-        color: var(--marron);
-        font-family: "Playfair Display", sans-serif !important;
+        color: var(--marron-oscuro);
+        font-family: "Crimson Pro", sans-serif !important;
     }
 
     #card-descripcion {
@@ -747,6 +749,74 @@ html {
 
     #card-descripcion i {
         color: var(--marron);
+    }
+
+    .lightbox-content {
+        border: 2px solid var(--detalle);
+        box-shadow: 0 0px 10px 3px var(--detalle);
+    }
+
+    .blurred-load img {
+        object-position: bottom;
+    }
+
+    #cuerpo-card {
+        background-size: cover !important;
+    }
+
+
+}
+
+
+
+/* time_coffee_tandil */
+.cliente-time_coffee_tandil {
+    /* --detalle:#a66d44; */
+    --blanco: #ffffff;
+    --negro:#0e0c0f;
+    --marron-oscuro: #8E5838;
+    --marron: #c57422;
+    --detalle: #D38529;
+    --blanco-hueso: #D8D6D3;
+
+    * {
+        color: var(--negro);
+        text-transform: uppercase;
+    }
+
+    #boton-card {
+        background-color: var(--negro);
+        color: var(--blanco);
+        font-family: 'Lato', sans-serif !important;
+        font-size: 1.5rem;
+    }
+
+    .boton-volver {
+        background-color: var(--blanco);
+        color: var(--negro);
+        border-top-color: var(--negro);
+    }
+
+    .boton-volver i {
+        color: var(--negro);
+    }
+
+    .div-carta {
+        border-color: var(--detalle);
+    }
+
+    .card-title {
+        color: var(--negro);
+        font-family: "Montserrat", sans-sans-serif !important;
+    }
+
+    #card-descripcion {
+        color: var(--negro);
+        font-family: 'Lato', sans-serif !important;
+    }
+
+    #card-descripcion i {
+        color: var(--detalle);
     }
 
     .lightbox-content {

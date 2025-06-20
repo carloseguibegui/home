@@ -380,6 +380,7 @@
 /* 1823_castillo_morisco_tandil */
 .cliente-1823_castillo_morisco_tandil {
     --gris: #3c3c3c;
+    /* --marron: #c57422; */
     --marron: #8E5838;
     --tipografia: #fdede0;
     --font-family: "Playfair Display", serif;
@@ -394,6 +395,35 @@
 
     .text-brown {
         color: var(--marron);
+    }
+
+    .categoria-div {
+        background-size: cover;
+    }
+}
+
+
+/* time_coffee_tandil */
+.cliente-time_coffee_tandil {
+    --blanco-hueso: #D8D6D3;
+    --negro:#000000;
+    --blanco:#ffffff;
+    --gris: #3c3c3c;
+    /* --marron: #c57422; */
+    --marron: #8E5838;
+    --tipografia: #fdede0;
+    --font-family: "Montserrat", sans-serif;
+    --ambar: #D8A45F;
+
+    * {
+        font-family: var(--font-family);
+        color: var(--negro);
+        font-optical-sizing: auto;
+        font-style: normal;
+    }
+
+    .text-brown {
+        color: var(--negro);
     }
 
     .categoria-div {

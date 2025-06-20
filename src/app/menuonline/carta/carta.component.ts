@@ -79,13 +79,28 @@ export class CartaComponent {
       this.titleService.setTitle(`${nombre} | Carta Digital`);
     } catch (e) {
       this.nombreCliente = this.cliente.charAt(0).toUpperCase() + this.cliente.slice(1);
-      this.titleService.setTitle(`${this.nombreCliente} | Carta Digital`);
+      this.titleService.setTitle(`${this.nombreCliente} | Menú Digital`);
     }
   }
 
   async ngOnInit(): Promise<void> {
     this.loading = true; // Mostrar spinner al iniciar
     this.cliente = this.route.snapshot.paramMap.get('cliente') || '';
+
+    // --- Comprobar si el cliente está activo ---
+    try {
+      const clienteRef = doc(this.firestore, `clientes/${this.cliente}`);
+      const clienteSnap = await getDoc(clienteRef);
+      if (!clienteSnap.exists() || clienteSnap.data()?.['esActivo'] === false) {
+        this.router.navigate(['/']);
+        return;
+      }
+    } catch (e) {
+      // Si hay error al consultar, redirigir por seguridad
+      this.router.navigate(['/']);
+      return;
+    }
+
     this.cardImage = `https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2F${this.cliente}%2Ffondo-claro.webp?alt=media`;
     this.logoImage = `https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2F${this.cliente}%2Flogo0.webp?alt=media`;
     this.backgroundImage = `https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2F${this.cliente}%2Fbackground_image.webp?alt=media`;

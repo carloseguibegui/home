@@ -37,7 +37,7 @@ import { Title } from '@angular/platform-browser';
     trigger('fadeContent', [
       transition(':enter', [
         // style({ opacity: 0, transform: 'translateY(30px)' }),
-        style({ opacity: 0}),
+        style({ opacity: 0 }),
         // animate('600ms 100ms cubic-bezier(0.23, 1, 0.32, 1)', style({ opacity: 1, transform: 'none' }))
         animate('0ms ease-in', style({ opacity: 1 }))
       ]),
@@ -127,6 +127,18 @@ export class CategoriaComponent implements OnInit {
       .pipe(takeUntil(this.destroy$))
       .subscribe(async params => {
         this.cliente = params.get('cliente') || '';
+        // --- Comprobar si el cliente está activo ---
+        try {
+          const clienteRef = doc(this.firestore, `clientes/${this.cliente}`);
+          const clienteSnap = await getDoc(clienteRef);
+          if (!clienteSnap.exists() || clienteSnap.data()?.['esActivo'] === false) {
+            this.router.navigate(['/']);
+            return;
+          }
+        } catch (e) {
+          this.router.navigate(['/']);
+          return;
+        }
         await this.obtenerNombreCliente();
         this.cardImage = `https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2F${this.cliente}%2Ffondo-claro.webp?alt=media&token=839efda5-c17b-4fb1-bfb6-6605379525f`
         this.logoImage = `https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2F${this.cliente}%2Flogo0.webp?alt=media&token=5a1f3250-7d01-4e31-98a8-979227048f0`
