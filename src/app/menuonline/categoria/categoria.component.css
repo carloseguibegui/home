@@ -787,11 +787,12 @@ html {
     #boton-card {
         background-color: var(--negro);
         color: var(--blanco);
-        font-family: 'Lato', sans-serif !important;
+        font-family: 'Roboto', sans-serif !important;
         font-size: 1.5rem;
     }
 
     .boton-volver {
+        font-family: 'Roboto', sans-serif !important;
         background-color: var(--blanco);
         color: var(--negro);
         border-top-color: var(--negro);
@@ -812,7 +813,7 @@ html {
 
     #card-descripcion {
         color: var(--negro);
-        font-family: 'Lato', sans-serif !important;
+        font-family: 'Roboto', sans-serif !important;
     }
 
     #card-descripcion i {
@@ -827,6 +828,65 @@ html {
     /* .blurred-load img {
         object-position: bottom;
     } */
+
+    #cuerpo-card {
+        background-size: cover !important;
+    }
+
+
+}
+
+/* beer_house_tandil */
+.cliente-beer_house_tandil {
+    /* --detalle:#a66d44; */
+    --blanco: #ffffff;
+    --negro: #000000;
+    --ambar: #D8A45F;
+    * {
+        color: var(--negro);
+        text-transform: uppercase;
+    }
+
+    #boton-card {
+        background-color: var(--negro);
+        color: var(--blanco);
+        font-family: 'Roboto', sans-serif !important;
+        font-size: 1.5rem;
+    }
+
+    .boton-volver {
+        font-family: 'Roboto', sans-serif !important;
+        background-color: var(--blanco);
+        color: var(--negro);
+        border-top-color: var(--negro);
+    }
+
+    .boton-volver i {
+        color: var(--negro);
+    }
+
+    .div-carta {
+        border-color: var(--ambar);
+    }
+
+    .card-title {
+        color: var(--negro);
+        font-family: "Bevan", serif !important;
+    }
+
+    #card-descripcion {
+        color: var(--negro);
+        font-family: 'Roboto', sans-serif !important;
+    }
+
+    #card-descripcion i {
+        color: var(--ambar);
+    }
+
+    .lightbox-content {
+        border: 2px solid var(--ambar);
+        box-shadow: 0 0px 10px 3px var(--ambar);
+    }
 
     #cuerpo-card {
         background-size: cover !important;

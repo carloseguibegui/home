@@ -430,3 +430,31 @@
         background-size: cover;
     }
 }
+
+/* beer_house_tandil */
+.cliente-beer_house_tandil {
+    --negro: #000000;
+    --blanco: #ffffff;
+    --font-family: "Bevan", serif;
+    --ambar: #D8A45F;
+
+    * {
+        font-family: var(--font-family);
+        color: var(--negro);
+        font-optical-sizing: auto;
+        font-style: normal;
+    }
+
+    .text-brown {
+        color: var(--negro);
+    }
+
+    .categoria-div {
+        background-size: cover;
+    }
+
+    .categoria-label{
+        font-weight: normal !important;
+        font-size: 13px;
+    }
+}

@@ -125,3 +125,17 @@ input[type="text"] {
         color: var(--marron);
     }
 }
+
+/* Cliente: beer_house_tandil */
+.cliente-beer_house_tandil {
+    --ambar: #D8A45F;
+    --negro: black;
+    --font-family: 'Roboto', sans-serif;
+
+    input {
+        font-family: var(--font-family);
+        background-color: white;
+        border-color: var(--ambar);
+        color: var(--negro);
+    }
+}

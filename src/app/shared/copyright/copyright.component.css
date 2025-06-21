@@ -212,3 +212,23 @@
 :host-context(.cliente-time_coffee_tandil) .copyright-logo {
     background-image: url('../../../../public/assets/landing/FInal-02.png');
 }
+
+
+:host-context(.cliente-beer_house_tandil) {
+    --tipografia: #ffffff;
+
+    * {
+        color: var(--tipografia);
+        font-family: "Bevan", serif !important;
+        font-weight: normal;
+
+    }
+
+    .copyright a {
+        color: var(--tipografia);
+    }
+}
+
+:host-context(.cliente-beer_house_tandil) .copyright-logo {
+    background-image: url('../../../../public/assets/landing/FInal-02.png');
+}

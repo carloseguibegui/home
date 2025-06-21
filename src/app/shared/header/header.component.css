@@ -42,3 +42,15 @@
         margin-bottom:3rem !important;
     }
 }
+
+:host-context(.cliente-beer_house_tandil) {
+    #logo {
+        width: 190px !important;
+        max-width: 190px !important;
+    }
+
+    .text-center {
+        margin-top: 2rem !important;
+        /* margin-bottom: 3rem !important; */
+    }
+}
