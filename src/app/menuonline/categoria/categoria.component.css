@@ -206,6 +206,7 @@ html {
     overscroll-behavior: contain;
     /* Evita scroll de la página padre */
 }
+
 .lightbox-close {
     position: absolute;
     top: 24px;
@@ -304,7 +305,7 @@ html {
 
 
 /* Cliente: mi granito de cafe */
-.cliente-mi_granito_de_cafe {
+.cliente-demo_cafeteria {
     --primary-color: #4f342f;
     --secondary-color: #ffffff;
     --text-color: #f5deb3;
@@ -317,7 +318,7 @@ html {
         text-transform: uppercase;
     }
 
-    .cliente-mi_granito_de_cafe {
+    .cliente-demo_cafeteria {
         font-family: 'Raleway', sans-serif !important
     }
 
@@ -463,7 +464,7 @@ html {
         border-color: var(--cafe-tostado-claro);
     }
 
-    .card-title{
+    .card-title {
         color: var(--negro-carbon-suave);
     }
 
@@ -486,8 +487,8 @@ html {
     } */
 }
 
-/* Cliente: plaza_hotel_tandil */
-.cliente-plaza_hotel_tandil {
+/* Cliente: demo_hotel */
+.cliente-demo_hotel {
     --negro: black;
     --primary-color: #c8ac78;
     --secondary-color: #ffffff;
@@ -530,7 +531,7 @@ html {
 
     .card-title {
         color: var(--negro);
-        font-family: "GFS Didot",serif !important;
+        font-family: "GFS Didot", serif !important;
     }
 
     #card-descripcion {
@@ -573,7 +574,7 @@ html {
     }
 
     #boton-card {
-        background-color:var(--gris);
+        background-color: var(--gris);
         color: var(--ambar);
         font-family: 'Lato', sans-serif !important;
         font-size: 1.3rem;
@@ -616,11 +617,11 @@ html {
         object-position: bottom;
     } */
 
-    #cuerpo-card{
+    #cuerpo-card {
         background-size: cover !important;
     }
 
-    
+
 }
 
 
@@ -704,7 +705,7 @@ html {
     --blanco: #ffffff;
     --marron-oscuro: #8E5838;
     --marron: #c57422;
-    --detalle:#D38529;
+    --detalle: #D38529;
 
     * {
         font-family: 'Crimson Pro', serif !important;
@@ -773,7 +774,7 @@ html {
 .cliente-time_coffee_tandil {
     /* --detalle:#a66d44; */
     --blanco: #ffffff;
-    --negro:#0e0c0f;
+    --negro: #0e0c0f;
     --marron-oscuro: #8E5838;
     --marron: #c57422;
     --detalle: #D38529;
@@ -842,6 +843,7 @@ html {
     --blanco: #ffffff;
     --negro: #000000;
     --ambar: #D8A45F;
+
     * {
         color: var(--negro);
         text-transform: uppercase;
@@ -886,6 +888,64 @@ html {
     .lightbox-content {
         border: 2px solid var(--ambar);
         box-shadow: 0 0px 10px 3px var(--ambar);
+    }
+
+    #cuerpo-card {
+        background-size: cover !important;
+    }
+
+}
+
+/* prego_tandil */
+.cliente-prego_tandil {
+    --blanco: #ffffff;
+    --verde: #829577;
+    --verde-oscuro:#68785f;
+
+    * {
+        color: var(--verde);
+        text-transform: uppercase;
+    }
+
+    #boton-card {
+        background-color: var(--verde);
+        color: var(--blanco);
+        font-family: 'Roboto', sans-serif !important;
+        font-size: 1.3rem;
+    }
+
+    .boton-volver {
+        font-family: 'Roboto', sans-serif !important;
+        background-color: var(--blanco);
+        color: var(--verde);
+        border-top-color: var(--verde);
+    }
+
+    .boton-volver i {
+        color: var(--verde);
+    }
+
+    .div-carta {
+        border-color: var(--blanco);
+    }
+
+    .card-title {
+        color: var(--verde-oscuro);
+        font-family: "lato", sans-serif !important;
+    }
+
+    #card-descripcion {
+        color: var(--verde-oscuro);
+        font-family: 'Roboto', sans-serif !important;
+    }
+
+    #card-descripcion i {
+        color: var(--blanco);
+    }
+
+    .lightbox-content {
+        border: 2px solid var(--blanco);
+        box-shadow: 0 0px 10px 3px var(--blanco);
     }
 
     #cuerpo-card {

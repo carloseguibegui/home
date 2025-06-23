@@ -107,8 +107,8 @@
 }
 
 
-/* Cliente: mi_granito_de_cafe */
-.cliente-mi_granito_de_cafe {
+/* Cliente: demo_cafeteria */
+.cliente-demo_cafeteria {
   --progress-bg-color: #442814;
   /* --progress-border-color: #663C1F; */
   /* --progress-arrow-color: #663C1F; */
@@ -173,8 +173,8 @@
 }
 
 
-/* Cliente: plaza_hotel_tandil */
-.cliente-plaza_hotel_tandil {
+/* Cliente: demo_hotel */
+.cliente-demo_hotel {
   --progress-bg-color: black;
   /* --progress-border-color: #663C1F; */
   /* --progress-arrow-color: #663C1F; */
@@ -267,6 +267,28 @@
 /* Cliente: beer_house_tandil */
 .cliente-beer_house_tandil {
   --progress-bg-color: black;
+  /* --progress-border-color: #663C1F; */
+  /* --progress-arrow-color: #663C1F; */
+  --progress-circle-color: #ffffff;
+
+  .progress-wrap {
+    box-shadow: inset 0 0 0 3px #ffffff;
+    background: var(--progress-bg-color);
+
+    &::after {
+      color: var(--progress-circle-color);
+    }
+
+    .progress-circle path {
+      stroke: var(--progress-circle-color);
+    }
+
+  }
+}
+
+/* Cliente: tramonto_tandil */
+.cliente-tramonto_tandil {
+  --progress-bg-color: #302c32;
   /* --progress-border-color: #663C1F; */
   /* --progress-arrow-color: #663C1F; */
   --progress-circle-color: #ffffff;

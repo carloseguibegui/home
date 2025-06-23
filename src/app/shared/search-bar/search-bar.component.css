@@ -30,7 +30,8 @@ input {
 }
 
 input[type="text"] {
-  padding-right: 2.5rem; /* Espacio para la cruz */
+    padding-right: 2.5rem;
+    /* Espacio para la cruz */
 }
 
 /* Estilos específicos para clientes */
@@ -41,7 +42,7 @@ input[type="text"] {
     --input-border-color: #fef4e500;
     --input-text-color: #4d4d4d;
 
-    input{
+    input {
         background-color: var(--input-bg-color);
         border-color: var(--input-border-color);
         color: var(--input-text-color);
@@ -54,11 +55,12 @@ input[type="text"] {
 
 /* Cliente: requeterico */
 .cliente-cientochenta {
-    --verde-hoja:#4b7200;
-    --cafe-tostado-claro:#A77E58;
-    --negro-carbon-suave:#2E2E2E;
+    --verde-hoja: #4b7200;
+    --cafe-tostado-claro: #A77E58;
+    --negro-carbon-suave: #2E2E2E;
     --font-family: "Poppins",
-            sans-serif;
+        sans-serif;
+
     input {
         font-family: var(--font-family);
         background-color: white;
@@ -67,16 +69,16 @@ input[type="text"] {
     }
 }
 
-/* Cliente: plaza_hotel_tandil */
-.cliente-plaza_hotel_tandil {
+/* Cliente: demo_hotel */
+.cliente-demo_hotel {
     --font-family: Lato, sans-serif;
-    --negro:black;
+    --negro: black;
 
     input {
         font-family: var(--font-family);
         background-color: white;
         border-color: var(--negro);
-    color: var(--negro);
+        color: var(--negro);
     }
 }
 
@@ -115,8 +117,8 @@ input[type="text"] {
 .cliente-1823_castillo_morisco_tandil {
     --marron: #8E5838;
     --detalle: #a66d44;
-    --blanco:white;
-    --font-family: 'Crimson Pro',serif;
+    --blanco: white;
+    --font-family: 'Crimson Pro', serif;
 
     input {
         font-family: var(--font-family);
@@ -125,7 +127,6 @@ input[type="text"] {
         color: var(--marron);
     }
 }
-
 /* Cliente: beer_house_tandil */
 .cliente-beer_house_tandil {
     --ambar: #D8A45F;
@@ -136,6 +137,34 @@ input[type="text"] {
         font-family: var(--font-family);
         background-color: white;
         border-color: var(--ambar);
+        color: var(--negro);
+    }
+}
+
+/* Cliente: tramonto_tandil */
+.cliente-tramonto_tandil {
+    --ambar: #f5a02b;
+    --negro: #302c32;
+    --font-family: 'lato', sans-serif;
+
+    input {
+        font-family: var(--font-family);
+        background-color: white;
+        border-color: var(--ambar);
+        color: var(--negro);
+    }
+}
+
+/* Cliente: prego_tandil */
+.cliente-prego_tandil {
+    --blanco:white;
+    --verde: #829577;
+    --font-family: 'lato', sans-serif;
+
+    input {
+        font-family: var(--font-family);
+        background-color: white;
+        border-color: var(--verde);
         color: var(--negro);
     }
 }

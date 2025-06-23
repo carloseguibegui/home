@@ -266,7 +266,7 @@ a {
     background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fcity_tandil%2Fbackground_image.webp?alt=media') !important;
 }
 
-.cliente-mi_granito_de_cafe {
+.cliente-demo_cafeteria {
     --primary-color: #4f342f;
     --secondary-color: #ffffff;
     --text-color: #f5deb3;
@@ -292,8 +292,8 @@ a {
     }
 }
 
-.cliente-mi_granito_de_cafe.sticky-slider {
-    background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fmi_granito_de_cafe%2Fbackground_image.webp?alt=media') !important;
+.cliente-demo_cafeteria.sticky-slider {
+    background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fdemo_cafeteria%2Fbackground_image.webp?alt=media') !important;
 }
 
 
@@ -306,9 +306,10 @@ a {
     --slider-bg: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fcapitano%2Fbackground_image.webp?alt=media');
 
     * {
-            font-family: "Urbanist",
-                sans-serif !important;
+        font-family: "Urbanist",
+            sans-serif !important;
     }
+
     .slider-item.active .menu-item {
         border: 2px solid var(--primary-color);
         box-shadow: 0 3px 5px var(--primary-color);
@@ -384,14 +385,14 @@ a {
 }
 
 
-/* Cliente: plaza_hotel_tandil */
-.cliente-plaza_hotel_tandil {
+/* Cliente: demo_hotel */
+.cliente-demo_hotel {
     --primary-color: #ffffff;
     --secondary-color: #c8ac78;
     --text-color: white;
-    --negro:black;
-    --marmol:#fffcf0;
-    --slider-bg: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fplaza_hotel_tandil%2Fbackground_image.webp?alt=media');
+    --negro: black;
+    --marmol: #fffcf0;
+    --slider-bg: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fdemo_hotel%2Fbackground_image.webp?alt=media');
 
     * {
         font-family: "GFS Didot", serif !important;
@@ -416,12 +417,12 @@ a {
     }
 
     .sticky-slider {
-        background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fplaza_hotel_tandil%2Fbackground_image.webp?alt=media') !important;
+        background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fdemo_hotel%2Fbackground_image.webp?alt=media') !important;
     }
 }
 
-.cliente-plaza_hotel_tandil.sticky-slider {
-    background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fplaza_hotel_tandil%2Fbackground_image.webp?alt=media') !important;
+.cliente-demo_hotel.sticky-slider {
+    background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fdemo_hotel%2Fbackground_image.webp?alt=media') !important;
 }
 
 
@@ -648,5 +649,85 @@ a {
 
 .cliente-beer_house_tandil.sticky-slider {
     background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fbeer_house_tandil%2Fbackground_image.webp?alt=media') !important;
+    background-size: cover !important;
+}
+
+/* Cliente: tramonto_tandil */
+.cliente-tramonto_tandil {
+    --negro: #302c32;
+    --ambar: #f5a02b;
+    --primary-color: #ffffff;
+    --slider-bg: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Ftramonto_tandil%2Fbackground_image.webp?alt=media');
+
+    * {
+        font-family: "lato", sans-serif !important;
+    }
+
+    .slider-item.active .menu-item {
+        border: 2px solid var(--ambar);
+        box-shadow: 0 3px 5px var(--ambar);
+    }
+
+    .category-label {
+        color: var(--primary-color);
+    }
+
+    .category-label {
+        color: var(--primary-color);
+    }
+
+    p,
+    a {
+        color: var(--primary-color) !important;
+        font-weight: bold;
+    }
+
+    .sticky-slider {
+        background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Ftramonto_tandil%2Fbackground_image.webp?alt=media') !important;
+    }
+}
+
+.cliente-tramonto_tandil.sticky-slider {
+    background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Ftramonto_tandil%2Fbackground_image.webp?alt=media') !important;
+    background-size: cover !important;
+}
+
+
+/* Cliente: prego_tandil */
+.cliente-prego_tandil {
+    --verde: #829577;
+    --primary-color: #ffffff;
+    --slider-bg: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fprego_tandil%2Fbackground_image.webp?alt=media');
+
+    * {
+        font-family: "lato", sans-serif !important;
+    }
+
+    .slider-item.active .menu-item {
+        border: 2px solid var(--primary-color);
+        box-shadow: 0 3px 5px var(--primary-color);
+    }
+
+    .category-label {
+        color: var(--primary-color);
+    }
+
+    .category-label {
+        color: var(--primary-color);
+    }
+
+    p,
+    a {
+        color: var(--primary-color) !important;
+        font-weight: bold;
+    }
+
+    .sticky-slider {
+        background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fprego_tandil%2Fbackground_image.webp?alt=media') !important;
+    }
+}
+
+.cliente-prego_tandil.sticky-slider {
+    background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fprego_tandil%2Fbackground_image.webp?alt=media') !important;
     background-size: cover !important;
 }

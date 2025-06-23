@@ -54,3 +54,9 @@
         /* margin-bottom: 3rem !important; */
     }
 }
+
+:host-context(.cliente-prego_tandil) {
+    #logo {
+        width: 280px !important;
+    }
+}

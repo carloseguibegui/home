@@ -38,6 +38,7 @@
 
 .categoria-label {
     font-size: 15px;
+    word-break: break-word;
 }
 
 .categoria-div {
@@ -45,9 +46,11 @@
     align-content: center;
     border-radius: 36px;
 }
-.img-fluid{
-    margin-bottom:5px;
+
+.img-fluid {
+    margin-bottom: 5px;
 }
+
 .icono {
     height: 60px;
 }
@@ -122,15 +125,15 @@
     --text-color: #dadada;
     --text-color-brown: #eaeaea;
     --font-family: "Playfair Display", serif;
-    --marron-oscuro:#3E2C1C;
-    --fuente-principal:#3E2C1C;
-    --fuente-secundaria:#5A4535;
-    --fondo-card:#F5E2C0;
-    --sombra-card:#F5E2C0;
+    --marron-oscuro: #3E2C1C;
+    --fuente-principal: #3E2C1C;
+    --fuente-secundaria: #5A4535;
+    --fondo-card: #F5E2C0;
+    --sombra-card: #F5E2C0;
 
-    
+
     * {
-        font-family:var(--font-family);
+        font-family: var(--font-family);
         color: var(--text-color);
         font-optical-sizing: auto;
         font-style: normal;
@@ -141,7 +144,7 @@
         color: var(--marron-oscuro);
     }
 
-    .categoria-div{
+    .categoria-div {
         background-size: cover;
     }
 }
@@ -177,17 +180,17 @@
         background-size: cover;
     }
 
-    a{
+    a {
         color: var(--text-color);
     }
 }
 
 
-/* Cliente: mi_granito_de_cafe */
-.cliente-mi_granito_de_cafe {
+/* Cliente: demo_cafeteria */
+.cliente-demo_cafeteria {
     --text-color: #4f342f;
     --text-color-brown: #eaeaea;
-    --font-family:"Raleway",
+    --font-family: "Raleway",
         sans-serif;
     --marron-oscuro: #d1d1d0;
     --fuente-principal: #3E2C1C;
@@ -197,7 +200,7 @@
     --primary-color: #6c6c6c;
     --secondary-color: #F2C057;
     /* --text-color: white; */
-    --light-color:#ac6331;
+    --light-color: #ac6331;
 
     * {
         font-family: var(--font-family);
@@ -215,7 +218,7 @@
         background-size: cover;
     }
 
-    a{
+    a {
         color: var(--text-color);
     }
 }
@@ -228,7 +231,7 @@
     --text-color: #c8ac78;
     --text-color-brown: #eaeaea;
     --font-family: "Urbanist",
-            sans-serif;
+        sans-serif;
     --marron-oscuro: #d1d1d0;
     --fuente-principal: #3E2C1C;
     --fuente-secundaria: #5A4535;
@@ -263,11 +266,11 @@
 
 /* cientochenta */
 .cliente-cientochenta {
-    --verde-hoja:#4b7200;
-    --cafe-tostado-claro:#A77E58;
-    --negro-carbon-suave:#2E2E2E;
-    --beige-claro:#F1DDC2;
-    --blanco-calido:#FDFBF8;
+    --verde-hoja: #4b7200;
+    --cafe-tostado-claro: #A77E58;
+    --negro-carbon-suave: #2E2E2E;
+    --beige-claro: #F1DDC2;
+    --blanco-calido: #FDFBF8;
     --text-color: #A77E58;
     --text-color-brown: #eaeaea;
     --font-family: "Poppins",
@@ -303,12 +306,12 @@
     }
 }
 
-/* plaza_hotel_tandil */
-.cliente-plaza_hotel_tandil {
+/* demo_hotel */
+.cliente-demo_hotel {
     --negro: #000000;
-    --fondo-categorias:#F5E4C4;
-    --detalles:#3B3B3B;
-    --font-family: "GFS Didot",serif;
+    --fondo-categorias: #F5E4C4;
+    --detalles: #3B3B3B;
+    --font-family: "GFS Didot", serif;
 
     * {
         font-family: var(--font-family);
@@ -330,12 +333,12 @@
 
 /* nexus_cafe_tandil */
 .cliente-nexus_cafe_tandil {
-    --gris:#2d2d2b;
+    --gris: #2d2d2b;
     --tipografia: #D8D6D3;
     --fondo-categorias: #F5E4C4;
     --detalles: #3B3B3B;
     --font-family: "Poppins", sans-serif;
-    --ambar:#D8A45F;
+    --ambar: #D8A45F;
 
     * {
         font-family: var(--font-family);
@@ -406,8 +409,8 @@
 /* time_coffee_tandil */
 .cliente-time_coffee_tandil {
     --blanco-hueso: #D8D6D3;
-    --negro:#000000;
-    --blanco:#ffffff;
+    --negro: #000000;
+    --blanco: #ffffff;
     --gris: #3c3c3c;
     /* --marron: #c57422; */
     --marron: #8E5838;
@@ -453,8 +456,63 @@
         background-size: cover;
     }
 
-    .categoria-label{
+    .categoria-label {
         font-weight: normal !important;
         font-size: 13px;
+    }
+}
+
+/* tramonto_tandil */
+.cliente-tramonto_tandil {
+    --negro: #302c32;
+    --ambar: #f5a02b;
+    --blanco: #ffffff;
+    --font-family: "lato", serif;
+
+    * {
+        font-family: var(--font-family);
+        color: var(--negro);
+        font-optical-sizing: auto;
+        font-style: normal;
+    }
+
+    .text-brown {
+        color: var(--negro);
+    }
+
+    .categoria-div {
+        background-size: cover;
+    }
+
+    .categoria-label {
+        font-weight: bold !important;
+    }
+}
+
+
+/* prego_tandil */
+.cliente-prego_tandil {
+    --verde: #829577;
+    --blanco: #ffffff;
+    --font-family: "playfair display", serif;
+
+    * {
+        font-family: var(--font-family);
+        color: var(--verde);
+        font-optical-sizing: auto;
+        font-style: normal;
+        font-weight: bold;
+    }
+
+    .text-brown {
+        color: var(--verde);
+    }
+
+    .categoria-div {
+        background-size: cover;
+    }
+
+    .categoria-label {
+        font-weight: bold !important;
     }
 }

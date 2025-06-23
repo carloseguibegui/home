@@ -34,12 +34,12 @@
 }
 
 
-.copyright{
+.copyright {
     align-items: center;
     place-content: center;
 }
 
-.copyright div{
+.copyright div {
     margin-left: 5px;
     margin-right: 5px;
     text-transform: uppercase;
@@ -70,14 +70,14 @@
     }
 }
 
-:host-context(.cliente-mi_granito_de_cafe) {
+:host-context(.cliente-demo_cafeteria) {
     --primary-color: #ffffff;
     --secondary-color: #F2C057;
     font-family: 'Montserrat', sans-serif !important;
     color: var(--secondary-color);
     font-family: Arial, sans-serif;
 
-    .copyright a {
+    * {
         color: var(--primary-color);
     }
 }
@@ -101,10 +101,11 @@
     --verde-hoja: #4b7200;
     --primary-color: #ffffff;
     --secondary-color: #c8ac78;
-    *{
+
+    * {
         color: var(--verde-hoja);
         font-family: 'Poppins', sans-serif !important;
-        
+
     }
 
     .copyright a {
@@ -116,8 +117,8 @@
     background-image: url('../../../../public/assets/landing/logo-marketingeros3.webp');
 }
 
-:host-context(.cliente-plaza_hotel_tandil) {
-    --negro:black;
+:host-context(.cliente-demo_hotel) {
+    --negro: black;
 
     * {
         color: var(--negro);
@@ -131,7 +132,7 @@
     }
 }
 
-:host-context(.cliente-plaza_hotel_tandil) .copyright-logo {
+:host-context(.cliente-demo_hotel) .copyright-logo {
     background-image: url('../../../../public/assets/landing/logo-marketingeros3.webp');
 }
 
@@ -199,7 +200,7 @@
     * {
         color: var(--tipografia);
         font-family: "Montserrat",
-        sans-serif !important;
+            sans-serif !important;
         font-weight: bold;
 
     }
@@ -231,4 +232,41 @@
 
 :host-context(.cliente-beer_house_tandil) .copyright-logo {
     background-image: url('../../../../public/assets/landing/FInal-02.png');
+}
+
+:host-context(.cliente-tramonto_tandil) {
+    --tipografia: #ffffff;
+
+    * {
+        color: var(--tipografia);
+        font-family: "lato", sans-serif !important;
+        font-weight: normal;
+
+    }
+
+    .copyright a {
+        color: var(--tipografia);
+    }
+}
+
+:host-context(.cliente-tramonto_tandil) {
+    .copyright-logo {
+        background-image: url('../../../../public/assets/landing/FInal-02.png');
+    }
+}
+
+
+:host-context(.cliente-prego_tandil) {
+    --tipografia: #ffffff;
+
+    * {
+        color: var(--tipografia);
+        font-family: "lato", sans-serif !important;
+        font-weight: bold;
+
+    }
+
+    .copyright a {
+        color: var(--tipografia);
+    }
 }

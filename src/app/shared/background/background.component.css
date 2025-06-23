@@ -8,12 +8,14 @@
     background-size: cover;
     background-position: center;
 }
+
 :host-context(.cliente-city_tandil) {
     .background-container {
         background-size: contain;
     }
 }
-:host-context(.cliente-mi_granito_de_cafe) {
+
+:host-context(.cliente-demo_cafeteria) {
     .background-container {
         filter: brightness(0.9) blur(1px);
         transform: scale(1.1);
@@ -22,13 +24,19 @@
 
 :host-context(.cliente-capitano) {
     .background-container {
-            background-size: contain;
-        }
+        background-size: contain;
+    }
 }
 
 :host-context(.cliente-1823_castillo_morisco_tandil) {
     .background-container {
         filter: blur(0.5px);
         transform: scale(1.01);
+    }
+}
+
+:host-context(.cliente-tramonto_tandil) {
+    .background-container {
+        background-size: contain;
     }
 }

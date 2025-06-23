@@ -4,9 +4,7 @@
                 src="assets/landing/FInal-02-mini.webp" alt="FInal-02-mini"></a>
     </div>
     <div class="lg-5 d-flex align-items-center mt-2" style="margin-right: 1rem;">
-        <a 
-        [routerLink]="['auth/login']" 
-        class="d-flex align-items-center pr-4">
+        <a [routerLink]="['auth/login']" class="d-flex align-items-center pr-4">
             <img id="logo_home" src="assets/landing/login2.png" alt="login" style="height: 30px; margin-right: 8px;">
             <span class="m-0 text-white" style="font-size: 15px;font-weight: 700;">LOGIN</span>
         </a>
@@ -19,8 +17,9 @@
                 <div class="col-lg-6 order-1 order-lg-1 d-flex flex-column justify-content-center">
                     <h1 class="pt-5 mt-5" id="titulo" style="margin-top: 4rem !important;">Decile chau 👋 al PDF
                     </h1>
-                    <p>Convertí tu carta en una experiencia digital irresistible. Tus clientes solo escanean un QR y descubren tu menú visual,
-                    moderno y siempre actualizado.</p>
+                    <p>Convertí tu carta en una experiencia digital irresistible. Tus clientes solo escanean un QR y
+                        descubren tu menú visual,
+                        moderno y siempre actualizado.</p>
                     <div class="d-grid gap-2 col-12 mx-auto">
                         <a [routerLink]="['/menuonline/requeterico/carta']"
                             class="btn-get-started btn-lg btn-block text-center h5">¡VER EN ACCIÓN!</a>
@@ -28,9 +27,13 @@
                 </div>
                 <div class="col-lg-6 order-2 order-lg-2 hero-img pt-3 pb-3 d-flex flex-column justify-content-center"
                     style="margin-bottom: 130px;">
-                    <a [routerLink]="['menuonline/requeterico/carta']"
-                        target="_blank"><img id="banner" src="assets/landing/banner-landing.webp"
-                            class="img-fluid animated mx-0 w-100" alt="banner-landing"></a>
+                    <ng-container *ngIf="bannerImages[bannerIndex] as banner">
+                        <a [routerLink]="[banner.route]" target="_blank">
+                            <div id="banner" class="img-fluid animated mx-0 w-100 fade-banner"
+                                [ngStyle]="{'background-image': 'url(' + banner.url + ')'}">
+                            </div>
+                        </a>
+                    </ng-container>
                 </div>
             </div>
         </div>
@@ -44,7 +47,8 @@
                         <img src="assets/landing/design.webp" alt="Diseño a Medida"
                             style="max-width: 55px; display: block;margin: 0; padding: 0; box-sizing: border-box;">
                         <h2 class="mt-4" style="font-weight: bold;">Menú visual, 100% a tu medida</h2>
-                        <p class="m0" style="line-height: 30px; font-size: 18px;">Creamos un menú digital único, con tus colores, tu logo y fotos profesionales que hacen que cada plato se venda solo.</p>
+                        <p class="m0" style="line-height: 30px; font-size: 18px;">Creamos un menú digital único, con tus
+                            colores, tu logo y fotos profesionales que hacen que cada plato se venda solo.</p>
                     </div>
                 </div>
                 <div class="col-lg-4 mt-4">
@@ -54,7 +58,8 @@
                             style="max-width: 55px; display: block;margin: 0; padding: 0; box-sizing: border-box;">
                         <h2 class="mt-4" style="font-weight: bold;">Vos solo enviá tu carta, nosotros hacemos el resto
                         </h2>
-                        <p class="m0" style="line-height: 30px; font-size: 18px;">Olvidate de la tecnología: nos mandás tu menú y fotos, y te devolvemos una carta digital lista para impresionar.</p>
+                        <p class="m0" style="line-height: 30px; font-size: 18px;">Olvidate de la tecnología: nos mandás
+                            tu menú y fotos, y te devolvemos una carta digital lista para impresionar.</p>
                     </div>
                 </div>
                 <div class="col-lg-4 mt-4">
@@ -63,7 +68,8 @@
                         <img src="assets/landing/story.webp" alt="Diseño a Medida"
                             style="max-width: 55px; display: block;margin: 0; padding: 0; box-sizing: border-box;">
                         <h2 class="mt-4" style="font-weight: bold;">Platos que enamoran a primera vista</h2>
-                        <p class="m0" style="line-height: 30px; font-size: 18px;">Mejoramos tus fotos con IA y diseño profesional para que cada plato luzca irresistible y aumentes tus ventas.</p>
+                        <p class="m0" style="line-height: 30px; font-size: 18px;">Mejoramos tus fotos con IA y diseño
+                            profesional para que cada plato luzca irresistible y aumentes tus ventas.</p>
                     </div>
                 </div>
             </div>
@@ -105,7 +111,7 @@
         <div class="container section-title mb-5" data-aos="fade-up">
             <h2 class="text-center mb-4">¿Por qué elegirnos?</h2>
         </div>
-    
+
         <div class="container">
             <div class="row gx-xxl-5 justify-content-center">
                 <!-- Card 1 -->
@@ -115,10 +121,11 @@
                         <img src="assets/landing/design.webp" alt="Diseño a Medida"
                             style="max-width: 55px; display: block;">
                         <h2 class="mt-4" style="font-weight: bold;">Tu menú, tu esencia</h2>
-                        <p style="line-height: 30px; font-size: 18px;">Reflejamos la personalidad de tu local en cada detalle. Nada de plantillas: cada menú es tan único como tu cocina.</p>
+                        <p style="line-height: 30px; font-size: 18px;">Reflejamos la personalidad de tu local en cada
+                            detalle. Nada de plantillas: cada menú es tan único como tu cocina.</p>
                     </div>
                 </div>
-    
+
                 <!-- Card 2 -->
                 <div class="col-lg-4 mt-4">
                     <div class="card-style-eleven caracteristicas hover-effect"
@@ -126,25 +133,30 @@
                         <img src="assets/landing/robot-ia.png" alt="Fotos + Traducción"
                             style="max-width: 55px; display: block;">
                         <h2 class="mt-4" style="font-weight: bold;">Fotos + IA</h2>
-                        <p style="line-height: 30px; font-size: 18px;">Tus fotos se convierten en imágenes de catálogo con nuestro proceso de edición asistido por IA. Corregimos fondos,
-                        igualamos la iluminación y aplicamos filtros coherentes con tu marca, transformando incluso fotos simples tomadas con
-                        celular en presentaciones gourmet</p>
+                        <p style="line-height: 30px; font-size: 18px;">Tus fotos se convierten en imágenes de catálogo
+                            con nuestro proceso de edición asistido por IA. Corregimos fondos,
+                            igualamos la iluminación y aplicamos filtros coherentes con tu marca, transformando incluso
+                            fotos simples tomadas con
+                            celular en presentaciones gourmet</p>
                     </div>
                 </div>
-    
+
                 <!-- Card 3 -->
-                <div class="col-lg-4 mt-4"><div class="card-style-eleven caracteristicas hover-effect"
-                    style="background: #FFFFFF; box-shadow: 0px -25px 50px 20px rgba(0, 0, 0, 0.02); border-radius: 20px; padding: 20px; height: 22rem; align-content: center;">
-                    <img src="assets/landing/garantizar.png" alt="Fotos + Traducción" style="max-width: 55px; display: block;">
-                    <h2 class="mt-4" style="font-weight: bold;">Proceso simple, resultado premium</h2>
-                    <p style="line-height: 30px; font-size: 18px;">Vos solo enviá tu carta y fotos. Nosotros editamos, diseñamos y publicamos tu menú digital listo para impresionar.</p>
-                </div>
+                <div class="col-lg-4 mt-4">
+                    <div class="card-style-eleven caracteristicas hover-effect"
+                        style="background: #FFFFFF; box-shadow: 0px -25px 50px 20px rgba(0, 0, 0, 0.02); border-radius: 20px; padding: 20px; height: 22rem; align-content: center;">
+                        <img src="assets/landing/garantizar.png" alt="Fotos + Traducción"
+                            style="max-width: 55px; display: block;">
+                        <h2 class="mt-4" style="font-weight: bold;">Proceso simple, resultado premium</h2>
+                        <p style="line-height: 30px; font-size: 18px;">Vos solo enviá tu carta y fotos. Nosotros
+                            editamos, diseñamos y publicamos tu menú digital listo para impresionar.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
     
-    
+
     <section id="faq" class="faq section mt-0">
         <div class="container section-title mb-5" data-aos="fade-up">
             <h2>Preguntas frecuentes</h2>
@@ -157,7 +169,8 @@
                 <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
                     data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                        <strong>Nos enviás tu carta y fotos, y nosotros creamos tu menú digital. Sin complicaciones, sin apps, solo escaneás y listo.</strong>
+                        <strong>Nos enviás tu carta y fotos, y nosotros creamos tu menú digital. Sin complicaciones, sin
+                            apps, solo escaneás y listo.</strong>
                     </div>
                 </div>
             </div>
@@ -170,7 +183,8 @@
                 <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
                     data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                        <strong><strong>Nos avisás por WhatsApp o mail y lo actualizamos por vos, rápido y sin vueltas.</strong></strong>
+                        <strong><strong>Nos avisás por WhatsApp o mail y lo actualizamos por vos, rápido y sin
+                                vueltas.</strong></strong>
                     </div>
                 </div>
             </div>
@@ -182,7 +196,8 @@
                 <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
                     data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                        <strong><strong>¡Por supuesto! Cada menú es único y refleja la identidad de tu local.</strong></strong>
+                        <strong><strong>¡Por supuesto! Cada menú es único y refleja la identidad de tu
+                                local.</strong></strong>
                     </div>
                 </div>
             </div>
@@ -195,7 +210,8 @@
                 <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
                     data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                        <strong><strong>Te damos un link y QR personalizado. Tus clientes solo escanean y ven tu menú al instante.</strong></strong>
+                        <strong><strong>Te damos un link y QR personalizado. Tus clientes solo escanean y ven tu menú al
+                                instante.</strong></strong>
                     </div>
                 </div>
             </div>
@@ -207,7 +223,8 @@
                 <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
                     data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                        <strong><strong>No. Nos ocupamos de todo para que vos solo te enfoques en tu negocio.</strong></strong>
+                        <strong><strong>No. Nos ocupamos de todo para que vos solo te enfoques en tu
+                                negocio.</strong></strong>
                     </div>
                 </div>
             </div>
@@ -221,16 +238,16 @@
                     <h2 class="display-5 fw-bold mb-4">
                         ¡Tu menú digital profesional está a un mensaje de distancia!
                     </h2>
-    
+
                     <!-- Texto de apoyo -->
                     <p class="lead mb-5">
-                        Escribinos por WhatsApp y convertí tu carta en una experiencia visual que tus clientes van a amar.
+                        Escribinos por WhatsApp y convertí tu carta en una experiencia visual que tus clientes van a
+                        amar.
                     </p>
-    
+
                     <!-- Botón prominente con icono -->
                     <a href="https://api.whatsapp.com/send?phone=542494655254&text=%C2%A1Hola%20%F0%9F%91%8B%20Estoy%20buscando%20un%20men%C3%BA%20digital%20moderno%20para%20mi%20negocio.%20%C2%BFPodemos%20hablar%3F"
-                        target="_blank" class="btn btn-lg px-5 py-3 d-inline-flex align-items-center"
-                        style="transition: all 0.3s;border: 2px solid #5846f9; border-radius: 40px;    text-transform: uppercase;
+                        target="_blank" class="btn btn-lg px-5 py-3 d-inline-flex align-items-center" style="transition: all 0.3s;border: 2px solid #5846f9; border-radius: 40px;    text-transform: uppercase;
                         font-size: 1.1rem;
                         font-weight: bold;">
                         <div style="margin-right: 1rem;">
@@ -242,10 +259,11 @@
             </div>
         </div>
     </section>
-    
+
 </main>
 <div class="floating_btn">
-    <strong><a target="_blank" href="https://api.whatsapp.com/send?phone=542494655254&text=%C2%A1Hola%20%F0%9F%91%8B%20Estoy%20buscando%20un%20men%C3%BA%20digital%20moderno%20para%20mi%20negocio.%20%C2%BFPodemos%20hablar%3F">
+    <strong><a target="_blank"
+            href="https://api.whatsapp.com/send?phone=542494655254&text=%C2%A1Hola%20%F0%9F%91%8B%20Estoy%20buscando%20un%20men%C3%BA%20digital%20moderno%20para%20mi%20negocio.%20%C2%BFPodemos%20hablar%3F">
             <div class="contact_icon">
                 <i class="bi bi-whatsapp my-float"></i>
             </div>

@@ -1279,10 +1279,12 @@ h4 {
 /* .pricing .featured .buy-btn {
   background: var(--accent-color);
   color: var(--contrast-color);
-} */.pricing-item .buy-btn {
+} */
+.pricing-item .buy-btn {
     background-color: #5846f9;
     color: white;
 }
+
 .pricing-item .buy-btn:hover {
     background-color: white;
     color: #5846f9;
@@ -1720,6 +1722,11 @@ h4 {
     margin-left: auto;
     margin-right: auto;
     display: block;
+    background-image: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/landing%2F2.webp?alt=media');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 87vw;
 }
 
 .section-title h3 {
@@ -1856,8 +1863,9 @@ h2 {
         margin-left: 6rem !important;
         margin-right: 6rem !important;
     }
-        /* max-width: 1320px; */
-        /* margin: auto; */
+
+    /* max-width: 1320px; */
+    /* margin: auto; */
 
     #seccion-1 {
         margin-bottom: 100px;
@@ -1866,6 +1874,11 @@ h2 {
     .caracteristicas {
         margin-top: -80px !important;
     }
+
+    #banner {
+        height: 30vw;
+    }
+
 }
 
 .navbar-scrolled {
@@ -1875,12 +1888,12 @@ h2 {
     transition: all 0.3s ease;
 }
 
-.pricing-item{
+.pricing-item {
     display: table;
     color: #444444;
 }
 
-.pricing-check{
+.pricing-check {
     color: #5846f9 !important;
     margin-right: 15px;
 }
@@ -1891,4 +1904,56 @@ h2 {
 
 .hover-effect:hover {
     transform: translateY(-5px);
+}
+
+
+@media (min-width: 590px) and (max-width: 659px) {
+    #banner {
+        height: 78vw;
+    }
+}
+
+@media (min-width: 660px) and (max-width: 720px) {
+    #banner {
+        height: 71vw;
+    }
+}
+
+@media (min-width: 721px) and (max-width: 767px) {
+    #banner {
+        height: 69vw;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 867px) {
+    #banner {
+        height: 80vw;
+    }
+}
+
+@media (min-width: 868px) and (max-width: 990px) {
+    #banner {
+        height: 71vw;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1200px) {
+    #banner {
+        height: 37vw;
+    }
+}
+
+@media (min-width: 1400px) {
+    #banner {
+        height: 30vw !important;
+    }
+}
+
+.fade-banner {
+    opacity: 0;
+    transition: opacity 0.4s;
+}
+
+.fade-banner.show {
+    opacity: 1;
 }
