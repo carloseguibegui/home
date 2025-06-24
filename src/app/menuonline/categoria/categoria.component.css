@@ -954,3 +954,65 @@ html {
 
 
 }
+
+
+/* morgana_le_fay */
+.cliente-morgana_le_fay {
+    --bordo: #320001;
+    --verde:#6c775f;
+    --marmol:#f3eee5;
+    --oro:#ffbf00;
+    --blanco: #ffffff;
+
+    * {
+        color: var(--bordo);
+        text-transform: uppercase;
+    }
+
+    #boton-card {
+        background-color: var(--verde);
+        color: var(--marmol);
+        font-family: 'Roboto', sans-serif !important;
+        font-size: 1.3rem;
+    }
+
+    .boton-volver {
+        font-family: 'Roboto', sans-serif !important;
+        background-color: var(--verde);
+        color: var(--marmol);
+        border-top-color: var(--bordo);
+    }
+
+    .boton-volver i {
+        color: var(--marmol);
+    }
+
+    .div-carta {
+        border-color: var(--verde);
+    }
+
+    .card-title {
+        color: var(--bordo);
+        font-family: "lato", sans-serif !important;
+    }
+
+    #card-descripcion {
+        color: var(--bordo);
+        font-family: 'Roboto', sans-serif !important;
+    }
+
+    #card-descripcion i {
+        color: var(--verde);
+    }
+
+    .lightbox-content {
+        border: 2px solid var(--verde);
+        box-shadow: 0 0px 10px 3px var(--verde);
+    }
+
+    #cuerpo-card {
+        background-size: cover !important;
+    }
+
+
+}

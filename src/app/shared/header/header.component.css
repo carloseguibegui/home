@@ -60,3 +60,10 @@
         width: 280px !important;
     }
 }
+
+
+:host-context(.cliente-morgana_le_fay) {
+    #logo {
+        width:160px !important;
+    }
+}

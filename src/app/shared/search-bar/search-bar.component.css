@@ -168,3 +168,18 @@ input[type="text"] {
         color: var(--negro);
     }
 }
+
+
+/* Cliente: morgana_le_fay */
+.cliente-morgana_le_fay {
+    --bordo: #320001;
+    --blanco: white;
+    --font-family: 'lato', sans-serif;
+    --verde: #6c775f;
+    input {
+        font-family: var(--font-family);
+        background-color: white;
+        border-color: var(--bordo);
+        color: var(--negro);
+    }
+}

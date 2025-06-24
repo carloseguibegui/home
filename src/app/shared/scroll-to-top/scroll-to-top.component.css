@@ -307,3 +307,47 @@
 
   }
 }
+
+/* Cliente: prego_tandil */
+.cliente-prego_tandil {
+  --progress-bg-color: #68785f;
+  /* --progress-border-color: #663C1F; */
+  /* --progress-arrow-color: #663C1F; */
+  --progress-circle-color: #ffffff;
+
+  .progress-wrap {
+    box-shadow: inset 0 0 0 3px #ffffff;
+    background: var(--progress-bg-color);
+
+    &::after {
+      color: var(--progress-circle-color);
+    }
+
+    .progress-circle path {
+      stroke: var(--progress-circle-color);
+    }
+
+  }
+}
+
+/* Cliente: morgana_le_fay */
+.cliente-morgana_le_fay {
+  --progress-bg-color: #320001;
+  /* --progress-border-color: #663C1F; */
+  /* --progress-arrow-color: #663C1F; */
+  --progress-circle-color: #ffffff;
+
+  .progress-wrap {
+    box-shadow: inset 0 0 0 3px #ffffff;
+    background: var(--progress-bg-color);
+
+    &::after {
+      color: var(--progress-circle-color);
+    }
+
+    .progress-circle path {
+      stroke: var(--progress-circle-color);
+    }
+
+  }
+}

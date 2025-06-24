@@ -270,3 +270,14 @@
         color: var(--tipografia);
     }
 }
+
+:host-context(.cliente-morgana_le_fay) {
+    --font-family: "riesling", sans-serif;
+    *{
+        font-family: var(--font-family) !important;
+        font-weight: bold;
+    }
+    .copyright-logo {
+        background-image: url('../../../../public/assets/landing/logo-marketingeros3.webp');
+    }
+}

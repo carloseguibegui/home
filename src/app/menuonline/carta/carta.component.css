@@ -516,3 +516,31 @@
         font-weight: bold !important;
     }
 }
+
+/* morgana_le_fay */
+.cliente-morgana_le_fay {
+    --bordo:#320001;
+    --blanco: #ffffff;
+    --font-family: "riesling",sans-serif;
+
+    * {
+        font-family: var(--font-family);
+        color: var(--bordo);
+        font-optical-sizing: auto;
+        font-style: normal;
+        font-weight: bold;
+    }
+
+    .text-brown {
+        font-size: 1.45rem;
+        color: var(--bordo);
+    }
+
+    .categoria-div {
+        background-size: cover;
+    }
+
+    .categoria-label {
+        font-weight: bold !important;
+    }
+}
