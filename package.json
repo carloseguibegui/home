@@ -7,7 +7,9 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:copy": "node dist/copy/server/server.mjs"
+    "serve:ssr:copy": "node dist/copy/server/server.mjs",
+    "deploy:prod": "ng deploy --cname=marketingeros.online",
+    "push:github": "git add . && git commit -m \"progress\" && git push"
   },
   "private": true,
   "dependencies": {

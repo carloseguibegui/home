@@ -248,6 +248,10 @@ html {
     .div-carta {
         border-color: var(--border-color);
     }
+
+    #cuerpo-card {
+        background-size: contain;
+    }
 }
 
 /* Cliente: CITY */
@@ -972,12 +976,12 @@ html {
     #boton-card {
         background-color: var(--verde);
         color: var(--marmol);
-        font-family: 'Roboto', sans-serif !important;
+        font-family: 'lato', sans-serif !important;
         font-size: 1.3rem;
     }
 
     .boton-volver {
-        font-family: 'Roboto', sans-serif !important;
+        font-family: 'lato', sans-serif !important;
         background-color: var(--verde);
         color: var(--marmol);
         border-top-color: var(--bordo);
@@ -993,12 +997,15 @@ html {
 
     .card-title {
         color: var(--bordo);
-        font-family: "lato", sans-serif !important;
+        font-family: "riesling", sans-serif !important;
+        font-size: 2.3rem !important;
+        letter-spacing: normal !important;
+        
     }
 
     #card-descripcion {
         color: var(--bordo);
-        font-family: 'Roboto', sans-serif !important;
+        font-family: 'lato', sans-serif !important;
     }
 
     #card-descripcion i {
@@ -1008,6 +1015,67 @@ html {
     .lightbox-content {
         border: 2px solid var(--verde);
         box-shadow: 0 0px 10px 3px var(--verde);
+    }
+
+    #cuerpo-card {
+        background-size: cover !important;
+    }
+
+
+}
+
+
+/* tierra_de_azafranes */
+.cliente-tierra_de_azafranes {
+    --negro: black;
+    --rojo: #c82527;
+    --blanco: #ffffff;
+
+    * {
+        color: var(--negro);
+        text-transform: uppercase;
+    }
+
+    #boton-card {
+        background-color: var(--negro);
+        color: var(--blanco);
+        font-family: 'lato', sans-serif !important;
+        font-size: 1.3rem;
+    }
+
+    .boton-volver {
+        font-family: 'Playfair Display', sans-serif !important;
+        background-color: var(--negro);
+        color: var(--blanco);
+    }
+
+    .boton-volver i {
+        color: var(--blanco);
+    }
+
+    .div-carta {
+        border-color: var(--negro);
+    }
+
+    .card-title {
+        color: var(--negro);
+        font-family: "Playfair Display", sans-serif !important;
+        letter-spacing: normal !important;
+
+    }
+
+    #card-descripcion {
+        color: var(--negro);
+        font-family: 'lato', sans-serif !important;
+    }
+
+    #card-descripcion i {
+        color: var(--rojo);
+    }
+
+    .lightbox-content {
+        border: 2px solid var(--blanco);
+        box-shadow: 0 0px 10px 3px var(--blanco);
     }
 
     #cuerpo-card {

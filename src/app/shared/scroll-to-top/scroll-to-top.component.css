@@ -351,3 +351,25 @@
 
   }
 }
+
+/* Cliente: tierra_de_azafranes */
+.cliente-tierra_de_azafranes {
+  --progress-bg-color: black;
+  /* --progress-border-color: #663C1F; */
+  /* --progress-arrow-color: #663C1F; */
+  --progress-circle-color: #ffffff;
+
+  .progress-wrap {
+    box-shadow: inset 0 0 0 3px #ffffff;
+    background: var(--progress-bg-color);
+
+    &::after {
+      color: var(--progress-circle-color);
+    }
+
+    .progress-circle path {
+      stroke: var(--progress-circle-color);
+    }
+
+  }
+}

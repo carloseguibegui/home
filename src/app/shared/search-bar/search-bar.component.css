@@ -173,13 +173,28 @@ input[type="text"] {
 /* Cliente: morgana_le_fay */
 .cliente-morgana_le_fay {
     --bordo: #320001;
+    --verde: #6c775f;
     --blanco: white;
     --font-family: 'lato', sans-serif;
     --verde: #6c775f;
     input {
         font-family: var(--font-family);
         background-color: white;
-        border-color: var(--bordo);
+        border-color: var(--verde);
+        color: var(--negro);
+    }
+}
+
+/* Cliente: tierra_de_azafranes */
+.cliente-tierra_de_azafranes {
+    --negro: black;
+    --rojo: #c82527;
+    --font-family: 'lato', sans-serif;
+
+    input {
+        font-family: var(--font-family);
+        background-color: white;
+        border-color: var(--negro);
         color: var(--negro);
     }
 }

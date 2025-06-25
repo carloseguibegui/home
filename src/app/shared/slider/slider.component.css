@@ -198,6 +198,10 @@ a {
         color: var(--text-color);
     }
 
+    .menu-item{
+        background-size: contain !important;
+    }
+
 
 }
 
@@ -745,7 +749,7 @@ a {
     --slider-bg: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fmorgana_le_fay%2Fbackground_image.webp?alt=media');
 
     * {
-        font-family: "lato", sans-serif !important;
+        font-family: "riesling", sans-serif !important;
     }
 
     .slider-item.active .menu-item {
@@ -761,6 +765,7 @@ a {
     a {
         color: var(--bordo) !important;
         font-weight: bold;
+        font-size: 1.18rem;
     }
 
     .sticky-slider {
@@ -770,5 +775,40 @@ a {
 
 .cliente-morgana_le_fay.sticky-slider {
     background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fmorgana_le_fay%2Fbackground_image.webp?alt=media') !important;
+    background-size: cover !important;
+}
+
+
+
+.cliente-tierra_de_azafranes {
+    --negro: black;
+    --rojo: #c82527;
+    --marmol: #f3eee5;
+    --oro: #ffbf00;
+    --primary-color: #ffffff;
+    --slider-bg: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Ftierra_de_azafranes%2Fbackground_image.webp?alt=media');
+
+    * {
+        font-family: "Playfair Display", sans-serif !important;
+    }
+
+    .slider-item.active .menu-item {
+        border: 2px solid var(--rojo);
+        box-shadow: 0 3px 5px var(--rojo);
+    }
+
+    p,
+    a {
+        color: var(--negro) !important;
+        font-weight: bold;
+    }
+
+    .sticky-slider {
+        background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Ftierra_de_azafranes%2Fbackground_image.webp?alt=media') !important;
+    }
+}
+
+.cliente-tierra_de_azafranes.sticky-slider {
+    background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Ftierra_de_azafranes%2Fbackground_image.webp?alt=media') !important;
     background-size: cover !important;
 }

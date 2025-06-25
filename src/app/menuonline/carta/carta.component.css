@@ -119,6 +119,10 @@
     .text-brown {
         color: var(--text-color-brown);
     }
+
+    .categoria-div {
+        background-size: contain;
+    }
 }
 
 .cliente-restaurante {
@@ -521,6 +525,7 @@
 .cliente-morgana_le_fay {
     --bordo:#320001;
     --blanco: #ffffff;
+    --verde1:#eeeeee;
     --font-family: "riesling",sans-serif;
 
     * {
@@ -537,10 +542,41 @@
     }
 
     .categoria-div {
+        /* background: var(--verde1) !important; */
         background-size: cover;
     }
 
     .categoria-label {
         font-weight: bold !important;
+        line-height: normal;
+    }
+}
+
+
+/* tierra_de_azafranes */
+.cliente-tierra_de_azafranes {
+    --negro:black;
+    --rojo:#c82527;
+    --bordo: #320001;
+    --blanco: #ffffff;
+    --verde1: #eeeeee;
+    --font-family: "Playfair Display", sans-serif;
+
+    * {
+        font-family: var(--font-family);
+        color: var(--negro);
+        font-optical-sizing: auto;
+        font-style: normal;
+        font-weight: bold;
+    }
+
+
+    .categoria-div {
+        background-size: cover;
+    }
+
+    .categoria-label {
+        font-weight: bold !important;
+        line-height: normal;
     }
 }

@@ -281,3 +281,17 @@
         background-image: url('../../../../public/assets/landing/logo-marketingeros3.webp');
     }
 }
+
+
+:host-context(.cliente-tierra_de_azafranes) {
+    --font-family: "Playfair Display", sans-serif;
+
+    * {
+        font-family: var(--font-family) !important;
+        font-weight: bold;
+    }
+
+    .copyright-logo {
+        background-image: url('../../../../public/assets/landing/logo-marketingeros3.webp');
+    }
+}
