@@ -17,30 +17,38 @@ import { getRemoteConfig, provideRemoteConfig } from '@angular/fire/remote-confi
 import { bootstrapApplication } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideAnimations } from '@angular/platform-browser/animations';
-
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { providePrimeNG } from 'primeng/config';
+import Aura from '@primeng/themes/aura';
 // Firebase configuration (replace with your Firebase project details)
-const firebaseConfig = {
-  apiKey: "AIzaSyBvQO0EP5UTi4NVb7UL0gqqD6sPACu_tgQ",
-  authDomain: "menu-digital-e8e62.firebaseapp.com",
-  projectId: "menu-digital-e8e62",
-  storageBucket: "menu-digital-e8e62.firebasestorage.app",
-  messagingSenderId: "939531684476",
-  appId: "1:939531684476:web:cc90c57cf2a1c6dd8097f9",
-  measurementId: "G-SFDJNM054K"
-};
+import { firebaseConfig } from '../environments/environment';
 
 
 
 export const appConfig: ApplicationConfig = {
   providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes), provideClientHydration(withEventReplay()), provideHttpClient(),
   provideAuth(() => getAuth()), // Provide Firebase Authentication
-  provideFirestore(() => getFirestore()), provideFirebaseApp(() => initializeApp({ projectId: "menu-digital-e8e62", appId: "1:939531684476:web:cc90c57cf2a1c6dd8097f9", storageBucket: "menu-digital-e8e62.firebasestorage.app", apiKey: "AIzaSyBvQO0EP5UTi4NVb7UL0gqqD6sPACu_tgQ", authDomain: "menu-digital-e8e62.firebaseapp.com", messagingSenderId: "939531684476", measurementId: "G-SFDJNM054K" })), provideAuth(() => getAuth()), provideAnalytics(() => getAnalytics()), ScreenTrackingService, UserTrackingService, provideAppCheck(() => {
+    provideFirestore(() => getFirestore()), provideFirebaseApp(() => initializeApp({
+    projectId: firebaseConfig.projectId,
+    appId: firebaseConfig.appId,
+    storageBucket: firebaseConfig.storageBucket,
+    apiKey: firebaseConfig.apiKey,
+    authDomain: firebaseConfig.authDomain,
+    messagingSenderId: firebaseConfig.messagingSenderId,
+    measurementId: firebaseConfig.measurementId
+    })), provideAuth(() => getAuth()), provideAnalytics(() => getAnalytics()), ScreenTrackingService, UserTrackingService, provideAppCheck(() => {
     // TODO get a reCAPTCHA Enterprise here https://console.cloud.google.com/security/recaptcha?project=_
     const provider = new ReCaptchaEnterpriseProvider("6LfYbjcrAAAAAOZypiFGt2-9uqxoopVA1y1BBYfv");
     // 6LfYbjcrAAAAACGrfbQc-CT4hKpA0ZEDAy1aMchc
     return initializeAppCheck(undefined, { provider, isTokenAutoRefreshEnabled: true });
   }), provideFirestore(() => getFirestore()), provideFunctions(() => getFunctions()), provideMessaging(() => getMessaging()), providePerformance(() => getPerformance()), provideStorage(() => getStorage()), provideRemoteConfig(() => getRemoteConfig()), // Provide Firestore],
-    provideAnimations(),
-    provideClientHydration(),
+  provideAnimations(),
+  provideClientHydration(),
+  provideAnimationsAsync(),
+  providePrimeNG({
+    theme: {
+      preset: Aura
+    }
+  })
   ],
 };

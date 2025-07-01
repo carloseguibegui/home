@@ -904,7 +904,7 @@ html {
 .cliente-prego_tandil {
     --blanco: #ffffff;
     --verde: #829577;
-    --verde-oscuro:#68785f;
+    --verde-oscuro: #68785f;
 
     * {
         color: var(--verde);
@@ -960,12 +960,12 @@ html {
 }
 
 
-/* morgana_le_fay */
-.cliente-morgana_le_fay {
+/* flor_del_alba */
+.cliente-flor_del_alba {
     --bordo: #320001;
-    --verde:#6c775f;
-    --marmol:#f3eee5;
-    --oro:#ffbf00;
+    --verde: #6c775f;
+    --marmol: #f3eee5;
+    --oro: #ffbf00;
     --blanco: #ffffff;
 
     * {
@@ -1000,7 +1000,7 @@ html {
         font-family: "riesling", sans-serif !important;
         font-size: 2.3rem !important;
         letter-spacing: normal !important;
-        
+
     }
 
     #card-descripcion {

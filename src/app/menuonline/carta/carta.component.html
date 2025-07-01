@@ -1,9 +1,9 @@
 <app-background [imageUrl]="backgroundImage"></app-background>
 <app-spinner [@fadeInOut]  *ngIf="loading"></app-spinner>
 <div [@fadeContent]  [ngClass]="clienteClass" class="carta-container">
-    <section *ngIf="!loading" class="content fade-in show" [class.fade]="true" [class.show]="visible" class="transition-container">
+    <section *ngIf="!loading" class="content fade-in show" [class.fade]="true" [class.show]="visible" >
         <app-header [cliente]="cliente" [src_path]="logoImage"></app-header>
-        <div  class="container pt-4 pb-5">
+        <div  class="container pt-4 pb-5 contenedor-categorias">
             <div class="row g-4 justify-content-center px-2">
                 @for (categoria of categorias; track categoria.nombre) {
                 <div class="col-6 " id="cat">

@@ -3,7 +3,7 @@
 <div [@fadeContent]>
     <div [ngClass]="clienteClass" class="carta-container">
         <section *ngIf="!loading" class="content fade-in" [class.fade]="true" [class.show]="visible"
-            class="transition-container">
+            >
             <app-header [cliente]="cliente" [src_path]="logoImage"></app-header>
             <app-slider [categorias]="categorias" [cliente]="cliente" [categoriaActual]="categoria"
                 (categoriaSeleccionada)="onCategoriaSeleccionada($event)">

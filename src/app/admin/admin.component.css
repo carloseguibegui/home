@@ -1,83 +1,45 @@
-@import '../menuonline/carta/carta.component.css';
+/* @import '../menuonline/carta/carta.component.css'; */
+/* @import '../inicio/inicio.component.css'; */
 
-/* Contenedor principal */
-.admin-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem;
-    background-color: var(--background-color, #f5f5f5);
-    height: 100vh;
+* {
+    font-family: 'Nunito';
 }
 
-/* Logo */
-.logo-container {
-    margin-bottom: 1.5rem;
-}
 
-.logo {
+:host ::ng-deep .p-dialog .product-image {
     width: 150px;
-    height: auto;
+    margin: 0 auto 2rem auto;
+    display: block;
+}
+:root {
+    --p-toolbar-background: var(--p-content-background);
+    --p-toolbar-border-color: var(--p-content-border-color);
+    --p-toolbar-border-radius: var(--p-content-border-radius);
+    --p-toolbar-color: var(--p-content-color);
+    --p-toolbar-gap: 0.5rem;
+    --p-toolbar-padding: 0.75rem;
 }
 
-/* Título */
-.admin-title {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: var(--primary-color, #333);
-    margin-bottom: 2rem;
-    text-align: center;
+:root {
+    --body-bg: var(--p-surface-50);
+    --body-text-color: var(--p-surface-900);
+    --card-border: 1px solid var(--border-color);
+    --card-bg: var(--p-surface-0);
+    --border-color: var(--p-surface-200);
+    --text-color: var(--p-surface-700);
+    --overlay-background: #ffffff;
 }
 
-/* Opciones */
-.options-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    gap: 1.5rem;
-    width: 100%;
-    max-width: 400px;
+:root[class='p-dark'] {
+    --body-bg: var(--p-surface-950);
+    --body-text-color: var(--p-surface-50);
+    --card-border: 1px solid transparent;
+    --card-bg: var(--p-surface-900);
+    --border-color: rgba(255, 255, 255, 0.1);
+    --text-color: var(--p-surface-0);
+    --overlay-background: var(--p-surface-900);
 }
 
-.option-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem;
-    background-color: var(--card-bg-color, #ffffff);
-    border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.option-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-}
-
-.option-icon {
-    width: 50px;
-    height: 50px;
-    margin-bottom: 0.5rem;
-}
-
-.option-text {
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--text-color, #333);
-    text-align: center;
-}
-
-/* Footer */
-.admin-footer {
-    margin-top: 2rem;
-    font-size: 0.9rem;
-    color: var(--secondary-color, #666);
-}
-
-.powered-by {
-    font-weight: bold;
-    color: var(--primary-color, #333);
+html {
+    font-size: 14px;
 }

@@ -521,12 +521,16 @@
     }
 }
 
-/* morgana_le_fay */
-.cliente-morgana_le_fay {
-    --bordo:#320001;
+/* flor_del_alba */
+.cliente-flor_del_alba {
+    --bordo: #320001;
     --blanco: #ffffff;
-    --verde1:#eeeeee;
-    --font-family: "riesling",sans-serif;
+    --verde1: #eeeeee;
+    --font-family: "riesling", sans-serif;
+
+    .contenedor-categorias{
+        padding-top: 0 !important;
+    }
 
     * {
         font-family: var(--font-family);
@@ -555,8 +559,8 @@
 
 /* tierra_de_azafranes */
 .cliente-tierra_de_azafranes {
-    --negro:black;
-    --rojo:#c82527;
+    --negro: black;
+    --rojo: #c82527;
     --bordo: #320001;
     --blanco: #ffffff;
     --verde1: #eeeeee;

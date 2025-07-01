@@ -1,7 +1,7 @@
 // menu.service.ts
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { Firestore, collection, getDocs } from '@angular/fire/firestore';
+import { Firestore, collection, getDocs, addDoc, updateDoc, deleteDoc, doc } from '@angular/fire/firestore';
 
 @Injectable({ providedIn: 'root' })
 export class MenuService {
@@ -34,10 +34,14 @@ export class MenuService {
         const seccionData = seccionDoc.data();
         const productosRef = collection(this.firestore, `clientes/${cliente}/categoria/${seccionDoc.id}/productos`);
         const productosSnap = await getDocs(productosRef);
-        let productos = productosSnap.docs.map(prod => prod.data());
+        let productos = productosSnap.docs.map(prod => ({
+          idProducto: prod.id,
+          ...(prod.data() as { nombre?: string })
+        }));
         // Ordena los productos alfabéticamente por nombre
-        productos = productos.sort((a, b) => (a['nombre'] || '').localeCompare(b['nombre'] || ''));
+        productos = productos.sort((a, b) => (a.nombre || '').localeCompare(b.nombre || ''));
         seccionData['productos'] = productos;
+        seccionData['categoriaId'] = seccionDoc.id;
         return seccionData;
       });
 
@@ -46,7 +50,6 @@ export class MenuService {
       menuData = menuData.filter(cat => cat['esVisible'] !== false);
       // Ordena las categorías por displayOrder
       menuData = menuData.sort((a, b) => (a['displayOrder'] ?? 9999) - (b['displayOrder'] ?? 9999));
-      console.log('Menu data:', menuData);
       this.menuCache[cliente] = menuData; // Guarda en caché
       this.menuData.next(menuData);
     } finally {
@@ -86,5 +89,45 @@ export class MenuService {
       this.menuCache = {};
       this.categoriasCache = {};
     }
+  }
+
+  // --- CRUD CATEGORÍAS ---
+  async addCategoria(cliente: string, categoria: any) {
+    const categoriaRef = collection(this.firestore, `clientes/${cliente}/categoria`);
+    const docRef = await addDoc(categoriaRef, categoria);
+    await this.loadCategorias(cliente); // Refresca la lista
+    return docRef.id;
+  }
+
+  async updateCategoria(cliente: string, categoriaId: string, categoria: any) {
+    const categoriaDoc = doc(this.firestore, `clientes/${cliente}/categoria/${categoriaId}`);
+    await updateDoc(categoriaDoc, categoria);
+    await this.loadCategorias(cliente); // Refresca la lista
+  }
+
+  async deleteCategoria(cliente: string, categoriaId: string) {
+    const categoriaDoc = doc(this.firestore, `clientes/${cliente}/categoria/${categoriaId}`);
+    await deleteDoc(categoriaDoc);
+    await this.loadCategorias(cliente); // Refresca la lista
+  }
+
+  // --- CRUD PRODUCTOS ---
+  async addProducto(cliente: string, categoriaId: string, producto: any) {
+    const productosRef = collection(this.firestore, `clientes/${cliente}/categoria/${categoriaId}/productos`);
+    const docRef = await addDoc(productosRef, producto);
+    await this.loadMenuFirestore(cliente); // Refresca la lista
+    return docRef.id;
+  }
+
+  async updateProducto(cliente: string, categoriaId: string, productoId: string, producto: any) {
+    const productoDoc = doc(this.firestore, `clientes/${cliente}/categoria/${categoriaId}/productos/${productoId}`);
+    await updateDoc(productoDoc, producto);
+    await this.loadMenuFirestore(cliente); // Refresca la lista
+  }
+
+  async deleteProducto(cliente: string, categoriaId: string, productoId: string) {
+    const productoDoc = doc(this.firestore, `clientes/${cliente}/categoria/${categoriaId}/productos/${productoId}`);
+    await deleteDoc(productoDoc);
+    await this.loadMenuFirestore(cliente); // Refresca la lista
   }
 }

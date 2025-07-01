@@ -271,12 +271,14 @@
     }
 }
 
-:host-context(.cliente-morgana_le_fay) {
+:host-context(.cliente-flor_del_alba) {
     --font-family: "riesling", sans-serif;
-    *{
+
+    * {
         font-family: var(--font-family) !important;
         font-weight: bold;
     }
+
     .copyright-logo {
         background-image: url('../../../../public/assets/landing/logo-marketingeros3.webp');
     }

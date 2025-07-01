@@ -198,7 +198,7 @@ a {
         color: var(--text-color);
     }
 
-    .menu-item{
+    .menu-item {
         background-size: contain !important;
     }
 
@@ -739,14 +739,14 @@ a {
 
 
 
-/* Cliente: morgana_le_fay */
-.cliente-morgana_le_fay {
+/* Cliente: flor_del_alba */
+.cliente-flor_del_alba {
     --bordo: #320001;
     --verde: #6c775f;
     --marmol: #f3eee5;
     --oro: #ffbf00;
     --primary-color: #ffffff;
-    --slider-bg: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fmorgana_le_fay%2Fbackground_image.webp?alt=media');
+    --slider-bg: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fflor_del_alba%2Fbackground_image.webp?alt=media');
 
     * {
         font-family: "riesling", sans-serif !important;
@@ -769,12 +769,12 @@ a {
     }
 
     .sticky-slider {
-        background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fmorgana_le_fay%2Fbackground_image.webp?alt=media') !important;
+        background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fflor_del_alba%2Fbackground_image.webp?alt=media') !important;
     }
 }
 
-.cliente-morgana_le_fay.sticky-slider {
-    background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fmorgana_le_fay%2Fbackground_image.webp?alt=media') !important;
+.cliente-flor_del_alba.sticky-slider {
+    background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fflor_del_alba%2Fbackground_image.webp?alt=media') !important;
     background-size: cover !important;
 }
 

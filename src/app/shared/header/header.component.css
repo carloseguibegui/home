@@ -1,4 +1,4 @@
-#logo{
+#logo {
     max-width: 260px;
 }
 
@@ -37,9 +37,10 @@
         width: 280px !important;
         max-width: 280px !important;
     }
-    .text-center{
-        margin-top:3rem !important;
-        margin-bottom:3rem !important;
+
+    .text-center {
+        margin-top: 3rem !important;
+        margin-bottom: 3rem !important;
     }
 }
 
@@ -62,8 +63,8 @@
 }
 
 
-:host-context(.cliente-morgana_le_fay) {
+:host-context(.cliente-flor_del_alba) {
     #logo {
-        width:160px !important;
+        width: 160px !important;
     }
 }

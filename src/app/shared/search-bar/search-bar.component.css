@@ -127,6 +127,7 @@ input[type="text"] {
         color: var(--marron);
     }
 }
+
 /* Cliente: beer_house_tandil */
 .cliente-beer_house_tandil {
     --ambar: #D8A45F;
@@ -157,7 +158,7 @@ input[type="text"] {
 
 /* Cliente: prego_tandil */
 .cliente-prego_tandil {
-    --blanco:white;
+    --blanco: white;
     --verde: #829577;
     --font-family: 'lato', sans-serif;
 
@@ -170,13 +171,14 @@ input[type="text"] {
 }
 
 
-/* Cliente: morgana_le_fay */
-.cliente-morgana_le_fay {
+/* Cliente: flor_del_alba */
+.cliente-flor_del_alba {
     --bordo: #320001;
     --verde: #6c775f;
     --blanco: white;
     --font-family: 'lato', sans-serif;
     --verde: #6c775f;
+
     input {
         font-family: var(--font-family);
         background-color: white;

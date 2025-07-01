@@ -1,35 +1,657 @@
-<div [@fadeInOut]>
+<app-spinner [@fadeInOut] *ngIf="loading"></app-spinner>
 
-    <!-- <app-header></app-header> -->
-    <div class="d-flex justify-content-center text-center mt-4 pt-1">
-        <button (click)="logout()" data-mdb-button-init data-mdb-ripple-init
-            class="btn btn-lg btn-block py-3 px-5 text-white" style="background-color: #8e00ff;" type="submit">
-            Cerrar sesión</button>
-    </div>
-    <div class="carta-container admin-container">
-        <!-- Logo del cliente -->
-        <div class="logo-container">
-            <img [src]="logoUrl" alt="Logo del cliente" class="logo" />
+<div [@fadeContent] *ngIf="!loading" id="wrapper">
+    <!-- Sidebar -->
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+        <!-- Sidebar - Brand -->
+        <a class="sidebar-brand d-flex align-items-center justify-content-center">
+            <div class="sidebar-brand-icon">
+                <i class="bi bi-person-fill-gear"></i>
+            </div>
+            <div class="sidebar-brand-text mx-3">PANEL <br> ADMINISTRADOR</div>
+        </a>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0">
+
+        <!-- Nav Item - Dashboard -->
+        <li class="nav-item active">
+            <a class="nav-link">
+                <i class="bi bi-list"></i>
+                <span>Carta Digital</span></a>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+
+        <!-- Heading -->
+        <!-- <div class="sidebar-heading">
+            Interface
+        </div> -->
+
+        <li class="nav-item">
+            <a class="nav-link cerrar_sesion" (click)="logout()">
+                <i class="bi bi-box-arrow-left "></i>
+                <span>Cerrar sesión</span></a>
+        </li>
+
+        <!-- Nav Item - Pages Collapse Menu -->
+        <!-- <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                aria-expanded="true" aria-controls="collapseTwo">
+                <i class="fas fa-fw fa-cog"></i>
+                <span>Components</span>
+            </a>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Custom Components:</h6>
+                    <a class="collapse-item" href="buttons.html">Buttons</a>
+                    <a class="collapse-item" href="cards.html">Cards</a>
+                </div>
+            </div>
+        </li> -->
+
+        <!-- Nav Item - Utilities Collapse Menu -->
+        <!-- <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+                aria-expanded="true" aria-controls="collapseUtilities">
+                <i class="fas fa-fw fa-wrench"></i>
+                <span>Utilities</span>
+            </a>
+            <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Custom Utilities:</h6>
+                    <a class="collapse-item" href="utilities-color.html">Colors</a>
+                    <a class="collapse-item" href="utilities-border.html">Borders</a>
+                    <a class="collapse-item" href="utilities-animation.html">Animations</a>
+                    <a class="collapse-item" href="utilities-other.html">Other</a>
+                </div>
+            </div>
+        </li> -->
+
+        <!-- Divider -->
+        <!-- <hr class="sidebar-divider"> -->
+
+        <!-- Heading -->
+        <!-- <div class="sidebar-heading">
+            Addons
+        </div> -->
+
+        <!-- Nav Item - Pages Collapse Menu -->
+        <!-- <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+                aria-expanded="true" aria-controls="collapsePages">
+                <i class="fas fa-fw fa-folder"></i>
+                <span>Pages</span>
+            </a>
+            <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Login Screens:</h6>
+                    <a class="collapse-item" href="login.html">Login</a>
+                    <a class="collapse-item" href="register.html">Register</a>
+                    <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
+                    <div class="collapse-divider"></div>
+                    <h6 class="collapse-header">Other Pages:</h6>
+                    <a class="collapse-item" href="404.html">404 Page</a>
+                    <a class="collapse-item" href="blank.html">Blank Page</a>
+                </div>
+            </div>
+        </li> -->
+
+        <!-- Nav Item - Charts -->
+        <!-- <li class="nav-item">
+            <a class="nav-link" href="charts.html">
+                <i class="fas fa-fw fa-chart-area"></i>
+                <span>Charts</span></a>
+        </li> -->
+
+        <!-- Nav Item - Tables -->
+        <!-- <li class="nav-item active">
+            <a class="nav-link" href="tables.html">
+                <i class="fas fa-fw fa-table"></i>
+                <span>Tables</span></a>
+        </li> -->
+
+        <!-- Divider -->
+        <!-- <hr class="sidebar-divider d-none d-md-block"> -->
+
+        <!-- Sidebar Toggler (Sidebar) -->
+        <!-- <div class="text-center d-none d-md-inline">
+            <button class="rounded-circle border-0" id="sidebarToggle"></button>
+        </div> -->
+
+    </ul>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content">
+
+            <!-- Topbar -->
+            <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                <!-- Sidebar Toggle (Topbar) -->
+                <form class="form-inline">
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                </form>
+
+                <!-- Topbar Search -->
+                <!-- <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                    <div class="input-group">
+                        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                            aria-label="Search" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="button">
+                                <i class="bi bi-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form> -->
+
+                <!-- Topbar Navbar -->
+                <ul class="navbar-nav ml-auto">
+
+                    <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+                    <!-- <li class="nav-item dropdown no-arrow d-sm-none">
+                        <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a> -->
+                    <!-- Dropdown - Messages -->
+                    <!-- <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                            aria-labelledby="searchDropdown">
+                            <form class="form-inline mr-auto w-100 navbar-search">
+                                <div class="input-group">
+                                    <input type="text" class="form-control bg-light border-0 small"
+                                        placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary" type="button">
+                                            <i class="fas fa-search fa-sm"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </li> -->
+
+                    <!-- Nav Item - Alerts -->
+                    <!-- <li class="nav-item dropdown no-arrow mx-1">
+                        <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-bell fa-fw"></i> -->
+                    <!-- Counter - Alerts -->
+                    <!-- <span class="badge badge-danger badge-counter">3+</span> -->
+                    <!-- </a> -->
+                    <!-- Dropdown - Alerts -->
+                    <!-- <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                            aria-labelledby="alertsDropdown">
+                            <h6 class="dropdown-header">
+                                Alerts Center
+                            </h6>
+                            <a class="dropdown-item d-flex align-items-center" href="#">
+                                <div class="mr-3">
+                                    <div class="icon-circle bg-primary">
+                                        <i class="fas fa-file-alt text-white"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="small text-gray-500">December 12, 2019</div>
+                                    <span class="font-weight-bold">A new monthly report is ready to download!</span>
+                                </div>
+                            </a>
+                            <a class="dropdown-item d-flex align-items-center" href="#">
+                                <div class="mr-3">
+                                    <div class="icon-circle bg-success">
+                                        <i class="fas fa-donate text-white"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="small text-gray-500">December 7, 2019</div>
+                                    $290.29 has been deposited into your account!
+                                </div>
+                            </a>
+                            <a class="dropdown-item d-flex align-items-center" href="#">
+                                <div class="mr-3">
+                                    <div class="icon-circle bg-warning">
+                                        <i class="fas fa-exclamation-triangle text-white"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="small text-gray-500">December 2, 2019</div>
+                                    Spending Alert: We've noticed unusually high spending for your account.
+                                </div>
+                            </a>
+                            <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+                        </div>
+                    </li> -->
+
+                    <!-- Nav Item - Messages -->
+                    <!-- <li class="nav-item dropdown no-arrow mx-1">
+                        <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-envelope fa-fw"></i> -->
+                    <!-- Counter - Messages -->
+                    <!-- <span class="badge badge-danger badge-counter">7</span> -->
+                    <!-- </a> -->
+                    <!-- Dropdown - Messages -->
+                    <!-- <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                            aria-labelledby="messagesDropdown">
+                            <h6 class="dropdown-header">
+                                Message Center
+                            </h6>
+                            <a class="dropdown-item d-flex align-items-center" href="#">
+                                <div class="dropdown-list-image mr-3">
+                                    <img class="rounded-circle" src="img/undraw_profile_1.svg" alt="...">
+                                    <div class="status-indicator bg-success"></div>
+                                </div>
+                                <div class="font-weight-bold">
+                                    <div class="text-truncate">Hi there! I am wondering if you can help me with a
+                                        problem I've been having.</div>
+                                    <div class="small text-gray-500">Emily Fowler · 58m</div>
+                                </div>
+                            </a>
+                            <a class="dropdown-item d-flex align-items-center" href="#">
+                                <div class="dropdown-list-image mr-3">
+                                    <img class="rounded-circle" src="img/undraw_profile_2.svg" alt="...">
+                                    <div class="status-indicator"></div>
+                                </div>
+                                <div>
+                                    <div class="text-truncate">I have the photos that you ordered last month, how
+                                        would you like them sent to you?</div>
+                                    <div class="small text-gray-500">Jae Chun · 1d</div>
+                                </div>
+                            </a>
+                            <a class="dropdown-item d-flex align-items-center" href="#">
+                                <div class="dropdown-list-image mr-3">
+                                    <img class="rounded-circle" src="img/undraw_profile_3.svg" alt="...">
+                                    <div class="status-indicator bg-warning"></div>
+                                </div>
+                                <div>
+                                    <div class="text-truncate">Last month's report looks great, I am very happy with
+                                        the progress so far, keep up the good work!</div>
+                                    <div class="small text-gray-500">Morgan Alvarez · 2d</div>
+                                </div>
+                            </a>
+                            <a class="dropdown-item d-flex align-items-center" href="#">
+                                <div class="dropdown-list-image mr-3">
+                                    <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60"
+                                        alt="...">
+                                    <div class="status-indicator bg-success"></div>
+                                </div>
+                                <div>
+                                    <div class="text-truncate">Am I a good boy? The reason I ask is because someone
+                                        told me that people say this to all dogs, even if they aren't good...</div>
+                                    <div class="small text-gray-500">Chicken the Dog · 2w</div>
+                                </div>
+                            </a>
+                            <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
+                        </div>
+                    </li> -->
+
+                    <!-- <div class="topbar-divider d-none d-sm-block"></div> -->
+
+                    <!-- Nav Item - User Information -->
+                    <li class="nav-item dropdown no-arrow">
+                        <!-- <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{clienteId}}</span>
+                            <img class="img-profile" src="{{logoImage}}">
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                            aria-labelledby="userDropdown">
+                            <a class="dropdown-item" href="#">
+                                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Profile
+                            </a>
+                            <a class="dropdown-item" href="#">
+                                <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Settings
+                            </a>
+                            <a class="dropdown-item" href="#">
+                                <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Activity Log
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Logout
+                            </a>
+                        </div> -->
+                    </li>
+
+                </ul>
+
+            </nav>
+            <!-- End of Topbar -->
+
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <h1 class="h3 mb-2 text-gray-800">Panel Admin | {{clienteId}}</h1>
+                <p class="mb-4">En esta seccion puedes administrar tu carta.</p>
+                <!-- DataTales Example -->
+                <div class="card shadow mb-4">
+                    <p-toast />
+                    <p-toolbar styleClass="mb-6">
+                        <ng-template #start>
+                            <p-button label="Agregar" icon="pi pi-plus" class="mr-2" (onClick)="openNew()" />
+                            <p-button severity="danger" label="Borrar" icon="pi pi-trash" outlined
+                                (onClick)="deleteSelectedProducts()"
+                                [disabled]="!selectedProducts || !selectedProducts.length" />
+                        </ng-template>
+
+                        <ng-template #end>
+                            <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Importar"
+                                chooseLabel="Import" auto customUpload class="mr-2 inline-block"
+                                [chooseButtonProps]="{ severity: 'secondary' }" />
+                            <p-button label="Exportar" icon="pi pi-upload" severity="secondary"
+                                (onClick)="exportCSV()" />
+                        </ng-template>
+                    </p-toolbar>
+
+                    <p-table #dt [value]="productos" [rows]="10" [paginator]="true"
+                        [tableStyle]="{ 'min-width': '75rem' }" [(selection)]="selectedProducts" [rowHover]="true"
+                        dataKey="idProducto"
+                        currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} productos"
+                        [showCurrentPageReport]="true">
+                        <ng-template #caption>
+                            <div class="flex items-center justify-between">
+                                <h5 class="m-0">Manage Products</h5>
+                                <p-iconfield>
+                                    <p-inputicon styleClass="pi pi-search" />
+                                    <input pInputText type="text" (input)="onGlobalFilter($event)"
+                                        placeholder="Buscar..." />
+                                </p-iconfield>
+                            </div>
+                        </ng-template>
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th style="width: 3rem">
+                                    <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                                </th>
+                                <th pSortableColumn="name" style="min-width:16rem">
+                                    Nombre
+                                    <p-sortIcon field="name" />
+                                </th>
+                                <th pSortableColumn="description" style="min-width: 8rem">
+                                    Descripcion
+                                    <p-sortIcon field="description" />
+                                </th>
+                                <th>Imagen</th>
+                                <th pSortableColumn="price" style="min-width: 8rem">
+                                    Precio
+                                    <p-sortIcon field="price" />
+                                </th>
+                                <th pSortableColumn="category" style="min-width:10rem">
+                                    Categoria
+                                    <p-sortIcon field="category" />
+                                </th>
+                                <th pSortableColumn="inventoryStatus" style="min-width: 12rem">
+                                    Estado
+                                    <p-sortIcon field="inventoryStatus" />
+                                </th>
+                                <th style="min-width: 12rem"></th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-producto>
+                            <tr>
+                                <td>
+                                    <p-tableCheckbox [value]="producto"></p-tableCheckbox>
+                                </td>
+                                <td style="min-width: 16rem">{{ producto.nombre }}</td>
+                                <td>{{ producto.descripcion }}</td>
+                                <td>
+                                    <img [src]="producto.imagen" [alt]="producto.nombre" style="width: 64px"
+                                        class="rounded" />
+                                </td>
+                                <td>{{ producto.precio | currency:'ARS' }}</td>
+                                <td>{{ producto.categoria?.nombre || producto.categoriaId }}</td>
+                                <td>
+                                    <p-tag [value]="producto.esActivo ? 'Activo' : 'Inactivo'"
+                                        [severity]="producto.esActivo ? 'success' : 'danger'"></p-tag>
+                                </td>
+                                <td>
+                                    <button pButton icon="pi pi-pencil" class="mr-2" [rounded]="true" [outlined]="true"
+                                        (click)="abrirModalEditar(producto)"></button>
+                                    <button pButton icon="pi pi-trash" severity="danger" [rounded]="true"
+                                        [outlined]="true" (click)="deleteProduct(producto)"></button>
+                                </td>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="summary">
+                            <div class="flex items-center justify-between">
+                                En total hay {{ productos ? productos.length : 0 }} productos.
+                            </div>
+                        </ng-template>
+                    </p-table>
+
+                    <p-dialog [(visible)]="productDialog" [style]="{ width: '450px' }" header="Detalles del producto"
+                        [modal]="true" [closable]="false">
+                        <form (ngSubmit)="saveProduct()" #productForm="ngForm">
+                            <div class="p-fluid">
+                                <div class="p-field">
+                                    <label for="nombre">Nombre</label>
+                                    <input id="nombre" type="text" pInputText [(ngModel)]="productoSeleccionado.nombre"
+                                        name="nombre" required autofocus />
+                                    <small class="text-danger" *ngIf="submitted && !productoSeleccionado.nombre">El
+                                        nombre es
+                                        obligatorio.</small>
+                                </div>
+                                <div class="p-field">
+                                    <label for="descripcion">Descripción</label>
+                                    <textarea id="descripcion" pInputTextarea
+                                        [(ngModel)]="productoSeleccionado.descripcion" name="descripcion" required
+                                        rows="3"></textarea>
+                                </div>
+                                <div class="p-field">
+                                    <label for="categoria">Categoría</label>
+                                    <p-dropdown [options]="categorias" optionLabel="nombre" optionValue="categoriaId"
+                                        [(ngModel)]="productoSeleccionado.categoriaId" name="categoriaId"
+                                        placeholder="Selecciona una categoría" required>
+                                    </p-dropdown>
+                                </div>
+                                <div class="p-field">
+                                    <label for="precio">Precio</label>
+                                    <input id="precio" type="number" pInputText
+                                        [(ngModel)]="productoSeleccionado.precio" name="precio" required />
+                                </div>
+                                <div class="p-field">
+                                    <label>Estado</label>
+                                    <div class="flex gap-3">
+                                        <p-radioButton name="esActivo" value="true"
+                                            [(ngModel)]="productoSeleccionado.esActivo" inputId="activo"
+                                            label="Activo"></p-radioButton>
+                                        <p-radioButton name="esActivo" value="false"
+                                            [(ngModel)]="productoSeleccionado.esActivo" inputId="inactivo"
+                                            label="Inactivo"></p-radioButton>
+                                    </div>
+                                </div>
+                                <div class="p-field">
+                                    <label>Imagen actual</label>
+                                    <img *ngIf="productoSeleccionado.imagen" [src]="productoSeleccionado.imagen"
+                                        alt="Imagen actual" style="max-width: 120px; max-height: 120px;">
+                                </div>
+                                <div class="p-field">
+                                    <label for="nuevaImagen">Nueva imagen</label>
+                                    <input id="nuevaImagen" type="file" (change)="onImagenSeleccionada($event)"
+                                        accept="image/*" />
+                                    <img *ngIf="imagenPreview" [src]="imagenPreview" alt="Preview"
+                                        style="max-width: 120px; max-height: 120px; margin-top: 10px">
+                                </div>
+                            </div>
+                            <ng-template pTemplate="footer">
+                                <button pButton label="Cancelar" icon="pi pi-times" class="p-button-text" type="button"
+                                    (click)="hideDialog()"></button>
+                                <button pButton label="Guardar" icon="pi pi-check" type="submit"
+                                    [disabled]="isLoading || !productForm.form.valid"></button>
+                            </ng-template>
+                        </form>
+                    </p-dialog>
+
+                    <p-confirmDialog [style]="{ width: '450px' }" />
+                    <!-- <table  data-order='[[ 1, "asc" ]]' class="table table-bordered" id="dataTable" width="100%"
+                                cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>Imagen</th>
+                                        <th>Nombre</th>
+                                        <th>Descripción</th>
+                                        <th>Precio</th>
+                                        <th>Categoria</th>
+                                        <th>Estado</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                    <tr>
+                                        <th>Imagen</th>
+                                        <th>Nombre</th>
+                                        <th>Descripción</th>
+                                        <th>Precio</th>
+                                        <th>Categoria</th>
+                                        <th>Estado</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </tfoot>
+                                <tbody>
+                                    <tr *ngFor="let producto of productos">
+                                        <td class="td_imagen">
+                                            <a>
+                                                <img src="{{producto.imagen}}" alt="" srcset="">
+                                            </a>
+                                        </td>
+                                        <td>{{ producto.nombre }}</td>
+                                        <td>{{ producto.descripcion }}</td>
+                                        <td id="precio">$ {{ producto.precio }}</td>
+                                        <td>{{ producto.categoria.nombre }}</td>
+                                        <td class="estado_producto"
+                                            [ngClass]="producto.esActivo ? 'text-success' : 'text-danger'">
+                                            <span class="status">•</span>
+                                            {{ producto.esActivo ? 'Activo' : 'Inactivo' }}
+                                        </td>
+                                        <td class="acciones_col">
+                                            <a data-bs-toggle="modal" data-bs-target="#editEmployeeModal" class="edit"
+                                                title="Editar" (click)="abrirModalEditar(producto)"><i tabindex="0"
+                                                    class="bi bi-pen-fill"></i></a>
+                                            <a class="delete"><i class="bi bi-x-circle-fill" title="Borrar"></i></a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table> -->
+                </div>
+
+            </div>
+            <!-- /.container-fluid -->
+
         </div>
+        <!-- End of Main Content -->
 
-        <!-- Título -->
-        <h1 class="carta-title admin-title">¿Qué te gustaría hacer?</h1>
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white">
+            <div class="container my-auto">
+                <div class="copyright text-center my-auto">
+                    <span>Copyright &copy; Marketingeros</span>
+                </div>
+            </div>
+        </footer>
+        <!-- End of Footer -->
 
-        <!-- Opciones -->
-        <div class="d-flex flex-column">
-            <div class="carta-card option-card col-sm-12 col-md-8 col-lg-8" (click)="navigateTo('carta')">
-                <img src="assets/icons/carta-icon.png" alt="Carta" class="carta-icon option-icon" />
-                <p class="carta-text option-text">Carta</p>
+    </div>
+    <!-- End of Content Wrapper -->
+
+</div>
+
+<div class="modal fade" id="editEmployeeModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog  modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Editar Producto</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="carta-card option-card col-sm-12 col-md-8 col-lg-8" (click)="navigateTo('voucher')">
-                <img src="assets/icons/voucher-icon.png" alt="Voucher" class="carta-icon option-icon" />
-                <p class="carta-text option-text">Regalar Voucher</p>
-            </div>
-            <div class="carta-card option-card col-sm-12 col-md-8 col-lg-8" (click)="navigateTo('whatsapp')">
-                <img src="assets/icons/whatsapp-icon.png" alt="WhatsApp" class="carta-icon option-icon" />
-                <p class="carta-text option-text">WhatsApp</p>
+            <div class="modal-body">
+                <form #updateProducto="ngForm" (ngSubmit)="guardarEdicionProducto(
+                    nombreInput.value,
+                    descripcionInput.value,
+                    precioInput.value,
+                    estadoInput.value
+                )">
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Nombre:</label>
+                        <input required type="text" class="form-control" #nombreInput
+                            [value]="productoSeleccionado?.nombre">
+                    </div>
+                    <div class="mb-3">
+                        <label for="recipient-descripcion" class="col-form-label">Descripción:</label>
+                        <input required type="text" class="form-control" #descripcionInput
+                            [value]="productoSeleccionado?.descripcion">
+                    </div>
+                    <div class="mb-3">
+                        <label for="message-text" class="col-form-label">Precio:</label>
+                        <input required #precioInput type="number" class="form-control"
+                            [value]="productoSeleccionado?.precio">
+                    </div>
+                    <div class="mb-3">
+                        <label for="recipient-categoria" class="col-form-label">Categoría:</label>
+                        <select required class="form-control" #categoriaInput>
+                            <option *ngFor="let cat of categorias" [value]="cat.categoriaId"
+                                [selected]="productoSeleccionado?.categoriaId === cat.categoriaId">
+                                {{ cat.nombre }} </option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="message-text" class="col-form-label ">Imagen:</label>
+                        <img required class="imagen_editar_producto" *ngIf="productoSeleccionado?.imagen"
+                            [src]="productoSeleccionado.imagen" alt="Imagen actual"
+                            style="max-width: 120px; max-height: 120px;">
+                    </div>
+                    <div class="mb-3">
+                        <label for="nueva-imagen" class="col-form-label ">Nueva imagen:</label>
+                        <input required #imagenInput type="file" class="form-control"
+                            accept=".jpg,.jpeg,.png,.gif,.webp,.bmp,.svg,image/*"
+                            (change)="onImagenSeleccionada($event)">
+                        <img class="imagen_editar_producto" *ngIf="imagenPreview" [src]="imagenPreview" alt="Preview"
+                            style="max-width: 120px; max-height: 120px; margin-top: 10px">
+                    </div>
+                    <div class="mb-3">
+                        <label for="estadoProducto" class="col-form-label">Estado:</label>
+                        <select required id="estadoProducto" class="form-control text-primary" #estadoInput>
+                            <option [selected]="productoSeleccionado?.esActivo === true" [value]="true">Activo</option>
+                            <option [selected]="productoSeleccionado?.esActivo === false" [value]="false">Inactivo
+                            </option>
+                        </select>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary" [disabled]="updateProducto.invalid || isLoading">
+                            <span *ngIf="isLoading" class="spinner-border spinner-border-sm me-2" role="status"
+                                aria-hidden="true"></span>
+                            Guardar</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 </div>
-<app-copyright [marginBotClassDiv]="'mb-3'"></app-copyright>
+
+
+
+<div class="toast-container position-static">
+    <div id="adminToast" class="toast align-items-center text-bg-success border-0" role="alert" aria-live="assertive"
+        aria-atomic="true">
+        <div class="d-flex">
+            <div class="toast-body" id="adminToastBody">
+                Hello, world! This is a toast message.
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                aria-label="Close"></button>
+        </div>
+    </div>
+</div>
