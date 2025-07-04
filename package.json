@@ -31,8 +31,6 @@
     "aos": "^2.3.4",
     "bootstrap": "^5.3.7",
     "bootstrap-icons": "^1.12.1",
-    "datatables.net": "^2.3.2",
-    "datatables.net-bs5": "^2.3.2",
     "express": "^4.18.2",
     "firebase": "^11.7.1",
     "glightbox": "^3.3.1",

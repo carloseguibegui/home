@@ -17,9 +17,9 @@ export class MenuService {
 
   constructor(private firestore: Firestore) { }
 
-  async loadMenuFirestore(cliente: string) {
+  async loadMenuFirestore(cliente: string, force = false) {
     // Si ya está en caché, úsalo y no consultes Firestore
-    if (this.menuCache[cliente]) {
+    if (!force && this.menuCache[cliente]) {
       this.menuData.next(this.menuCache[cliente]);
       return;
     }
@@ -85,6 +85,8 @@ export class MenuService {
     if (cliente) {
       delete this.menuCache[cliente];
       delete this.categoriasCache[cliente];
+      localStorage.removeItem('categoriasCache');
+      localStorage.removeItem('menuCache');
     } else {
       this.menuCache = {};
       this.categoriasCache = {};
@@ -115,19 +117,16 @@ export class MenuService {
   async addProducto(cliente: string, categoriaId: string, producto: any) {
     const productosRef = collection(this.firestore, `clientes/${cliente}/categoria/${categoriaId}/productos`);
     const docRef = await addDoc(productosRef, producto);
-    await this.loadMenuFirestore(cliente); // Refresca la lista
     return docRef.id;
   }
 
   async updateProducto(cliente: string, categoriaId: string, productoId: string, producto: any) {
     const productoDoc = doc(this.firestore, `clientes/${cliente}/categoria/${categoriaId}/productos/${productoId}`);
     await updateDoc(productoDoc, producto);
-    await this.loadMenuFirestore(cliente); // Refresca la lista
   }
 
   async deleteProducto(cliente: string, categoriaId: string, productoId: string) {
     const productoDoc = doc(this.firestore, `clientes/${cliente}/categoria/${categoriaId}/productos/${productoId}`);
     await deleteDoc(productoDoc);
-    await this.loadMenuFirestore(cliente); // Refresca la lista
   }
 }

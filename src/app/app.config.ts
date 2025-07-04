@@ -8,7 +8,7 @@ import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { getAnalytics } from "firebase/analytics";
 import { getAnalytics as getAnalytics_alias, provideAnalytics, ScreenTrackingService, UserTrackingService } from '@angular/fire/analytics';
-import { initializeAppCheck, ReCaptchaEnterpriseProvider, provideAppCheck } from '@angular/fire/app-check';
+import { initializeAppCheck, ReCaptchaEnterpriseProvider, provideAppCheck, ReCaptchaV3Provider } from '@angular/fire/app-check';
 import { getFunctions, provideFunctions } from '@angular/fire/functions';
 import { getMessaging, provideMessaging } from '@angular/fire/messaging';
 import { getPerformance, providePerformance } from '@angular/fire/performance';
@@ -38,16 +38,20 @@ export const appConfig: ApplicationConfig = {
     measurementId: firebaseConfig.measurementId
     })), provideAuth(() => getAuth()), provideAnalytics(() => getAnalytics()), ScreenTrackingService, UserTrackingService, provideAppCheck(() => {
     // TODO get a reCAPTCHA Enterprise here https://console.cloud.google.com/security/recaptcha?project=_
-    const provider = new ReCaptchaEnterpriseProvider("6LfYbjcrAAAAAOZypiFGt2-9uqxoopVA1y1BBYfv");
+    const provider = new ReCaptchaV3Provider("6LfYbjcrAAAAAOZypiFGt2-9uqxoopVA1y1BBYfv");
     // 6LfYbjcrAAAAACGrfbQc-CT4hKpA0ZEDAy1aMchc
-    return initializeAppCheck(undefined, { provider, isTokenAutoRefreshEnabled: true });
+      // return initializeAppCheck(undefined, { provider, isTokenAutoRefreshEnabled: true });
+      return initializeAppCheck(undefined, { provider, isTokenAutoRefreshEnabled: true });
   }), provideFirestore(() => getFirestore()), provideFunctions(() => getFunctions()), provideMessaging(() => getMessaging()), providePerformance(() => getPerformance()), provideStorage(() => getStorage()), provideRemoteConfig(() => getRemoteConfig()), // Provide Firestore],
   provideAnimations(),
   provideClientHydration(),
   provideAnimationsAsync(),
   providePrimeNG({
     theme: {
-      preset: Aura
+      preset: Aura,
+      options: {
+        darkModeSelector: false || 'none'
+      }
     }
   })
   ],
