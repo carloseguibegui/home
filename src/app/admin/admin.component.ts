@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { MenuService } from '../services/menu.service';
 import { trigger, transition, style, animate } from '@angular/animations';
@@ -55,28 +55,17 @@ interface ExportColumn {
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.css', './sb-admin-2.min.css'],
   animations: [
-    trigger('fadeInOut', [
-      transition(':enter', [
-        style({ opacity: 0 }),
-        animate('0ms ease-in', style({ opacity: 1 }))
-      ]),
-      transition(':leave', [
-        animate('1000ms ease-out', style({ opacity: 0 }))
-      ])
-    ]),
     trigger('fadeContent', [
       transition(':enter', [
-        // style({ opacity: 0, transform: 'translateY(30px)' }),
         style({ opacity: 0 }),
-        // animate('600ms 100ms cubic-bezier(0.23, 1, 0.32, 1)', style({ opacity: 1, transform: 'none' }))
-        animate('1000ms ease-in', style({ opacity: 1 }))
+        animate('200ms ease-in', style({ opacity: 1 }))
       ]),
       transition(':leave', [
-        animate('0ms ease-out', style({ opacity: 0 }))
+        animate('200ms ease-out', style({ opacity: 0 }))
       ])
     ])
   ],
-  imports: [CommonModule, SpinnerComponent, FormsModule, TableModule, Dialog, SelectModule, ToastModule, ToolbarModule, ConfirmDialog, InputTextModule, TextareaModule, CommonModule, FileUpload, DropdownModule, Tag, InputTextModule, FormsModule, InputNumber, IconFieldModule, InputIconModule, ButtonModule, BadgeModule],
+  imports: [CommonModule, SpinnerComponent, FormsModule, TableModule, Dialog, SelectModule, ToastModule, ToolbarModule, ConfirmDialog, InputTextModule, TextareaModule, CommonModule, FileUpload, DropdownModule, Tag, InputTextModule, FormsModule, InputNumber, IconFieldModule, InputIconModule, ButtonModule, BadgeModule, RouterModule],
   providers: [MessageService, ConfirmationService]
 })
 export class AdminComponent implements OnInit {
@@ -95,7 +84,6 @@ export class AdminComponent implements OnInit {
   isDeleting = false;
   productoAEliminar: any = null;
 
-
   submitted: boolean = false;
 
   statuses!: any[];
@@ -109,10 +97,11 @@ export class AdminComponent implements OnInit {
 
   estados = [
     { estado: 'Activo', value: true },
-    { estado: 'Inactivo', value: false }
+    { estado: 'Oculto', value: false }
   ];
 
 
+  
   constructor(
     private router: Router,
     private authService: AuthService,
@@ -146,7 +135,6 @@ export class AdminComponent implements OnInit {
         this.menuService.clearCache(this.clienteId);
         this.menuService.loadMenuFirestore(this.clienteId);
         this.menuService.menuData$.subscribe(menu => {
-          console.log('this.menuService.menuData$.subscribe')
           this.productos = [];
           this.categorias = [];
           menu.forEach(cat => {
@@ -173,9 +161,7 @@ export class AdminComponent implements OnInit {
   }
 
 
-  logout() {
-    this.authService.logout();
-  }
+
 
 
   onSelectImage(event: any) {

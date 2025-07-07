@@ -5,6 +5,8 @@ import { CategoriaComponent } from './menuonline/categoria/categoria.component';
 import { LoginComponent } from './auth/login/login.component';
 import { authGuard } from './auth.guard';
 import { AdminComponent } from './admin/admin.component';
+import { CategoriasAdminComponent } from './admin/categorias-admin/categorias-admin.component';
+import { AdminLayoutComponent } from './admin/admin-layout/admin-layout.component';
 
 export const routes: Routes = [
   { path: '', component: InicioComponent },
@@ -13,6 +15,15 @@ export const routes: Routes = [
   { path: 'menuonline/:cliente/carta', component: CartaComponent },
   { path: 'menuonline/:cliente/carta/:categoria', component: CategoriaComponent, runGuardsAndResolvers: 'always'},
   { path: 'auth/login', component: LoginComponent },
-  { path: 'admin', component: AdminComponent, canActivate: [authGuard] }, // Ruta protegida
+  {
+    path: 'admin',
+    component: AdminLayoutComponent, // aquí va el wrapper
+    canActivate: [authGuard],
+    children: [
+      { path: '', component: AdminComponent }, // productos
+      { path: 'categorias', component: CategoriasAdminComponent },
+      // otras rutas hijas...
+    ]
+  },
   { path: '**', component: InicioComponent }
 ];

@@ -57,10 +57,11 @@ export class MenuService {
     }
   }
 
-  async loadCategorias(cliente: string) {
+  async loadCategorias(cliente: string, force = false, soloVisibles = false) {
     // Si ya está en caché, úsalo y no consultes Firestore
-    if (this.categoriasCache[cliente]) {
-      this.categoriasData.next(this.categoriasCache[cliente]);
+    if (!force && this.categoriasCache[cliente]) {
+      console.log('Usando caché para categorías de cliente:', cliente);
+      this.menuData.next(this.categoriasCache[cliente]);
       return;
     }
     const categorias: any[] = [];
@@ -70,15 +71,17 @@ export class MenuService {
     for (const categoriaDoc of categoriaSnap.docs) {
       categorias.push({ id: categoriaDoc.id, ...categoriaDoc.data() });
     }
-
+    let categoriasFiltradas = categorias;
     // Filtra las categorías que no son visibles
-    const categoriasVisibles = categorias.filter(cat => cat['esVisible'] !== false);
+    if (soloVisibles) {
+      categoriasFiltradas = categorias.filter(cat => cat['esVisible'] !== false);
+      categoriasFiltradas = categoriasFiltradas.sort((a, b) => (a['displayOrder'] ?? 9999) - (b['displayOrder'] ?? 9999));
+    }
     // Ordena las categorías por displayOrder
-    const categoriasOrdenadas = categoriasVisibles.sort((a, b) => (a['displayOrder'] ?? 9999) - (b['displayOrder'] ?? 9999));
 
-    this.categoriasCache[cliente] = categoriasOrdenadas; // Guarda en caché
+    this.categoriasCache[cliente] = categoriasFiltradas; // Guarda en caché
     localStorage.setItem('categoriasCache', JSON.stringify(this.categoriasCache));
-    this.categoriasData.next(categoriasOrdenadas);
+    this.categoriasData.next(categoriasFiltradas);
   }
 
   clearCache(cliente?: string) {

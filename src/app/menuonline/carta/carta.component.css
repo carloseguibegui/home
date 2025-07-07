@@ -52,7 +52,7 @@
 }
 
 .icono {
-    height: 60px;
+    height: auto;
 }
 
 .loader-overlay {

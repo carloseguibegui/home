@@ -1,0 +1,122 @@
+<div [@fadeContent] *ngIf="!loading" class="card shadow mb-4">
+    <p-toast></p-toast>
+    <p-toolbar>
+        <ng-template #start>
+            <p-button label="Nueva Categoría" icon="pi pi-plus" (onClick)="openNew()" />
+        </ng-template>
+    </p-toolbar>
+
+    <p-table [value]="categorias" [paginator]="true" [rows]="10" [rowHover]="true" [responsiveLayout]="'scroll'"
+    sortField="nombre">
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="min-width:16rem">Icono</th>
+                <th pSortableColumn="nombre" style="min-width:16rem">
+                    Nombre
+                    <p-sortIcon field="nombre" />
+                </th>
+                <th pSortableColumn="esVisible" style="min-width:16rem">
+                    Estado
+                    <p-sortIcon field="esVisible" />
+                </th>
+                <th style="min-width:16rem">Acciones</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-cat>
+            <tr>
+                <td>
+                    <img *ngIf="cat.icon" [src]="cat.icon" style="width: 32px; height: auto;">
+                </td>
+                <td>{{ cat.nombre }}</td>
+                <td>
+                    <p-tag [value]="cat.esVisible ? 'Activa' : 'Oculta'"
+                        [severity]="cat.esVisible ? 'success' : 'danger'"></p-tag>
+                </td>
+                <td>
+                    <p-button icon="pi pi-pencil" class="mr-2" (click)="editCategoria(cat)" [rounded]="true"
+                        [outlined]="true"></p-button>
+                    <p-button icon="pi pi-trash" severity="danger" [rounded]="true" [outlined]="true"
+                        (click)="showDeleteDialog(cat)" [disabled]="tieneProductos(cat)"></p-button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+
+    <!-- Diálogo de crear/editar -->
+    <p-dialog [(visible)]="categoriaDialog" [style]="{ width: '750px' }" header="Nueva Categoría" [modal]="true"
+        (onHide)="hideCategoriaDialog()">
+        <div class="p-fluid">
+            <div>
+                <!-- <label class="block font-bold mb-3" for="nombre">Nombre</label>
+                                <input pInputText id="nombre" type="text" pInputText [(ngModel)]="productoSeleccionado.nombre" name="nombre" required
+                                    autofocus fluid />
+                                <small class="text-danger" *ngIf="submitted && !productoSeleccionado.nombre">El
+                                    nombre es
+                                    obligatorio.</small> -->
+                <label class="block font-bold mb-3" for="nombreCategoria">Nombre</label>
+                <input pInputText id="nombreCategoria" type="text" [(ngModel)]="categoriaSeleccionada.nombre" required
+                    autofocus fluid />
+                <small class="text-danger" *ngIf="!categoriaSeleccionada.nombre">El
+                    nombre es obligatorio.</small>
+            </div>
+            <div class="pt-4 mb-5 pb-5">
+                <label class="block font-bold mb-3">Estado</label>
+                <p-select [(ngModel)]="categoriaSeleccionada.esVisible" inputId="esVisible" [options]="estadosCategoria"
+                    name="esVisible" inputId="esVisible" optionLabel="estado" optionValue="value" optionLabel="estado"
+                    placeholder="Seleccione un estado" fluid />
+                <small class="text-danger" *ngIf="categoriaSeleccionada.esVisible == null">El estado es
+                    obligatorio.</small>
+            </div>
+        </div>
+        <ng-template #footer>
+            <p-button [loading]="isLoading" label="Cancelar" icon="pi pi-times" (click)="hideCategoriaDialog()" />
+            <p-button [loading]="isLoading" label="Guardar" icon="pi pi-check" (click)="saveCategoria()"
+                [disabled]="isCategoriaInvalida()" severity="success" />
+        </ng-template>
+    </p-dialog>
+    <!-- <p-dialog [(visible)]="categoriaDialog" [style]="{ width: '500px' }" header="Categoría" [modal]="true"
+        (onHide)="hideDialog()">
+        <div class="p-fluid">
+            <label>Nombre</label>
+            <input pInputText [(ngModel)]="categoriaSeleccionada.nombre" required autofocus />
+            <small class="text-danger" *ngIf="submitted && !categoriaSeleccionada.nombre">El nombre es
+                obligatorio.</small>
+
+            <label class="mt-3">Estado</label>
+            <p-select [(ngModel)]="categoriaSeleccionada.esVisible" [options]="[
+          {label: 'Visible', value: true},
+          {label: 'Oculta', value: false}
+        ]" placeholder="Seleccione un estado"></p-select>
+            <small class="text-danger" *ngIf="submitted && categoriaSeleccionada.esVisible == null">El estado es
+                obligatorio.</small>
+
+            <label class="mt-3">Icono</label>
+            <div class="flex flex-wrap gap-2">
+                <button *ngFor="let icon of iconosDisponibles" pButton type="button" [icon]="icon"
+                    [class.p-button-success]="categoriaSeleccionada.icono === icon" (click)="onIconSelect(icon)">
+                </button>
+            </div>
+            <small class="text-muted">O puedes subir una imagen personalizada:</small>
+            <p-fileupload mode="basic" accept="image/*" [maxFileSize]="1000000" chooseLabel="Subir imagen"
+                (onSelect)="onImageUpload($event)" [auto]="true"></p-fileupload>
+            <img *ngIf="categoriaSeleccionada.imagen" [src]="categoriaSeleccionada.imagen"
+                style="max-width: 64px; max-height: 64px;" class="mt-2" />
+        </div>
+        <ng-template #footer>
+            <p-button label="Cancelar" icon="pi pi-times" (click)="hideDialog()" />
+            <p-button label="Guardar" icon="pi pi-check" (click)="saveCategoria()" [loading]="isLoading"
+                severity="success" />
+        </ng-template>
+    </p-dialog> -->
+
+    <!-- Confirmación de borrado -->
+    <p-dialog [style]="{ width: '750px' }" header="Confirmar eliminación" [(visible)]="deleteDialogVisible" [closable]="isLoading" [modal]="true" [closeOnEscape]="isLoading">
+        <div>
+            ¿Seguro que deseas eliminar la categoría <b>{{ categoriaSeleccionada?.nombre }}</b>?
+        </div>
+        <ng-template #footer>
+            <p-button label="Cancelar" (click)="onCancelDelete()" [loading]="isLoading"></p-button>
+            <p-button label="Eliminar" (click)="onAcceptDelete()" [loading]="isLoading" severity="danger"></p-button>
+        </ng-template>
+    </p-dialog>
+</div>

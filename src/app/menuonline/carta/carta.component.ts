@@ -115,7 +115,7 @@ export class CartaComponent {
       }, 500);
     } else {
       // Solo llama al servicio si no hay cache
-      this.menuService.loadCategorias(this.cliente);
+      this.menuService.loadCategorias(this.cliente,false,true);
       this.menuService.categoriasData$.subscribe(data => {
         console.log('Categorias desde Firestore:', data);
         this.categorias = data;

@@ -21,7 +21,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { providePrimeNG } from 'primeng/config';
 import Aura from '@primeng/themes/aura';
 // Firebase configuration (replace with your Firebase project details)
-import { firebaseConfig } from '../environments/environment';
+import { firebaseConfig, ReCaptchaV3ProviderToken } from '../environments/environment';
 
 
 
@@ -36,15 +36,11 @@ export const appConfig: ApplicationConfig = {
     authDomain: firebaseConfig.authDomain,
     messagingSenderId: firebaseConfig.messagingSenderId,
     measurementId: firebaseConfig.measurementId
-    })), provideAuth(() => getAuth()), provideAnalytics(() => getAnalytics()), ScreenTrackingService, UserTrackingService, provideAppCheck(() => {
-    // TODO get a reCAPTCHA Enterprise here https://console.cloud.google.com/security/recaptcha?project=_
-    const provider = new ReCaptchaV3Provider("6LfYbjcrAAAAAOZypiFGt2-9uqxoopVA1y1BBYfv");
-    // 6LfYbjcrAAAAACGrfbQc-CT4hKpA0ZEDAy1aMchc
-      // return initializeAppCheck(undefined, { provider, isTokenAutoRefreshEnabled: true });
-      return initializeAppCheck(undefined, { provider, isTokenAutoRefreshEnabled: true });
-  }), provideFirestore(() => getFirestore()), provideFunctions(() => getFunctions()), provideMessaging(() => getMessaging()), providePerformance(() => getPerformance()), provideStorage(() => getStorage()), provideRemoteConfig(() => getRemoteConfig()), // Provide Firestore],
+  })), provideAnalytics(() => getAnalytics()), ScreenTrackingService, UserTrackingService, provideAppCheck(() => {
+    const provider = new ReCaptchaV3Provider(ReCaptchaV3ProviderToken);
+    return initializeAppCheck(undefined, { provider, isTokenAutoRefreshEnabled: true });
+  }), provideFunctions(() => getFunctions()), provideMessaging(() => getMessaging()), providePerformance(() => getPerformance()), provideStorage(() => getStorage()), provideRemoteConfig(() => getRemoteConfig()), // Provide Firestore],
   provideAnimations(),
-  provideClientHydration(),
   provideAnimationsAsync(),
   providePrimeNG({
     theme: {
@@ -56,3 +52,5 @@ export const appConfig: ApplicationConfig = {
   })
   ],
 };
+
+
