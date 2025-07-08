@@ -4,7 +4,7 @@ import { CartaComponent } from './menuonline/carta/carta.component';
 import { CategoriaComponent } from './menuonline/categoria/categoria.component';
 import { LoginComponent } from './auth/login/login.component';
 import { authGuard } from './auth.guard';
-import { AdminComponent } from './admin/admin.component';
+import { AdminComponent } from './admin/productos-admin/admin.component';
 import { CategoriasAdminComponent } from './admin/categorias-admin/categorias-admin.component';
 import { AdminLayoutComponent } from './admin/admin-layout/admin-layout.component';
 
@@ -20,7 +20,8 @@ export const routes: Routes = [
     component: AdminLayoutComponent, // aquí va el wrapper
     canActivate: [authGuard],
     children: [
-      { path: '', component: AdminComponent }, // productos
+      { path: '', pathMatch: 'full', redirectTo: 'productos' }, // productos
+      { path: 'productos', component: AdminComponent }, // productos
       { path: 'categorias', component: CategoriasAdminComponent },
       // otras rutas hijas...
     ]

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
-import { AuthService } from '../services/auth.service';
-import { MenuService } from '../services/menu.service';
+import { AuthService } from '../../services/auth.service';
+import { MenuService } from '../../services/menu.service';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { CommonModule } from '@angular/common';
-import { SpinnerComponent } from '../shared/spinner/spinner.component';
+import { SpinnerComponent } from '../../shared/spinner/spinner.component';
 import { FormsModule } from '@angular/forms';
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
@@ -53,7 +53,7 @@ interface ExportColumn {
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.css', './sb-admin-2.min.css'],
+  styleUrls: ['./admin.component.css'],
   animations: [
     trigger('fadeContent', [
       transition(':enter', [
@@ -65,7 +65,7 @@ interface ExportColumn {
       ])
     ])
   ],
-  imports: [CommonModule, SpinnerComponent, FormsModule, TableModule, Dialog, SelectModule, ToastModule, ToolbarModule, ConfirmDialog, InputTextModule, TextareaModule, CommonModule, FileUpload, DropdownModule, Tag, InputTextModule, FormsModule, InputNumber, IconFieldModule, InputIconModule, ButtonModule, BadgeModule, RouterModule],
+  imports: [CommonModule, FormsModule, TableModule, Dialog, SelectModule, ToastModule, ToolbarModule, ConfirmDialog, InputTextModule, TextareaModule, CommonModule, FileUpload, DropdownModule, Tag, InputTextModule, FormsModule, InputNumber, IconFieldModule, InputIconModule, ButtonModule, BadgeModule, RouterModule],
   providers: [MessageService, ConfirmationService]
 })
 export class AdminComponent implements OnInit {

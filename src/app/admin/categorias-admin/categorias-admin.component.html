@@ -110,10 +110,11 @@
     </p-dialog> -->
 
     <!-- Confirmación de borrado -->
-    <p-dialog [style]="{ width: '750px' }" header="Confirmar eliminación" [(visible)]="deleteDialogVisible" [closable]="isLoading" [modal]="true" [closeOnEscape]="isLoading">
+    <p-dialog [style]="{ width: '750px' }" header="Confirmar eliminación" [(visible)]="deleteDialogVisible" [closable]="!isLoading" [modal]="true" [closeOnEscape]="!isLoading">
         <div>
             ¿Seguro que deseas eliminar la categoría <b>{{ categoriaSeleccionada?.nombre }}</b>?
         </div>
+        <small class="text-danger"><b>ATENCIÓN: Borrar la categoría, borrará también todos los productos de la misma. Esta acción no se puede deshacer</b></small>
         <ng-template #footer>
             <p-button label="Cancelar" (click)="onCancelDelete()" [loading]="isLoading"></p-button>
             <p-button label="Eliminar" (click)="onAcceptDelete()" [loading]="isLoading" severity="danger"></p-button>

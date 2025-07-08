@@ -54,7 +54,7 @@ import { BadgeModule } from 'primeng/badge';
       ])
     ])
   ],
-  imports: [CommonModule, SpinnerComponent, FormsModule, TableModule, Dialog, SelectModule, ToastModule, ToolbarModule, ConfirmDialog, InputTextModule, TextareaModule, CommonModule, FileUpload, DropdownModule, Tag, InputTextModule, FormsModule, InputNumber, IconFieldModule, InputIconModule, ButtonModule, BadgeModule, RouterModule],
+  imports: [CommonModule, FormsModule, TableModule, Dialog, SelectModule, ToastModule, ToolbarModule, ConfirmDialog, InputTextModule, TextareaModule, CommonModule, FileUpload, DropdownModule, Tag, InputTextModule, FormsModule, IconFieldModule, InputIconModule, ButtonModule, BadgeModule, RouterModule],
   providers: [MessageService, ConfirmationService]
 })
 export class CategoriasAdminComponent implements OnInit {
