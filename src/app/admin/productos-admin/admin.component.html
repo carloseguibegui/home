@@ -72,8 +72,8 @@
                 <td>{{ producto.precio | currency:'ARS' }}</td>
                 <td>{{ producto.categoria?.nombre || producto.categoriaId }}</td>
                 <td>
-                    <p-tag [value]="producto.esActivo ? 'Activo' : 'Oculto'"
-                        [severity]="producto.esActivo ? 'success' : 'danger'"></p-tag>
+                    <p-tag [value]="producto.esVisible ? 'Activo' : 'Oculto'"
+                        [severity]="producto.esVisible ? 'success' : 'danger'"></p-tag>
                 </td>
                 <td>
                     <p-button icon="pi pi-pencil" class="mr-2" [rounded]="true" [outlined]="true"

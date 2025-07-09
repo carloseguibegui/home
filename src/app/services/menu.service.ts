@@ -10,10 +10,12 @@ export class MenuService {
   menuData$ = this.menuData.asObservable();
   private categoriasData = new BehaviorSubject<any[]>([]);
   categoriasData$ = this.categoriasData.asObservable();
-
+  private giftCardsData = new BehaviorSubject<any[]>([]);
+  giftCardsData$ = this.giftCardsData.asObservable();
   // --- CACHE ---
   private menuCache: { [cliente: string]: any[] } = {};
   private categoriasCache: { [cliente: string]: any[] } = {};
+  private giftCardsCache: { [cliente: string]: any[] } = {};
 
   constructor(private firestore: Firestore) { }
 
@@ -131,5 +133,47 @@ export class MenuService {
   async deleteProducto(cliente: string, categoriaId: string, productoId: string) {
     const productoDoc = doc(this.firestore, `clientes/${cliente}/categoria/${categoriaId}/productos/${productoId}`);
     await deleteDoc(productoDoc);
+  }
+  
+
+  // --- CRUD GIFTCARDS ---
+
+  // Crear giftcard
+  async addGiftcard(cliente: string, giftcard: any) {
+    const giftcardsRef = collection(this.firestore, `clientes/${cliente}/giftcards`);
+    const docRef = await addDoc(giftcardsRef, giftcard);
+    return docRef.id;
+  }
+
+  // Listar todas las giftcards de un cliente
+  async loadGiftcards(cliente: string, force = false) {
+    // Si ya está en caché, úsalo y no consultes Firestore
+    if (!force && this.giftCardsCache[cliente]) {
+      console.log('Usando caché para giftcards de cliente:', cliente);
+      this.giftCardsData.next(this.giftCardsCache[cliente]);
+      return
+    }
+    const giftcards: any[] = [];
+    const giftcardsRef = collection(this.firestore, `clientes/${cliente}/giftcards`);
+    const giftCardSnap = await getDocs(giftcardsRef);
+    // return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    for (const giftcardDoc of giftCardSnap.docs) {
+      giftcards.push({ id: giftcardDoc.id, ...giftcardDoc.data() });
+    }
+    this.giftCardsCache[cliente] = giftcards; // Guarda en caché
+    localStorage.setItem('giftCardsCache', JSON.stringify(this.giftCardsCache));
+    this.giftCardsData.next(giftcards);
+  }
+
+  // Actualizar giftcard por id
+  async updateGiftcard(cliente: string, giftcardId: string, giftcard: any) {
+    const giftcardDoc = doc(this.firestore, `clientes/${cliente}/giftcards/${giftcardId}`);
+    await updateDoc(giftcardDoc, giftcard);
+  }
+
+  // Eliminar giftcard por id
+  async deleteGiftcard(cliente: string, giftcardId: string) {
+    const giftcardDoc = doc(this.firestore, `clientes/${cliente}/giftcards/${giftcardId}`);
+    await deleteDoc(giftcardDoc);
   }
 }
