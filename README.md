@@ -21,6 +21,7 @@ Este proyecto es una solución web para **crear y administrar menús digitales**
 - **Bootstrap 5** (mobile-first)
 - **SCSS / CSS personalizados**
 - **Angular Animations**
+- **PrimeNG**
 
 ## 📦 Instalación
 
