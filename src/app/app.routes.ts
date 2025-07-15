@@ -7,6 +7,7 @@ import { authGuard } from './auth.guard';
 import { AdminComponent } from './admin/productos-admin/admin.component';
 import { CategoriasAdminComponent } from './admin/categorias-admin/categorias-admin.component';
 import { AdminLayoutComponent } from './admin/admin-layout/admin-layout.component';
+import { GiftcardsComponent } from './admin/giftcards/giftcards.component';
 
 export const routes: Routes = [
   { path: '', component: InicioComponent },
@@ -23,6 +24,7 @@ export const routes: Routes = [
       { path: '', pathMatch: 'full', redirectTo: 'productos' }, // productos
       { path: 'productos', component: AdminComponent }, // productos
       { path: 'categorias', component: CategoriasAdminComponent },
+      { path: 'giftcards', component: GiftcardsComponent },
       // otras rutas hijas...
     ]
   },

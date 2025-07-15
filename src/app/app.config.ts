@@ -46,7 +46,11 @@ export const appConfig: ApplicationConfig = {
     theme: {
       preset: Aura,
       options: {
-        darkModeSelector: false || 'none'
+        darkModeSelector: false || 'none',
+        // monthNames: [
+          // 'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+          // 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
+        // ],
       }
     }
   })

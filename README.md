@@ -1,59 +1,140 @@
 # Copy
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.6.
+Este proyecto usa [Angular CLI](https://github.com/angular/angular-cli) version 19.2.6.
 
-## Development server
+# Copy
 
-To start a local development server, run:
+Este proyecto usa [Angular CLI](https://github.com/angular/angular-cli) version 19.2.6.
+# 🧾 Home - Menús Digitales con Angular + Firebase
+
+Este proyecto es una solución web para **crear y administrar menús digitales**, ideal para restaurantes, bares, cafeterías y comercios gastronómicos que buscan una alternativa moderna al menú físico. Desarrollado en **Angular** y respaldado por **Firebase**, ofrece una experiencia rápida, responsive y fácil de gestionar.
+
+## 🚀 Características
+
+- ✅ Menús digitales responsivos (mobile-first).
+- ✅ Panel de administración para gestionar productos y categorías.
+- ✅ Soporte para imágenes de productos.
+- ✅ URLs únicas por cliente o restaurante.
+- ✅ Almacenamiento en Firebase (Firestore + Storage).
+- ✅ Autenticación segura (Firebase Auth).
+- ✅ Deploy instantáneo con Firebase Hosting.
+
+## 🛠️ Tecnologías utilizadas
+
+- **Angular 17+**
+- **Firebase (Firestore, Auth, Storage, Hosting)**
+- **TypeScript**
+- **Bootstrap 5** (mobile-first)
+- **SCSS / CSS personalizados**
+- **Angular Animations**
+
+## 📦 Instalación
+
+1. Clona el repositorio:
+
+```bash
+git clone https://github.com/carloseguibegui/home.git
+cd home
+```
+
+2. Instala las dependencias:
+
+```bash
+npm install
+```
+
+3. Configura Firebase:
+
+- Crea un proyecto en [Firebase Console](https://console.firebase.google.com/).
+- Agrega tu configuración en `src/environments/environment.ts` y `environment.prod.ts`:
+
+```ts
+export const environment = {
+  production: false,
+  firebase: {
+    apiKey: '...',
+    authDomain: '...',
+    projectId: '...',
+    storageBucket: '...',
+    messagingSenderId: '...',
+    appId: '...'
+  }
+};
+```
+
+4. Ejecuta en modo desarrollo:
 
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Accede a la app en `http://localhost:4200`.
 
-## Code scaffolding
+## 🔥 Despliegue en Firebase Hosting
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+1. Instala Firebase CLI:
 
 ```bash
-ng generate --help
+npm install -g firebase-tools
 ```
 
-## Building
-
-To build the project run:
+2. Inicia sesión:
 
 ```bash
-ng build
+firebase login
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+3. Inicializa el proyecto (si no lo hiciste aún):
 
 ```bash
-ng test
+firebase init
 ```
 
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
+4. Build del proyecto:
 
 ```bash
-ng e2e
+ng build --configuration production
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+5. Deploy:
 
-## Additional Resources
+```bash
+firebase deploy
+```
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## 📁 Estructura de carpetas (resumen)
+
+```
+/src
+ ├── app/
+ │   ├── core/              # Servicios globales
+ │   ├── shared/            # Componentes reutilizables
+ │   ├── pages/             # Vistas principales
+ │   ├── admin/             # Panel de administración
+ │   └── cliente/           # Vista pública del menú
+ ├── assets/
+ └── environments/
+```
+
+## 🧪 Próximas funcionalidades
+
+- [ ] Búsqueda de productos
+- [ ] Filtros por categorías
+- [ ] Multilenguaje (i18n)
+- [ ] Dark mode
+- [ ] Estadísticas de visitas y clics
+- [ ] Modo QR para imprimir y escanear
+
+## 📸 Demo
+
+[https://home-xxxxx.web.app](https://home-xxxxx.web.app) *(Reemplaza con tu URL de Firebase Hosting si aplica)*
+
+## 🙋‍♂️ Autor
+
+Desarrollado por [Carlos Eguibegui](https://github.com/carloseguibegui)  
+💼 Backend & Fullstack Developer | Especializado en soluciones web y migraciones de datos en la nube.
+
+## 📄 Licencia
+
+Este proyecto está bajo la licencia MIT. Ver [LICENSE](LICENSE) para más información.
+

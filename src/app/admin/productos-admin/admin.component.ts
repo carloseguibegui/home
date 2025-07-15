@@ -219,7 +219,7 @@ export class AdminComponent implements OnInit {
       !p.nombre?.trim() ||
       !p.descripcion?.trim() ||
       !p.precio ||
-      p.esActivo == null ||
+      p.esVisible == null ||
       !p.categoria?.categoriaId
     );
   }
@@ -465,7 +465,7 @@ export class AdminComponent implements OnInit {
       !producto_a_guardar.nombre?.trim() ||
       !producto_a_guardar.descripcion?.trim() ||
       !producto_a_guardar.precio ||
-      producto_a_guardar.esActivo == null ||
+      producto_a_guardar.esVisible == null ||
       (hashOriginal === hashActual)
     );
   }
@@ -476,7 +476,7 @@ export class AdminComponent implements OnInit {
       nombre: producto.nombre,
       descripcion: producto.descripcion,
       precio: producto.precio,
-      esActivo: producto.esActivo,
+      esVisible: producto.esVisible,
       categoriaId: producto.categoria?.categoriaId,
       categoriaOriginalId: producto.categoriaOriginalId,
       tieneNuevaImagen: !!producto.nuevaImagenFile,

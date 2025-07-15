@@ -26,7 +26,7 @@
         [(selection)]="selectedProducts" [rowHover]="true" dataKey="idProducto"
         currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} productos"
         [showCurrentPageReport]="true"
-        [globalFilterFields]="['nombre', 'descripcion', 'precio', 'categoria.nombre','esActivo']" sortField="nombre">
+        [globalFilterFields]="['nombre', 'descripcion', 'precio', 'categoria.nombre','esVisible']" sortField="nombre">
         <ng-template pTemplate="header" #header>
             <tr>
                 <!-- <th style="width: 3rem">
@@ -49,9 +49,9 @@
                     Categoria
                     <p-sortIcon field="categoria.nombre" />
                 </th>
-                <th pSortableColumn="esActivo" style="min-width: 12rem">
+                <th pSortableColumn="esVisible" style="min-width: 12rem">
                     Estado
-                    <p-sortIcon field="esActivo" />
+                    <p-sortIcon field="esVisible" />
                 </th>
                 <th style="min-width: 12rem">
                     Acciones
@@ -72,8 +72,8 @@
                 <td>{{ producto.precio | currency:'ARS' }}</td>
                 <td>{{ producto.categoria?.nombre || producto.categoriaId }}</td>
                 <td>
-                    <p-tag [value]="producto.esVisible ? 'Activo' : 'Oculto'"
-                        [severity]="producto.esVisible ? 'success' : 'danger'"></p-tag>
+                    <p-tag [value]="(producto.esVisible ?? producto.esActivo) ? 'Activo' : 'Oculto'"
+                        [severity]="(producto.esVisible ?? producto.esActivo) ? 'success' : 'danger'"></p-tag>
                 </td>
                 <td>
                     <p-button icon="pi pi-pencil" class="mr-2" [rounded]="true" [outlined]="true"
@@ -123,12 +123,15 @@
                     </div>
                     <div class="pt-4">
                         <label class="block font-bold mb-3">Estado</label>
-                        <p-select [(ngModel)]="productoSeleccionado.esActivo" inputId="esActivo" [options]="estados"
-                            name="esActivo" inputId="esActivo" optionLabel="estado" optionValue="value"
-                            optionLabel="estado" placeholder="Seleccione un estado" fluid />
-                        <small class="text-danger" *ngIf="submitted && productoSeleccionado.esActivo == null">El estado
-                            es
-                            obligatorio.</small>
+                        <p-select [(ngModel)]="productoSeleccionado.esVisible"
+                            *ngIf="productoSeleccionado.hasOwnProperty('esVisible'); else activoSelect" inputId="esVisible" [options]="estados"
+                            name="esVisible" optionLabel="estado" optionValue="value" placeholder="Seleccione un estado" fluid />
+                        <ng-template #activoSelect>
+                            <p-select [(ngModel)]="productoSeleccionado.esActivo" inputId="esActivo" [options]="estados" name="esActivo"
+                                optionLabel="estado" optionValue="value" placeholder="Seleccione un estado" fluid />        </ng-template>
+                                <small class="text-danger"
+                                    *ngIf="submitted && (productoSeleccionado.esVisible == null && productoSeleccionado.esActivo == null)">
+                                    El estado es obligatorio.                          </small>
                     </div>
                     <div class="pt-4" *ngIf="productoSeleccionado?.idProducto && productoSeleccionado?.imagen">
                         <label class="block font-bold mb-3">Imagen actual</label>
@@ -150,7 +153,7 @@
                             invalidFileTypeMessageSummary="Tipo de imagen inválido." chooseLabel="Cargar"
                             showUploadButton="false" showCancelButton="false" [disabled]="isLoading">
                             <ng-template #empty>
-                                <div>Arrastra imagenes aquí para cargar.</div>
+                                <div>Arrastra imagenes aquí para cargar o haz click en el botón.</div>
                             </ng-template>
                         </p-fileupload>
                     </div>

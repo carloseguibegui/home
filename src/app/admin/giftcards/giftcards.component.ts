@@ -1,10 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { MenuService } from '../../services/menu.service';
 import { animate, style, transition, trigger } from '@angular/animations';
+import html2canvas from 'html2canvas';
+import * as QRCode from 'qrcode';
 
 
 // PRIMENG
-import { ChangeDetectorRef, ViewChild } from '@angular/core';
+import { ChangeDetectorRef } from '@angular/core';
 import { TableModule } from 'primeng/table';
 import { Dialog } from 'primeng/dialog';
 import { Ripple } from 'primeng/ripple';
@@ -31,8 +33,7 @@ import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { AuthService } from '../../services/auth.service';
-import { error } from 'console';
-
+import { DatePickerModule } from 'primeng/datepicker';
 
 interface Giftcard {
   "id": string,
@@ -43,8 +44,8 @@ interface Giftcard {
   "estado": string,               // vigente | usada | expirada
   "fechaCreacion": Date,
   "fechaUso": Date,
-  fechaExpiracion: Date, // Fecha de expiración
-  "historial": Array<Map<string, any>> // Array de objetos con fecha y estado
+  "fechaExpiracion": Date, // Fecha de expiración
+  // "historial": Array<Map<string, any>> // Array de objetos con fecha y estado
   // { "fecha": "2025-07-08T10:00:00Z", "accion": "creada", "usuario": "admin" }
 }
 
@@ -65,14 +66,14 @@ interface Giftcard {
       ])
     ])
   ],
-  imports: [CommonModule, FormsModule, TableModule, Dialog, SelectModule, ToastModule, ToolbarModule, ConfirmDialog, InputTextModule, TextareaModule, CommonModule, FileUpload, DropdownModule, Tag, InputTextModule, FormsModule, IconFieldModule, InputIconModule, ButtonModule, BadgeModule, RouterModule],
+  imports: [CommonModule, FormsModule, TableModule, Dialog, SelectModule, ToastModule, ToolbarModule, ConfirmDialog, InputTextModule, TextareaModule, CommonModule, FileUpload, DropdownModule, Tag, InputTextModule, FormsModule, IconFieldModule, InputIconModule, ButtonModule, BadgeModule, RouterModule, DatePickerModule],
   providers: [MessageService, ConfirmationService]
 })
 
 export class GiftcardsComponent {
-  // giftcards: Giftcard[] = [];
+  @ViewChild('giftcardPreview') giftcardPreview!: ElementRef;
   giftcards: any = [];
-  selectedGiftcard: Giftcard | null = null;
+  qrCodeDataUrl: string | null = null;
   displayDialog = false;
   isEdit = false;
   isLoading = false;
@@ -87,6 +88,7 @@ export class GiftcardsComponent {
   giftcardSeleccionada: any = {};
 
   deleteDialogVisible = false;
+  logoClienteUrl = '';
 
   constructor(private menuService: MenuService,
     private messageService: MessageService,
@@ -112,6 +114,7 @@ export class GiftcardsComponent {
     this.authService.getUsuarioActivo().then(usuario => {
       if (usuario && usuario.clienteId) {
         this.clienteId = usuario.clienteId;
+        this.logoClienteUrl = `https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2F${this.clienteId}%2Flogo0.webp?alt=media`;
         this.loadGiftcards();
       } else {
         this.router.navigate(['/login']);
@@ -148,10 +151,10 @@ export class GiftcardsComponent {
         ...giftcard,
         estado: 'usada',
         fechaUso: new Date(),
-        historial: [
-          ...(giftcard.historial || []),
-          { fecha: new Date(), accion: 'liquidada', usuario: 'admin' }
-        ]
+        // historial: [
+        //   ...(giftcard.historial || []),
+        //   { fecha: new Date(), accion: 'liquidada', usuario: 'admin' }
+        // ]
       });
       this.loadGiftcards();
     }
@@ -196,12 +199,11 @@ export class GiftcardsComponent {
   }
 
   isGiftcardInvalida() {
-    return !this.giftcardSeleccionada.codigo.trim() ||
-      !this.giftcardSeleccionada.beneficiario.trim() ||
-      !this.giftcardSeleccionada.descripcion.trim() ||
-      !this.giftcardSeleccionada.valor.trim() ||
-      !this.giftcardSeleccionada.estado.trim() ||
-      !this.giftcardSeleccionada.fechaExpiracion
+    return !this.giftcardSeleccionada?.de ||
+      !this.giftcardSeleccionada?.para ||
+      !this.giftcardSeleccionada?.valePor ||
+      !this.giftcardSeleccionada?.fechaExpiracion ||
+      this.giftcardSeleccionada.esVisible == null
   }
 
 
@@ -232,15 +234,64 @@ export class GiftcardsComponent {
         // }
       )
         .then(async () => {
-        await this.menuService.loadGiftcards(this.clienteId, true); // Llama a Firestore y actualiza el observable
+          await this.menuService.loadGiftcards(this.clienteId, true); // Llama a Firestore y actualiza el observable
           this.messageService.add({ severity: 'success', summary: 'Creada', detail: 'Giftcard creada correctamente.' });
         },
-        (error) => {
-          this.messageService.add({ severity: 'error', summary: 'Error', detail: 'No se pudo crear la giftcard.', life: 3000 });
-        })
-      }
+          (error) => {
+            this.messageService.add({ severity: 'error', summary: 'Error', detail: 'No se pudo crear la giftcard.', life: 3000 });
+          })
+    }
     this.isLoading = false;
     this.displayDialog = false;
     this.giftcardSeleccionada = {};
+  }
+
+  // Llama esto cuando selecciones una giftcard
+  async generarImagenGiftcard() {
+    // Convierte el div en imagen
+    const element = this.giftcardPreview.nativeElement;
+    const img: HTMLImageElement | null = element.querySelector('img');
+    
+    if (img && !img.complete) {
+      // Espera a que la imagen termine de cargar
+      await new Promise<void>((resolve) => {
+        img.onload = () => resolve();
+        img.onerror = () => resolve(); // Si falla, igual sigue (evita bloqueo)
+      });
+    }
+    // Pequeña espera extra para asegurar renderizado
+    await new Promise(res => setTimeout(res, 100));
+
+    const canvas = await html2canvas(element);
+    const dataUrl = canvas.toDataURL('image/png');
+    // 4. Intenta compartir (si el navegador lo soporta)
+    if (navigator.canShare && navigator.canShare({ files: [] })) {
+      const response = await fetch(dataUrl);
+      const blob = await response.blob();
+      const file = new File([blob], `giftcard_${this.giftcardSeleccionada.de.replaceAll(' ', '_').toLowerCase()}_${this.giftcardSeleccionada.para.replaceAll(' ', '_').toLowerCase()}_${this.giftcardSeleccionada.fechaExpiracion.toString().replaceAll('/','_')}.png`, { type: 'image/png' });
+      try {
+          await navigator.share({
+            files: [file],
+            title: 'Giftcard',
+            text: '¡Te regalo esta giftcard!',
+          });
+        } catch (e) {
+          // Si el usuario cancela, no hacer nada
+        }
+      } else {
+        // 5. Fallback: descarga la imagen y muestra instrucciones
+        const link = document.createElement('a');
+        link.href = dataUrl;
+        link.download = `giftcard_${this.giftcardSeleccionada.de.replaceAll(' ', '_').toLowerCase()}_${this.giftcardSeleccionada.para.replaceAll(' ', '_').toLowerCase()}_${this.giftcardSeleccionada.fechaExpiracion.toString().replaceAll('/', '_').replaceAll('(','')}.png`;
+        link.click();
+        this.messageService.add({ severity: 'success', summary: 'Creada', detail: 'Giftcard creada correctamente.' });
+      }
+      // this.giftcardSeleccionada = giftcard;
+      // 1. Genera el QR
+      // this.qrCodeDataUrl = await QRCode.toDataURL(giftcard.codigo);
+  
+      // 2. Espera a que el QR se renderice
+      // setTimeout(async () => {
+        // }, 200); // Espera breve para asegurar que el QR se renderizó
   }
 }
