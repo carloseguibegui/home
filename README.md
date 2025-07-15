@@ -15,7 +15,7 @@ Este proyecto es una solución web para **crear y administrar menús digitales**
 
 ## 🛠️ Tecnologías utilizadas
 
-- **Angular 17+**
+- **Angular 19+**
 - **Firebase (Firestore, Auth, Storage, Hosting)**
 - **TypeScript**
 - **Bootstrap 5** (mobile-first)
