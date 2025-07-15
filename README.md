@@ -122,7 +122,8 @@ firebase deploy
 
 ## 📸 Demo
 
-[https://home-xxxxx.web.app](https://home-xxxxx.web.app) *(Reemplaza con tu URL de Firebase Hosting si aplica)*
+[http://marketingeros.online/](http://marketingeros.online/)
+[http://marketingeros.online/menuonline/requeterico](http://marketingeros.online/menuonline/requeterico)
 
 ## 🙋‍♂️ Autor
 
