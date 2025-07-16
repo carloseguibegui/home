@@ -21,7 +21,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { providePrimeNG } from 'primeng/config';
 import Aura from '@primeng/themes/aura';
 // Firebase configuration (replace with your Firebase project details)
-import { firebaseConfig, latest_token_dev } from '../environments/environment';
+import { firebaseConfig, token } from '../environments/environment';
 
 
 
@@ -37,7 +37,7 @@ export const appConfig: ApplicationConfig = {
     messagingSenderId: firebaseConfig.messagingSenderId,
     measurementId: firebaseConfig.measurementId
   })), provideAnalytics(() => getAnalytics()), ScreenTrackingService, UserTrackingService, provideAppCheck(() => {
-    const provider = new ReCaptchaV3Provider(latest_token_dev);
+    const provider = new ReCaptchaV3Provider(token);
     return initializeAppCheck(undefined, { provider, isTokenAutoRefreshEnabled: false });
   }), provideFunctions(() => getFunctions()), provideMessaging(() => getMessaging()), providePerformance(() => getPerformance()), provideStorage(() => getStorage()), provideRemoteConfig(() => getRemoteConfig()), // Provide Firestore],
   provideAnimations(),

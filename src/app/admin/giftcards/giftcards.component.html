@@ -84,11 +84,11 @@
             </div>
         </div>
         <ng-template #footer>
-            <p-button [loading]="isLoading" label="Generar Imagen" icon="pi pi-image" (click)="generarImagenGiftcard()"
-                [disabled]="isGiftcardInvalida()" />
             <p-button [loading]="isLoading" label="Cancelar" icon="pi pi-times" (click)="hideDialog()" />
-            <p-button [loading]="isLoading" label="Guardar" icon="pi pi-check" (click)="saveGiftcard()"
-                [disabled]="isGiftcardInvalida()" severity="success"disabled />
+            <!-- <p-button [loading]="isLoading" label="Guardar" icon="pi pi-check" (click)="saveGiftcard()"
+            [disabled]="isGiftcardInvalida()" severity="success" /> -->
+            <p-button [loading]="isLoading" label="Generar Imagen" icon="pi pi-image" (click)="generarImagenGiftcard()"
+                [disabled]="isGiftcardInvalida()" severity="success"/>
         </ng-template>
     </p-dialog>
     <!-- 

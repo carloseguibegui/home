@@ -132,5 +132,4 @@ Desarrollado por [Carlos Eguibegui](https://github.com/carloseguibegui)
 
 ## 📄 Licencia
 
-Este proyecto está bajo la licencia MIT. Ver [LICENSE](LICENSE) para más información.
-
+Este proyecto es privado y no está disponible para distribución, copia o uso.
