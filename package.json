@@ -9,7 +9,7 @@
     "test": "ng test",
     "serve:ssr:copy": "node dist/copy/server/server.mjs",
     "deploy:prod": "ng deploy --cname=marketingeros.online",
-    "push:github": "git add . && git commit -m \"$1\" && git push"
+    "push:github": "cmd /c \"git add . && git commit -m %* && git push\""
   },
   "private": true,
   "dependencies": {
