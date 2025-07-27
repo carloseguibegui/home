@@ -73,7 +73,7 @@
                 <td>{{ producto.categoria?.nombre || producto.categoriaId }}</td>
                 <td>
                     <p-tag [value]="(producto.esVisible ?? producto.esActivo) ? 'Activo' : 'Oculto'"
-                        [severity]="(producto.esVisible ?? producto.esActivo) ? 'success' : 'danger'"></p-tag>
+                        [severity]="(producto.esVisible ?? producto.esActivo) ? 'success' : 'danger'"></p-tag> 
                 </td>
                 <td>
                     <p-button icon="pi pi-pencil" class="mr-2" [rounded]="true" [outlined]="true"
@@ -167,7 +167,7 @@
             </div>
         </ng-template>
         <ng-template #footer>
-            <p-button [loading]="isLoading" label="Cancelar" icon="pi pi-times" (click)="hideDialog()" />
+            <p-button [disabled]="isLoading" label="Cancelar" icon="pi pi-times" (click)="hideDialog()" />
             <p-button [disabled]="isProductoInvalido()" [loading]="isLoading" label="Guardar" icon="pi pi-check"
                 (click)="saveProduct()" severity="success" />
         </ng-template>
@@ -182,7 +182,7 @@
             ¿Seguro que deseas eliminar el producto <b>{{ productoAEliminar?.nombre }}</b>?
         </div>
         <ng-template pTemplate="footer">
-            <p-button label="Cancelar" (click)="onCancelDelete()" [loading]="isDeleting"></p-button>
+            <p-button label="Cancelar" (click)="onCancelDelete()" [disabled]="isDeleting"></p-button>
             <p-button label="Eliminar" (click)="onAcceptDelete()" [loading]="isDeleting"
                 severity="danger"></p-button>
         </ng-template>

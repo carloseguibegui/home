@@ -38,7 +38,7 @@ export const appConfig: ApplicationConfig = {
     measurementId: firebaseConfig.measurementId
   })), provideAnalytics(() => getAnalytics()), ScreenTrackingService, UserTrackingService, provideAppCheck(() => {
     const provider = new ReCaptchaV3Provider(token);
-    return initializeAppCheck(undefined, { provider, isTokenAutoRefreshEnabled: false });
+    return initializeAppCheck(undefined, { provider, isTokenAutoRefreshEnabled: true });
   }), provideFunctions(() => getFunctions()), provideMessaging(() => getMessaging()), providePerformance(() => getPerformance()), provideStorage(() => getStorage()), provideRemoteConfig(() => getRemoteConfig()), // Provide Firestore],
   provideAnimations(),
   provideAnimationsAsync(),

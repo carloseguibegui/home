@@ -69,7 +69,7 @@
             </div>
         </div>
         <ng-template #footer>
-            <p-button [loading]="isLoading" label="Cancelar" icon="pi pi-times" (click)="hideCategoriaDialog()" />
+            <p-button [disabled]="isLoading" label="Cancelar" icon="pi pi-times" (click)="hideCategoriaDialog()" />
             <p-button [loading]="isLoading" label="Guardar" icon="pi pi-check" (click)="saveCategoria()"
                 [disabled]="isCategoriaInvalida()" severity="success" />
         </ng-template>
@@ -116,7 +116,7 @@
         </div>
         <small class="text-danger"><b>ATENCIÓN: Borrar la categoría, borrará también todos los productos de la misma. Esta acción no se puede deshacer</b></small>
         <ng-template #footer>
-            <p-button label="Cancelar" (click)="onCancelDelete()" [loading]="isLoading"></p-button>
+            <p-button label="Cancelar" (click)="onCancelDelete()" [disabled]="isLoading"></p-button>
             <p-button label="Eliminar" (click)="onAcceptDelete()" [loading]="isLoading" severity="danger"></p-button>
         </ng-template>
     </p-dialog>

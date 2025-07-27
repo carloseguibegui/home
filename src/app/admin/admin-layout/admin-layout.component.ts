@@ -4,6 +4,7 @@ import { SpinnerComponent } from "../../shared/spinner/spinner.component";
 import { AuthService } from '../../services/auth.service';
 import { CommonModule } from '@angular/common';
 import { trigger, transition, style, animate } from '@angular/animations';
+import { ClienteService } from '../../services/cliente.service';
 
 @Component({
   selector: 'app-admin-layout',
@@ -35,15 +36,17 @@ import { trigger, transition, style, animate } from '@angular/animations';
 })
 export class AdminLayoutComponent implements OnInit {
   clienteId: string | null = null;
+  nombreCliente: string | null = null;
   loading = true; // or false, depending on your spinner logic
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router, private clienteService: ClienteService) { }
 
   ngOnInit(): void {
     // Adjust this logic to match how you get clienteId from AuthService
-    this.authService.getUsuarioActivo().then(usuario => {
+    this.authService.getUsuarioActivo().then(async usuario => {
       if (usuario && usuario.clienteId) {
         this.clienteId = usuario.clienteId;
+        this.nombreCliente = await this.clienteService.getNombreCliente(this.clienteId);
       } else {
         this.router.navigate(['/login']);
       }

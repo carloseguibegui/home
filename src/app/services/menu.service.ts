@@ -2,9 +2,11 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Firestore, collection, getDocs, addDoc, updateDoc, deleteDoc, doc } from '@angular/fire/firestore';
+import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 
 @Injectable({ providedIn: 'root' })
 export class MenuService {
+
   private loadingMenu = false;
   private menuData = new BehaviorSubject<any[]>([]);
   menuData$ = this.menuData.asObservable();
@@ -134,7 +136,7 @@ export class MenuService {
     const productoDoc = doc(this.firestore, `clientes/${cliente}/categoria/${categoriaId}/productos/${productoId}`);
     await deleteDoc(productoDoc);
   }
-  
+
 
   // --- CRUD GIFTCARDS ---
 
@@ -145,35 +147,48 @@ export class MenuService {
     return docRef.id;
   }
 
+  async uploadGiftcardImage(clienteId: string, storagePath: string, blob: Blob): Promise<void> {
+    const storage = getStorage();
+    const fileRef = ref(storage, `clientes/${clienteId}/${storagePath}`);
+    await uploadBytes(fileRef, blob);
+  }
+
+  async getGiftcardImageUrl(clienteId: string, storagePath: string): Promise<string> {
+    const storage = getStorage();
+    const fileRef = ref(storage, `clientes/${clienteId}/${storagePath}`);
+    return await getDownloadURL(fileRef);
+  }
+
+
   // Listar todas las giftcards de un cliente
   async loadGiftcards(cliente: string, force = false) {
-    // Si ya está en caché, úsalo y no consultes Firestore
-    if (!force && this.giftCardsCache[cliente]) {
-      console.log('Usando caché para giftcards de cliente:', cliente);
-      this.giftCardsData.next(this.giftCardsCache[cliente]);
-      return
-    }
-    const giftcards: any[] = [];
-    const giftcardsRef = collection(this.firestore, `clientes/${cliente}/giftcards`);
-    const giftCardSnap = await getDocs(giftcardsRef);
-    // return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-    for (const giftcardDoc of giftCardSnap.docs) {
-      giftcards.push({ id: giftcardDoc.id, ...giftcardDoc.data() });
-    }
-    this.giftCardsCache[cliente] = giftcards; // Guarda en caché
-    localStorage.setItem('giftCardsCache', JSON.stringify(this.giftCardsCache));
-    this.giftCardsData.next(giftcards);
+  // Si ya está en caché, úsalo y no consultes Firestore
+  if (!force && this.giftCardsCache[cliente]) {
+    console.log('Usando caché para giftcards de cliente:', cliente);
+    this.giftCardsData.next(this.giftCardsCache[cliente]);
+    return
   }
+  const giftcards: any[] = [];
+  const giftcardsRef = collection(this.firestore, `clientes/${cliente}/giftcards`);
+  const giftCardSnap = await getDocs(giftcardsRef);
+  // return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+  for (const giftcardDoc of giftCardSnap.docs) {
+    giftcards.push({ id: giftcardDoc.id, ...giftcardDoc.data() });
+  }
+  this.giftCardsCache[cliente] = giftcards; // Guarda en caché
+  localStorage.setItem('giftCardsCache', JSON.stringify(this.giftCardsCache));
+  this.giftCardsData.next(giftcards);
+}
 
   // Actualizar giftcard por id
   async updateGiftcard(cliente: string, giftcardId: string, giftcard: any) {
-    const giftcardDoc = doc(this.firestore, `clientes/${cliente}/giftcards/${giftcardId}`);
-    await updateDoc(giftcardDoc, giftcard);
-  }
+  const giftcardDoc = doc(this.firestore, `clientes/${cliente}/giftcards/${giftcardId}`);
+  await updateDoc(giftcardDoc, giftcard);
+}
 
   // Eliminar giftcard por id
   async deleteGiftcard(cliente: string, giftcardId: string) {
-    const giftcardDoc = doc(this.firestore, `clientes/${cliente}/giftcards/${giftcardId}`);
-    await deleteDoc(giftcardDoc);
-  }
+  const giftcardDoc = doc(this.firestore, `clientes/${cliente}/giftcards/${giftcardId}`);
+  await deleteDoc(giftcardDoc);
+}
 }

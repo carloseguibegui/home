@@ -7,32 +7,61 @@
     </p-toolbar>
 
     <p-table [value]="giftcards" [paginator]="true" [rows]="10" [rowHover]="true" [responsiveLayout]="'scroll'"
-        sortField="nombre">
+        sortField="fechaCreacion">
         <ng-template pTemplate="header">
             <tr>
-                <th pSortableColumn="nombre" style="min-width:16rem">
-                    Nombre
-                    <p-sortIcon field="nombre" />
+                <th pSortableColumn="fechaCreacion" style="min-width:16rem">
+                    Fecha de creación
+                    <p-sortIcon field="fechaCreacion" />
                 </th>
-                <th pSortableColumn="esVisible" style="min-width:16rem">
+                <th pSortableColumn="de" style="min-width:16rem">
+                    De
+                    <p-sortIcon field="de" />
+                </th>
+                <th pSortableColumn="para" style="min-width:16rem">
+                    Para
+                    <p-sortIcon field="para" />
+                </th>
+                <th pSortableColumn="valePor" style="min-width:16rem">
+                    Vale por
+                    <p-sortIcon field="valePor" />
+                </th>
+                <th pSortableColumn="imagen" style="min-width:16rem">
+                    Imagen
+                    <p-sortIcon field="imagen" />
+                </th>
+                <th pSortableColumn="estado" style="min-width:16rem">
                     Estado
-                    <p-sortIcon field="esVisible" />
+                    <p-sortIcon field="estado" />
+                </th>
+                <th pSortableColumn="fechaExpiracion" style="min-width:16rem">
+                    Fecha de expiración
+                    <p-sortIcon field="fechaExpiracion" />
                 </th>
                 <th style="min-width:16rem">Acciones</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-giftcard>
             <tr>
-                <td>{{ giftcard.nombreGiftcard }}</td>
+                <td>{{ formatearFecha(giftcard.fechaCreacion) }}</td>
+                <td>{{ giftcard.de }}</td>
+                <td>{{ giftcard.para }}</td>
+                <td>{{ giftcard.valePor }}</td>
                 <td>
-                    <p-tag [value]="giftcard.esVisible ? 'Activa' : 'Oculta'"
-                        [severity]="giftcard.esVisible ? 'success' : 'danger'"></p-tag>
+                    <img [src]="giftcard.imagen" [alt]="giftcard.nombre" style="width: 64px; cursor:pointer;"
+                        class="rounded" (click)="verImagenGiftcard(giftcard)" />
                 </td>
+                <!-- <td>{{ giftcard.fechaExpiracion}}</td> -->
+                <td>
+                    <p-tag [value]="getEstadoLabel(giftcard.estado)"
+                        [severity]="getEstadoSeverity(giftcard.estado)"></p-tag>
+                </td>
+                <td>{{ formatearFecha(giftcard.fechaExpiracion) }}</td>
                 <td>
                     <p-button icon="pi pi-pencil" class="mr-2" (click)="editGiftcard(giftcard)" [rounded]="true"
                         [outlined]="true"></p-button>
                     <p-button icon="pi pi-trash" severity="danger" [rounded]="true" [outlined]="true"
-                        (click)="deleteGiftcard(giftcard)"></p-button>
+                        (click)="giftcardSeleccionada = giftcard; deleteDialogVisible = true"></p-button>
                     <!-- [disabled]="isGiftcardInvalida()" -->
                     <!-- Botón para generar imagen y compartir -->
                     <!-- <p-button label="Generar imagen para WhatsApp" icon="pi pi-image"
@@ -41,6 +70,26 @@
             </tr>
         </ng-template>
     </p-table>
+
+    <!-- Diálogo para ver imagen generada -->
+    <p-dialog [(visible)]="displayImageDialog" [style]="{ width: '500px' }" header="Vista previa Giftcard"
+        [modal]="true" (onHide)="displayImageDialog = false">
+        <div class="p-fluid">
+            <div *ngIf="giftcardPreviewUrl" style="text-align:center;">
+                <img [src]="giftcardPreviewUrl" alt="Giftcard Preview"
+                    style="max-width:100%;border-radius:16px;box-shadow:0 2px 8px #0002;" />
+            </div>
+            <div *ngIf="!giftcardPreviewUrl" style="text-align:center;">
+                <span class="text-muted">No hay imagen generada.</span>
+            </div>
+        </div>
+        <ng-template #footer *ngIf="giftcardPreviewUrl">
+            <p-button label="Descargar" icon="pi pi-download" (click)="descargarImagenPorUrl()" />
+            <p-button label="Copiar" icon="pi pi-copy" (click)="copiarGiftcardImagen()" />
+            <p-button label="Cerrar" icon="pi pi-times" (click)="displayImageDialog = false" />
+        </ng-template>
+    </p-dialog>
+
 
     <!-- Diálogo de crear/editar -->
     <p-dialog [(visible)]="displayDialog" [style]="{ width: '750px' }" header="Nueva giftcard" [modal]="true"
@@ -67,28 +116,51 @@
                 <label class="block font-bold mb-3" for="fechaExpiracion">Fecha de expiración</label>
                 <br>
                 <p-datepicker dateFormat="dd/mm/yy" [(ngModel)]="giftcardSeleccionada.fechaExpiracion"
-                    [iconDisplay]="'input'" [showIcon]="true" inputId="icondisplay" inputId="buttondisplay"
-                    size="small" required/>
+                    [iconDisplay]="'input'" [showIcon]="true" inputId="icondisplay" inputId="buttondisplay" size="small"
+                    required />
                 <br>
                 <!-- <small class="text-danger" *ngIf="!giftcardSeleccionada.fechaExpiracion">
                     La fecha de expiración es obligatoria. -->
                 <!-- </small> -->
             </div>
-            <div class="pt-4 estado-giftcard">
+            <div class="pt-4 ">
                 <label class="block font-bold mb-3">Estado</label>
-                <p-select [(ngModel)]="giftcardSeleccionada.esVisible" inputId="esVisible" [options]="estadosGiftcard"
-                    name="esVisible" inputId="esVisible" optionLabel="estado" optionValue="value" optionLabel="estado"
-                    placeholder="Seleccione un estado" fluid required/>
-                <!-- <small class="text-danger" *ngIf="giftcardSeleccionada.esVisible == null">El estado es
+                <p-select [(ngModel)]="giftcardSeleccionada.estado" inputId="estado" [options]="estadosGiftcard"
+                    name="estado" inputId="estado" optionLabel="estado" optionValue="value" optionLabel="estado"
+                    placeholder="Seleccione un estado" fluid required />
+                <!-- <small class="text-danger" *ngIf="giftcardSeleccionada.estado == null">El estado es
                     obligatorio.</small> -->
+            </div>
+            <div class="pt-4">
+                <label class="block font-bold mb-3">Color de fondo</label>
+                <br>
+                <input type="color" [(ngModel)]="giftcardSeleccionada.colorFondo" />
+            </div>
+            <div class="pt-4">
+                <label class="block font-bold mb-3">Color de tipografía</label>
+                <br>
+                <input type="color" [(ngModel)]="giftcardSeleccionada.colorFuente" />
+            </div>
+            <div class="pt-4 mb-4" *ngIf="giftcardPreviewUrl">
+                <label class="block font-bold mb-3">Imagen vista previa</label>
+                <br>
+                <ng-container>
+                    <div class="mt-4" style="text-align:center;">
+                        <img [src]="giftcardPreviewUrl" alt="Preview Giftcard"
+                            style="max-width:100%;border-radius:16px;box-shadow:0 2px 8px #0002;" />
+                        <div class="mt-2 flex flex-wrap gap-2 justify-content-center botones-preview">
+                            <p-button label="Descargar" icon="pi pi-download" (click)="descargarGiftcardImagen()" />
+                            <p-button label="Copiar" icon="pi pi-copy" (click)="copiarGiftcardImagen()" />
+                        </div>
+                    </div>
+                </ng-container>
             </div>
         </div>
         <ng-template #footer>
             <p-button [loading]="isLoading" label="Cancelar" icon="pi pi-times" (click)="hideDialog()" />
-            <!-- <p-button [loading]="isLoading" label="Guardar" icon="pi pi-check" (click)="saveGiftcard()"
-            [disabled]="isGiftcardInvalida()" severity="success" /> -->
-            <p-button [loading]="isLoading" label="Generar Imagen" icon="pi pi-image" (click)="generarImagenGiftcard()"
-                [disabled]="isGiftcardInvalida()" severity="success"/>
+            <p-button [loading]="isLoading" label="Guardar" icon="pi pi-image" (click)="generarImagenGiftcard()"
+                [disabled]="isGiftcardInvalida()" severity="success" />
+
         </ng-template>
     </p-dialog>
     <!-- 
@@ -109,23 +181,42 @@
     <p-dialog [style]="{ width: '750px' }" header="Confirmar eliminación" [(visible)]="deleteDialogVisible"
         [closable]="!isLoading" [modal]="true" [closeOnEscape]="!isLoading">
         <div>
-            ¿Seguro que deseas eliminar la giftcard <b>{{ giftcardSeleccionada.nombre }}</b>?
-        </div>
+            ¿Seguro que deseas eliminar la giftcard?
+            <b>
+                <p>
+                    De:{{ giftcardSeleccionada.de }}
+                </p>
+                <p>
+                    Para:{{ giftcardSeleccionada.para}}
+                </p>
+                <p>
+                    Vale por: {{giftcardSeleccionada.valePor}}
+                </p>
+            </b>
+            </div>
         <ng-template #footer>
-            <p-button label="Cancelar" (click)="onCancelDelete()" [loading]="isLoading"></p-button>
+            <p-button label="Cancelar" (click)="onCancelDelete()" [disabled]="isLoading"></p-button>
             <p-button label="Eliminar" (click)="onAcceptDelete()" [loading]="isLoading" severity="danger"></p-button>
         </ng-template>
     </p-dialog>
 
     <!-- Vista previa oculta de la giftcard -->
-    <div #giftcardPreview
-        style="width:550px; padding:15px; background:white; border-radius:16px;  text-align:center; position:absolute; left:-9999px; top:-9999px;">
-        <img [src]="logoClienteUrl" style="width:200px; margin-bottom:12px;">
-        <!-- <h2>{{ giftcardSeleccionada.codigo }}</h2> -->
+    <!-- <div #giftcardPreview [ngStyle]="{
+            'width': '550px',
+            'padding': '15px',
+            'background': giftcardSeleccionada.colorFondo || 'white',
+            'color': giftcardSeleccionada.colorFuente || 'black',
+            'text-align': 'center',
+            'position': 'fixed',
+            'left': '0',
+            'top': '0',
+            'z-index': '9999',
+            'visibility': 'hidden'
+        }">
+        <img [src]="logoClienteBase64 || logoClienteUrl" style="width:200px; margin-bottom:12px;">
         <p><b>De:</b> {{ giftcardSeleccionada.de }}</p>
         <p><b>Para:</b> {{ giftcardSeleccionada.para }}</p>
         <p><b>Vale por:</b> {{ giftcardSeleccionada.valePor }}</p>
-        <!-- <img *ngIf="qrCodeDataUrl" [src]="qrCodeDataUrl" style="width:120px; margin:12px auto;"> -->
         <p>Válida hasta: {{ giftcardSeleccionada.fechaExpiracion | date }}</p>
-    </div>
+    </div> -->
 </div>

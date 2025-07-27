@@ -1,7 +1,7 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { MenuService } from '../../services/menu.service';
 import { animate, style, transition, trigger } from '@angular/animations';
-import html2canvas from 'html2canvas';
+import { Canvg } from 'canvg';
 import * as QRCode from 'qrcode';
 
 
@@ -33,6 +33,7 @@ import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { AuthService } from '../../services/auth.service';
+import { ClienteService } from '../../services/cliente.service';
 import { DatePickerModule } from 'primeng/datepicker';
 
 interface Giftcard {
@@ -71,6 +72,11 @@ interface Giftcard {
 })
 
 export class GiftcardsComponent {
+
+
+  displayImageDialog: boolean = false;
+  nombreCliente: string = '';
+  giftcardPreviewUrl: string | null = null;
   @ViewChild('giftcardPreview') giftcardPreview!: ElementRef;
   giftcards: any = [];
   qrCodeDataUrl: string | null = null;
@@ -89,10 +95,13 @@ export class GiftcardsComponent {
 
   deleteDialogVisible = false;
   logoClienteUrl = '';
+  logoClienteBase64: string | null = null;
 
-  constructor(private menuService: MenuService,
+  constructor(
+    private menuService: MenuService,
     private messageService: MessageService,
     private authService: AuthService,
+    private clienteService: ClienteService,
     private router: Router,
   ) { }
 
@@ -111,10 +120,11 @@ export class GiftcardsComponent {
       950: '{purple.950}'
     });
     this.loading = true;
-    this.authService.getUsuarioActivo().then(usuario => {
+    this.authService.getUsuarioActivo().then(async usuario => {
       if (usuario && usuario.clienteId) {
         this.clienteId = usuario.clienteId;
         this.logoClienteUrl = `https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2F${this.clienteId}%2Flogo0.webp?alt=media`;
+        this.nombreCliente = await this.clienteService.getNombreCliente(this.clienteId);
         this.loadGiftcards();
       } else {
         this.router.navigate(['/login']);
@@ -123,7 +133,7 @@ export class GiftcardsComponent {
   }
 
   async loadGiftcards() {
-    this.giftcards = await this.menuService.loadGiftcards(this.clienteId);
+    this.giftcards = await this.menuService.loadGiftcards(this.clienteId, true);
     this.menuService.giftCardsData$.subscribe({
       next: (giftcards) => {
         this.giftcards = giftcards;
@@ -166,7 +176,7 @@ export class GiftcardsComponent {
       .then(async () => {
         // await this.cargarCategorias();
         await this.menuService.loadGiftcards(this.clienteId, true); // Llama a Firestore y actualiza el observable
-        this.messageService.add({ severity: 'success', summary: 'Eliminado', detail: 'Categoría eliminada', life: 3000 });
+        this.messageService.add({ severity: 'success', summary: 'Eliminado', detail: 'Giftcard eliminada correctamente.', life: 3000 });  
       },
         (error) => {
           this.messageService.add({ severity: 'error', summary: 'Error', detail: 'No se pudo eliminar la categoría', life: 3000 });
@@ -178,18 +188,21 @@ export class GiftcardsComponent {
       });
   }
   onCancelDelete() {
-    this.displayDialog = false;
+    this.deleteDialogVisible = false;
     this.giftcardSeleccionada = {};
+    this.giftcardPreviewUrl = null;
   }
 
   hideDialog() {
     this.displayDialog = false;
     this.deleteDialogVisible = false;
     this.giftcardSeleccionada = {};
+    this.giftcardPreviewUrl = null;
   }
 
   newGiftcard() {
     this.giftcardSeleccionada = {};
+    this.giftcardPreviewUrl = null;
     this.displayDialog = true;
   }
 
@@ -203,16 +216,23 @@ export class GiftcardsComponent {
       !this.giftcardSeleccionada?.para ||
       !this.giftcardSeleccionada?.valePor ||
       !this.giftcardSeleccionada?.fechaExpiracion ||
-      this.giftcardSeleccionada.esVisible == null
+      this.giftcardSeleccionada.estado == null
   }
 
 
   async saveGiftcard() {
-    this.isLoading = true
+    this.isLoading = true;
     if (this.isGiftcardInvalida()) {
       this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Por favor completa todos los campos requeridos.' });
-      this.isLoading = false
+      this.isLoading = false;
       return;
+    }
+    // Asegura que los colores estén definidos
+    if (!this.giftcardSeleccionada.colorFondo) {
+      this.giftcardSeleccionada.colorFondo = '#ffffff';
+    }
+    if (!this.giftcardSeleccionada.colorFuente) {
+      this.giftcardSeleccionada.colorFuente = '#000000';
     }
     if (this.giftcardSeleccionada.id) {
       await this.menuService.updateGiftcard(this.clienteId, this.giftcardSeleccionada.id, this.giftcardSeleccionada)
@@ -222,24 +242,18 @@ export class GiftcardsComponent {
         },
           (error) => {
             this.messageService.add({ severity: 'error', summary: 'Error', detail: 'No se pudo actualizar la giftcard.', life: 3000 });
-          })
+          });
     } else {
       const now = new Date();
       this.giftcardSeleccionada['fechaCreacion'] = now;
-      await this.menuService.addGiftcard(this.clienteId, this.giftcardSeleccionada
-        // {
-        // ...this.giftcardSeleccionada,
-        // estado: 'vigente',
-        // fechaCreacion: now
-        // }
-      )
+      await this.menuService.addGiftcard(this.clienteId, this.giftcardSeleccionada)
         .then(async () => {
           await this.menuService.loadGiftcards(this.clienteId, true); // Llama a Firestore y actualiza el observable
           this.messageService.add({ severity: 'success', summary: 'Creada', detail: 'Giftcard creada correctamente.' });
         },
           (error) => {
             this.messageService.add({ severity: 'error', summary: 'Error', detail: 'No se pudo crear la giftcard.', life: 3000 });
-          })
+          });
     }
     this.isLoading = false;
     this.displayDialog = false;
@@ -248,50 +262,154 @@ export class GiftcardsComponent {
 
   // Llama esto cuando selecciones una giftcard
   async generarImagenGiftcard() {
-    // Convierte el div en imagen
-    const element = this.giftcardPreview.nativeElement;
-    const img: HTMLImageElement | null = element.querySelector('img');
-    
-    if (img && !img.complete) {
-      // Espera a que la imagen termine de cargar
-      await new Promise<void>((resolve) => {
-        img.onload = () => resolve();
-        img.onerror = () => resolve(); // Si falla, igual sigue (evita bloqueo)
-      });
+    // Genera SVG dinámico para la giftcard
+    const logoBase64 = this.logoClienteBase64 || 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAMAAACahl6sAAAAA1BMVEUAAACnej3aAAAASElEQVR4nO3BMQEAAAgDoJvc6FEOhAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgH8BzQAAZQGvVwAAAABJRU5ErkJggg==';
+    const svg = `
+      <svg xmlns='http://www.w3.org/2000/svg' width='550' height='350'>
+        <rect x='0' y='0' width='550' height='350' rx='16' fill='${this.giftcardSeleccionada.colorFondo || '#fff'}'/>
+        <image href='${logoBase64}' x='175' y='20' width='200' height='60'/>
+        <text x='50%' y='90' text-anchor='middle' font-size='38' fill='${this.giftcardSeleccionada.colorFuente || '#000'}' font-family='Pacifico, cursive'>Giftcard ${this.nombreCliente}</text>
+        <text x='50%' y='160' text-anchor='middle' font-size='22' fill='${this.giftcardSeleccionada.colorFuente || '#000'}' font-family='Nunito'>De: ${this.giftcardSeleccionada.de}</text>
+        <text x='50%' y='200' text-anchor='middle' font-size='22' fill='${this.giftcardSeleccionada.colorFuente || '#000'}' font-family='Nunito'>Para: ${this.giftcardSeleccionada.para}</text>
+        <text x='50%' y='240' text-anchor='middle' font-size='22' fill='${this.giftcardSeleccionada.colorFuente || '#000'}' font-family='Nunito'>Vale por: ${this.giftcardSeleccionada.valePor}</text>
+        <text x='50%' y='280' text-anchor='middle' font-size='18' fill='${this.giftcardSeleccionada.colorFuente || '#000'}' font-family='Nunito'>Válida hasta: ${this.giftcardSeleccionada.fechaExpiracion ? (new Date(this.giftcardSeleccionada.fechaExpiracion)).toLocaleDateString() : ''}</text>
+      </svg>
+    `;
+    // Crea canvas y renderiza SVG con canvg
+    const canvas = document.createElement('canvas');
+    canvas.width = 550;
+    canvas.height = 350;
+    const ctx = canvas.getContext('2d');
+    let dataUrl = '';
+    if (ctx) {
+      const v = await Canvg.fromString(ctx, svg);
+      await v.render();
+      dataUrl = canvas.toDataURL('image/png');
+      this.giftcardPreviewUrl = dataUrl;
     }
-    // Pequeña espera extra para asegurar renderizado
-    await new Promise(res => setTimeout(res, 100));
 
-    const canvas = await html2canvas(element);
-    const dataUrl = canvas.toDataURL('image/png');
-    // 4. Intenta compartir (si el navegador lo soporta)
-    if (navigator.canShare && navigator.canShare({ files: [] })) {
+    // Guarda la giftcard en Firestore y la imagen en Storage
+    // 1. Guarda la giftcard en Firestore
+    let giftcardId = this.giftcardSeleccionada.id;
+    if (!giftcardId) {
+      const now = new Date();
+      this.giftcardSeleccionada['fechaCreacion'] = now;
+      giftcardId = await this.menuService.addGiftcard(this.clienteId, this.giftcardSeleccionada);
+      this.messageService.add({ severity: 'success', summary: 'Creada', detail: 'Giftcard creada correctamente.' });
+    } else {
+      this.messageService.add({ severity: 'success', summary: 'Actualizada', detail: 'Giftcard actualizada correctamente.' });
+      await this.menuService.updateGiftcard(this.clienteId, giftcardId, this.giftcardSeleccionada);
+    }
+
+    // 2. Sube la imagen a Storage y guarda la URL en la giftcard
+    if (dataUrl) {
+      // Convierte base64 a Blob
       const response = await fetch(dataUrl);
       const blob = await response.blob();
-      const file = new File([blob], `giftcard_${this.giftcardSeleccionada.de.replaceAll(' ', '_').toLowerCase()}_${this.giftcardSeleccionada.para.replaceAll(' ', '_').toLowerCase()}_${this.giftcardSeleccionada.fechaExpiracion.toString().replaceAll('/','_')}.png`, { type: 'image/png' });
+      // Sube a Storage bajo la carpeta giftcard
+      const storagePath = `giftcard/${giftcardId}.png`;
+      await this.menuService.uploadGiftcardImage(this.clienteId, storagePath, blob);
+      // Obtiene la URL de descarga
+      const imageUrl = await this.menuService.getGiftcardImageUrl(this.clienteId, storagePath);
+      // Actualiza el documento de la giftcard con la URL de la imagen
+      await this.menuService.updateGiftcard(this.clienteId, giftcardId, {
+        ...this.giftcardSeleccionada,
+        imagen: imageUrl
+      });
+      this.messageService.add({ severity: 'success', summary: 'Imagen subida', detail: 'Imagen de giftcard subida y guardada.' });
+    }
+    this.loadGiftcards()
+    this.hideDialog()
+  }
+
+  descargarImagenGiftcardDesdeUrl(url: string, nombre: string) {
+    if (url) {
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = nombre || 'giftcard.png';
+      link.click();
+      this.messageService.add({ severity: 'success', summary: 'Descargada', detail: 'Giftcard descargada correctamente.' });
+    }
+  }
+
+  descargarGiftcardImagen() {
+    if (this.giftcardPreviewUrl) {
+      const link = document.createElement('a');
+      link.href = this.giftcardPreviewUrl;
+      link.download = `giftcard_${this.giftcardSeleccionada.de.replaceAll(' ', '_').toLowerCase()}_${this.giftcardSeleccionada.para.replaceAll(' ', '_').toLowerCase()}_${this.giftcardSeleccionada.fechaExpiracion ? (new Date(this.giftcardSeleccionada.fechaExpiracion)).toLocaleDateString().replaceAll('/', '_') : ''}.png`;
+      link.click();
+      this.messageService.add({ severity: 'success', summary: 'Descargada', detail: 'Giftcard descargada correctamente.' });
+    }
+  }
+
+  async copiarGiftcardImagen() {
+    console.log('Copiando imagen al portapapeles...', this.giftcardPreviewUrl);
+    if (this.giftcardPreviewUrl) {
+      const response = await fetch(this.giftcardPreviewUrl);
+      const blob = await response.blob();
       try {
-          await navigator.share({
-            files: [file],
-            title: 'Giftcard',
-            text: '¡Te regalo esta giftcard!',
-          });
-        } catch (e) {
-          // Si el usuario cancela, no hacer nada
-        }
-      } else {
-        // 5. Fallback: descarga la imagen y muestra instrucciones
-        const link = document.createElement('a');
-        link.href = dataUrl;
-        link.download = `giftcard_${this.giftcardSeleccionada.de.replaceAll(' ', '_').toLowerCase()}_${this.giftcardSeleccionada.para.replaceAll(' ', '_').toLowerCase()}_${this.giftcardSeleccionada.fechaExpiracion.toString().replaceAll('/', '_').replaceAll('(','')}.png`;
-        link.click();
-        this.messageService.add({ severity: 'success', summary: 'Creada', detail: 'Giftcard creada correctamente.' });
+        await navigator.clipboard.write([
+          new window.ClipboardItem({ 'image/png': blob })
+        ]);
+        this.messageService.add({ severity: 'success', summary: 'Copiada', detail: 'Imagen copiada al portapapeles.' });
+      } catch (e) {
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'No se pudo copiar la imagen.' });
       }
-      // this.giftcardSeleccionada = giftcard;
-      // 1. Genera el QR
-      // this.qrCodeDataUrl = await QRCode.toDataURL(giftcard.codigo);
-  
-      // 2. Espera a que el QR se renderice
-      // setTimeout(async () => {
-        // }, 200); // Espera breve para asegurar que el QR se renderizó
+    }
+  }
+
+
+  getEstadoLabel(estado: string): string {
+    const found = this.estadosGiftcard.find(e => e.value.toLowerCase() === (estado || '').toLowerCase());
+    return found ? found.estado : estado;
+  }
+
+  getEstadoSeverity(estado: string): string {
+    switch ((estado || '').toLowerCase()) {
+      case 'vigente': return 'success';
+      case 'usada': return 'warning';
+      case 'expirada': return 'danger';
+      default: return 'info';
+    }
+  }
+
+  verImagenGiftcard(giftcard: any) {
+    this.giftcardPreviewUrl = giftcard.imagen || null;
+    this.displayImageDialog = true;
+    this.giftcardSeleccionada = { ...giftcard };
+  }
+
+  descargarImagenPorUrl() {
+    if (this.giftcardPreviewUrl) {
+      fetch(this.giftcardPreviewUrl)
+        .then(response => response.blob())
+        .then(blob => {
+          const blobUrl = URL.createObjectURL(blob);
+          const link = document.createElement('a');
+          link.href = blobUrl;
+          link.download = 'giftcard.png';
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+          URL.revokeObjectURL(blobUrl);
+          this.messageService.add({ severity: 'success', summary: 'Descargada', detail: 'Giftcard descargada correctamente.' });
+        })
+        .catch(() => {
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: 'No se pudo descargar la imagen.' });
+        });
+    }
+  }
+
+  formatearFecha(fecha: any): string {
+    if (!fecha) return '';
+    let dateObj: Date;
+    if (fecha instanceof Date) {
+      dateObj = fecha;
+    } else if (fecha.seconds) {
+      dateObj = new Date(fecha.seconds * 1000);
+    } else {
+      dateObj = new Date(fecha);
+    }
+    return dateObj.toLocaleString('es-AR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit'});
   }
 }
