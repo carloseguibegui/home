@@ -176,7 +176,7 @@ export class GiftcardsComponent {
       .then(async () => {
         // await this.cargarCategorias();
         await this.menuService.loadGiftcards(this.clienteId, true); // Llama a Firestore y actualiza el observable
-        this.messageService.add({ severity: 'success', summary: 'Eliminado', detail: 'Giftcard eliminada correctamente.', life: 3000 });  
+        this.messageService.add({ severity: 'success', summary: 'Eliminado', detail: 'Giftcard eliminada correctamente.', life: 3000 });
       },
         (error) => {
           this.messageService.add({ severity: 'error', summary: 'Error', detail: 'No se pudo eliminar la categoría', life: 3000 });
@@ -343,18 +343,21 @@ export class GiftcardsComponent {
   }
 
   async copiarGiftcardImagen() {
-    console.log('Copiando imagen al portapapeles...', this.giftcardPreviewUrl);
-    if (this.giftcardPreviewUrl) {
+    if (!this.giftcardPreviewUrl) return;
+    // Verifica soporte de Clipboard API
+    if (!('clipboard' in navigator) || typeof window.ClipboardItem === 'undefined') {
+      this.messageService.add({ severity: 'warn', summary: 'No soportado', detail: 'Tu navegador no soporta copiar imágenes al portapapeles.' });
+      return;
+    }
+    try {
       const response = await fetch(this.giftcardPreviewUrl);
       const blob = await response.blob();
-      try {
-        await navigator.clipboard.write([
-          new window.ClipboardItem({ 'image/png': blob })
-        ]);
-        this.messageService.add({ severity: 'success', summary: 'Copiada', detail: 'Imagen copiada al portapapeles.' });
-      } catch (e) {
-        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'No se pudo copiar la imagen.' });
-      }
+      await (navigator as any).clipboard.write([
+        new (window as any).ClipboardItem({ 'image/png': blob })
+      ]);
+      this.messageService.add({ severity: 'success', summary: 'Copiada', detail: 'Imagen copiada al portapapeles.' });
+    } catch (e) {
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: 'No se pudo copiar la imagen. Probá actualizar tu navegador.' });
     }
   }
 
@@ -379,24 +382,47 @@ export class GiftcardsComponent {
     this.giftcardSeleccionada = { ...giftcard };
   }
 
-  descargarImagenPorUrl() {
+
+  async descargarImagenPorUrl() {
     if (this.giftcardPreviewUrl) {
-      fetch(this.giftcardPreviewUrl)
-        .then(response => response.blob())
-        .then(blob => {
-          const blobUrl = URL.createObjectURL(blob);
+      try {
+        let blob: Blob;
+        // Si es base64/dataURL
+        if (this.giftcardPreviewUrl.startsWith('data:')) {
+          const res = await fetch(this.giftcardPreviewUrl);
+          blob = await res.blob();
+          const url = URL.createObjectURL(blob);
           const link = document.createElement('a');
-          link.href = blobUrl;
+          link.href = url;
           link.download = 'giftcard.png';
           document.body.appendChild(link);
           link.click();
           document.body.removeChild(link);
-          URL.revokeObjectURL(blobUrl);
+          URL.revokeObjectURL(url);
           this.messageService.add({ severity: 'success', summary: 'Descargada', detail: 'Giftcard descargada correctamente.' });
-        })
-        .catch(() => {
-          this.messageService.add({ severity: 'error', summary: 'Error', detail: 'No se pudo descargar la imagen.' });
-        });
+        } else {
+          // Si es una URL remota, intenta fetch (puede fallar por CORS)
+          try {
+            const res = await fetch(this.giftcardPreviewUrl, { mode: 'cors' });
+            blob = await res.blob();
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'giftcard.png';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+            this.messageService.add({ severity: 'success', summary: 'Descargada', detail: 'Giftcard descargada correctamente.' });
+          } catch (e) {
+            // Fallback: abrir en nueva pestaña y mostrar mensaje
+            window.open(this.giftcardPreviewUrl, '_blank');
+            this.messageService.add({ severity: 'warn', summary: 'Descarga manual', detail: 'Por seguridad del servidor, la imagen se abrió en una nueva pestaña. Usá clic derecho > Guardar como.' });
+          }
+        }
+      } catch (e) {
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'No se pudo descargar la imagen.' });
+      }
     }
   }
 
@@ -410,6 +436,6 @@ export class GiftcardsComponent {
     } else {
       dateObj = new Date(fecha);
     }
-    return dateObj.toLocaleString('es-AR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit'});
+    return dateObj.toLocaleString('es-AR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit' });
   }
 }
