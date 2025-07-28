@@ -1753,7 +1753,6 @@ h4 {
 a {
     text-decoration: none;
 }
-
 .floating_btn {
     position: fixed;
     bottom: 10px;
@@ -1766,6 +1765,16 @@ a {
     justify-content: center;
     z-index: 1000;
 }
+.floating_btn-whatsapp {
+    bottom: 10px;
+    right: 10px;
+}
+.floating_btn-calendly {
+    bottom: 100px;
+    right: 10px;
+}
+
+
 
 @keyframes pulsing {
     to {
@@ -1774,7 +1783,6 @@ a {
 }
 
 .contact_icon {
-    background-color: #42db87;
     color: #fff;
     width: 60px;
     height: 60px;
@@ -1787,7 +1795,6 @@ a {
     justify-content: center;
     transform: translatey(0px);
     animation: pulse 1.5s infinite;
-    box-shadow: 0 0 0 0 #42db87;
     -webkit-animation: pulsing 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
     -moz-animation: pulsing 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
     -ms-animation: pulsing 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
@@ -1798,6 +1805,14 @@ a {
     transition: all 300ms ease-in-out;
 }
 
+.contact_icon-calendly {
+    background-color: #5846f9;
+    box-shadow: 0 0 0 0 #5846f9;
+}
+.contact_icon-whatsapp {
+    background-color: #25D366;
+    box-shadow: 0 0 0 0 #25D366;
+}
 
 .text_icon {
     margin-top: 8px;
