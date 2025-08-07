@@ -72,8 +72,8 @@
                 <td>{{ producto.precio | currency:'ARS' }}</td>
                 <td>{{ producto.categoria?.nombre || producto.categoriaId }}</td>
                 <td>
-                    <p-tag [value]="(producto.esVisible ?? producto.esActivo) ? 'Activo' : 'Oculto'"
-                        [severity]="(producto.esVisible ?? producto.esActivo) ? 'success' : 'danger'"></p-tag> 
+                    <p-tag [value]="(producto.esVisible) ? 'Activo' : 'Oculto'"
+                        [severity]="(producto.esVisible) ? 'success' : 'danger'"></p-tag> 
                 </td>
                 <td>
                     <p-button icon="pi pi-pencil" class="mr-2" [rounded]="true" [outlined]="true"
@@ -127,10 +127,10 @@
                             *ngIf="productoSeleccionado.hasOwnProperty('esVisible'); else activoSelect" inputId="esVisible" [options]="estados"
                             name="esVisible" optionLabel="estado" optionValue="value" placeholder="Seleccione un estado" fluid />
                         <ng-template #activoSelect>
-                            <p-select [(ngModel)]="productoSeleccionado.esActivo" inputId="esActivo" [options]="estados" name="esActivo"
+                            <p-select [(ngModel)]="productoSeleccionado.esVisible" inputId="esVisible" [options]="estados" name="esVisible"
                                 optionLabel="estado" optionValue="value" placeholder="Seleccione un estado" fluid />        </ng-template>
                                 <small class="text-danger"
-                                    *ngIf="submitted && (productoSeleccionado.esVisible == null && productoSeleccionado.esActivo == null)">
+                                    *ngIf="submitted && (productoSeleccionado.esVisible == null && productoSeleccionado.esVisible == null)">
                                     El estado es obligatorio.                          </small>
                     </div>
                     <div class="pt-4" *ngIf="productoSeleccionado?.idProducto && productoSeleccionado?.imagen">
