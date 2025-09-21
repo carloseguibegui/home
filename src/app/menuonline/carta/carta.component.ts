@@ -23,7 +23,7 @@ import { Firestore, doc, getDoc } from '@angular/fire/firestore';
         animate('0ms ease-in', style({ opacity: 1 }))
       ]),
       transition(':leave', [
-        animate('500ms ease-out', style({ opacity: 0 }))
+        animate('200ms ease-out', style({ opacity: 0 }))
       ])
     ]),
     trigger('fadeContent', [
@@ -31,7 +31,7 @@ import { Firestore, doc, getDoc } from '@angular/fire/firestore';
         // style({ opacity: 0, transform: 'translateY(30px)' }),
         style({ opacity: 0 }),
         // animate('600ms 100ms cubic-bezier(0.23, 1, 0.32, 1)', style({ opacity: 1, transform: 'none' }))
-        animate('0ms ease-in', style({ opacity: 1 }))
+        animate('110ms ease-in', style({ opacity: 1 }))
       ]),
       transition(':leave', [
         animate('0ms ease-out', style({ opacity: 0 }))
@@ -112,7 +112,7 @@ export class CartaComponent {
       console.log('Categorias desde cache:', this.categorias);
       setTimeout(() => {
         this.loading = false;
-      }, 500);
+      }, 10);
     } else {
       // Solo llama al servicio si no hay cache
       this.menuService.loadCategorias(this.cliente,false,true);
@@ -123,7 +123,7 @@ export class CartaComponent {
           localStorage.setItem(`categorias_${this.cliente}`, JSON.stringify(data));
           setTimeout(() => {
             this.loading = false;
-          }, 500);
+          }, 10);
         }
       });
     }

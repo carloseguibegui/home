@@ -23,7 +23,7 @@ import Aura from '@primeng/themes/aura';
 // Firebase configuration (replace with your Firebase project details)
 import { firebaseConfig, token } from '../environments/environment';
 
-
+(<any>window).FIREBASE_APPCHECK_DEBUG_TOKEN = true;
 
 export const appConfig: ApplicationConfig = {
   providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes), provideClientHydration(withEventReplay()), provideHttpClient(),

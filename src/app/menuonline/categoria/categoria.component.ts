@@ -31,7 +31,7 @@ import { Title } from '@angular/platform-browser';
         animate('0ms ease-in', style({ opacity: 1 }))
       ]),
       transition(':leave', [
-        animate('300ms ease-out', style({ opacity: 0 }))
+        animate('200ms ease-out', style({ opacity: 0 }))
       ])
     ]),
     trigger('fadeContent', [
@@ -39,7 +39,7 @@ import { Title } from '@angular/platform-browser';
         // style({ opacity: 0, transform: 'translateY(30px)' }),
         style({ opacity: 0 }),
         // animate('600ms 100ms cubic-bezier(0.23, 1, 0.32, 1)', style({ opacity: 1, transform: 'none' }))
-        animate('0ms ease-in', style({ opacity: 1 }))
+        animate('110ms ease-in', style({ opacity: 1 }))
       ]),
       transition(':leave', [
         animate('0ms ease-out', style({ opacity: 0 }))
@@ -157,7 +157,7 @@ export class CategoriaComponent implements OnInit {
           this.data = JSON.parse(cache_data || '[]');
           setTimeout(() => {
             this.loading = false;
-          }, 500);
+          }, 10);
         } else {
           console.log('Cargando desde Firestore');
           // Solo llama al servicio si no hay cache
@@ -176,7 +176,7 @@ export class CategoriaComponent implements OnInit {
                 localStorage.setItem(`data_${this.cliente}_${this.categoria}`, JSON.stringify(this.data));
                 setTimeout(() => {
                   this.loading = false;
-                }, 500);
+                }, 10);
               }
               const objeto_categoria = this.data.find((item: { route: string; }) => item.route === this.categoria);
               if (objeto_categoria) {
