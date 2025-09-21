@@ -1872,7 +1872,8 @@ h2 {
 #caracteristicas {
     position: relative;
     z-index: 2;
-    background: linear-gradient(309deg, #7c25ba 0%, color-mix(in srgb, #5845f5, transparent 10%) 100%), url("../../../public/assets/landing/hero-bg.webp") center center no-repeat;
+    /* background: linear-gradient(309deg, #7c25ba 0%, color-mix(in srgb, #5845f5, transparent 10%) 100%), url("../../../public/assets/landing/hero-bg.webp") center center no-repeat; */
+    background-color: var(--accent-color);
     background-size: cover;
 }
 
