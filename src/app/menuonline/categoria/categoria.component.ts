@@ -1,389 +1,479 @@
-import { Component, Injectable, OnInit, Renderer2 } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import {
+        Component,
+        OnInit,
+        OnDestroy,
+        Renderer2,
+        ChangeDetectionStrategy,
+        ChangeDetectorRef
+} from '@angular/core';
+import { ActivatedRoute, Router, NavigationEnd, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
 import { CopyrightComponent } from '../../shared/copyright/copyright.component';
 import { HeaderComponent } from "../../shared/header/header.component";
 import { BackgroundComponent } from "../../shared/background/background.component";
 import { SearchBarComponent } from "../../shared/search-bar/search-bar.component";
-import { Router, NavigationEnd } from '@angular/router';
-import { filter } from 'rxjs/operators';
 import { ScrollToTopComponent } from "../../shared/scroll-to-top/scroll-to-top.component";
 import { SliderComponent } from "../../shared/slider/slider.component";
+import { SpinnerComponent } from "../../shared/spinner/spinner.component";
 import { MenuService } from '../../services/menu.service';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
-import { SpinnerComponent } from "../../shared/spinner/spinner.component";
+import { takeUntil, filter } from 'rxjs/operators';
 import { Firestore, doc, getDoc } from '@angular/fire/firestore';
 import { Title } from '@angular/platform-browser';
 
 @Component({
-  selector: 'app-categoria',
-  templateUrl: './categoria.component.html',
-  styleUrl: './categoria.component.css',
-  standalone: true,
-  imports: [CommonModule, RouterModule, CopyrightComponent, HeaderComponent, BackgroundComponent, SearchBarComponent, ScrollToTopComponent, SliderComponent, SpinnerComponent],
-  animations: [
-    trigger('fadeInOut', [
-      transition(':enter', [
-        style({ opacity: 0 }),
-        animate('0ms ease-in', style({ opacity: 1 }))
-      ]),
-      transition(':leave', [
-        animate('200ms ease-out', style({ opacity: 0 }))
-      ])
-    ]),
-    trigger('fadeContent', [
-      transition(':enter', [
-        // style({ opacity: 0, transform: 'translateY(30px)' }),
-        style({ opacity: 0 }),
-        // animate('600ms 100ms cubic-bezier(0.23, 1, 0.32, 1)', style({ opacity: 1, transform: 'none' }))
-        animate('110ms ease-in', style({ opacity: 1 }))
-      ]),
-      transition(':leave', [
-        animate('0ms ease-out', style({ opacity: 0 }))
-      ])
-    ])
-  ]
+        selector: 'app-categoria',
+        standalone: true,
+        imports: [
+                CommonModule,
+                RouterModule,
+                CopyrightComponent,
+                HeaderComponent,
+                BackgroundComponent,
+                SearchBarComponent,
+                ScrollToTopComponent,
+                SliderComponent,
+                SpinnerComponent
+        ],
+        templateUrl: './categoria.component.html',
+        styleUrl: './categoria.component.css',
+        changeDetection: ChangeDetectionStrategy.OnPush,
+        animations: [
+                trigger('fadeInOut', [
+                        transition(':enter', [
+                                style({ opacity: 0 }),
+                                animate('0ms ease-in', style({ opacity: 1 }))
+                        ]),
+                        transition(':leave', [
+                                animate('200ms ease-out', style({ opacity: 0 }))
+                        ])
+                ]),
+                trigger('fadeContent', [
+                        transition(':enter', [
+                                style({ opacity: 0 }),
+                                animate('110ms ease-in', style({ opacity: 1 }))
+                        ]),
+                        transition(':leave', [
+                                animate('0ms ease-out', style({ opacity: 0 }))
+                        ])
+                ])
+        ]
 })
-@Injectable({ providedIn: 'root' })
-export class CategoriaComponent implements OnInit {
-  cardImage = ''
-  logoImage = ''
-  backgroundImage = ''
-  private destroy$ = new Subject<void>();
-  data: any = []
-  private lastTap = 0;
-  doubleTapTimeout: any = null;
-  zoomLevel: number = 1;
-  zoomTransform: string = 'scale(1)';
-  loading = true;
-  visible = false;
-  nombreCategoria: string = '';
-  items: any[] = [];
-  itemsOriginales: any[] = [];
-  item_placeholder: string = '';
-  searchTerm: string = '';
-  isLoading: boolean = false;
-  categorias: any[] = []
-  lightboxVisible = false;
-  lightboxImage: string = '';
-  container = document.querySelector('.container') as HTMLElement;
-  cliente: any;
-  categoria: string = '';
-  categoriaKey: string = '';
-  nombreCliente: string = '';
+export class CategoriaComponent implements OnInit, OnDestroy {
+        // Propiedades públicas
+        categorias: any[] = [];
+        items: any[] = [];
+        itemsOriginales: any[] = [];
 
-  constructor(
-    private menuService: MenuService,
-    private route: ActivatedRoute,
-    private router: Router,
-    private renderer: Renderer2,
-    private firestore: Firestore,
-    private titleService: Title
-  ) {
-  }
+        cliente: string = '';
+        categoria: string = '';
+        nombreCliente: string = '';
+        nombreCategoria: string = '';
+        item_placeholder: string = '';
+        searchTerm: string = '';
 
-  async obtenerNombreCliente() {
-    if (!this.cliente) return;
-    try {
-      const clienteRef = doc(this.firestore, `clientes/${this.cliente}`);
-      const clienteSnap = await getDoc(clienteRef);
-      let nombre = this.cliente.charAt(0).toUpperCase() + this.cliente.slice(1);
-      if (clienteSnap.exists()) {
-        const data: any = clienteSnap.data();
-        if (data && data.nombreCliente) {
-          nombre = data.nombreCliente;
+        cardImage = '';
+        logoImage = '';
+        backgroundImage = '';
+
+        lightboxVisible = false;
+        lightboxImage = '';
+        loading = true;
+        visible = false;
+
+        zoomLevel: number = 1;
+        zoomTransform: string = 'scale(1)';
+
+        // Propiedades privadas
+        private destroy$ = new Subject<void>();
+        private isDragging = false;
+        private startX = 0;
+        private startY = 0;
+        private offsetX = 0;
+        private offsetY = 0;
+        private lastTap = 0;
+
+        constructor(
+                private menuService: MenuService,
+                private route: ActivatedRoute,
+                private router: Router,
+                private renderer: Renderer2,
+                private firestore: Firestore,
+                private titleService: Title,
+                private cdr: ChangeDetectorRef
+        ) { }
+
+        get clienteClass(): string {
+                return `cliente-${this.cliente.toLowerCase()}`;
         }
-      }
-      this.nombreCliente = nombre.toUpperCase();
-      this.actualizarTitulo();
-    } catch (e) {
-      this.nombreCliente = this.cliente.charAt(0).toUpperCase() + this.cliente.slice(1);
-      this.actualizarTitulo();
-    }
-  }
 
-  actualizarTitulo() {
-    this.titleService.setTitle(`${this.nombreCliente} | Carta Digital`);
-  }
+        async ngOnInit(): Promise<void> {
+                try {
+                        this.loading = true;
+                        this.cdr.markForCheck();
 
-  ngOnInit() {
-    this.loading = true;
-    const now = Date.now();
-    const lastCache = Number(localStorage.getItem('lastCacheClear') || '0');
-    const twelveHours = 60 * 60 * 1000 * 24; //horas en milisegundos
-    if (!lastCache || now - lastCache > twelveHours) {
-      // Borra solo las claves relacionadas al menú/categorías
-      Object.keys(localStorage).forEach(key => {
-        if (key.startsWith('categorias_') || key.startsWith('data_')) {
-          localStorage.removeItem(key);
-        }
-      });
-      localStorage.setItem('lastCacheClear', now.toString());
-    }
-    this.route.paramMap
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(async params => {
-        this.cliente = params.get('cliente') || '';
-        // --- Comprobar si el cliente está activo ---
-        try {
-          const clienteRef = doc(this.firestore, `clientes/${this.cliente}`);
-          const clienteSnap = await getDoc(clienteRef);
-          if (!clienteSnap.exists() || clienteSnap.data()?.['esActivo'] === false) {
-            this.router.navigate(['/']);
-            return;
-          }
-        } catch (e) {
-          this.router.navigate(['/']);
-          return;
-        }
-        await this.obtenerNombreCliente();
-        this.cardImage = `https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2F${this.cliente}%2Ffondo-claro.webp?alt=media&token=839efda5-c17b-4fb1-bfb6-6605379525f`
-        this.logoImage = `https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2F${this.cliente}%2Flogo0.webp?alt=media&token=5a1f3250-7d01-4e31-98a8-979227048f0`
-        this.backgroundImage = `https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2F${this.cliente}%2Fbackground_image.webp?alt=media&token=ae3fb9d5-5966-4c65-9cd5-0828443bc57b`
-        const nuevaCategoria = params.get('categoria') || '';
+                        // ✅ Limpia caché periódicamente
+                        this.limpiarCachePeriodicamente();
 
-        this.categoria = nuevaCategoria;
-        this.categoriaKey = nuevaCategoria + '-' + Date.now();
+                        // ✅ Escucha cambios en la URL
+                        this.route.paramMap
+                                .pipe(takeUntil(this.destroy$))
+                                .subscribe(async (params) => {
+                                        const nuevoCliente = params.get('cliente') || '';
+                                        const nuevaCategoria = params.get('categoria') || '';
 
-        // Intenta cargar categorías desde localStorage primero
-        const cache_categorias = localStorage.getItem(`categorias_${this.cliente}`);
-        const cache_data = localStorage.getItem(`data_${this.cliente}_${this.categoria}`);
-        if ((cache_categorias && cache_data)) {
-          console.log('Cargando desde cache');
-          this.categorias = JSON.parse(cache_categorias || '[]');
-          this.data = JSON.parse(cache_data || '[]');
-          setTimeout(() => {
-            this.loading = false;
-          }, 10);
-        } else {
-          console.log('Cargando desde Firestore');
-          // Solo llama al servicio si no hay cache
-          this.menuService.loadMenuFirestore(this.cliente);
-          this.menuService.menuData$
-            .pipe(takeUntil(this.destroy$))
-            .subscribe(data => {
-              this.data = data;
-              this.categorias = data.map((item: any) => ({
-                nombre: item.nombre,
-                route: item.route,
-                icon: item.icon
-              }));
-              if (data && data.length > 0) {
-                localStorage.setItem(`categorias_${this.cliente}`, JSON.stringify(this.categorias));
-                localStorage.setItem(`data_${this.cliente}_${this.categoria}`, JSON.stringify(this.data));
-                setTimeout(() => {
-                  this.loading = false;
-                }, 10);
-              }
-              const objeto_categoria = this.data.find((item: { route: string; }) => item.route === this.categoria);
-              if (objeto_categoria) {
-                this.nombreCategoria = objeto_categoria.nombre;
-                let productos = objeto_categoria.productos || [];
-                // Aplica la lógica especial solo si la categoría es 'tostados-sandwiches'
-                if ((objeto_categoria.route || '').toLowerCase() === 'tostados-sandwiches' && (this.cliente || '').toLowerCase() === 'requeterico') {
-                  const tostados = productos.filter((p: any) => (p.nombre || '').toLowerCase().includes('tostado'));
-                  // const ciabattas = productos.filter((p: any) => (p.nombre || '').toLowerCase().includes('ciabatta') || (p.nombre || '').toLowerCase().includes('sandwich'));
-                  const otros = productos.filter((p: any) => !((p.nombre || '').toLowerCase().includes('tostado')));
-                  productos = [...tostados, ...otros];
+                                        if (!nuevoCliente) return;
+
+                                        // ✅ Si cambió el cliente
+                                        if (this.cliente !== nuevoCliente) {
+                                                this.cliente = nuevoCliente;
+
+                                                if (!(await this.verificarClienteActivo())) return;
+
+                                                await this.obtenerNombreCliente();
+                                                this.configurarImagenes();
+                                                await this.cargarCategorias();
+
+                                                this.cdr.markForCheck();
+                                        }
+
+                                        // ✅ Si cambió la categoría
+                                        if (this.categoria !== nuevaCategoria) {
+                                                this.categoria = nuevaCategoria;
+                                                await this.cargarProductosPorCategoria();
+                                                this.cdr.markForCheck();
+                                        }
+
+                                        this.loading = false;
+                                        this.visible = true;
+                                        this.cdr.markForCheck();
+                                });
+
+                        // ✅ Reinicia animaciones al navegar
+                        this.router.events
+                                .pipe(
+                                        filter(event => event instanceof NavigationEnd),
+                                        takeUntil(this.destroy$)
+                                )
+                                .subscribe(() => {
+                                        const content = document.querySelector('.fade-in');
+                                        if (content) {
+                                                content.classList.remove('show');
+                                                void (content as HTMLElement).offsetWidth;
+                                                this.renderer.addClass(content, 'show');
+                                        }
+                                });
+                } catch (error) {
+                        console.error('Error en ngOnInit:', error);
+                        this.loading = false;
+                        this.router.navigate(['/']);
                 }
-                this.items = productos;
-                this.itemsOriginales = [...productos];
-                const random_index = Math.floor(Math.random() * this.items.length);
-                this.item_placeholder = this.items[random_index]?.nombre || '';
-              }
-            });
         }
-        const objeto_categoria = this.data.find((item: { route: string; }) => item.route === this.categoria);
-        if (objeto_categoria) {
-          this.nombreCategoria = objeto_categoria.nombre;
-          this.items = objeto_categoria.productos || [];
-          this.itemsOriginales = [...this.items];
-          const random_index = Math.floor(Math.random() * this.items.length);
-          this.item_placeholder = this.items[random_index]?.nombre || '';
+
+        /**
+         * Verifica si el cliente está activo
+         */
+        private async verificarClienteActivo(): Promise<boolean> {
+                try {
+                        const clienteRef = doc(this.firestore, `clientes/${this.cliente}`);
+                        const clienteSnap = await getDoc(clienteRef);
+                        if (!clienteSnap.exists() || clienteSnap.data()?.['esActivo'] === false) {
+                                this.router.navigate(['/']);
+                                return false;
+                        }
+                        return true;
+                } catch {
+                        this.router.navigate(['/']);
+                        return false;
+                }
         }
-        setTimeout(() => {
-          this.visible = true;
-        }, 10);
-      });
-  }
 
-  get clienteClass(): string {
-    return `cliente-${this.cliente.toLowerCase()}`;
-  }
+        /**
+         * Obtiene el nombre del cliente
+         */
+        private async obtenerNombreCliente(): Promise<void> {
+                try {
+                        const clienteRef = doc(this.firestore, `clientes/${this.cliente}`);
+                        const clienteSnap = await getDoc(clienteRef);
 
-  onSearch(term: string) {
-    this.searchTerm = term;
-    // this.isLoading = true;
+                        if (clienteSnap.exists() && clienteSnap.data()?.['nombreCliente']) {
+                                this.nombreCliente = clienteSnap.data()['nombreCliente'].toUpperCase();
+                        } else {
+                                this.nombreCliente = this.cliente.charAt(0).toUpperCase() + this.cliente.slice(1);
+                        }
 
-    this.buscarProducto();
-    // setTimeout(() => { // Simula un pequeño delay
-    // this.isLoading = false;
-    // }, 300); // 300ms de espera para "loading"
-  }
-
-  buscarProducto() {
-    const termino = this.searchTerm.trim().toLowerCase();
-    // Normaliza el término de búsqueda quitando acentos
-    const terminoNormalizado = termino.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-    if (!terminoNormalizado) {
-      this.items = [...this.itemsOriginales];
-      return;
-    }
-
-    const palabras = termino.split(' ');
-
-    this.items = this.itemsOriginales.filter((producto: any) => {
-      const textoProducto = `${producto.nombre} ${producto.descripcion}`.toLowerCase();
-      const textoNormalizado = textoProducto.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-      return palabras.every(palabra => textoNormalizado.includes(palabra));
-    });
-  }
-
-  openLightbox(imageUrl: string) {
-    this.lightboxImage = imageUrl;
-    this.lightboxVisible = true;
-    document.body.style.overflow = 'hidden'; // Bloquea scroll
-    this.applyPerformanceHacks(); // Aplica optimizaciones
-  }
-
-
-  closeLightbox(event: MouseEvent) {
-    const target = event.target as HTMLElement;
-    if (target.classList.contains('lightbox')) {
-      this.lightboxVisible = false;
-      this.zoomLevel = 1;
-      this.zoomTransform = 'scale(1)';
-      document.body.style.overflow = '';
-
-      setTimeout(() => {
-        this.lightboxImage = '';
-      }, 300);
-    }
-  }
-
-  ngAfterViewInit(): void {
-    this.router.events
-      .pipe(filter(event => event instanceof NavigationEnd))
-      .subscribe(() => {
-        const content = document.querySelector('.fade-in');
-        if (content) {
-          content.classList.remove('show'); // reinicia
-          void (content as HTMLElement).offsetWidth;
-          this.renderer.addClass(content, 'show'); // activa animación
+                        this.titleService.setTitle(`${this.nombreCliente} | Carta Digital`);
+                } catch {
+                        this.nombreCliente = this.cliente.charAt(0).toUpperCase() + this.cliente.slice(1);
+                        this.titleService.setTitle(`${this.nombreCliente} | Carta Digital`);
+                }
         }
-        if (this.router.events instanceof NavigationEnd) {
-          const body = document.body;
-          body.classList.remove('fade-in');
-          void body.offsetWidth; // fuerza reflow para reiniciar animación
-          body.classList.add('fade-in');
+
+        /**
+         * Configura las URLs de imágenes
+         */
+        private configurarImagenes(): void {
+                const base = `https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2F${this.cliente}`;
+                this.cardImage = `${base}%2Ffondo-claro.webp?alt=media`;
+                this.logoImage = `${base}%2Flogo0.webp?alt=media`;
+                this.backgroundImage = `${base}%2Fbackground_image.webp?alt=media`;
         }
-      });
-  }
-  private isDragging = false;
-  private startX = 0;
-  private startY = 0;
-  private offsetX = 0;
-  private offsetY = 0;
-  resetZoom() {
-    this.zoomLevel = 1;
-    this.zoomTransform = 'scale(1)';
-  }
-  toggleZoom() {
-    if (this.zoomLevel === 1) {
-      this.zoomLevel = 2;
-    } else {
-      this.zoomLevel = 1;
-      this.offsetX = 0;
-      this.offsetY = 0;
-    }
-    this.updateTransform();
-  }
 
-  handleDoubleTap(event: TouchEvent) {
-    const currentTime = new Date().getTime();
-    const tapLength = currentTime - this.lastTap;
+        /**
+         * Carga las categorías disponibles
+         */
+        private async cargarCategorias(): Promise<void> {
+                try {
+                        const categorias = await this.menuService.loadMenuFirestore(this.cliente);
+                        this.categorias = categorias.map((item: any) => ({
+                                nombre: item.nombre,
+                                route: item.route,
+                                icon: item.icon
+                        }));
+                        this.cdr.markForCheck();
+                } catch (error) {
+                        console.error('Error al cargar categorías:', error);
+                        this.categorias = [];
+                }
+        }
 
-    if (tapLength < 300 && tapLength > 0) {
-      event.preventDefault();
-      this.toggleZoom();
-      this.lastTap = 0;
-    } else {
-      this.lastTap = currentTime;
-    }
-  }
-  startDrag(event: MouseEvent | TouchEvent) {
-    if (this.zoomLevel === 1) return;
-    const img = event.target as HTMLElement;
-    img.classList.add('panning');
-    this.isDragging = true;
-    const clientX = this.getClientX(event);
-    const clientY = this.getClientY(event);
+        /**
+         * Carga los productos de la categoría seleccionada
+         */
+        private async cargarProductosPorCategoria(): Promise<void> {
+                try {
+                        const menuData = await this.menuService.loadMenuFirestore(this.cliente);
+                        const objetoCategoria = menuData.find((item: any) => item.route === this.categoria);
 
-    this.startX = clientX - this.offsetX;
-    this.startY = clientY - this.offsetY;
-  }
+                        if (objetoCategoria) {
+                                this.nombreCategoria = objetoCategoria.nombre;
+                                let productos = objetoCategoria.productos || [];
 
-  onDrag(event: MouseEvent | TouchEvent) {
-    if (!this.isDragging || this.zoomLevel === 1) return;
+                                // ✅ Lógica especial para Requeterico
+                                if (
+                                        this.cliente.toLowerCase() === 'requeterico' &&
+                                        this.categoria.toLowerCase() === 'tostados-sandwiches'
+                                ) {
+                                        const tostados = productos.filter((p: any) =>
+                                                p.nombre.toLowerCase().includes('tostado')
+                                        );
+                                        const otros = productos.filter((p: any) =>
+                                                !p.nombre.toLowerCase().includes('tostado')
+                                        );
+                                        productos = [...tostados, ...otros];
+                                }
 
-    event.preventDefault();
-    const clientX = this.getClientX(event);
-    const clientY = this.getClientY(event);
+                                this.items = productos;
+                                this.itemsOriginales = [...productos];
 
-    this.offsetX = clientX - this.startX;
-    this.offsetY = clientY - this.startY;
-    this.updateTransform();
-  }
+                                // ✅ Placeholder aleatorio
+                                const randomIndex = Math.floor(Math.random() * this.items.length);
+                                this.item_placeholder = this.items[randomIndex]?.nombre || '';
+                        } else {
+                                this.items = [];
+                                this.itemsOriginales = [];
+                        }
 
-  endDrag() {
-    this.isDragging = false;
-    const img = document.querySelector('.lightbox-content');
-    if (img) {
-      img.classList.remove('panning');
-      // Pequeño timeout para suavizar la transición final
-      setTimeout(() => {
-        img.classList.add('smooth-transition');
-      }, 50);
-    }
-  }
+                        this.cdr.markForCheck();
+                } catch (error) {
+                        console.error('Error al cargar productos:', error);
+                        this.items = [];
+                        this.itemsOriginales = [];
+                }
+        }
 
-  private getClientX(event: MouseEvent | TouchEvent): number {
-    return event instanceof MouseEvent ? event.clientX : event.touches[0].clientX;
-  }
+        /**
+         * Limpia el caché periódicamente
+         */
+        private limpiarCachePeriodicamente(): void {
+                const now = Date.now();
+                const lastCache = Number(localStorage.getItem('lastCacheClear') || '0');
+                const onceDay = 24 * 60 * 60 * 1000;
 
-  private getClientY(event: MouseEvent | TouchEvent): number {
-    return event instanceof MouseEvent ? event.clientY : event.touches[0].clientY;
-  }
+                if (!lastCache || now - lastCache > onceDay) {
+                        Object.keys(localStorage).forEach(key => {
+                                if (key.startsWith('categorias_') || key.startsWith('data_')) {
+                                        localStorage.removeItem(key);
+                                }
+                        });
+                        localStorage.setItem('lastCacheClear', now.toString());
+                }
+        }
 
-  private updateTransform() {
-    this.zoomTransform = `
-    translate3d(${this.offsetX}px, ${this.offsetY}px, 0)
-    scale(${this.zoomLevel})
-  `;
-    // this.zoomTransform = `
-    //   scale(${this.zoomLevel})
-    //   translate(${this.offsetX}px, ${this.offsetY}px)
-    // `;
-  }
+        /**
+         * Búsqueda de productos
+         */
+        onSearch(term: string): void {
+                this.searchTerm = term;
+                this.buscarProducto();
+        }
 
-  private applyPerformanceHacks() {
-    const img = document.querySelector('.lightbox-content') as HTMLElement;
-    if (img) {
-      // Fuerza la aceleración por hardware
-      img.style.transform = 'translateZ(0)';
-    }
-  }
+        private buscarProducto(): void {
+                const termino = this.searchTerm.trim().toLowerCase();
+                const normalizado = termino.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 
-  onCategoriaSeleccionada(categoriaRoute: string) {
-    if (categoriaRoute === this.categoria) {
-      // Es la misma categoría, no hacer nada
-      return
-    }
-    this.loading = true; // Activa el spinner
-    this.router.navigate(['/menuonline', this.cliente, 'carta', categoriaRoute]);
-  }
+                if (!normalizado) {
+                        this.items = [...this.itemsOriginales];
+                        this.cdr.markForCheck();
+                        return;
+                }
 
+                const palabras = termino.split(' ');
+                this.items = this.itemsOriginales.filter((producto: any) => {
+                        const texto = `${producto.nombre} ${producto.descripcion}`.toLowerCase();
+                        const textoNorm = texto.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+                        return palabras.every(p => textoNorm.includes(p));
+                });
+
+                this.cdr.markForCheck();
+        }
+
+        /**
+         * Manejo de categoría seleccionada
+         */
+        onCategoriaSeleccionada(categoriaRoute: string): void {
+                if (categoriaRoute === this.categoria) return;
+
+                this.loading = true;
+                this.cdr.markForCheck();
+                this.router.navigate(['/menuonline', this.cliente, 'carta', categoriaRoute]);
+        }
+
+        /**
+         * Lightbox - Abre imagen ampliada
+         */
+        openLightbox(imageUrl: string): void {
+                this.lightboxImage = imageUrl;
+                this.lightboxVisible = true;
+                document.body.classList.add('lightbox-open');
+                this.applyPerformanceHacks();
+                this.cdr.markForCheck();
+        }
+
+        /**
+         * Lightbox - Cierra imagen ampliada
+         */
+        closeLightbox(event?: MouseEvent): void {
+                if (!event || (event.target as HTMLElement).classList.contains('lightbox')) {
+                        this.lightboxVisible = false;
+                        this.lightboxImage = '';
+                        this.zoomLevel = 1;
+                        this.zoomTransform = 'scale(1)';
+                        document.body.classList.remove('lightbox-open');
+                        this.cdr.markForCheck();
+                }
+        }
+
+        /**
+         * Zoom - Toggle
+         */
+        toggleZoom(): void {
+                if (this.zoomLevel === 1) {
+                        this.zoomLevel = 2;
+                } else {
+                        this.zoomLevel = 1;
+                        this.offsetX = 0;
+                        this.offsetY = 0;
+                }
+                this.updateTransform();
+        }
+
+        /**
+         * Zoom - Double tap
+         */
+        handleDoubleTap(event: TouchEvent): void {
+                const currentTime = Date.now();
+                const tapLength = currentTime - this.lastTap;
+
+                if (tapLength < 300 && tapLength > 0) {
+                        event.preventDefault();
+                        this.toggleZoom();
+                        this.lastTap = 0;
+                } else {
+                        this.lastTap = currentTime;
+                }
+        }
+
+        /**
+         * Drag - Inicio
+         */
+        startDrag(event: MouseEvent | TouchEvent): void {
+                if (this.zoomLevel === 1) return;
+
+                const img = event.target as HTMLElement;
+                img.classList.add('panning');
+                this.isDragging = true;
+
+                const clientX = this.getClientX(event);
+                const clientY = this.getClientY(event);
+
+                this.startX = clientX - this.offsetX;
+                this.startY = clientY - this.offsetY;
+        }
+
+        /**
+         * Drag - Durante
+         */
+        onDrag(event: MouseEvent | TouchEvent): void {
+                if (!this.isDragging || this.zoomLevel === 1) return;
+
+                event.preventDefault();
+                const clientX = this.getClientX(event);
+                const clientY = this.getClientY(event);
+
+                this.offsetX = clientX - this.startX;
+                this.offsetY = clientY - this.startY;
+                this.updateTransform();
+        }
+
+        /**
+         * Drag - Fin
+         */
+        endDrag(): void {
+                this.isDragging = false;
+                const img = document.querySelector('.lightbox-image');
+                if (img) {
+                        img.classList.remove('panning');
+                        setTimeout(() => {
+                                img.classList.add('smooth-transition');
+                        }, 50);
+                }
+        }
+
+        /**
+         * Helper - Obtiene coordenada X
+         */
+        private getClientX(event: MouseEvent | TouchEvent): number {
+                return event instanceof MouseEvent ? event.clientX : event.touches[0].clientX;
+        }
+
+        /**
+         * Helper - Obtiene coordenada Y
+         */
+        private getClientY(event: MouseEvent | TouchEvent): number {
+                return event instanceof MouseEvent ? event.clientY : event.touches[0].clientY;
+        }
+
+        /**
+         * Helper - Actualiza transformación CSS
+         */
+        private updateTransform(): void {
+                this.zoomTransform = `translate3d(${this.offsetX}px, ${this.offsetY}px, 0) scale(${this.zoomLevel})`;
+        }
+
+        /**
+         * Performance - Aplica aceleración por hardware
+         */
+        private applyPerformanceHacks(): void {
+                const img = document.querySelector('.lightbox-image') as HTMLElement;
+                if (img) {
+                        img.style.transform = 'translateZ(0)';
+                }
+        }
+
+        ngOnDestroy(): void {
+                this.destroy$.next();
+                this.destroy$.complete();
+        }
 }
