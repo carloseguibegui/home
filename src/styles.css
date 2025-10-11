@@ -1,0 +1,19 @@
+@font-face {
+        font-family: 'Caveat';
+        src: url('./assets/fonts/Caveat/static/Caveat-Regular.ttf') format('truetype');
+        font-weight: 400;
+        font-style: normal;
+        font-display: swap;
+}
+@font-face {
+        font-family: 'Nunito';
+        src: url('./assets/fonts/Nunito/static/Nunito-Regular.ttf') format('truetype');
+        font-weight: 400;
+        font-style: normal;
+        font-display: swap;
+}
+
+
+body {
+        font-family: 'Nunito', system-ui, sans-serif;
+}

@@ -24,7 +24,6 @@ export class SliderComponent implements OnInit, OnDestroy {
   isSticky = false;
   canScrollLeft = false;
   canScrollRight = false;
-  private onContainerScroll = () => this.updateScrollControls();
   constructor(
     public router: Router,
     private route: ActivatedRoute,
@@ -35,15 +34,9 @@ export class SliderComponent implements OnInit, OnDestroy {
   }
   ngAfterViewInit() {
     this.scrollToActiveCategory();
-    if (this.scrollContainer?.nativeElement) {
-      this.scrollContainer.nativeElement.addEventListener('scroll', this.onContainerScroll, { passive: true } as AddEventListenerOptions);
-      setTimeout(() => this.updateScrollControls(), 0);
-    }
+    setTimeout(() => this.updateScrollControls(), 0);
   }
   ngOnDestroy() {
-    if (this.scrollContainer?.nativeElement) {
-      this.scrollContainer.nativeElement.removeEventListener('scroll', this.onContainerScroll as EventListener);
-    }
   }
   
   ngOnChanges(changes: SimpleChanges) {
@@ -59,6 +52,11 @@ export class SliderComponent implements OnInit, OnDestroy {
   @HostListener('window:resize')
   onResize() {
     this.updateScrollControls();
+  }
+  @HostListener('window:touchend')
+  onTouchEnd() {
+    // Recalcula después de la inercia de desplazamiento en mobile
+    setTimeout(() => this.updateScrollControls(), 120);
   }
   get clienteClass(): string {
     return `cliente-${this.cliente.toLowerCase()}`;
@@ -85,6 +83,10 @@ export class SliderComponent implements OnInit, OnDestroy {
   seleccionarCategoria(route: string) {
     this.categoriaSeleccionada.emit(route);
     window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll arriba al seleccionar
+  }
+
+  onContainerScroll() {
+    this.updateScrollControls();
   }
 
   scrollByItems(direction: 'left' | 'right') {
@@ -156,7 +158,8 @@ export class SliderComponent implements OnInit, OnDestroy {
     const container = this.scrollContainer?.nativeElement;
     if (!container) return;
     const maxScrollLeft = container.scrollWidth - container.clientWidth;
-    this.canScrollLeft = container.scrollLeft > 0;
-    this.canScrollRight = container.scrollLeft < maxScrollLeft - 1;
+    const epsilon = 5; // tolerancia para redondeos en mobile
+    this.canScrollLeft = container.scrollLeft > epsilon;
+    this.canScrollRight = (maxScrollLeft - container.scrollLeft) > epsilon;
   }
 }
