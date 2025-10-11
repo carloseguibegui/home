@@ -2,29 +2,20 @@ import { Component, ViewChild, ElementRef } from '@angular/core';
 import { MenuService } from '../../services/menu.service';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { Canvg } from 'canvg';
-import * as QRCode from 'qrcode';
 
 
 // PRIMENG
-import { ChangeDetectorRef } from '@angular/core';
 import { TableModule } from 'primeng/table';
 import { Dialog } from 'primeng/dialog';
-import { Ripple } from 'primeng/ripple';
 import { ButtonModule } from 'primeng/button';
 import { ToastModule } from 'primeng/toast';
 import { ToolbarModule } from 'primeng/toolbar';
-import { ConfirmDialog } from 'primeng/confirmdialog';
 import { InputTextModule } from 'primeng/inputtext';
 import { TextareaModule } from 'primeng/textarea';
-import { FileUpload } from 'primeng/fileupload';
 import { SelectModule } from 'primeng/select';
 import { Tag } from 'primeng/tag';
-import { RadioButton } from 'primeng/radiobutton';
-import { Rating } from 'primeng/rating';
-import { InputNumber } from 'primeng/inputnumber';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
-import { Table } from 'primeng/table';
 import { DropdownModule } from 'primeng/dropdown';
 import { updatePrimaryPalette } from '@primeng/themes';
 import { BadgeModule } from 'primeng/badge';
@@ -67,7 +58,7 @@ interface Giftcard {
       ])
     ])
   ],
-  imports: [CommonModule, FormsModule, TableModule, Dialog, SelectModule, ToastModule, ToolbarModule, ConfirmDialog, InputTextModule, TextareaModule, CommonModule, FileUpload, DropdownModule, Tag, InputTextModule, FormsModule, IconFieldModule, InputIconModule, ButtonModule, BadgeModule, RouterModule, DatePickerModule],
+  imports: [CommonModule, FormsModule, TableModule, Dialog, SelectModule, ToastModule, ToolbarModule, InputTextModule, TextareaModule, CommonModule, DropdownModule, Tag, InputTextModule, FormsModule, IconFieldModule, InputIconModule, ButtonModule, BadgeModule, RouterModule, DatePickerModule],
   providers: [MessageService, ConfirmationService]
 })
 

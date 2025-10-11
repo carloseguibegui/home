@@ -1,136 +1,174 @@
-import { Component, Input, Renderer2 } from '@angular/core';
-import { ActivatedRoute, RouterModule, RouterOutlet, Router, NavigationEnd, NavigationCancel, NavigationError, NavigationStart } from '@angular/router';
+import { Component, OnInit, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { CopyrightComponent } from '../../shared/copyright/copyright.component';
-import { filter } from 'rxjs/operators';
 import { HeaderComponent } from "../../shared/header/header.component";
 import { BackgroundComponent } from "../../shared/background/background.component";
+import { SpinnerComponent } from "../../shared/spinner/spinner.component";
 import { Title } from '@angular/platform-browser';
 import { MenuService } from '../../services/menu.service';
 import { trigger, transition, style, animate } from '@angular/animations';
-import { SpinnerComponent } from "../../shared/spinner/spinner.component";
 import { Firestore, doc, getDoc } from '@angular/fire/firestore';
+import { Subject } from 'rxjs';
 
 @Component({
-  selector: 'app-carta',
-  imports: [RouterModule, CommonModule, CopyrightComponent, HeaderComponent, BackgroundComponent, SpinnerComponent],
-  templateUrl: './carta.component.html',
-  styleUrl: './carta.component.css',
-  animations: [
-    trigger('fadeInOut', [
-      transition(':enter', [
-        style({ opacity: 0 }),
-        animate('0ms ease-in', style({ opacity: 1 }))
-      ]),
-      transition(':leave', [
-        animate('200ms ease-out', style({ opacity: 0 }))
-      ])
-    ]),
-    trigger('fadeContent', [
-      transition(':enter', [
-        // style({ opacity: 0, transform: 'translateY(30px)' }),
-        style({ opacity: 0 }),
-        // animate('600ms 100ms cubic-bezier(0.23, 1, 0.32, 1)', style({ opacity: 1, transform: 'none' }))
-        animate('110ms ease-in', style({ opacity: 1 }))
-      ]),
-      transition(':leave', [
-        animate('0ms ease-out', style({ opacity: 0 }))
-      ])
-    ])
-  ]
+        selector: 'app-carta',
+        standalone: true,
+        imports: [RouterModule, CommonModule, CopyrightComponent, HeaderComponent, BackgroundComponent, SpinnerComponent],
+        templateUrl: './carta.component.html',
+        styleUrl: './carta.component.css',
+        changeDetection: ChangeDetectionStrategy.OnPush,
+        animations: [
+                trigger('fadeInOut', [
+                        transition(':enter', [
+                                style({ opacity: 0 }),
+                                animate('0ms ease-in', style({ opacity: 1 }))
+                        ]),
+                        transition(':leave', [
+                                animate('300ms ease-out', style({ opacity: 0 }))
+                        ])
+                ]),
+                trigger('fadeContent', [
+                        transition(':enter', [
+                                style({ opacity: 0 }),
+                                animate('10ms ease-in', style({ opacity: 1 }))
+                        ]),
+                        transition(':leave', [
+                                animate('0ms ease-out', style({ opacity: 0 }))
+                        ])
+                ])
+        ]
 })
-export class CartaComponent {
-  cardImage = '';
-  logoImage = '';
-  backgroundImage = '';
-  visible = false;
-  categorias: any[] = [];
-  cliente: string = '';
-  nombreCliente: string = '';
-  isViewVisible = false;
-  loading = false;
-  constructor(
-    private menuService: MenuService,
-    private route: ActivatedRoute,
-    private router: Router,
-    private renderer: Renderer2,
-    private titleService: Title,
-    private firestore: Firestore
-  ) { }
+export class CartaComponent implements OnInit, OnDestroy {
+        categorias: any[] = [];
+        cliente: string = '';
+        nombreCliente: string = '';
+        cardImage = '';
+        logoImage = '';
+        backgroundImage = '';
+        visible = false;
+        loading = true;
 
-  get clienteClass(): string {
-    return `cliente-${this.cliente.toLowerCase()}`;
-  }
+        private destroy$ = new Subject<void>();
 
-  async actualizarTituloPorCliente(): Promise<void> {
-    if (!this.cliente) return;
-    try {
-      const clienteRef = doc(this.firestore, `clientes/${this.cliente}`);
-      const clienteSnap = await getDoc(clienteRef);
-      let nombre = this.cliente.charAt(0).toUpperCase() + this.cliente.slice(1);
-      if (clienteSnap.exists()) {
-        const data: any = clienteSnap.data();
-        if (data && data.nombreCliente) {
-          nombre = data.nombreCliente;
+        constructor(
+                private menuService: MenuService,
+                private route: ActivatedRoute,
+                private router: Router,
+                private titleService: Title,
+                private firestore: Firestore,
+                private cdr: ChangeDetectorRef
+        ) { }
+
+        get clienteClass(): string {
+                return `cliente-${this.cliente.toLowerCase()}`;
         }
-      }
-      nombre = nombre.toUpperCase()
-      this.nombreCliente = nombre;
-      this.titleService.setTitle(`${nombre} | Carta Digital`);
-    } catch (e) {
-      this.nombreCliente = this.cliente.charAt(0).toUpperCase() + this.cliente.slice(1);
-      this.titleService.setTitle(`${this.nombreCliente} | Menú Digital`);
-    }
-  }
 
-  async ngOnInit(): Promise<void> {
-    this.loading = true; // Mostrar spinner al iniciar
-    this.cliente = this.route.snapshot.paramMap.get('cliente') || '';
+        async ngOnInit(): Promise<void> {
+                try {
+                        this.loading = true;
+                        this.cdr.markForCheck();
 
-    // --- Comprobar si el cliente está activo ---
-    try {
-      const clienteRef = doc(this.firestore, `clientes/${this.cliente}`);
-      const clienteSnap = await getDoc(clienteRef);
-      if (!clienteSnap.exists() || clienteSnap.data()?.['esActivo'] === false) {
-        this.router.navigate(['/']);
-        return;
-      }
-    } catch (e) {
-      // Si hay error al consultar, redirigir por seguridad
-      this.router.navigate(['/']);
-      return;
-    }
+                        // ✅ Obtén cliente de la ruta
+                        this.cliente = this.route.snapshot.paramMap.get('cliente') || '';
+                        if (!this.cliente) {
+                                this.router.navigate(['/']);
+                                return;
+                        }
 
-    this.cardImage = `https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2F${this.cliente}%2Ffondo-claro.webp?alt=media`;
-    this.logoImage = `https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2F${this.cliente}%2Flogo0.webp?alt=media`;
-    this.backgroundImage = `https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2F${this.cliente}%2Fbackground_image.webp?alt=media`;
+                        // ✅ Verifica que el cliente esté activo (en paralelo)
+                        const isActive = await this.verificarClienteActivo();
+                        if (!isActive) return;
 
-    // Intenta cargar desde localStorage primero
-    const cache = localStorage.getItem(`categorias_${this.cliente}`);
-    if (cache) {
-      this.categorias = JSON.parse(cache);
-      console.log('Categorias desde cache:', this.categorias);
-      setTimeout(() => {
-        this.loading = false;
-      }, 10);
-    } else {
-      // Solo llama al servicio si no hay cache
-      this.menuService.loadCategorias(this.cliente,false,true);
-      this.menuService.categoriasData$.subscribe(data => {
-        console.log('Categorias desde Firestore:', data);
-        this.categorias = data;
-        if (data && data.length > 0) {
-          localStorage.setItem(`categorias_${this.cliente}`, JSON.stringify(data));
-          setTimeout(() => {
-            this.loading = false;
-          }, 10);
+                        // ✅ Configura imágenes
+                        this.configurarImagenes();
+
+                        // ✅ Obtiene el nombre del cliente
+                        await this.obtenerNombreCliente();
+
+                        // ✅ Carga categorías
+                        await this.cargarCategorias();
+
+                        this.loading = false;
+                        this.visible = true;
+                        this.cdr.markForCheck();
+                } catch (error) {
+                        console.error('Error en ngOnInit:', error);
+                        this.loading = false;
+                        this.router.navigate(['/']);
+                }
         }
-      });
-    }
 
-    await this.actualizarTituloPorCliente();
-    setTimeout(() => {
-      this.visible = true;
-    }, 10); // delay corto para permitir que se aplique la clase "fade" primero    
-  }
+        /**
+         * Verifica si el cliente está activo en Firestore
+         */
+        private async verificarClienteActivo(): Promise<boolean> {
+                try {
+                        const clienteRef = doc(this.firestore, `clientes/${this.cliente}`);
+                        const clienteSnap = await getDoc(clienteRef);
+                        if (!clienteSnap.exists() || clienteSnap.data()?.['esActivo'] === false) {
+                                this.router.navigate(['/']);
+                                return false;
+                        }
+                        return true;
+                } catch {
+                        this.router.navigate(['/']);
+                        return false;
+                }
+        }
+
+        /**
+         * Configura las URLs de imágenes
+         */
+        private configurarImagenes(): void {
+                const base = `https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2F${this.cliente}`;
+                this.cardImage = `${base}%2Ffondo-claro.webp?alt=media`;
+                this.logoImage = `${base}%2Flogo0.webp?alt=media`;
+                this.backgroundImage = `${base}%2Fbackground_image.webp?alt=media`;
+        }
+
+        /**
+         * Obtiene el nombre del cliente desde Firestore
+         */
+        private async obtenerNombreCliente(): Promise<void> {
+                try {
+                        const clienteRef = doc(this.firestore, `clientes/${this.cliente}`);
+                        const clienteSnap = await getDoc(clienteRef);
+
+                        if (clienteSnap.exists() && clienteSnap.data()?.['nombreCliente']) {
+                                this.nombreCliente = clienteSnap.data()['nombreCliente'].toUpperCase();
+                        } else {
+                                this.nombreCliente = this.cliente.charAt(0).toUpperCase() + this.cliente.slice(1);
+                        }
+
+                        this.titleService.setTitle(`${this.nombreCliente} | Carta Digital`);
+                } catch {
+                        this.nombreCliente = this.cliente.charAt(0).toUpperCase() + this.cliente.slice(1);
+                        this.titleService.setTitle(`${this.nombreCliente} | Carta Digital`);
+                }
+        }
+
+        /**
+         * Carga las categorías desde el servicio
+         */
+        private async cargarCategorias(): Promise<void> {
+                try {
+                        // ✅ Usa la promesa retornada por el servicio
+                        const categorias = await this.menuService.loadCategorias(this.cliente, false, true);
+
+                        if (categorias && categorias.length > 0) {
+                                this.categorias = categorias;
+                        }
+
+                        this.cdr.markForCheck();
+                } catch (error) {
+                        console.error('Error al cargar categorías:', error);
+                        this.categorias = [];
+                }
+        }
+
+        ngOnDestroy(): void {
+                this.destroy$.next();
+                this.destroy$.complete();
+        }
 }

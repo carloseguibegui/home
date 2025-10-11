@@ -5,32 +5,22 @@ import { AuthService } from '../../services/auth.service';
 import { MenuService } from '../../services/menu.service';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { CommonModule } from '@angular/common';
-import { SpinnerComponent } from '../../shared/spinner/spinner.component';
 import { FormsModule } from '@angular/forms';
-import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 
 
 // PRIMENG
-import { ChangeDetectorRef, ViewChild } from '@angular/core';
 import { TableModule } from 'primeng/table';
 import { Dialog } from 'primeng/dialog';
-import { Ripple } from 'primeng/ripple';
 import { ButtonModule } from 'primeng/button';
 import { ToastModule } from 'primeng/toast';
 import { ToolbarModule } from 'primeng/toolbar';
-import { ConfirmDialog } from 'primeng/confirmdialog';
 import { InputTextModule } from 'primeng/inputtext';
 import { TextareaModule } from 'primeng/textarea';
-import { FileUpload } from 'primeng/fileupload';
 import { SelectModule } from 'primeng/select';
 import { Tag } from 'primeng/tag';
-import { RadioButton } from 'primeng/radiobutton';
-import { Rating } from 'primeng/rating';
-import { InputNumber } from 'primeng/inputnumber';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
-import { Table } from 'primeng/table';
 import { DropdownModule } from 'primeng/dropdown';
 import { updatePrimaryPalette } from '@primeng/themes';
 import { BadgeModule } from 'primeng/badge';
@@ -54,7 +44,7 @@ import { BadgeModule } from 'primeng/badge';
       ])
     ])
   ],
-  imports: [CommonModule, FormsModule, TableModule, Dialog, SelectModule, ToastModule, ToolbarModule, ConfirmDialog, InputTextModule, TextareaModule, CommonModule, FileUpload, DropdownModule, Tag, InputTextModule, FormsModule, IconFieldModule, InputIconModule, ButtonModule, BadgeModule, RouterModule],
+  imports: [CommonModule, FormsModule, TableModule, Dialog, SelectModule, ToastModule, ToolbarModule, InputTextModule, TextareaModule, CommonModule, DropdownModule, Tag, InputTextModule, FormsModule, IconFieldModule, InputIconModule, ButtonModule, BadgeModule, RouterModule],
   providers: [MessageService, ConfirmationService]
 })
 export class CategoriasAdminComponent implements OnInit {
