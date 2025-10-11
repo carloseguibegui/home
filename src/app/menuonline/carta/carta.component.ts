@@ -25,13 +25,13 @@ import { Subject } from 'rxjs';
                                 animate('0ms ease-in', style({ opacity: 1 }))
                         ]),
                         transition(':leave', [
-                                animate('300ms ease-out', style({ opacity: 0 }))
+                                animate('500ms ease-out', style({ opacity: 0 }))
                         ])
                 ]),
                 trigger('fadeContent', [
                         transition(':enter', [
                                 style({ opacity: 0 }),
-                                animate('10ms ease-in', style({ opacity: 1 }))
+                                animate('0ms ease-in', style({ opacity: 1 }))
                         ]),
                         transition(':leave', [
                                 animate('0ms ease-out', style({ opacity: 0 }))
