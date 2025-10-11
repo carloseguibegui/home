@@ -17,10 +17,10 @@ import { SliderComponent } from "../../shared/slider/slider.component";
 import { SpinnerComponent } from "../../shared/spinner/spinner.component";
 import { MenuService } from '../../services/menu.service';
 import { trigger, transition, style, animate } from '@angular/animations';
-import { Subject } from 'rxjs';
-import { takeUntil, filter } from 'rxjs/operators';
 import { Firestore, doc, getDoc } from '@angular/fire/firestore';
 import { Title } from '@angular/platform-browser';
+import { Subject } from 'rxjs';
+import { debounceTime, takeUntil, filter } from 'rxjs/operators';
 
 @Component({
         selector: 'app-categoria',
@@ -37,7 +37,7 @@ import { Title } from '@angular/platform-browser';
                 SpinnerComponent
         ],
         templateUrl: './categoria.component.html',
-        styleUrl: './categoria.component.css',
+        styleUrls: ['./categoria.component.css'],
         changeDetection: ChangeDetectionStrategy.OnPush,
         animations: [
                 trigger('fadeInOut', [
@@ -87,12 +87,17 @@ export class CategoriaComponent implements OnInit, OnDestroy {
 
         // Propiedades privadas
         private destroy$ = new Subject<void>();
+        private search$ = new Subject<string>();
         private isDragging = false;
         private startX = 0;
         private startY = 0;
         private offsetX = 0;
         private offsetY = 0;
         private lastTap = 0;
+        private menuCache: any[] | null = null;
+        private rafPending = false;
+        private unlistenKeydown?: () => void;
+        private openerEl: Element | null = null;
 
         constructor(
                 private menuService: MenuService,
@@ -116,6 +121,22 @@ export class CategoriaComponent implements OnInit, OnDestroy {
                         // ✅ Limpia caché periódicamente
                         this.limpiarCachePeriodicamente();
 
+                        // ✅ Debounce de búsqueda para evitar filtros en cada tecla
+                        this.search$
+                                .pipe(debounceTime(200), takeUntil(this.destroy$))
+                                .subscribe((term) => {
+                                        this.searchTerm = term;
+                                        this.buscarProducto();
+                                        this.cdr.markForCheck();
+                                });
+
+                        // ✅ Cerrar lightbox con ESC
+                        this.unlistenKeydown = this.renderer.listen('window', 'keydown', (e: KeyboardEvent) => {
+                                if (this.lightboxVisible && e.key === 'Escape') {
+                                        this.closeLightbox();
+                                }
+                        });
+
                         // ✅ Escucha cambios en la URL
                         this.route.paramMap
                                 .pipe(takeUntil(this.destroy$))
@@ -133,7 +154,7 @@ export class CategoriaComponent implements OnInit, OnDestroy {
 
                                                 await this.obtenerNombreCliente();
                                                 this.configurarImagenes();
-                                                await this.cargarCategorias();
+                                                await this.cargarMenuCliente();
 
                                                 this.cdr.markForCheck();
                                         }
@@ -168,6 +189,26 @@ export class CategoriaComponent implements OnInit, OnDestroy {
                         console.error('Error en ngOnInit:', error);
                         this.loading = false;
                         this.router.navigate(['/']);
+                }
+        }
+
+        /**
+         * Carga y cachea el menú del cliente y deriva categorías
+         */
+        private async cargarMenuCliente(): Promise<void> {
+                try {
+                        const menu = await this.menuService.loadMenuFirestore(this.cliente);
+                        this.menuCache = menu || [];
+                        this.categorias = (this.menuCache || []).map((item: any) => ({
+                                nombre: item.nombre,
+                                route: item.route,
+                                icon: item.icon
+                        }));
+                        this.cdr.markForCheck();
+                } catch (error) {
+                        console.error('Error al cargar menú del cliente:', error);
+                        this.menuCache = [];
+                        this.categorias = [];
                 }
         }
 
@@ -225,8 +266,11 @@ export class CategoriaComponent implements OnInit, OnDestroy {
          */
         private async cargarCategorias(): Promise<void> {
                 try {
-                        const categorias = await this.menuService.loadMenuFirestore(this.cliente);
-                        this.categorias = categorias.map((item: any) => ({
+                        if (!this.menuCache) {
+                                await this.cargarMenuCliente();
+                                return;
+                        }
+                        this.categorias = this.menuCache.map((item: any) => ({
                                 nombre: item.nombre,
                                 route: item.route,
                                 icon: item.icon
@@ -243,8 +287,11 @@ export class CategoriaComponent implements OnInit, OnDestroy {
          */
         private async cargarProductosPorCategoria(): Promise<void> {
                 try {
-                        const menuData = await this.menuService.loadMenuFirestore(this.cliente);
-                        const objetoCategoria = menuData.find((item: any) => item.route === this.categoria);
+                        if (!this.menuCache) {
+                                await this.cargarMenuCliente();
+                        }
+                        const data = this.menuCache || [];
+                        const objetoCategoria = data.find((item: any) => item.route === this.categoria);
 
                         if (objetoCategoria) {
                                 this.nombreCategoria = objetoCategoria.nombre;
@@ -305,8 +352,7 @@ export class CategoriaComponent implements OnInit, OnDestroy {
          * Búsqueda de productos
          */
         onSearch(term: string): void {
-                this.searchTerm = term;
-                this.buscarProducto();
+                this.search$.next(term);
         }
 
         private buscarProducto(): void {
@@ -344,8 +390,30 @@ export class CategoriaComponent implements OnInit, OnDestroy {
          * Lightbox - Abre imagen ampliada
          */
         openLightbox(imageUrl: string): void {
-                this.lightboxImage = imageUrl;
+                this.openerEl = document.activeElement;
+
+                // Preload imagen para evitar parpadeos
+                const img = new Image();
+                img.onload = () => {
+                        this.lightboxImage = imageUrl;
+                        this.cdr.markForCheck();
+                        setTimeout(() => {
+                                const closeBtn = document.querySelector('.lightbox-close') as HTMLElement | null;
+                                closeBtn?.focus();
+                        }, 0);
+                };
+                img.onerror = () => {
+                        this.lightboxImage = imageUrl;
+                        this.cdr.markForCheck();
+                };
+                img.src = imageUrl;
+
+                // Mostrar overlay y preparar entorno
                 this.lightboxVisible = true;
+                this.zoomLevel = 1;
+                this.offsetX = 0;
+                this.offsetY = 0;
+                this.updateTransform();
                 document.body.classList.add('lightbox-open');
                 this.applyPerformanceHacks();
                 this.cdr.markForCheck();
@@ -361,6 +429,10 @@ export class CategoriaComponent implements OnInit, OnDestroy {
                         this.zoomLevel = 1;
                         this.zoomTransform = 'scale(1)';
                         document.body.classList.remove('lightbox-open');
+                        // Restaurar foco
+                        if (this.openerEl instanceof HTMLElement) {
+                                this.openerEl.focus();
+                        }
                         this.cdr.markForCheck();
                 }
         }
@@ -424,7 +496,7 @@ export class CategoriaComponent implements OnInit, OnDestroy {
 
                 this.offsetX = clientX - this.startX;
                 this.offsetY = clientY - this.startY;
-                this.updateTransform();
+                this.scheduleTransform();
         }
 
         /**
@@ -459,7 +531,31 @@ export class CategoriaComponent implements OnInit, OnDestroy {
          * Helper - Actualiza transformación CSS
          */
         private updateTransform(): void {
+                // Clamp offsets según tamaño de imagen vs viewport
+                const container = document.querySelector('.lightbox') as HTMLElement | null;
+                const img = document.querySelector('.lightbox-image') as HTMLElement | null;
+                if (container && img) {
+                        const containerRect = container.getBoundingClientRect();
+                        const imgRect = img.getBoundingClientRect();
+                        const maxX = Math.max(0, (imgRect.width - containerRect.width) / 2);
+                        const maxY = Math.max(0, (imgRect.height - containerRect.height) / 2);
+                        this.offsetX = Math.max(-maxX, Math.min(this.offsetX, maxX));
+                        this.offsetY = Math.max(-maxY, Math.min(this.offsetY, maxY));
+                }
                 this.zoomTransform = `translate3d(${this.offsetX}px, ${this.offsetY}px, 0) scale(${this.zoomLevel})`;
+        }
+
+        /**
+         * Throttle con requestAnimationFrame
+         */
+        private scheduleTransform(): void {
+                if (this.rafPending) return;
+                this.rafPending = true;
+                requestAnimationFrame(() => {
+                        this.updateTransform();
+                        this.rafPending = false;
+                        this.cdr.markForCheck();
+                });
         }
 
         /**
@@ -469,11 +565,13 @@ export class CategoriaComponent implements OnInit, OnDestroy {
                 const img = document.querySelector('.lightbox-image') as HTMLElement;
                 if (img) {
                         img.style.transform = 'translateZ(0)';
+                        img.style.willChange = 'transform';
                 }
         }
 
         ngOnDestroy(): void {
                 this.destroy$.next();
                 this.destroy$.complete();
+                if (this.unlistenKeydown) this.unlistenKeydown();
         }
 }

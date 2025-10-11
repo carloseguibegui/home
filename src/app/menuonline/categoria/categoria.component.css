@@ -1,629 +1,629 @@
 html {
-    scroll-behavior: smooth;
+        scroll-behavior: smooth;
 }
 
 
 #cart-item {
-    position: relative;
-    min-height: 120px;
-    margin-top: 15px;
-    box-shadow: none !important;
-    margin-bottom: 80px;
-    border-radius: 33px;
-    background-size: contain;
-    place-items: center;
+        position: relative;
+        min-height: 120px;
+        margin-top: 15px;
+        box-shadow: none !important;
+        margin-bottom: 80px;
+        border-radius: 33px;
+        background-size: contain;
+        place-items: center;
 }
 
 #card-descripcion {
-    text-transform: uppercase;
-    font-size: 1rem;
-    line-height: 26px;
+        text-transform: uppercase;
+        font-size: 1rem;
+        line-height: 26px;
 }
 
 #card-descripcion i {
-    font-size: 25px;
-    text-align: center;
+        font-size: 25px;
+        text-align: center;
 }
 
 #titulo-card {
-    font-weight: 500;
-    text-transform: uppercase;
-    font-size: 24px;
-    line-height: 1.2;
-    font-weight: 700;
+        font-weight: 500;
+        text-transform: uppercase;
+        font-size: 24px;
+        line-height: 1.2;
+        font-weight: 700;
 }
 
 
 
 #imagen-card {
-    background-size: cover;
-    background-position: center;
-    width: 100%;
-    height: 280px;
-    cursor: zoom-in;
+        background-size: cover;
+        background-position: center;
+        width: 100%;
+        height: 280px;
+        cursor: zoom-in;
 }
 
 
 #cuerpo-card {
-    font-weight: bold;
-    z-index: 2;
+        font-weight: bold;
+        z-index: 2;
 }
 
 #card-nombre div {
-    text-align: center;
-    font-size: 1.5rem;
-    letter-spacing: 0px;
+        text-align: center;
+        font-size: 1.5rem;
+        letter-spacing: 0px;
 }
 
 
 #boton-card {
-    align-content: space-evenly;
-    text-align: center;
-    float: none;
-    width: 140px;
-    position: relative;
-    margin: auto;
-    margin-top: 1.5rem;
-    font-size: 1.8rem;
-    border: none;
-    font-weight: 600;
+        align-content: space-evenly;
+        text-align: center;
+        float: none;
+        width: 140px;
+        position: relative;
+        margin: auto;
+        margin-top: 1.5rem;
+        font-size: 1.8rem;
+        border: none;
+        font-weight: 600;
 }
 
 
 
 .boton-volver {
-    justify-self: anchor-center;
-    text-align: center;
-    font-size: 21px;
-    float: none;
-    padding: 9px;
-    letter-spacing: 1px;
-    border-top: 0px solid;
-    height: 50px;
-    margin: 0;
-    position: fixed;
-    border-radius: 0;
-    bottom: 0px;
-    width: 100% !important;
-    overflow: hidden;
-    z-index: 5;
-    font-weight: 600;
+        justify-self: anchor-center;
+        text-align: center;
+        font-size: 21px;
+        float: none;
+        padding: 9px;
+        letter-spacing: 1px;
+        border-top: 0px solid;
+        height: 50px;
+        margin: 0;
+        position: fixed;
+        border-radius: 0;
+        bottom: 0px;
+        width: 100% !important;
+        overflow: hidden;
+        z-index: 5;
+        font-weight: 600;
 }
 
 .lightbox {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.85);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 9999;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.4s ease;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.85);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.4s ease;
 }
 
 .lightbox.show {
-    opacity: 1;
-    pointer-events: auto;
+        opacity: 1;
+        pointer-events: auto;
 }
 
 .lightbox.hide {
-    opacity: 0;
-    pointer-events: none;
+        opacity: 0;
+        pointer-events: none;
 }
 
 .lightbox-content {
-    max-width: 90vw;
-    max-height: 90vh;
-    width: auto;
-    height: auto;
-    object-fit: contain;
-    border-radius: 2rem;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        max-width: 90vw;
+        max-height: 90vh;
+        width: auto;
+        height: auto;
+        object-fit: contain;
+        border-radius: 2rem;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 }
 
 .fondo-card {
-    width: 100%;
-    aspect-ratio: 1/1;
-    display: block;
-    object-position: center;
-    object-fit: cover;
+        width: 100%;
+        aspect-ratio: 1/1;
+        display: block;
+        object-position: center;
+        object-fit: cover;
 }
 
 .fondo-card-textura {
-    opacity: 0;
+        opacity: 0;
 }
 
 .fondo-card-imagen {
-    opacity: 1;
+        opacity: 1;
 }
 
 
 
 .blurred-load {
-    height: auto;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+        height: auto;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
 }
 
 .blurred-load img {
-    aspect-ratio: 1.2 / 1;
-    /* opacity: 0; */
-    /* transition: opacity 250ms ease-in-out; */
+        aspect-ratio: 1.2 / 1;
+        /* opacity: 0; */
+        /* transition: opacity 250ms ease-in-out; */
 }
 
 
 .fade-in {
-    transition: opacity 1s ease-in-out !important;
+        transition: opacity 1s ease-in-out !important;
 }
 
 .lightbox-content {
-    /* transition: transform 0.2s ease-in-out; */
-    transform-origin: center center;
-    /* touch-action: manipulation; */
-    user-select: none;
-    touch-action: none;
-    /* Permite el control manual del desplazamiento */
-    cursor: grab;
-    /* Permite el control manual del desplazamiento */
-    transition: transform 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
-    will-change: transform;
-    /* Optimiza para transformaciones */
-    backface-visibility: hidden;
-    /* Mejora rendimiento en móviles */
-    transform: translateZ(0);
-    /* Activa aceleración por hardware */
+        /* transition: transform 0.2s ease-in-out; */
+        transform-origin: center center;
+        /* touch-action: manipulation; */
+        user-select: none;
+        touch-action: none;
+        /* Permite el control manual del desplazamiento */
+        cursor: grab;
+        /* Permite el control manual del desplazamiento */
+        transition: transform 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+        will-change: transform;
+        /* Optimiza para transformaciones */
+        backface-visibility: hidden;
+        /* Mejora rendimiento en móviles */
+        transform: translateZ(0);
+        /* Activa aceleración por hardware */
 }
 
 .lightbox {
-    overflow: auto;
-    /* Permite scroll cuando la imagen es más grande */
-    touch-action: none;
-    /* Desactiva el comportamiento táctil por defecto */
+        overflow: auto;
+        /* Permite scroll cuando la imagen es más grande */
+        touch-action: none;
+        /* Desactiva el comportamiento táctil por defecto */
 }
 
 .lightbox-content:active {
-    cursor: grabbing;
+        cursor: grabbing;
 }
 
 .lightbox-content.panning {
-    transition: none;
-    /* Desactiva transición durante el arrastre */
+        transition: none;
+        /* Desactiva transición durante el arrastre */
 }
 
 .lightbox-content.smooth-transition {
-    transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+        transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 .lightbox {
-    -webkit-overflow-scrolling: touch;
-    /* Mejor scroll en iOS */
-    overscroll-behavior: contain;
-    /* Evita scroll de la página padre */
+        -webkit-overflow-scrolling: touch;
+        /* Mejor scroll en iOS */
+        overscroll-behavior: contain;
+        /* Evita scroll de la página padre */
 }
 
 .lightbox-close {
-    position: absolute;
-    top: 24px;
-    right: 32px;
-    font-size: 2.5rem;
-    color: #fff;
-    z-index: 10;
-    cursor: pointer;
-    user-select: none;
+        position: absolute;
+        top: 24px;
+        right: 32px;
+        font-size: 2.5rem;
+        color: #fff;
+        z-index: 10;
+        cursor: pointer;
+        user-select: none;
 }
 
 /* Estilos específicos para clientes */
 /* Cliente: requeterico */
 .cliente-requeterico {
-    --primary-color: #6b4c3b;
-    --secondary-color: #a67c52;
-    --text-color: #f5deb3;
-    --border-color: #6b4c3b;
+        --primary-color: #6b4c3b;
+        --secondary-color: #a67c52;
+        --text-color: #f5deb3;
+        --border-color: #6b4c3b;
 
-    * {
-        font-family: 'Caveat' !important;
-    }
+        * {
+                font-family: 'Caveat' !important;
+        }
 
-    .cliente-requeterico {
-        font-family: 'Caveat' !important
-    }
+        .cliente-requeterico {
+                font-family: 'Caveat' !important
+        }
 
-    #boton-card {
-        background-color: var(--primary-color);
-        color: var(--text-color);
-    }
+        #boton-card {
+                background-color: var(--primary-color);
+                color: var(--text-color);
+        }
 
-    .boton-volver {
-        background-color: var(--secondary-color);
-        color: var(--text-color);
-        border-top-color: var(--text-color);
-    }
+        .boton-volver {
+                background-color: var(--secondary-color);
+                color: var(--text-color);
+                border-top-color: var(--text-color);
+        }
 
-    .div-carta {
-        border-color: var(--border-color);
-    }
+        .div-carta {
+                border-color: var(--border-color);
+        }
 
-    #cuerpo-card {
-        background-size: contain;
-    }
+        #cuerpo-card {
+                background-size: contain;
+        }
 }
 
 /* Cliente: CITY */
 .cliente-city_tandil {
-    --primary-color: #ffffff;
-    --secondary-color: #F2C057;
-    --text-color: #f5deb3;
-    --border-color: #F2C057;
-    --color-3: #4C9A2A;
-    --oscuro-color: #212121;
+        --primary-color: #ffffff;
+        --secondary-color: #F2C057;
+        --text-color: #f5deb3;
+        --border-color: #F2C057;
+        --color-3: #4C9A2A;
+        --oscuro-color: #212121;
 
-    * {
-        font-family: 'Montserrat', sans-serif !important;
-        color: var(--primary-color);
-    }
+        * {
+                font-family: 'Montserrat', sans-serif !important;
+                color: var(--primary-color);
+        }
 
-    .cliente-city_tandil {
-        font-family: 'Montserrat', sans-serif !important
-    }
+        .cliente-city_tandil {
+                font-family: 'Montserrat', sans-serif !important
+        }
 
-    #boton-card {
-        background-color: var(--secondary-color);
-        color: var(--oscuro-color);
-        font-family: 'Lato', sans-serif !important;
-    }
+        #boton-card {
+                background-color: var(--secondary-color);
+                color: var(--oscuro-color);
+                font-family: 'Lato', sans-serif !important;
+        }
 
-    .boton-volver {
-        background-color: var(--secondary-color);
-        color: var(--oscuro-color);
-        border-top-color: var(--secondary-color);
-        font-family: "Lato", sans-serif !important;
-    }
+        .boton-volver {
+                background-color: var(--secondary-color);
+                color: var(--oscuro-color);
+                border-top-color: var(--secondary-color);
+                font-family: "Lato", sans-serif !important;
+        }
 
-    .boton-volver i {
-        color: var(--oscuro-color);
-    }
+        .boton-volver i {
+                color: var(--oscuro-color);
+        }
 
-    .div-carta {
-        border-color: var(--border-color);
-    }
+        .div-carta {
+                border-color: var(--border-color);
+        }
 
-    #card-descripcion {
-        font-family: 'Lato', sans-serif !important;
-    }
+        #card-descripcion {
+                font-family: 'Lato', sans-serif !important;
+        }
 
-    #card-descripcion i {
-        color: var(--secondary-color);
-    }
+        #card-descripcion i {
+                color: var(--secondary-color);
+        }
 
-    .lightbox-content {
-        border: 2px solid var(--primary-color);
-        box-shadow: 0 0px 10px 3px var(--primary-color);
-    }
+        .lightbox-content {
+                border: 2px solid var(--primary-color);
+                box-shadow: 0 0px 10px 3px var(--primary-color);
+        }
 }
 
 
 /* Cliente: mi granito de cafe */
 .cliente-demo_cafeteria {
-    --primary-color: #4f342f;
-    --secondary-color: #ffffff;
-    --text-color: #f5deb3;
-    --border-color: #7f3b0e;
-    --oscuro-color: #4f342f;
+        --primary-color: #4f342f;
+        --secondary-color: #ffffff;
+        --text-color: #f5deb3;
+        --border-color: #7f3b0e;
+        --oscuro-color: #4f342f;
 
-    * {
-        font-family: 'Raleway', sans-serif !important;
-        color: var(--primary-color);
-        text-transform: uppercase;
-    }
+        * {
+                font-family: 'Raleway', sans-serif !important;
+                color: var(--primary-color);
+                text-transform: uppercase;
+        }
 
-    .cliente-demo_cafeteria {
-        font-family: 'Raleway', sans-serif !important
-    }
+        .cliente-demo_cafeteria {
+                font-family: 'Raleway', sans-serif !important
+        }
 
-    #boton-card {
-        background-color: var(--oscuro-color);
-        color: var(--secondary-color);
-        font-family: 'Roboto', sans-serif !important;
-        font-size: 1.3rem;
-    }
+        #boton-card {
+                background-color: var(--oscuro-color);
+                color: var(--secondary-color);
+                font-family: 'Roboto', sans-serif !important;
+                font-size: 1.3rem;
+        }
 
-    .boton-volver {
-        background-color: var(--primary-color);
-        color: var(--secondary-color);
-        border-top-color: var(--secondary-color);
-        font-family: "Roboto", sans-serif !important;
-    }
+        .boton-volver {
+                background-color: var(--primary-color);
+                color: var(--secondary-color);
+                border-top-color: var(--secondary-color);
+                font-family: "Roboto", sans-serif !important;
+        }
 
-    .boton-volver i {
-        color: var(--secondary-color);
-    }
+        .boton-volver i {
+                color: var(--secondary-color);
+        }
 
-    .div-carta {
-        border-color: var(--border-color);
-    }
+        .div-carta {
+                border-color: var(--border-color);
+        }
 
-    #card-descripcion {
-        font-family: 'Roboto', sans-serif !important;
-    }
+        #card-descripcion {
+                font-family: 'Roboto', sans-serif !important;
+        }
 
-    #card-descripcion i {
-        color: var(--secondary-color);
-    }
+        #card-descripcion i {
+                color: var(--secondary-color);
+        }
 
-    .lightbox-content {
-        border: 2px solid var(--primary-color);
-        box-shadow: 0 0px 10px 3px var(--primary-color);
-    }
+        .lightbox-content {
+                border: 2px solid var(--primary-color);
+                box-shadow: 0 0px 10px 3px var(--primary-color);
+        }
 
-    .blurred-load img {
-        object-position: bottom;
-    }
+        .blurred-load img {
+                object-position: bottom;
+        }
 }
 
 /* Cliente: capitano */
 .cliente-capitano {
-    --primary-color: #c8ac78;
-    --secondary-color: #ffffff;
-    --text-color: #c8ac78;
-    --border-color: #c8ac78;
-    --oscuro-color: #ffffff;
+        --primary-color: #c8ac78;
+        --secondary-color: #ffffff;
+        --text-color: #c8ac78;
+        --border-color: #c8ac78;
+        --oscuro-color: #ffffff;
 
-    * {
-        font-family: 'Urbanist', sans-serif !important;
-        color: var(--primary-color);
-        text-transform: uppercase;
-    }
+        * {
+                font-family: 'Urbanist', sans-serif !important;
+                color: var(--primary-color);
+                text-transform: uppercase;
+        }
 
-    .cliente-city_tandil {
-        font-family: 'Urbanist', sans-serif !important
-    }
+        .cliente-city_tandil {
+                font-family: 'Urbanist', sans-serif !important
+        }
 
-    #boton-card {
-        background-color: var(--oscuro-color);
-        color: var(--primary-color);
-        font-family: 'Urbanist', sans-serif !important;
-        font-size: 1.3rem;
-    }
+        #boton-card {
+                background-color: var(--oscuro-color);
+                color: var(--primary-color);
+                font-family: 'Urbanist', sans-serif !important;
+                font-size: 1.3rem;
+        }
 
-    .boton-volver {
-        background-color: var(--primary-color);
-        color: var(--secondary-color);
-        border-top-color: var(--secondary-color);
-        font-family: "Urbanist", sans-serif !important;
-    }
+        .boton-volver {
+                background-color: var(--primary-color);
+                color: var(--secondary-color);
+                border-top-color: var(--secondary-color);
+                font-family: "Urbanist", sans-serif !important;
+        }
 
-    .boton-volver i {
-        color: var(--secondary-color);
-    }
+        .boton-volver i {
+                color: var(--secondary-color);
+        }
 
-    .div-carta {
-        border-color: var(--border-color);
-    }
+        .div-carta {
+                border-color: var(--border-color);
+        }
 
-    #card-descripcion {
-        font-family: 'Urbanist', sans-serif !important;
-    }
+        #card-descripcion {
+                font-family: 'Urbanist', sans-serif !important;
+        }
 
-    #card-descripcion i {
-        color: var(--secondary-color);
-    }
+        #card-descripcion i {
+                color: var(--secondary-color);
+        }
 
-    .lightbox-content {
-        border: 2px solid var(--primary-color);
-        box-shadow: 0 0px 10px 3px var(--primary-color);
-    }
+        .lightbox-content {
+                border: 2px solid var(--primary-color);
+                box-shadow: 0 0px 10px 3px var(--primary-color);
+        }
 
-    .blurred-load img {
-        object-position: bottom;
-    }
+        .blurred-load img {
+                object-position: bottom;
+        }
 }
 
 
 /* Cliente: cientochenta */
 .cliente-cientochenta {
-    --verde-hoja: #4b7200;
-    --cafe-tostado-claro: #A77E58;
-    --negro-carbon-suave: #2E2E2E;
-    --primary-color: #c8ac78;
-    --secondary-color: #ffffff;
-    --text-color: #c8ac78;
-    --border-color: #c8ac78;
-    --oscuro-color: #ffffff;
+        --verde-hoja: #4b7200;
+        --cafe-tostado-claro: #A77E58;
+        --negro-carbon-suave: #2E2E2E;
+        --primary-color: #c8ac78;
+        --secondary-color: #ffffff;
+        --text-color: #c8ac78;
+        --border-color: #c8ac78;
+        --oscuro-color: #ffffff;
 
-    * {
-        font-family: 'Lato', sans-serif !important;
-        color: var(--cafe-tostado-claro);
-        text-transform: uppercase;
-    }
+        * {
+                font-family: 'Lato', sans-serif !important;
+                color: var(--cafe-tostado-claro);
+                text-transform: uppercase;
+        }
 
-    .cliente-city_tandil {
-        font-family: 'Lato', sans-serif !important
-    }
+        .cliente-city_tandil {
+                font-family: 'Lato', sans-serif !important
+        }
 
-    #boton-card {
-        background-color: var(--cafe-tostado-claro);
-        color: var(--oscuro-color);
-        font-family: 'Lato', sans-serif !important;
-        font-size: 1.3rem;
-    }
+        #boton-card {
+                background-color: var(--cafe-tostado-claro);
+                color: var(--oscuro-color);
+                font-family: 'Lato', sans-serif !important;
+                font-size: 1.3rem;
+        }
 
-    .boton-volver {
-        background-color: var(--cafe-tostado-claro);
-        color: var(--negro-carbon-suave);
-        border-top-color: var(--negro-carbon-suave);
-        font-family: "Lato", sans-serif !important;
-    }
+        .boton-volver {
+                background-color: var(--cafe-tostado-claro);
+                color: var(--negro-carbon-suave);
+                border-top-color: var(--negro-carbon-suave);
+                font-family: "Lato", sans-serif !important;
+        }
 
-    .boton-volver i {
-        color: var(--negro-carbon-suave);
-    }
+        .boton-volver i {
+                color: var(--negro-carbon-suave);
+        }
 
-    .div-carta {
-        border-color: var(--cafe-tostado-claro);
-    }
+        .div-carta {
+                border-color: var(--cafe-tostado-claro);
+        }
 
-    .card-title {
-        color: var(--negro-carbon-suave);
-    }
+        .card-title {
+                color: var(--negro-carbon-suave);
+        }
 
-    #card-descripcion {
-        color: var(--negro-carbon-suave);
-        font-family: 'Lato', sans-serif !important;
-    }
+        #card-descripcion {
+                color: var(--negro-carbon-suave);
+                font-family: 'Lato', sans-serif !important;
+        }
 
-    #card-descripcion i {
-        color: var(--verde-hoja);
-    }
+        #card-descripcion i {
+                color: var(--verde-hoja);
+        }
 
-    .lightbox-content {
-        border: 2px solid var(--cafe-tostado-claro);
-        box-shadow: 0 0px 10px 3px var(--cafe-tostado-claro);
-    }
+        .lightbox-content {
+                border: 2px solid var(--cafe-tostado-claro);
+                box-shadow: 0 0px 10px 3px var(--cafe-tostado-claro);
+        }
 
-    /* .blurred-load img {
+        /* .blurred-load img {
         object-position: bottom;
     } */
 }
 
 /* Cliente: demo_hotel */
 .cliente-demo_hotel {
-    --negro: black;
-    --primary-color: #c8ac78;
-    --secondary-color: #ffffff;
-    --text-color: #c8ac78;
-    --border-color: #c8ac78;
-    --oscuro-color: #ffffff;
-    --marmol: #fffcf0;
+        --negro: black;
+        --primary-color: #c8ac78;
+        --secondary-color: #ffffff;
+        --text-color: #c8ac78;
+        --border-color: #c8ac78;
+        --oscuro-color: #ffffff;
+        --marmol: #fffcf0;
 
-    * {
-        font-family: 'Lato', sans-serif !important;
-        color: var(--negro);
-        text-transform: uppercase;
-    }
+        * {
+                font-family: 'Lato', sans-serif !important;
+                color: var(--negro);
+                text-transform: uppercase;
+        }
 
-    .cliente-city_tandil {
-        font-family: 'Lato', sans-serif !important
-    }
+        .cliente-city_tandil {
+                font-family: 'Lato', sans-serif !important
+        }
 
-    #boton-card {
-        background-color: var(--negro);
-        color: var(--secondary-color);
-        font-family: 'Lato', sans-serif !important;
-        font-size: 1.3rem;
-    }
+        #boton-card {
+                background-color: var(--negro);
+                color: var(--secondary-color);
+                font-family: 'Lato', sans-serif !important;
+                font-size: 1.3rem;
+        }
 
-    .boton-volver {
-        background-color: var(--negro);
-        color: var(--secondary-color);
-        border-top-color: var(--secondary-color);
-        font-family: "GFS Didot", serif !important;
-    }
+        .boton-volver {
+                background-color: var(--negro);
+                color: var(--secondary-color);
+                border-top-color: var(--secondary-color);
+                font-family: "GFS Didot", serif !important;
+        }
 
-    .boton-volver i {
-        color: var(--secondary-color);
-    }
+        .boton-volver i {
+                color: var(--secondary-color);
+        }
 
-    .div-carta {
-        border-color: var(--negro);
-    }
+        .div-carta {
+                border-color: var(--negro);
+        }
 
-    .card-title {
-        color: var(--negro);
-        font-family: "GFS Didot", serif !important;
-    }
+        .card-title {
+                color: var(--negro);
+                font-family: "GFS Didot", serif !important;
+        }
 
-    #card-descripcion {
-        color: var(--negro);
-        font-family: 'Lato', sans-serif !important;
-    }
+        #card-descripcion {
+                color: var(--negro);
+                font-family: 'Lato', sans-serif !important;
+        }
 
-    #card-descripcion i {
-        color: var(--verde-hoja);
-    }
+        #card-descripcion i {
+                color: var(--verde-hoja);
+        }
 
-    .lightbox-content {
-        border: 2px solid var(--marmol);
-        box-shadow: 0 0px 10px 3px var(--marmol);
-    }
+        .lightbox-content {
+                border: 2px solid var(--marmol);
+                box-shadow: 0 0px 10px 3px var(--marmol);
+        }
 
-    /* .blurred-load img {
+        /* .blurred-load img {
         object-position: bottom;
     } */
 }
 
 /* Cliente: nexus_cafe_tandil */
 .cliente-nexus_cafe_tandil {
-    --gris: #2d2d2b;
-    --blanco-hueso: #D8D6D3;
-    --primary-color: #c8ac78;
-    --secondary-color: #ffffff;
-    --text-color: #c8ac78;
-    --border-color: #c8ac78;
-    --ambar: #D8A45F;
+        --gris: #2d2d2b;
+        --blanco-hueso: #D8D6D3;
+        --primary-color: #c8ac78;
+        --secondary-color: #ffffff;
+        --text-color: #c8ac78;
+        --border-color: #c8ac78;
+        --ambar: #D8A45F;
 
-    * {
-        font-family: 'Lato', sans-serif !important;
-        color: var(--blanco-hueso);
-        text-transform: uppercase;
-    }
+        * {
+                font-family: 'Lato', sans-serif !important;
+                color: var(--blanco-hueso);
+                text-transform: uppercase;
+        }
 
-    .cliente-city_tandil {
-        font-family: 'Lato', sans-serif !important
-    }
+        .cliente-city_tandil {
+                font-family: 'Lato', sans-serif !important
+        }
 
-    #boton-card {
-        background-color: var(--gris);
-        color: var(--ambar);
-        font-family: 'Lato', sans-serif !important;
-        font-size: 1.3rem;
-    }
+        #boton-card {
+                background-color: var(--gris);
+                color: var(--ambar);
+                font-family: 'Lato', sans-serif !important;
+                font-size: 1.3rem;
+        }
 
-    .boton-volver {
-        background-color: black;
-        color: var(--blanco-hueso);
-        border-top-color: var(--blanco-hueso);
-    }
+        .boton-volver {
+                background-color: black;
+                color: var(--blanco-hueso);
+                border-top-color: var(--blanco-hueso);
+        }
 
-    .boton-volver i {
-        color: var(--secondary-color);
-    }
+        .boton-volver i {
+                color: var(--secondary-color);
+        }
 
-    .div-carta {
-        border-color: var(--ambar);
-    }
+        .div-carta {
+                border-color: var(--ambar);
+        }
 
-    .card-title {
-        color: var(--blanco-hueso);
-        font-family: "Poppins", sans-serif !important;
-    }
+        .card-title {
+                color: var(--blanco-hueso);
+                font-family: "Poppins", sans-serif !important;
+        }
 
-    #card-descripcion {
-        color: var(--blanco-hueso);
-        font-family: 'Lato', sans-serif !important;
-    }
+        #card-descripcion {
+                color: var(--blanco-hueso);
+                font-family: 'Lato', sans-serif !important;
+        }
 
-    #card-descripcion i {
-        color: var(--verde-hoja);
-    }
+        #card-descripcion i {
+                color: var(--verde-hoja);
+        }
 
-    .lightbox-content {
-        border: 2px solid var(--ambar);
-        box-shadow: 0 0px 10px 3px var(--ambar);
-    }
+        .lightbox-content {
+                border: 2px solid var(--ambar);
+                box-shadow: 0 0px 10px 3px var(--ambar);
+        }
 
-    /* .blurred-load img {
+        /* .blurred-load img {
         object-position: bottom;
     } */
 
-    #cuerpo-card {
-        background-size: cover !important;
-    }
+        #cuerpo-card {
+                background-size: cover !important;
+        }
 
 
 }
@@ -634,70 +634,70 @@ html {
 
 /* Cliente: ojo_cafe_tandil */
 .cliente-ojo_cafe_tandil {
-    --gris: #3c3c3c;
-    --blanco: #fdede0;
-    --primary-color: #c8ac78;
-    --secondary-color: #ffffff;
-    --text-color: #c8ac78;
-    --ambar: #D8A45F;
+        --gris: #3c3c3c;
+        --blanco: #fdede0;
+        --primary-color: #c8ac78;
+        --secondary-color: #ffffff;
+        --text-color: #c8ac78;
+        --ambar: #D8A45F;
 
-    * {
-        font-family: 'Inter', sans-serif !important;
-        color: var(--gris);
-        text-transform: uppercase;
-    }
+        * {
+                font-family: 'Inter', sans-serif !important;
+                color: var(--gris);
+                text-transform: uppercase;
+        }
 
-    .cliente-city_tandil {
-        font-family: 'Inter', sans-serif !important
-    }
+        .cliente-city_tandil {
+                font-family: 'Inter', sans-serif !important
+        }
 
-    #boton-card {
-        background-color: var(--gris);
-        color: var(--ambar);
-        font-family: 'Inter', sans-serif !important;
-        font-size: 1.3rem;
-    }
+        #boton-card {
+                background-color: var(--gris);
+                color: var(--ambar);
+                font-family: 'Inter', sans-serif !important;
+                font-size: 1.3rem;
+        }
 
-    .boton-volver {
-        background-color: var(--blanco);
-        color: var(--gris);
-        border-top-color: var(--gris);
-    }
+        .boton-volver {
+                background-color: var(--blanco);
+                color: var(--gris);
+                border-top-color: var(--gris);
+        }
 
-    .boton-volver i {
-        color: var(--gris);
-    }
+        .boton-volver i {
+                color: var(--gris);
+        }
 
-    .div-carta {
-        border-color: var(--ambar);
-    }
+        .div-carta {
+                border-color: var(--ambar);
+        }
 
-    .card-title {
-        color: var(--gris);
-        font-family: "Fredoka", sans-serif !important;
-    }
+        .card-title {
+                color: var(--gris);
+                font-family: "Fredoka", sans-serif !important;
+        }
 
-    #card-descripcion {
-        color: var(--gris);
-        font-family: 'Inter', sans-serif !important;
-    }
+        #card-descripcion {
+                color: var(--gris);
+                font-family: 'Inter', sans-serif !important;
+        }
 
-    #card-descripcion i {
-        color: var(--ambar);
-    }
+        #card-descripcion i {
+                color: var(--ambar);
+        }
 
-    .lightbox-content {
-        border: 2px solid var(--blanco);
-        box-shadow: 0 0px 10px 3px var(--blanco);
-    }
+        .lightbox-content {
+                border: 2px solid var(--blanco);
+                box-shadow: 0 0px 10px 3px var(--blanco);
+        }
 
-    /* .blurred-load img {
+        /* .blurred-load img {
         object-position: bottom;
     } */
 
-    #cuerpo-card {
-        background-size: cover !important;
-    }
+        #cuerpo-card {
+                background-size: cover !important;
+        }
 
 
 }
@@ -705,69 +705,69 @@ html {
 
 /* 1823_castillo_morisco_tandil */
 .cliente-1823_castillo_morisco_tandil {
-    /* --detalle:#a66d44; */
-    --blanco: #ffffff;
-    --marron-oscuro: #8E5838;
-    --marron: #c57422;
-    --detalle: #D38529;
+        /* --detalle:#a66d44; */
+        --blanco: #ffffff;
+        --marron-oscuro: #8E5838;
+        --marron: #c57422;
+        --detalle: #D38529;
 
-    * {
-        font-family: 'Crimson Pro', serif !important;
-        color: var(--marron);
-        text-transform: uppercase;
-    }
+        * {
+                font-family: 'Crimson Pro', serif !important;
+                color: var(--marron);
+                text-transform: uppercase;
+        }
 
-    .cliente-city_tandil {
-        font-family: 'Crimson Pro', serif !important
-    }
+        .cliente-city_tandil {
+                font-family: 'Crimson Pro', serif !important
+        }
 
-    #boton-card {
-        background-color: var(--marron);
-        color: var(--blanco);
-        font-family: 'Crimson Pro', serif !important;
-        font-size: 1.5rem;
-    }
+        #boton-card {
+                background-color: var(--marron);
+                color: var(--blanco);
+                font-family: 'Crimson Pro', serif !important;
+                font-size: 1.5rem;
+        }
 
-    .boton-volver {
-        background-color: var(--marron-oscuro);
-        color: var(--blanco);
-        border-top-color: var(--blanco);
-    }
+        .boton-volver {
+                background-color: var(--marron-oscuro);
+                color: var(--blanco);
+                border-top-color: var(--blanco);
+        }
 
-    .boton-volver i {
-        color: var(--blanco);
-    }
+        .boton-volver i {
+                color: var(--blanco);
+        }
 
-    .div-carta {
-        border-color: var(--blanco);
-    }
+        .div-carta {
+                border-color: var(--blanco);
+        }
 
-    .card-title {
-        color: var(--marron-oscuro);
-        font-family: "Crimson Pro", sans-serif !important;
-    }
+        .card-title {
+                color: var(--marron-oscuro);
+                font-family: "Crimson Pro", sans-serif !important;
+        }
 
-    #card-descripcion {
-        color: var(--marron);
-        font-family: 'Crimson Pro', serif !important;
-    }
+        #card-descripcion {
+                color: var(--marron);
+                font-family: 'Crimson Pro', serif !important;
+        }
 
-    #card-descripcion i {
-        color: var(--marron);
-    }
+        #card-descripcion i {
+                color: var(--marron);
+        }
 
-    .lightbox-content {
-        border: 2px solid var(--detalle);
-        box-shadow: 0 0px 10px 3px var(--detalle);
-    }
+        .lightbox-content {
+                border: 2px solid var(--detalle);
+                box-shadow: 0 0px 10px 3px var(--detalle);
+        }
 
-    .blurred-load img {
-        object-position: bottom;
-    }
+        .blurred-load img {
+                object-position: bottom;
+        }
 
-    #cuerpo-card {
-        background-size: cover !important;
-    }
+        #cuerpo-card {
+                background-size: cover !important;
+        }
 
 
 }
@@ -776,185 +776,185 @@ html {
 
 /* time_coffee_tandil */
 .cliente-time_coffee_tandil {
-    /* --detalle:#a66d44; */
-    --blanco: #ffffff;
-    --negro: #0e0c0f;
-    --marron-oscuro: #8E5838;
-    --marron: #c57422;
-    --detalle: #D38529;
-    --blanco-hueso: #D8D6D3;
+        /* --detalle:#a66d44; */
+        --blanco: #ffffff;
+        --negro: #0e0c0f;
+        --marron-oscuro: #8E5838;
+        --marron: #c57422;
+        --detalle: #D38529;
+        --blanco-hueso: #D8D6D3;
 
-    * {
-        color: var(--negro);
-        text-transform: uppercase;
-    }
+        * {
+                color: var(--negro);
+                text-transform: uppercase;
+        }
 
-    #boton-card {
-        background-color: var(--negro);
-        color: var(--blanco);
-        font-family: 'Roboto', sans-serif !important;
-        font-size: 1.5rem;
-    }
+        #boton-card {
+                background-color: var(--negro);
+                color: var(--blanco);
+                font-family: 'Roboto', sans-serif !important;
+                font-size: 1.5rem;
+        }
 
-    .boton-volver {
-        font-family: 'Roboto', sans-serif !important;
-        background-color: var(--blanco);
-        color: var(--negro);
-        border-top-color: var(--negro);
-    }
+        .boton-volver {
+                font-family: 'Roboto', sans-serif !important;
+                background-color: var(--blanco);
+                color: var(--negro);
+                border-top-color: var(--negro);
+        }
 
-    .boton-volver i {
-        color: var(--negro);
-    }
+        .boton-volver i {
+                color: var(--negro);
+        }
 
-    .div-carta {
-        border-color: var(--detalle);
-    }
+        .div-carta {
+                border-color: var(--detalle);
+        }
 
-    .card-title {
-        color: var(--negro);
-        font-family: "Montserrat", sans-sans-serif !important;
-    }
+        .card-title {
+                color: var(--negro);
+                font-family: "Montserrat", sans-sans-serif !important;
+        }
 
-    #card-descripcion {
-        color: var(--negro);
-        font-family: 'Roboto', sans-serif !important;
-    }
+        #card-descripcion {
+                color: var(--negro);
+                font-family: 'Roboto', sans-serif !important;
+        }
 
-    #card-descripcion i {
-        color: var(--detalle);
-    }
+        #card-descripcion i {
+                color: var(--detalle);
+        }
 
-    .lightbox-content {
-        border: 2px solid var(--detalle);
-        box-shadow: 0 0px 10px 3px var(--detalle);
-    }
+        .lightbox-content {
+                border: 2px solid var(--detalle);
+                box-shadow: 0 0px 10px 3px var(--detalle);
+        }
 
-    /* .blurred-load img {
+        /* .blurred-load img {
         object-position: bottom;
     } */
 
-    #cuerpo-card {
-        background-size: cover !important;
-    }
+        #cuerpo-card {
+                background-size: cover !important;
+        }
 
 
 }
 
 /* beer_house_tandil */
 .cliente-beer_house_tandil {
-    /* --detalle:#a66d44; */
-    --blanco: #ffffff;
-    --negro: #000000;
-    --ambar: #D8A45F;
+        /* --detalle:#a66d44; */
+        --blanco: #ffffff;
+        --negro: #000000;
+        --ambar: #D8A45F;
 
-    * {
-        color: var(--negro);
-        text-transform: uppercase;
-    }
+        * {
+                color: var(--negro);
+                text-transform: uppercase;
+        }
 
-    #boton-card {
-        background-color: var(--negro);
-        color: var(--blanco);
-        font-family: 'Roboto', sans-serif !important;
-        font-size: 1.5rem;
-    }
+        #boton-card {
+                background-color: var(--negro);
+                color: var(--blanco);
+                font-family: 'Roboto', sans-serif !important;
+                font-size: 1.5rem;
+        }
 
-    .boton-volver {
-        font-family: 'Roboto', sans-serif !important;
-        background-color: var(--blanco);
-        color: var(--negro);
-        border-top-color: var(--negro);
-    }
+        .boton-volver {
+                font-family: 'Roboto', sans-serif !important;
+                background-color: var(--blanco);
+                color: var(--negro);
+                border-top-color: var(--negro);
+        }
 
-    .boton-volver i {
-        color: var(--negro);
-    }
+        .boton-volver i {
+                color: var(--negro);
+        }
 
-    .div-carta {
-        border-color: var(--ambar);
-    }
+        .div-carta {
+                border-color: var(--ambar);
+        }
 
-    .card-title {
-        color: var(--negro);
-        font-family: "Bevan", serif !important;
-    }
+        .card-title {
+                color: var(--negro);
+                font-family: "Bevan", serif !important;
+        }
 
-    #card-descripcion {
-        color: var(--negro);
-        font-family: 'Roboto', sans-serif !important;
-    }
+        #card-descripcion {
+                color: var(--negro);
+                font-family: 'Roboto', sans-serif !important;
+        }
 
-    #card-descripcion i {
-        color: var(--ambar);
-    }
+        #card-descripcion i {
+                color: var(--ambar);
+        }
 
-    .lightbox-content {
-        border: 2px solid var(--ambar);
-        box-shadow: 0 0px 10px 3px var(--ambar);
-    }
+        .lightbox-content {
+                border: 2px solid var(--ambar);
+                box-shadow: 0 0px 10px 3px var(--ambar);
+        }
 
-    #cuerpo-card {
-        background-size: cover !important;
-    }
+        #cuerpo-card {
+                background-size: cover !important;
+        }
 
 }
 
 /* prego_tandil */
 .cliente-prego_tandil {
-    --blanco: #ffffff;
-    --verde: #829577;
-    --verde-oscuro: #68785f;
+        --blanco: #ffffff;
+        --verde: #829577;
+        --verde-oscuro: #68785f;
 
-    * {
-        color: var(--verde);
-        text-transform: uppercase;
-    }
+        * {
+                color: var(--verde);
+                text-transform: uppercase;
+        }
 
-    #boton-card {
-        background-color: var(--verde);
-        color: var(--blanco);
-        font-family: 'Roboto', sans-serif !important;
-        font-size: 1.3rem;
-    }
+        #boton-card {
+                background-color: var(--verde);
+                color: var(--blanco);
+                font-family: 'Roboto', sans-serif !important;
+                font-size: 1.3rem;
+        }
 
-    .boton-volver {
-        font-family: 'Roboto', sans-serif !important;
-        background-color: var(--blanco);
-        color: var(--verde);
-        border-top-color: var(--verde);
-    }
+        .boton-volver {
+                font-family: 'Roboto', sans-serif !important;
+                background-color: var(--blanco);
+                color: var(--verde);
+                border-top-color: var(--verde);
+        }
 
-    .boton-volver i {
-        color: var(--verde);
-    }
+        .boton-volver i {
+                color: var(--verde);
+        }
 
-    .div-carta {
-        border-color: var(--blanco);
-    }
+        .div-carta {
+                border-color: var(--blanco);
+        }
 
-    .card-title {
-        color: var(--verde-oscuro);
-        font-family: "lato", sans-serif !important;
-    }
+        .card-title {
+                color: var(--verde-oscuro);
+                font-family: "lato", sans-serif !important;
+        }
 
-    #card-descripcion {
-        color: var(--verde-oscuro);
-        font-family: 'Roboto', sans-serif !important;
-    }
+        #card-descripcion {
+                color: var(--verde-oscuro);
+                font-family: 'Roboto', sans-serif !important;
+        }
 
-    #card-descripcion i {
-        color: var(--blanco);
-    }
+        #card-descripcion i {
+                color: var(--blanco);
+        }
 
-    .lightbox-content {
-        border: 2px solid var(--blanco);
-        box-shadow: 0 0px 10px 3px var(--blanco);
-    }
+        .lightbox-content {
+                border: 2px solid var(--blanco);
+                box-shadow: 0 0px 10px 3px var(--blanco);
+        }
 
-    #cuerpo-card {
-        background-size: cover !important;
-    }
+        #cuerpo-card {
+                background-size: cover !important;
+        }
 
 
 }
@@ -962,64 +962,64 @@ html {
 
 /* flor_del_alba */
 .cliente-flor_del_alba {
-    --bordo: #320001;
-    --verde: #6c775f;
-    --marmol: #f3eee5;
-    --oro: #ffbf00;
-    --blanco: #ffffff;
+        --bordo: #320001;
+        --verde: #6c775f;
+        --marmol: #f3eee5;
+        --oro: #ffbf00;
+        --blanco: #ffffff;
 
-    * {
-        color: var(--bordo);
-        text-transform: uppercase;
-    }
+        * {
+                color: var(--bordo);
+                text-transform: uppercase;
+        }
 
-    #boton-card {
-        background-color: var(--verde);
-        color: var(--marmol);
-        font-family: 'lato', sans-serif !important;
-        font-size: 1.3rem;
-    }
+        #boton-card {
+                background-color: var(--verde);
+                color: var(--marmol);
+                font-family: 'lato', sans-serif !important;
+                font-size: 1.3rem;
+        }
 
-    .boton-volver {
-        font-family: 'lato', sans-serif !important;
-        background-color: var(--verde);
-        color: var(--marmol);
-        border-top-color: var(--bordo);
-    }
+        .boton-volver {
+                font-family: 'lato', sans-serif !important;
+                background-color: var(--verde);
+                color: var(--marmol);
+                border-top-color: var(--bordo);
+        }
 
-    .boton-volver i {
-        color: var(--marmol);
-    }
+        .boton-volver i {
+                color: var(--marmol);
+        }
 
-    .div-carta {
-        border-color: var(--verde);
-    }
+        .div-carta {
+                border-color: var(--verde);
+        }
 
-    .card-title {
-        color: var(--bordo);
-        font-family: "riesling", sans-serif !important;
-        font-size: 2.3rem !important;
-        letter-spacing: normal !important;
+        .card-title {
+                color: var(--bordo);
+                font-family: "riesling", sans-serif !important;
+                font-size: 2.3rem !important;
+                letter-spacing: normal !important;
 
-    }
+        }
 
-    #card-descripcion {
-        color: var(--bordo);
-        font-family: 'lato', sans-serif !important;
-    }
+        #card-descripcion {
+                color: var(--bordo);
+                font-family: 'lato', sans-serif !important;
+        }
 
-    #card-descripcion i {
-        color: var(--verde);
-    }
+        #card-descripcion i {
+                color: var(--verde);
+        }
 
-    .lightbox-content {
-        border: 2px solid var(--verde);
-        box-shadow: 0 0px 10px 3px var(--verde);
-    }
+        .lightbox-content {
+                border: 2px solid var(--verde);
+                box-shadow: 0 0px 10px 3px var(--verde);
+        }
 
-    #cuerpo-card {
-        background-size: cover !important;
-    }
+        #cuerpo-card {
+                background-size: cover !important;
+        }
 
 
 }
@@ -1027,60 +1027,60 @@ html {
 
 /* tierra_de_azafranes */
 .cliente-tierra_de_azafranes {
-    --negro: black;
-    --rojo: #c82527;
-    --blanco: #ffffff;
+        --negro: black;
+        --rojo: #c82527;
+        --blanco: #ffffff;
 
-    * {
-        color: var(--negro);
-        text-transform: uppercase;
-    }
+        * {
+                color: var(--negro);
+                text-transform: uppercase;
+        }
 
-    #boton-card {
-        background-color: var(--negro);
-        color: var(--blanco);
-        font-family: 'lato', sans-serif !important;
-        font-size: 1.3rem;
-    }
+        #boton-card {
+                background-color: var(--negro);
+                color: var(--blanco);
+                font-family: 'lato', sans-serif !important;
+                font-size: 1.3rem;
+        }
 
-    .boton-volver {
-        font-family: 'Playfair Display', sans-serif !important;
-        background-color: var(--negro);
-        color: var(--blanco);
-    }
+        .boton-volver {
+                font-family: 'Playfair Display', sans-serif !important;
+                background-color: var(--negro);
+                color: var(--blanco);
+        }
 
-    .boton-volver i {
-        color: var(--blanco);
-    }
+        .boton-volver i {
+                color: var(--blanco);
+        }
 
-    .div-carta {
-        border-color: var(--negro);
-    }
+        .div-carta {
+                border-color: var(--negro);
+        }
 
-    .card-title {
-        color: var(--negro);
-        font-family: "Playfair Display", sans-serif !important;
-        letter-spacing: normal !important;
+        .card-title {
+                color: var(--negro);
+                font-family: "Playfair Display", sans-serif !important;
+                letter-spacing: normal !important;
 
-    }
+        }
 
-    #card-descripcion {
-        color: var(--negro);
-        font-family: 'lato', sans-serif !important;
-    }
+        #card-descripcion {
+                color: var(--negro);
+                font-family: 'lato', sans-serif !important;
+        }
 
-    #card-descripcion i {
-        color: var(--rojo);
-    }
+        #card-descripcion i {
+                color: var(--rojo);
+        }
 
-    .lightbox-content {
-        border: 2px solid var(--blanco);
-        box-shadow: 0 0px 10px 3px var(--blanco);
-    }
+        .lightbox-content {
+                border: 2px solid var(--blanco);
+                box-shadow: 0 0px 10px 3px var(--blanco);
+        }
 
-    #cuerpo-card {
-        background-size: cover !important;
-    }
+        #cuerpo-card {
+                background-size: cover !important;
+        }
 
 
 }

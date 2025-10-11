@@ -22,13 +22,10 @@
                         <!-- Contenedor de productos -->
                         <div class="container py-4">
                                 <div class="row g-4 mt-3">
-                                        <!-- ✅ track por identificador único -->
                                         @for (item of items; track item.idProducto || item.nombre) {
                                         <div class="col-md-4 px-4 text-center" id="cart-item">
                                                 <div class="card shadow-sm border-3 rounded-5 overflow-hidden div-carta position-relative"
                                                         style="max-width: 400px;">
-
-                                                        <!-- Imagen del producto -->
                                                         <div class="blurred-load text-center position-relative"
                                                                 (click)="openLightbox(item.imagen)"
                                                                 [style.backgroundImage]="'url(' + item.small_imagen + ')'">
@@ -37,26 +34,18 @@
                                                                         class="img-fluid w-100 object-fit-cover"
                                                                         (error)="item.imagen = 'assets/placeholder.png'" />
                                                         </div>
-
-                                                        <!-- Contenido de la tarjeta -->
                                                         <div class="blurred-img card-body text-center px-4 pb-4 position-relative"
                                                                 id="cuerpo-card"
                                                                 [ngStyle]="{ 'background-image': 'url(' + cardImage + ')' }">
-
-                                                                <!-- Nombre del producto -->
                                                                 <div id="card-nombre" class="pb-2 px-1">
                                                                         <div class="card-title fw-bold text-uppercase">
                                                                                 {{ item.nombre }}
                                                                         </div>
                                                                 </div>
-
-                                                                <!-- Descripción -->
                                                                 <div id="card-descripcion">
                                                                         <i class="bi bi-quote"></i>
                                                                         {{ item.descripcion }}.
                                                                 </div>
-
-                                                                <!-- Precios - Variantes -->
                                                                 @if (item.variantes) {
                                                                 @for (variante of item.variantes | keyvalue; track
                                                                 variante.key) {
@@ -65,8 +54,6 @@
                                                                 </div>
                                                                 }
                                                                 }
-
-                                                                <!-- Precio único -->
                                                                 @if (item.precio && !item.variantes) {
                                                                 <div class="btn rounded-3 d-block" id="boton-card">
                                                                         ${{ item.precio }}
@@ -77,7 +64,6 @@
                                         </div>
                                         }
 
-                                        <!-- Botón volver -->
                                         <a [routerLink]="['/menuonline', cliente, 'carta']"
                                                 class="btn button-add-cart checkout-button boton-volver">
                                                 <i class="bi bi-arrow-counterclockwise"
@@ -85,27 +71,23 @@
                                         </a>
                                 </div>
 
-                                <!-- Lightbox para ver imagen ampliada -->
-                                <div class="lightbox" [class.show]="lightboxVisible" (click)="closeLightbox($event)">
-
-                                        <!-- Botón cerrar (solo visible cuando zoom es 1) -->
-                                        @if (zoomLevel === 1) {
-                                        <span class="lightbox-close" (click)="closeLightbox($event)" aria-label="Cerrar"
-                                                tabindex="0" role="button"
+                                <!-- Lightbox -->
+                                <div class="lightbox" [class.show]="lightboxVisible"
+                                        [class.hide]="!lightboxVisible && lightboxImage"
+                                        (click)="closeLightbox($event)">
+                                        <span *ngIf="zoomLevel === 1" class="lightbox-close"
+                                                (click)="closeLightbox($event)" aria-label="Cerrar" tabindex="0"
+                                                role="button"
                                                 style="position: absolute; top: 24px; right: 32px; font-size: 2.5rem; color: #fff; z-index: 10; cursor: pointer; user-select: none;">
                                                 &times;
                                         </span>
-                                        }
-
-                                        <!-- Imagen ampliada -->
-                                        <img class="lightbox-image" [src]="lightboxImage" alt="Imagen ampliada"
-                                                [style.transform]="zoomTransform"
-                                                [style.cursor]="zoomLevel === 1 ? 'zoom-in' : 'grab'"
-                                                (dblclick)="toggleZoom()"
+                                        <img class="lightbox-content" [src]="lightboxImage" (dblclick)="toggleZoom()"
                                                 (touchstart)="handleDoubleTap($event); startDrag($event)"
-                                                (touchmove)="onDrag($event)" (touchend)="endDrag()"
-                                                (mousedown)="startDrag($event)" (mousemove)="onDrag($event)"
-                                                (mouseup)="endDrag()" (mouseleave)="endDrag()" />
+                                                (mousedown)="startDrag($event)" (touchmove)="onDrag($event)"
+                                                (mousemove)="onDrag($event)" (touchend)="endDrag()"
+                                                (mouseup)="endDrag()" (mouseleave)="endDrag()"
+                                                [style.transform]="zoomTransform"
+                                                [style.cursor]="zoomLevel === 1 ? 'zoom-in' : 'grab'" />
                                 </div>
                         </div>
 
