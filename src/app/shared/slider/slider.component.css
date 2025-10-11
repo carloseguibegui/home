@@ -49,10 +49,10 @@
 
 }
 
-.menu-item:first-child {
+/* .menu-item:first-child { */
     /* margin-left: 16px !important; */
     /* Espaciado inicial */
-}
+/* } */
 
 
 .menu-item img {
@@ -811,4 +811,39 @@ a {
 .cliente-tierra_de_azafranes.sticky-slider {
     background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Ftierra_de_azafranes%2Fbackground_image.webp?alt=media') !important;
     background-size: cover !important;
+}
+
+/* Arrow navigation controls */
+.carta-container {
+    position: relative;
+}
+
+.nav-arrow {
+    position: absolute;
+    top: 32%;
+    transform: translateY(-50%);
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: none;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+    cursor: pointer;
+    transition: background 0.2s ease, opacity 0.2s ease;
+}
+
+.nav-arrow.left { left: 4px; }
+.nav-arrow.right { right: 4px; }
+
+.nav-arrow.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+@media (hover: hover) {
+  .nav-arrow:hover { background: rgba(0, 0, 0, 0.55); }
 }

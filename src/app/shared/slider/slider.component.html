@@ -1,6 +1,9 @@
 <div  [ngClass]="[clienteClass, isSticky ? 'sticky-slider' : '']" class="carta-container">
+    <button type="button" class="nav-arrow left" (click)="scrollByItems('left')" [class.hidden]="!canScrollLeft">
+        &#10094;
+    </button>
     <div  class="scroll-container" #scrollContainer>
-        <div class="scroll-track">
+        <div class="scroll-track" #scrollTrack>
             <div *ngFor="let categoria of categorias" class="slider-item"
                 [class.active]="isActiveCategory(categoria.route)">
                 <a  
@@ -17,4 +20,7 @@
             </div>
         </div>
     </div>
+    <button type="button" class="nav-arrow right" (click)="scrollByItems('right')" [class.hidden]="!canScrollRight">
+        &#10095;
+    </button>
 </div>

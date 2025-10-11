@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, Input, OnInit, Output, ViewChild, EventEmitter, SimpleChanges } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, Output, ViewChild, EventEmitter, SimpleChanges, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RouterModule } from '@angular/router';
 import { trigger, transition, style, animate } from '@angular/animations';
@@ -11,8 +11,9 @@ import { HostListener } from '@angular/core';
   styleUrls: ['./slider.component.css'],
   standalone: true
 })
-export class SliderComponent implements OnInit {
-  @ViewChild('scrollContainer') scrollContainer!: ElementRef;
+export class SliderComponent implements OnInit, OnDestroy {
+  @ViewChild('scrollContainer') scrollContainer!: ElementRef<HTMLDivElement>;
+  @ViewChild('scrollTrack') scrollTrack!: ElementRef<HTMLDivElement>;
   currentCategory: string | null = null;
   @Input() categorias: any[] = [];
   @Input() cliente: string = '';
@@ -21,6 +22,9 @@ export class SliderComponent implements OnInit {
   cardImage = ""
   backgroundImage = ""
   isSticky = false;
+  canScrollLeft = false;
+  canScrollRight = false;
+  private onContainerScroll = () => this.updateScrollControls();
   constructor(
     public router: Router,
     private route: ActivatedRoute,
@@ -31,6 +35,15 @@ export class SliderComponent implements OnInit {
   }
   ngAfterViewInit() {
     this.scrollToActiveCategory();
+    if (this.scrollContainer?.nativeElement) {
+      this.scrollContainer.nativeElement.addEventListener('scroll', this.onContainerScroll, { passive: true } as AddEventListenerOptions);
+      setTimeout(() => this.updateScrollControls(), 0);
+    }
+  }
+  ngOnDestroy() {
+    if (this.scrollContainer?.nativeElement) {
+      this.scrollContainer.nativeElement.removeEventListener('scroll', this.onContainerScroll as EventListener);
+    }
   }
   
   ngOnChanges(changes: SimpleChanges) {
@@ -42,6 +55,10 @@ export class SliderComponent implements OnInit {
   @HostListener('window:scroll', [])
   onWindowScroll() {
     this.isSticky = window.scrollY > 135; // Cambia 100 por los píxeles que quieras
+  }
+  @HostListener('window:resize')
+  onResize() {
+    this.updateScrollControls();
   }
   get clienteClass(): string {
     return `cliente-${this.cliente.toLowerCase()}`;
@@ -57,6 +74,7 @@ export class SliderComponent implements OnInit {
           inline: 'center'
         });
       }
+      this.updateScrollControls();
     }, 0);
   }
 
@@ -67,5 +85,78 @@ export class SliderComponent implements OnInit {
   seleccionarCategoria(route: string) {
     this.categoriaSeleccionada.emit(route);
     window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll arriba al seleccionar
+  }
+
+  scrollByItems(direction: 'left' | 'right') {
+    const container = this.scrollContainer?.nativeElement;
+    if (!container) return;
+    const itemsToScroll = window.innerWidth < 768 ? 3 : 4;
+    const delta = this.getItemStride() * itemsToScroll;
+    const target = this.clampScroll(
+      container.scrollLeft + (direction === 'right' ? delta : -delta),
+      0,
+      container.scrollWidth - container.clientWidth
+    );
+    this.smoothScrollTo(container, target, 400);
+  }
+
+  private getItemStride(): number {
+    const firstItem = this.scrollContainer?.nativeElement.querySelector('.slider-item') as HTMLElement | null;
+    if (!firstItem) return this.scrollContainer.nativeElement.clientWidth;
+    const rect = firstItem.getBoundingClientRect();
+    const trackEl = this.scrollTrack?.nativeElement as HTMLElement | undefined;
+    let gap = 0;
+    if (trackEl) {
+      const style = getComputedStyle(trackEl);
+      const gapStr = (style as any).gap || (style as any).columnGap || '0';
+      const parsed = parseFloat(gapStr);
+      gap = isNaN(parsed) ? 0 : parsed;
+    }
+    return rect.width + gap;
+  }
+
+  private clampScroll(value: number, min: number, max: number) {
+    return Math.max(min, Math.min(max, value));
+  }
+
+  private smoothScrollTo(container: HTMLDivElement, targetLeft: number, duration = 400) {
+    const startLeft = container.scrollLeft;
+    const change = targetLeft - startLeft;
+    if (change === 0 || duration <= 0) {
+      container.scrollLeft = targetLeft;
+      this.updateScrollControls();
+      return;
+    }
+    // Temporarily disable scroll snap to avoid jumpy behavior
+    const prevSnap = container.style.scrollSnapType;
+    container.style.scrollSnapType = 'none';
+
+    const startTime = performance.now();
+    const easeInOutCubic = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+
+    const animate = (now: number) => {
+      const elapsed = now - startTime;
+      const t = Math.min(1, elapsed / duration);
+      const eased = easeInOutCubic(t);
+      container.scrollLeft = startLeft + change * eased;
+      if (t < 1) {
+        requestAnimationFrame(animate);
+      } else {
+        // Restore snap after a tick so it doesn't snap back abruptly
+        setTimeout(() => {
+          container.style.scrollSnapType = prevSnap;
+          this.updateScrollControls();
+        }, 50);
+      }
+    };
+    requestAnimationFrame(animate);
+  }
+
+  private updateScrollControls() {
+    const container = this.scrollContainer?.nativeElement;
+    if (!container) return;
+    const maxScrollLeft = container.scrollWidth - container.clientWidth;
+    this.canScrollLeft = container.scrollLeft > 0;
+    this.canScrollRight = container.scrollLeft < maxScrollLeft - 1;
   }
 }
