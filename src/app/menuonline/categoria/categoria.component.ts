@@ -34,7 +34,7 @@ import { debounceTime, takeUntil, filter } from 'rxjs/operators';
                 SearchBarComponent,
                 ScrollToTopComponent,
                 SliderComponent,
-                SpinnerComponent
+                SpinnerComponent,
         ],
         templateUrl: './categoria.component.html',
         styleUrls: ['./categoria.component.css'],
@@ -130,6 +130,38 @@ export class CategoriaComponent implements OnInit, OnDestroy {
                                         this.cdr.markForCheck();
                                 });
 
+                        // ✅ Reusar categorías ya cargadas desde el servicio (si venimos desde carta)
+                        this.menuService.categoriasData$
+                                .pipe(takeUntil(this.destroy$))
+                                .subscribe((cats: any[]) => {
+                                        if (cats && cats.length) {
+                                                this.categorias = cats.map((c: any) => ({
+                                                        nombre: c.nombre,
+                                                        route: c.route,
+                                                        icon: c.icon
+                                                }));
+                                                this.cdr.markForCheck();
+                                        }
+                                });
+
+                        // ✅ Reusar menú completo (con productos) si ya fue cargado en carta
+                        this.menuService.menuData$
+                                .pipe(takeUntil(this.destroy$))
+                                .subscribe((menu: any[]) => {
+                                        if (menu && menu.length) {
+                                                this.menuCache = menu;
+                                                // También derivar categorías si aún no están
+                                                if (!this.categorias || !this.categorias.length) {
+                                                        this.categorias = menu.map((item: any) => ({
+                                                                nombre: item.nombre,
+                                                                route: item.route,
+                                                                icon: item.icon
+                                                        }));
+                                                }
+                                                this.cdr.markForCheck();
+                                        }
+                                });
+
                         // ✅ Cerrar lightbox con ESC
                         this.unlistenKeydown = this.renderer.listen('window', 'keydown', (e: KeyboardEvent) => {
                                 if (this.lightboxVisible && e.key === 'Escape') {
@@ -146,22 +178,31 @@ export class CategoriaComponent implements OnInit, OnDestroy {
 
                                         if (!nuevoCliente) return;
 
-                                        // ✅ Si cambió el cliente
+                                        let menuPromise: Promise<void> | null = null;
+
+                                        // ✅ Si cambió el cliente: correr en paralelo meta y, si hace falta, menú
                                         if (this.cliente !== nuevoCliente) {
                                                 this.cliente = nuevoCliente;
-
-                                                if (!(await this.verificarClienteActivo())) return;
-
-                                                await this.obtenerNombreCliente();
                                                 this.configurarImagenes();
-                                                await this.cargarMenuCliente();
 
+                                                const metaPromise = this.obtenerClienteMeta();
+                                                // Solo cargar menú si aún no lo recibimos vía menuData$
+                                                menuPromise = (this.menuCache && this.menuCache.length)
+                                                        ? null
+                                                        : this.cargarMenuCliente();
+
+                                                const isActive = await metaPromise;
+                                                if (!isActive) return;
+
+                                                await menuPromise;
                                                 this.cdr.markForCheck();
                                         }
 
                                         // ✅ Si cambió la categoría
                                         if (this.categoria !== nuevaCategoria) {
                                                 this.categoria = nuevaCategoria;
+                                                // Esperar menú si se está cargando por cambio de cliente
+                                                if (menuPromise) await menuPromise;
                                                 await this.cargarProductosPorCategoria();
                                                 this.cdr.markForCheck();
                                         }
@@ -193,6 +234,33 @@ export class CategoriaComponent implements OnInit, OnDestroy {
         }
 
         /**
+         * Lee una sola vez el doc del cliente para validar activo y obtener nombre.
+         * Retorna true si el cliente es válido/activo; false en caso contrario (y navega a inicio).
+         */
+        private async obtenerClienteMeta(): Promise<boolean> {
+                try {
+                        const clienteRef = doc(this.firestore, `clientes/${this.cliente}`);
+                        const clienteSnap = await getDoc(clienteRef);
+
+                        if (!clienteSnap.exists() || clienteSnap.data()?.['esActivo'] === false) {
+                                this.router.navigate(['/']);
+                                return false;
+                        }
+
+                        const nombre = clienteSnap.data()?.['nombreCliente'];
+                        this.nombreCliente = nombre
+                                ? String(nombre).toUpperCase()
+                                : this.cliente.charAt(0).toUpperCase() + this.cliente.slice(1);
+                        this.titleService.setTitle(`${this.nombreCliente} | Carta Digital`);
+                        this.cdr.markForCheck();
+                        return true;
+                } catch {
+                        this.router.navigate(['/']);
+                        return false;
+                }
+        }
+
+        /**
          * Carga y cachea el menú del cliente y deriva categorías
          */
         private async cargarMenuCliente(): Promise<void> {
@@ -204,6 +272,7 @@ export class CategoriaComponent implements OnInit, OnDestroy {
                                 route: item.route,
                                 icon: item.icon
                         }));
+                        console.log('Categorias cargadas:', this.categorias);
                         this.cdr.markForCheck();
                 } catch (error) {
                         console.error('Error al cargar menú del cliente:', error);
@@ -212,44 +281,7 @@ export class CategoriaComponent implements OnInit, OnDestroy {
                 }
         }
 
-        /**
-         * Verifica si el cliente está activo
-         */
-        private async verificarClienteActivo(): Promise<boolean> {
-                try {
-                        const clienteRef = doc(this.firestore, `clientes/${this.cliente}`);
-                        const clienteSnap = await getDoc(clienteRef);
-                        if (!clienteSnap.exists() || clienteSnap.data()?.['esActivo'] === false) {
-                                this.router.navigate(['/']);
-                                return false;
-                        }
-                        return true;
-                } catch {
-                        this.router.navigate(['/']);
-                        return false;
-                }
-        }
 
-        /**
-         * Obtiene el nombre del cliente
-         */
-        private async obtenerNombreCliente(): Promise<void> {
-                try {
-                        const clienteRef = doc(this.firestore, `clientes/${this.cliente}`);
-                        const clienteSnap = await getDoc(clienteRef);
-
-                        if (clienteSnap.exists() && clienteSnap.data()?.['nombreCliente']) {
-                                this.nombreCliente = clienteSnap.data()['nombreCliente'].toUpperCase();
-                        } else {
-                                this.nombreCliente = this.cliente.charAt(0).toUpperCase() + this.cliente.slice(1);
-                        }
-
-                        this.titleService.setTitle(`${this.nombreCliente} | Carta Digital`);
-                } catch {
-                        this.nombreCliente = this.cliente.charAt(0).toUpperCase() + this.cliente.slice(1);
-                        this.titleService.setTitle(`${this.nombreCliente} | Carta Digital`);
-                }
-        }
 
         /**
          * Configura las URLs de imágenes
@@ -311,8 +343,12 @@ export class CategoriaComponent implements OnInit, OnDestroy {
                                         productos = [...tostados, ...otros];
                                 }
 
-                                this.items = productos;
-                                this.itemsOriginales = [...productos];
+                                this.items = productos.map((p: any) => ({
+                                        ...p,
+                                        _variantesEntries: p?.variantes ? Object.entries(p.variantes) : null
+                                }));
+                                console.log('items', this.items);
+                                this.itemsOriginales = this.items.map((p: any) => p);
 
                                 // ✅ Placeholder aleatorio
                                 const randomIndex = Math.floor(Math.random() * this.items.length);
@@ -365,7 +401,7 @@ export class CategoriaComponent implements OnInit, OnDestroy {
                         return;
                 }
 
-                const palabras = termino.split(' ');
+                const palabras = normalizado.split(' ');
                 this.items = this.itemsOriginales.filter((producto: any) => {
                         const texto = `${producto.nombre} ${producto.descripcion}`.toLowerCase();
                         const textoNorm = texto.normalize('NFD').replace(/[\u0300-\u036f]/g, '');

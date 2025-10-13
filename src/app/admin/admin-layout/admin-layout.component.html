@@ -6,9 +6,7 @@
 
         <!-- Sidebar - Brand -->
         <a class="sidebar-brand d-flex align-items-center justify-content-center">
-            <div class="sidebar-brand-icon">
-                <i class="bi bi-person-fill-gear"></i>
-            </div>
+            <div class="sidebar-brand-icon"><span aria-hidden="true">🧑‍💻</span></div>
             <div class="sidebar-brand-text mx-3">PANEL <br> ADMINISTRADOR</div>
         </a>
 
@@ -18,11 +16,11 @@
         <!-- Nav Item - Dashboard -->
         <li class="nav-item" routerLinkActive="active">
             <a class="nav-link" [routerLink]="['/admin/productos']">
-                <i class="bi bi-cup-hot-fill"></i>
+                <span aria-hidden="true">☕</span>
                 <span>Productos</span></a>
         </li><li class="nav-item" routerLinkActive="active">
             <a class="nav-link" [routerLink]="['/admin/categorias']">
-                <i class="bi bi-tag-fill"></i>
+                <span aria-hidden="true">🏷️</span>
                 <span>Categorías</span>
             </a>
         </li>
@@ -43,7 +41,7 @@
 
         <li class="nav-item">
             <a class="nav-link cerrar_sesion" (click)="logout()">
-                <i class="bi bi-box-arrow-left "></i>
+                <span aria-hidden="true">⬅️</span>
                 <span>Cerrar sesión</span></a>
         </li>
 

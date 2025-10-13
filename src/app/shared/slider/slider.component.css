@@ -1,344 +1,345 @@
 .scroll-container {
-    overflow-x: auto;
-    white-space: nowrap;
-    scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch;
-    display: flex;
-    scroll-snap-type: x mandatory;
-    scroll-padding: 0 16px;
-    /* Añadir padding para alineación */
+        overflow-x: auto;
+        white-space: nowrap;
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+        display: flex;
+        scroll-snap-type: x mandatory;
+        scroll-padding: 0 16px;
+        /* Añadir padding para alineación */
 }
 
 .scroll-container::-webkit-scrollbar {
-    display: none;
+        display: none;
 }
 
 .scroll-track {
-    display: inline-flex;
-    gap: 16px;
-    padding: 0 16px;
-    transition: scroll-left 0.3s ease;
-    /* Para animación suave */
+        display: inline-flex;
+        gap: 16px;
+        padding: 0 16px;
+        transition: scroll-left 0.3s ease;
+        /* Para animación suave */
 }
 
 .menu-item {
-    scroll-snap-align: start;
-    border-radius: 50%;
-    flex-shrink: 0;
-    text-align: center;
-    padding: 10px;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 70px;
-    height: 70px;
-    background-position: center;
-    background-size: 40px;
-    background-repeat: no-repeat;
-    margin: auto;
-    border-radius: 40px;
-    margin-bottom: 6px;
-    flex: 0 0 auto;
-    padding: 8px 12px;
-    cursor: pointer;
-    transition: background 0.3s ease;
-    margin-right: 16px;
-    /* Espacio después de cada ítem */
+        scroll-snap-align: start;
+        border-radius: 50%;
+        flex-shrink: 0;
+        text-align: center;
+        padding: 10px;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 70px;
+        height: 70px;
+        background-position: center;
+        background-size: 40px;
+        background-repeat: no-repeat;
+        margin: auto;
+        border-radius: 40px;
+        margin-bottom: 6px;
+        flex: 0 0 auto;
+        padding: 8px 12px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+        margin-right: 16px;
+        background-image: var(--card-bg);
+        /* Espacio después de cada ítem */
 
 }
 
 /* .menu-item:first-child { */
-    /* margin-left: 16px !important; */
-    /* Espaciado inicial */
+/* margin-left: 16px !important; */
+/* Espaciado inicial */
 /* } */
 
 
 .menu-item img {
-    width: 32px;
-    height: 32px;
-    object-fit: contain;
-    margin-bottom: 5px;
+        width: 32px;
+        height: 32px;
+        object-fit: contain;
+        margin-bottom: 5px;
 }
 
 .menu-item span {
-    font-size: 10px;
-    font-weight: 600;
-    color: #fff;
+        font-size: 10px;
+        font-weight: 600;
+        color: #fff;
 }
 
 @media (min-width: 768px) {
-    .menu-item {
-        width: 100px;
-        height: 100px;
-    }
+        .menu-item {
+                width: 100px;
+                height: 100px;
+        }
 
-    .menu-item img {
-        width: 40px;
-        height: 40px;
-    }
+        .menu-item img {
+                width: 40px;
+                height: 40px;
+        }
 
-    .menu-item span {
-        font-size: 12px;
-    }
+        .menu-item span {
+                font-size: 12px;
+        }
 }
 
 a {
-    text-decoration: none;
+        text-decoration: none;
 }
 
 p {
-    overflow-wrap: break-word;
-    text-wrap: auto;
-    font-size: 12px;
-    text-transform: uppercase;
-    line-height: 1.2;
-    text-align: center;
-    font-weight: bold;
+        overflow-wrap: break-word;
+        text-wrap: auto;
+        font-size: 12px;
+        text-transform: uppercase;
+        line-height: 1.2;
+        text-align: center;
+        font-weight: bold;
 }
 
 /* slider.component.css */
 .scroll-container {
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    padding: 1rem 0;
+        overflow-x: auto;
+        scroll-behavior: smooth;
+        padding: 1rem 0;
 }
 
 .scroll-track {
-    display: inline-flex;
-    gap: 1rem;
-    padding: 0 1rem;
+        display: inline-flex;
+        gap: 1rem;
+        padding: 0 1rem;
 }
 
 .slider-item {
-    opacity: 0.85;
-    transition: all 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+        opacity: 0.85;
+        transition: all 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
 }
 
 .slider-item.active {
-    opacity: 1;
-    transform: scale(1.05);
+        opacity: 1;
+        transform: scale(1.05);
 }
 
 .slider-item.active .menu-item {
-    border: 2px solid #6b4c3b;
-    box-shadow: 0 6px 6px rgba(107, 76, 59, 0.4);
+        border: 2px solid #6b4c3b;
+        box-shadow: 0 6px 6px rgba(107, 76, 59, 0.4);
 }
 
 .menu-item {
-    border-radius: 50%;
-    width: 75px;
-    height: 75px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
+        border-radius: 50%;
+        width: 75px;
+        height: 75px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
 }
 
 .category-icon {
-    width: 40px;
-    height: 40px;
-    object-fit: contain;
+        width: 40px;
+        height: 40px;
+        object-fit: contain;
 }
 
 .category-label {
-    font-size: 0.8rem;
-    font-weight: 600;
-    margin-top: 0.5rem;
-    text-align: center;
-    max-width: 100px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        margin-top: 0.5rem;
+        text-align: center;
+        max-width: 100px;
 }
 
 a {
-    text-decoration: none;
-    cursor: pointer;
-    place-items: center;
+        text-decoration: none;
+        cursor: pointer;
+        place-items: center;
 }
 
 
 .sticky-slider {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background-size: cover;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background-size: cover;
 
-    /* O el color de fondo de tu slider */
-    .scroll-container {
-        padding-bottom: 0;
-        padding-top: 2rem;
-    }
+        /* O el color de fondo de tu slider */
+        .scroll-container {
+                padding-bottom: 0;
+                padding-top: 2rem;
+        }
 }
 
 /* Estilos específicos para clientes */
 
 /* Cliente: requeterico */
 .cliente-requeterico {
-    --primary-color: #6b4c3b;
-    --secondary-color: rgba(107, 76, 59, 0.4);
-    --text-color: #6b4c3b;
+        --primary-color: #6b4c3b;
+        --secondary-color: rgba(107, 76, 59, 0.4);
+        --text-color: #6b4c3b;
 
-    * {
-        font-family: 'Caveat' !important;
-    }
+        * {
+                font-family: 'Caveat' !important;
+        }
 
-    .slider-item.active .menu-item {
-        border: 2px solid var(--primary-color);
-        box-shadow: 0 6px 6px var(--secondary-color);
-    }
+        .slider-item.active .menu-item {
+                border: 2px solid var(--primary-color);
+                box-shadow: 0 6px 6px var(--secondary-color);
+        }
 
-    .category-label {
-        color: var(--text-color);
-    }
+        .category-label {
+                color: var(--text-color);
+        }
 
-    p {
-        color: var(--text-color);
-    }
+        p {
+                color: var(--text-color);
+        }
 
-    .menu-item {
-        background-size: contain !important;
-    }
+        .menu-item {
+                background-size: cover !important;
+        }
 
 
 }
 
 .cliente-requeterico.sticky-slider {
-    background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Frequeterico%2Fbackground_image.webp?alt=media') !important;
+        background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Frequeterico%2Fbackground_image.webp?alt=media') !important;
 }
 
 
 /* Cliente: restaurante */
 .cliente-restaurante {
-    --primary-color: #6c6c6c;
-    --secondary-color: rgb(65, 110, 44);
-    --text-color: white;
-    --slider-bg: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Frestaurante%2Fbackground_image.webp?alt=media');
+        --primary-color: #6c6c6c;
+        --secondary-color: rgb(65, 110, 44);
+        --text-color: white;
+        --slider-bg: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Frestaurante%2Fbackground_image.webp?alt=media');
 
-    .slider-item.active .menu-item {
-        border: 2px solid var(--primary-color);
-        box-shadow: 0 6px 6px var(--secondary-color);
-    }
+        .slider-item.active .menu-item {
+                border: 2px solid var(--primary-color);
+                box-shadow: 0 6px 6px var(--secondary-color);
+        }
 
-    .category-label {
-        color: var(--text-color);
-    }
+        .category-label {
+                color: var(--text-color);
+        }
 
-    p {
-        color: var(--text-color);
-    }
+        p {
+                color: var(--text-color);
+        }
 
-    .sticky-slider {
-        background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Frestaurante%2Fbackground_image.webp?alt=media') !important;
-    }
+        .sticky-slider {
+                background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Frestaurante%2Fbackground_image.webp?alt=media') !important;
+        }
 }
 
 
 /* Cliente: city */
 .cliente-city_tandil {
-    --primary-color: #ffffff;
-    --secondary-color: #F2C057;
-    --text-color: white;
-    --slider-bg: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fcity_tandil%2Fbackground_image.webp?alt=media');
+        --primary-color: #ffffff;
+        --secondary-color: #F2C057;
+        --text-color: white;
+        --slider-bg: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fcity_tandil%2Fbackground_image.webp?alt=media');
 
-    .slider-item.active .menu-item {
-        border: 2px solid var(--primary-color);
-        box-shadow: 0 3px 5px var(--primary-color);
-    }
+        .slider-item.active .menu-item {
+                border: 2px solid var(--primary-color);
+                box-shadow: 0 3px 5px var(--primary-color);
+        }
 
-    .category-label {
-        color: var(--text-color);
-    }
+        .category-label {
+                color: var(--text-color);
+        }
 
-    .category-label {
-        color: var(--text-color);
-    }
+        .category-label {
+                color: var(--text-color);
+        }
 
-    p,
-    a {
-        color: var(--secondary-color) !important;
-    }
+        p,
+        a {
+                color: var(--secondary-color) !important;
+        }
 
-    .sticky-slider {
-        background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fcity_tandil%2Fbackground_image.webp?alt=media') !important;
-    }
+        .sticky-slider {
+                background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fcity_tandil%2Fbackground_image.webp?alt=media') !important;
+        }
 }
 
 .cliente-city_tandil.sticky-slider {
-    background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fcity_tandil%2Fbackground_image.webp?alt=media') !important;
+        background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fcity_tandil%2Fbackground_image.webp?alt=media') !important;
 }
 
 .cliente-demo_cafeteria {
-    --primary-color: #4f342f;
-    --secondary-color: #ffffff;
-    --text-color: #f5deb3;
-    --border-color: #7f3b0e;
-    --oscuro-color: #4f342f;
+        --primary-color: #4f342f;
+        --secondary-color: #ffffff;
+        --text-color: #f5deb3;
+        --border-color: #7f3b0e;
+        --oscuro-color: #4f342f;
 
-    .slider-item.active .menu-item {
-        border: 2px solid var(--secondary-color);
-        box-shadow: 0 3px 5px var(--text-color);
-    }
+        .slider-item.active .menu-item {
+                border: 2px solid var(--secondary-color);
+                box-shadow: 0 3px 5px var(--text-color);
+        }
 
-    .category-label {
-        color: var(--text-color);
-    }
+        .category-label {
+                color: var(--text-color);
+        }
 
-    .category-label {
-        color: var(--text-color);
-    }
+        .category-label {
+                color: var(--text-color);
+        }
 
-    p,
-    a {
-        color: var(--secondary-color) !important;
-    }
+        p,
+        a {
+                color: var(--secondary-color) !important;
+        }
 }
 
 .cliente-demo_cafeteria.sticky-slider {
-    background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fdemo_cafeteria%2Fbackground_image.webp?alt=media') !important;
+        background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fdemo_cafeteria%2Fbackground_image.webp?alt=media') !important;
 }
 
 
 
 /* Cliente: capitano */
 .cliente-capitano {
-    --primary-color: #ffffff;
-    --secondary-color: #c8ac78;
-    --text-color: white;
-    --slider-bg: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fcapitano%2Fbackground_image.webp?alt=media');
+        --primary-color: #ffffff;
+        --secondary-color: #c8ac78;
+        --text-color: white;
+        --slider-bg: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fcapitano%2Fbackground_image.webp?alt=media');
 
-    * {
-        font-family: "Urbanist",
-            sans-serif !important;
-    }
+        * {
+                font-family: "Urbanist",
+                        sans-serif !important;
+        }
 
-    .slider-item.active .menu-item {
-        border: 2px solid var(--primary-color);
-        box-shadow: 0 3px 5px var(--primary-color);
-    }
+        .slider-item.active .menu-item {
+                border: 2px solid var(--primary-color);
+                box-shadow: 0 3px 5px var(--primary-color);
+        }
 
-    .category-label {
-        color: var(--text-color);
-    }
+        .category-label {
+                color: var(--text-color);
+        }
 
-    .category-label {
-        color: var(--text-color);
-    }
+        .category-label {
+                color: var(--text-color);
+        }
 
-    p,
-    a {
-        color: var(--secondary-color) !important;
-    }
+        p,
+        a {
+                color: var(--secondary-color) !important;
+        }
 
-    .sticky-slider {
-        background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fcapitano%2Fbackground_image.webp?alt=media') !important;
-    }
+        .sticky-slider {
+                background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fcapitano%2Fbackground_image.webp?alt=media') !important;
+        }
 }
 
 .cliente-capitano.sticky-slider {
-    background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fcapitano%2Fbackground_image.webp?alt=media') !important;
+        background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fcapitano%2Fbackground_image.webp?alt=media') !important;
 }
 
 
@@ -346,131 +347,131 @@ a {
 
 /* Cliente: city */
 .cliente-cientochenta {
-    --verde-hoja: #4b7200;
-    --cafe-tostado-claro: #A77E58;
-    --negro-carbon-suave: #2E2E2E;
-    --primary-color: #ffffff;
-    --secondary-color: #c8ac78;
-    --text-color: white;
-    --slider-bg: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fcientochenta%2Fbackground_image.webp?alt=media');
+        --verde-hoja: #4b7200;
+        --cafe-tostado-claro: #A77E58;
+        --negro-carbon-suave: #2E2E2E;
+        --primary-color: #ffffff;
+        --secondary-color: #c8ac78;
+        --text-color: white;
+        --slider-bg: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fcientochenta%2Fbackground_image.webp?alt=media');
 
-    * {
-        font-family: "Poppins",
-            sans-serif !important;
-    }
+        * {
+                font-family: "Poppins",
+                        sans-serif !important;
+        }
 
-    .slider-item.active .menu-item {
-        border: 2px solid var(--negro-carbon-suave);
-        box-shadow: 0 3px 5px var(--negro-carbon-suave);
-    }
+        .slider-item.active .menu-item {
+                border: 2px solid var(--negro-carbon-suave);
+                box-shadow: 0 3px 5px var(--negro-carbon-suave);
+        }
 
-    .category-label {
-        color: var(--cafe-tostado-claro);
-    }
+        .category-label {
+                color: var(--cafe-tostado-claro);
+        }
 
-    .category-label {
-        color: var(--cafe-tostado-claro);
-    }
+        .category-label {
+                color: var(--cafe-tostado-claro);
+        }
 
-    p,
-    a {
-        color: var(--cafe-tostado-claro) !important;
-    }
+        p,
+        a {
+                color: var(--cafe-tostado-claro) !important;
+        }
 
-    .sticky-slider {
-        background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fcientochenta%2Fbackground_image.webp?alt=media') !important;
-    }
+        .sticky-slider {
+                background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fcientochenta%2Fbackground_image.webp?alt=media') !important;
+        }
 }
 
 .cliente-cientochenta.sticky-slider {
-    background-image: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fcientochenta%2Fbackground_image.webp?alt=media') !important;
-    background-size: cover !important;
-    background-position: center;
+        background-image: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fcientochenta%2Fbackground_image.webp?alt=media') !important;
+        background-size: cover !important;
+        background-position: center;
 }
 
 
 /* Cliente: demo_hotel */
 .cliente-demo_hotel {
-    --primary-color: #ffffff;
-    --secondary-color: #c8ac78;
-    --text-color: white;
-    --negro: black;
-    --marmol: #fffcf0;
-    --slider-bg: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fdemo_hotel%2Fbackground_image.webp?alt=media');
+        --primary-color: #ffffff;
+        --secondary-color: #c8ac78;
+        --text-color: white;
+        --negro: black;
+        --marmol: #fffcf0;
+        --slider-bg: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fdemo_hotel%2Fbackground_image.webp?alt=media');
 
-    * {
-        font-family: "GFS Didot", serif !important;
-    }
+        * {
+                font-family: "GFS Didot", serif !important;
+        }
 
-    .slider-item.active .menu-item {
-        border: 2px solid var(--negro);
-        box-shadow: 0 3px 5px var(--negro);
-    }
+        .slider-item.active .menu-item {
+                border: 2px solid var(--negro);
+                box-shadow: 0 3px 5px var(--negro);
+        }
 
-    .category-label {
-        color: var(--negro);
-    }
+        .category-label {
+                color: var(--negro);
+        }
 
-    .category-label {
-        color: var(--negro);
-    }
+        .category-label {
+                color: var(--negro);
+        }
 
-    p,
-    a {
-        color: var(--negro) !important;
-    }
+        p,
+        a {
+                color: var(--negro) !important;
+        }
 
-    .sticky-slider {
-        background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fdemo_hotel%2Fbackground_image.webp?alt=media') !important;
-    }
+        .sticky-slider {
+                background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fdemo_hotel%2Fbackground_image.webp?alt=media') !important;
+        }
 }
 
 .cliente-demo_hotel.sticky-slider {
-    background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fdemo_hotel%2Fbackground_image.webp?alt=media') !important;
+        background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fdemo_hotel%2Fbackground_image.webp?alt=media') !important;
 }
 
 
 /* Cliente: nexus_cafe_tandil */
 .cliente-nexus_cafe_tandil {
-    --primary-color: #ffffff;
-    --secondary-color: #c8ac78;
-    --text-color: white;
-    --negro: black;
-    --marmol: #fffcf0;
-    --ambar: #D8A45F;
-    --blanco-hueso: #D8D6D3;
-    --slider-bg: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fnexus_cafe_tandil%2Fbackground_image.webp?alt=media');
+        --primary-color: #ffffff;
+        --secondary-color: #c8ac78;
+        --text-color: white;
+        --negro: black;
+        --marmol: #fffcf0;
+        --ambar: #D8A45F;
+        --blanco-hueso: #D8D6D3;
+        --slider-bg: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fnexus_cafe_tandil%2Fbackground_image.webp?alt=media');
 
-    * {
-        font-family: "Poppins", sans-serif !important;
-    }
+        * {
+                font-family: "Poppins", sans-serif !important;
+        }
 
-    .slider-item.active .menu-item {
-        border: 2px solid var(--ambar);
-        box-shadow: 0 3px 5px var(--ambar);
-    }
+        .slider-item.active .menu-item {
+                border: 2px solid var(--ambar);
+                box-shadow: 0 3px 5px var(--ambar);
+        }
 
-    .category-label {
-        color: var(--blanco-hueso);
-    }
+        .category-label {
+                color: var(--blanco-hueso);
+        }
 
-    .category-label {
-        color: var(--blanco-hueso);
-    }
+        .category-label {
+                color: var(--blanco-hueso);
+        }
 
-    p,
-    a {
-        color: var(--blanco-hueso) !important;
-    }
+        p,
+        a {
+                color: var(--blanco-hueso) !important;
+        }
 
-    .sticky-slider {
-        background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fnexus_cafe_tandil%2Fbackground_image.webp?alt=media') !important;
-    }
+        .sticky-slider {
+                background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fnexus_cafe_tandil%2Fbackground_image.webp?alt=media') !important;
+        }
 }
 
 .cliente-nexus_cafe_tandil.sticky-slider {
-    background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fnexus_cafe_tandil%2Fbackground_image.webp?alt=media') !important;
-    background-position: bottom !important;
+        background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fnexus_cafe_tandil%2Fbackground_image.webp?alt=media') !important;
+        background-position: bottom !important;
 }
 
 
@@ -482,258 +483,258 @@ a {
 
 /* Cliente: ojo_cafe_tandil */
 .cliente-ojo_cafe_tandil {
-    --gris: #3c3c3c;
-    --primary-color: #fdede0;
-    --secondary-color: #c8ac78;
-    --text-color: white;
-    --negro: black;
-    --marmol: #fffcf0;
-    --ambar: #D8A45F;
-    --blanco-hueso: #D8D6D3;
-    --slider-bg: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fojo_cafe_tandil%2Fbackground_image.webp?alt=media');
+        --gris: #3c3c3c;
+        --primary-color: #fdede0;
+        --secondary-color: #c8ac78;
+        --text-color: white;
+        --negro: black;
+        --marmol: #fffcf0;
+        --ambar: #D8A45F;
+        --blanco-hueso: #D8D6D3;
+        --slider-bg: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fojo_cafe_tandil%2Fbackground_image.webp?alt=media');
 
-    * {
-        font-family: "Fredoka", sans-serif !important;
-    }
+        * {
+                font-family: "Fredoka", sans-serif !important;
+        }
 
-    .slider-item.active .menu-item {
-        border: 2px solid var(--ambar);
-        box-shadow: 0 3px 5px var(--ambar);
-    }
+        .slider-item.active .menu-item {
+                border: 2px solid var(--ambar);
+                box-shadow: 0 3px 5px var(--ambar);
+        }
 
-    .category-label {
-        color: var(--primary-color);
-    }
+        .category-label {
+                color: var(--primary-color);
+        }
 
-    .category-label {
-        color: var(--primary-color);
-    }
+        .category-label {
+                color: var(--primary-color);
+        }
 
-    p,
-    a {
-        color: var(--primary-color) !important;
-    }
+        p,
+        a {
+                color: var(--primary-color) !important;
+        }
 
-    .sticky-slider {
-        background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fojo_cafe_tandil%2Fbackground_image.webp?alt=media') !important;
-    }
+        .sticky-slider {
+                background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fojo_cafe_tandil%2Fbackground_image.webp?alt=media') !important;
+        }
 }
 
 .cliente-ojo_cafe_tandil.sticky-slider {
-    background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fojo_cafe_tandil%2Fbackground_image.webp?alt=media') !important;
-    background-position: bottom !important;
+        background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fojo_cafe_tandil%2Fbackground_image.webp?alt=media') !important;
+        background-position: bottom !important;
 }
 
 /* Cliente: 1823_castillo_morisco_tandil */
 .cliente-1823_castillo_morisco_tandil {
-    --marron: #c57422;
-    --detalle: #D38529;
-    /* --detalle:#a66d44; */
-    /* --marron: #8E5838; */
-    --gris: #3c3c3c;
-    --primary-color: #ffffff;
-    --secondary-color: #c8ac78;
-    --text-color: white;
-    --negro: black;
-    --marmol: #fffcf0;
-    --ambar: #D8A45F;
-    --blanco-hueso: #D8D6D3;
-    --slider-bg: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2F1823_castillo_morisco_tandil%2Fbackground_image.webp?alt=media');
+        --marron: #c57422;
+        --detalle: #D38529;
+        /* --detalle:#a66d44; */
+        /* --marron: #8E5838; */
+        --gris: #3c3c3c;
+        --primary-color: #ffffff;
+        --secondary-color: #c8ac78;
+        --text-color: white;
+        --negro: black;
+        --marmol: #fffcf0;
+        --ambar: #D8A45F;
+        --blanco-hueso: #D8D6D3;
+        --slider-bg: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2F1823_castillo_morisco_tandil%2Fbackground_image.webp?alt=media');
 
-    * {
-        font-family: "Playfair Display", serif !important;
-    }
+        * {
+                font-family: "Playfair Display", serif !important;
+        }
 
-    .slider-item.active .menu-item {
-        border: 2px solid var(--primary-color);
-        box-shadow: 0 3px 5px var(--primary-color);
-    }
+        .slider-item.active .menu-item {
+                border: 2px solid var(--primary-color);
+                box-shadow: 0 3px 5px var(--primary-color);
+        }
 
-    .category-label {
-        color: var(--primary-color);
-    }
+        .category-label {
+                color: var(--primary-color);
+        }
 
-    .category-label {
-        color: var(--primary-color);
-    }
+        .category-label {
+                color: var(--primary-color);
+        }
 
-    p,
-    a {
-        color: var(--primary-color) !important;
-        font-weight: bold;
-    }
+        p,
+        a {
+                color: var(--primary-color) !important;
+                font-weight: bold;
+        }
 
-    .sticky-slider {
-        background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2F1823_castillo_morisco_tandil%2Fbackground_image.webp?alt=media') !important;
-    }
+        .sticky-slider {
+                background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2F1823_castillo_morisco_tandil%2Fbackground_image.webp?alt=media') !important;
+        }
 }
 
 .cliente-1823_castillo_morisco_tandil.sticky-slider {
-    background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2F1823_castillo_morisco_tandil%2Fbackground_image.webp?alt=media') !important;
-    background-size: cover !important;
+        background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2F1823_castillo_morisco_tandil%2Fbackground_image.webp?alt=media') !important;
+        background-size: cover !important;
 }
 
 
 
 /* Cliente: time_coffee_tandil */
 .cliente-time_coffee_tandil {
-    --primary-color: #ffffff;
-    --detalle: #D38529;
-    --slider-bg: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Ftime_coffee_tandil%2Fbackground_image.webp?alt=media');
+        --primary-color: #ffffff;
+        --detalle: #D38529;
+        --slider-bg: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Ftime_coffee_tandil%2Fbackground_image.webp?alt=media');
 
-    * {
-        font-family: "Montserrat", sans-serif !important;
-    }
+        * {
+                font-family: "Montserrat", sans-serif !important;
+        }
 
-    .slider-item.active .menu-item {
-        border: 2px solid var(--detalle);
-        box-shadow: 0 3px 5px var(--detalle);
-    }
+        .slider-item.active .menu-item {
+                border: 2px solid var(--detalle);
+                box-shadow: 0 3px 5px var(--detalle);
+        }
 
-    .category-label {
-        color: var(--primary-color);
-    }
+        .category-label {
+                color: var(--primary-color);
+        }
 
-    .category-label {
-        color: var(--primary-color);
-    }
+        .category-label {
+                color: var(--primary-color);
+        }
 
-    p,
-    a {
-        color: var(--primary-color) !important;
-        font-weight: bold;
-    }
+        p,
+        a {
+                color: var(--primary-color) !important;
+                font-weight: bold;
+        }
 
-    .sticky-slider {
-        background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Ftime_coffee_tandil%2Fbackground_image.webp?alt=media') !important;
-    }
+        .sticky-slider {
+                background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Ftime_coffee_tandil%2Fbackground_image.webp?alt=media') !important;
+        }
 }
 
 .cliente-time_coffee_tandil.sticky-slider {
-    background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Ftime_coffee_tandil%2Fbackground_image.webp?alt=media') !important;
-    background-size: cover !important;
+        background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Ftime_coffee_tandil%2Fbackground_image.webp?alt=media') !important;
+        background-size: cover !important;
 }
 
 
 /* Cliente: beer_house_tandil */
 .cliente-beer_house_tandil {
-    --primary-color: #ffffff;
-    --ambar: #D8A45F;
-    --slider-bg: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fbeer_house_tandil%2Fbackground_image.webp?alt=media');
+        --primary-color: #ffffff;
+        --ambar: #D8A45F;
+        --slider-bg: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fbeer_house_tandil%2Fbackground_image.webp?alt=media');
 
-    * {
-        font-family: "Bevan", serif !important;
-    }
+        * {
+                font-family: "Bevan", serif !important;
+        }
 
-    .slider-item.active .menu-item {
-        border: 2px solid var(--ambar);
-        box-shadow: 0 3px 5px var(--ambar);
-    }
+        .slider-item.active .menu-item {
+                border: 2px solid var(--ambar);
+                box-shadow: 0 3px 5px var(--ambar);
+        }
 
-    .category-label {
-        color: var(--primary-color);
-    }
+        .category-label {
+                color: var(--primary-color);
+        }
 
-    .category-label {
-        color: var(--primary-color);
-    }
+        .category-label {
+                color: var(--primary-color);
+        }
 
-    p,
-    a {
-        color: var(--primary-color) !important;
-        font-weight: normal;
-        font-size: 10px;
-        margin-top: 1rem;
-    }
+        p,
+        a {
+                color: var(--primary-color) !important;
+                font-weight: normal;
+                font-size: 10px;
+                margin-top: 1rem;
+        }
 
-    .sticky-slider {
-        background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fbeer_house_tandil%2Fbackground_image.webp?alt=media') !important;
-    }
+        .sticky-slider {
+                background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fbeer_house_tandil%2Fbackground_image.webp?alt=media') !important;
+        }
 }
 
 .cliente-beer_house_tandil.sticky-slider {
-    background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fbeer_house_tandil%2Fbackground_image.webp?alt=media') !important;
-    background-size: cover !important;
+        background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fbeer_house_tandil%2Fbackground_image.webp?alt=media') !important;
+        background-size: cover !important;
 }
 
 /* Cliente: tramonto_tandil */
 .cliente-tramonto_tandil {
-    --negro: #302c32;
-    --ambar: #f5a02b;
-    --primary-color: #ffffff;
-    --slider-bg: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Ftramonto_tandil%2Fbackground_image.webp?alt=media');
+        --negro: #302c32;
+        --ambar: #f5a02b;
+        --primary-color: #ffffff;
+        --slider-bg: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Ftramonto_tandil%2Fbackground_image.webp?alt=media');
 
-    * {
-        font-family: "lato", sans-serif !important;
-    }
+        * {
+                font-family: "lato", sans-serif !important;
+        }
 
-    .slider-item.active .menu-item {
-        border: 2px solid var(--ambar);
-        box-shadow: 0 3px 5px var(--ambar);
-    }
+        .slider-item.active .menu-item {
+                border: 2px solid var(--ambar);
+                box-shadow: 0 3px 5px var(--ambar);
+        }
 
-    .category-label {
-        color: var(--primary-color);
-    }
+        .category-label {
+                color: var(--primary-color);
+        }
 
-    .category-label {
-        color: var(--primary-color);
-    }
+        .category-label {
+                color: var(--primary-color);
+        }
 
-    p,
-    a {
-        color: var(--primary-color) !important;
-        font-weight: bold;
-    }
+        p,
+        a {
+                color: var(--primary-color) !important;
+                font-weight: bold;
+        }
 
-    .sticky-slider {
-        background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Ftramonto_tandil%2Fbackground_image.webp?alt=media') !important;
-    }
+        .sticky-slider {
+                background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Ftramonto_tandil%2Fbackground_image.webp?alt=media') !important;
+        }
 }
 
 .cliente-tramonto_tandil.sticky-slider {
-    background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Ftramonto_tandil%2Fbackground_image.webp?alt=media') !important;
-    background-size: cover !important;
+        background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Ftramonto_tandil%2Fbackground_image.webp?alt=media') !important;
+        background-size: cover !important;
 }
 
 
 /* Cliente: prego_tandil */
 .cliente-prego_tandil {
-    --verde: #829577;
-    --primary-color: #ffffff;
-    --slider-bg: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fprego_tandil%2Fbackground_image.webp?alt=media');
+        --verde: #829577;
+        --primary-color: #ffffff;
+        --slider-bg: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fprego_tandil%2Fbackground_image.webp?alt=media');
 
-    * {
-        font-family: "lato", sans-serif !important;
-    }
+        * {
+                font-family: "lato", sans-serif !important;
+        }
 
-    .slider-item.active .menu-item {
-        border: 2px solid var(--primary-color);
-        box-shadow: 0 3px 5px var(--primary-color);
-    }
+        .slider-item.active .menu-item {
+                border: 2px solid var(--primary-color);
+                box-shadow: 0 3px 5px var(--primary-color);
+        }
 
-    .category-label {
-        color: var(--primary-color);
-    }
+        .category-label {
+                color: var(--primary-color);
+        }
 
-    .category-label {
-        color: var(--primary-color);
-    }
+        .category-label {
+                color: var(--primary-color);
+        }
 
-    p,
-    a {
-        color: var(--primary-color) !important;
-        font-weight: bold;
-    }
+        p,
+        a {
+                color: var(--primary-color) !important;
+                font-weight: bold;
+        }
 
-    .sticky-slider {
-        background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fprego_tandil%2Fbackground_image.webp?alt=media') !important;
-    }
+        .sticky-slider {
+                background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fprego_tandil%2Fbackground_image.webp?alt=media') !important;
+        }
 }
 
 .cliente-prego_tandil.sticky-slider {
-    background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fprego_tandil%2Fbackground_image.webp?alt=media') !important;
-    background-size: cover !important;
+        background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fprego_tandil%2Fbackground_image.webp?alt=media') !important;
+        background-size: cover !important;
 }
 
 
@@ -741,109 +742,116 @@ a {
 
 /* Cliente: flor_del_alba */
 .cliente-flor_del_alba {
-    --bordo: #320001;
-    --verde: #6c775f;
-    --marmol: #f3eee5;
-    --oro: #ffbf00;
-    --primary-color: #ffffff;
-    --slider-bg: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fflor_del_alba%2Fbackground_image.webp?alt=media');
+        --bordo: #320001;
+        --verde: #6c775f;
+        --marmol: #f3eee5;
+        --oro: #ffbf00;
+        --primary-color: #ffffff;
+        --slider-bg: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fflor_del_alba%2Fbackground_image.webp?alt=media');
 
-    * {
-        font-family: "riesling", sans-serif !important;
-    }
+        * {
+                font-family: "riesling", sans-serif !important;
+        }
 
-    .slider-item.active .menu-item {
-        border: 2px solid var(--verde);
-        box-shadow: 0 3px 5px var(--verde);
-    }
+        .slider-item.active .menu-item {
+                border: 2px solid var(--verde);
+                box-shadow: 0 3px 5px var(--verde);
+        }
 
-    .category-label {
-        color: var(--bordo);
-    }
+        .category-label {
+                color: var(--bordo);
+        }
 
-    p,
-    a {
-        color: var(--bordo) !important;
-        font-weight: bold;
-        font-size: 1.18rem;
-    }
+        p,
+        a {
+                color: var(--bordo) !important;
+                font-weight: bold;
+                font-size: 1.18rem;
+        }
 
-    .sticky-slider {
-        background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fflor_del_alba%2Fbackground_image.webp?alt=media') !important;
-    }
+        .sticky-slider {
+                background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fflor_del_alba%2Fbackground_image.webp?alt=media') !important;
+        }
 }
 
 .cliente-flor_del_alba.sticky-slider {
-    background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fflor_del_alba%2Fbackground_image.webp?alt=media') !important;
-    background-size: cover !important;
+        background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fflor_del_alba%2Fbackground_image.webp?alt=media') !important;
+        background-size: cover !important;
 }
 
 
 
 .cliente-tierra_de_azafranes {
-    --negro: black;
-    --rojo: #c82527;
-    --marmol: #f3eee5;
-    --oro: #ffbf00;
-    --primary-color: #ffffff;
-    --slider-bg: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Ftierra_de_azafranes%2Fbackground_image.webp?alt=media');
+        --negro: black;
+        --rojo: #c82527;
+        --marmol: #f3eee5;
+        --oro: #ffbf00;
+        --primary-color: #ffffff;
+        --slider-bg: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Ftierra_de_azafranes%2Fbackground_image.webp?alt=media');
 
-    * {
-        font-family: "Playfair Display", sans-serif !important;
-    }
+        * {
+                font-family: "Playfair Display", sans-serif !important;
+        }
 
-    .slider-item.active .menu-item {
-        border: 2px solid var(--rojo);
-        box-shadow: 0 3px 5px var(--rojo);
-    }
+        .slider-item.active .menu-item {
+                border: 2px solid var(--rojo);
+                box-shadow: 0 3px 5px var(--rojo);
+        }
 
-    p,
-    a {
-        color: var(--negro) !important;
-        font-weight: bold;
-    }
+        p,
+        a {
+                color: var(--negro) !important;
+                font-weight: bold;
+        }
 
-    .sticky-slider {
-        background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Ftierra_de_azafranes%2Fbackground_image.webp?alt=media') !important;
-    }
+        .sticky-slider {
+                background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Ftierra_de_azafranes%2Fbackground_image.webp?alt=media') !important;
+        }
 }
 
 .cliente-tierra_de_azafranes.sticky-slider {
-    background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Ftierra_de_azafranes%2Fbackground_image.webp?alt=media') !important;
-    background-size: cover !important;
+        background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Ftierra_de_azafranes%2Fbackground_image.webp?alt=media') !important;
+        background-size: cover !important;
 }
 
 /* Arrow navigation controls */
 .carta-container {
-    position: relative;
+        position: relative;
 }
 
 .nav-arrow {
-    position: absolute;
-    top: 32%;
-    transform: translateY(-50%);
-    width: 34px;
-    height: 34px;
-    border-radius: 50%;
-    border: none;
-    color: #fff;
-    background: rgba(0, 0, 0, 0.35);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 3;
-    cursor: pointer;
-    transition: background 0.2s ease, opacity 0.2s ease;
+        position: absolute;
+        top: 32%;
+        transform: translateY(-50%);
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        border: none;
+        color: #fff;
+        background: rgba(0, 0, 0, 0.35);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 3;
+        cursor: pointer;
+        transition: background 0.2s ease, opacity 0.2s ease;
 }
 
-.nav-arrow.left { left: 4px; }
-.nav-arrow.right { right: 4px; }
+.nav-arrow.left {
+        left: 4px;
+}
+
+.nav-arrow.right {
+        right: 4px;
+}
 
 .nav-arrow.hidden {
-    opacity: 0;
-    pointer-events: none;
+        opacity: 0;
+        pointer-events: none;
 }
 
 @media (hover: hover) {
-  .nav-arrow:hover { background: rgba(0, 0, 0, 0.55); }
+        .nav-arrow:hover {
+                background: rgba(0, 0, 0, 0.55);
+        }
 }

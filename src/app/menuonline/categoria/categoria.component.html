@@ -5,7 +5,7 @@
 
 <!-- Contenido principal -->
 <div [@fadeContent]>
-        <div [ngClass]="clienteClass" class="carta-container">
+        <div [ngClass]="clienteClass" class="carta-container" [style.--card-bg]="'url(' + cardImage + ')'">
                 <section *ngIf="!loading" class="content fade-in" [class.fade]="true" [class.show]="visible">
                         <!-- Header -->
                         <app-header [cliente]="cliente" [src_path]="logoImage"></app-header>
@@ -32,25 +32,26 @@
                                                                 <img [src]="item.imagen" [alt]="item.nombre"
                                                                         loading="lazy" decoding="async"
                                                                         class="img-fluid w-100 object-fit-cover"
+                                                                        [srcset]="item.small_imagen + ' 320w, ' + item.imagen + ' 800w'"
+                                                                        sizes="(max-width: 768px) 100vw, 400px"
+                                                                        width="800" height="667"
                                                                         (error)="item.imagen = 'assets/placeholder.png'" />
                                                         </div>
                                                         <div class="blurred-img card-body text-center px-4 pb-4 position-relative"
-                                                                id="cuerpo-card"
-                                                                [ngStyle]="{ 'background-image': 'url(' + cardImage + ')' }">
+                                                                id="cuerpo-card">
                                                                 <div id="card-nombre" class="pb-2 px-1">
                                                                         <div class="card-title fw-bold text-uppercase">
                                                                                 {{ item.nombre }}
                                                                         </div>
                                                                 </div>
                                                                 <div id="card-descripcion">
-                                                                        <i class="bi bi-quote"></i>
+                                                                        <span id="card-descripcion-span" aria-hidden="true">“</span>
                                                                         {{ item.descripcion }}.
                                                                 </div>
-                                                                @if (item.variantes) {
-                                                                @for (variante of item.variantes | keyvalue; track
-                                                                variante.key) {
+                                                                @if (item._variantesEntries) {
+                                                                @for (v of item._variantesEntries; track v[0]) {
                                                                 <div class="btn rounded-3 d-block" id="boton-card">
-                                                                        {{ variante.key }}: ${{ variante.value }}
+                                                                        {{ v[0] }}: ${{ v[1] }}
                                                                 </div>
                                                                 }
                                                                 }
@@ -66,8 +67,7 @@
 
                                         <a [routerLink]="['/menuonline', cliente, 'carta']"
                                                 class="btn button-add-cart checkout-button boton-volver">
-                                                <i class="bi bi-arrow-counterclockwise"
-                                                        style="padding-right: 7px;"></i>VOLVER
+                                                <span aria-hidden="true" style="padding-right: 7px;">↺</span>VOLVER
                                         </a>
                                 </div>
 

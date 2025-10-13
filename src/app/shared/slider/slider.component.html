@@ -1,4 +1,4 @@
-<div  [ngClass]="[clienteClass, isSticky ? 'sticky-slider' : '']" class="carta-container">
+<div  [ngClass]="[clienteClass, isSticky ? 'sticky-slider' : '']" class="carta-container" [style.--card-bg]="'url(' + cardImage + ')'">
     <button type="button" class="nav-arrow left" (click)="scrollByItems('left')" [class.hidden]="!canScrollLeft">
         &#10094;
     </button>
@@ -11,9 +11,8 @@
                 class="category-link"
                 (click)="seleccionarCategoria(categoria.route)"
                     [class.active]="isActiveCategory(categoria.route)">
-                    <div class="menu-item mx-1" [class.active]="isActiveCategory(categoria.route)"
-                        [ngStyle]="{ 'background': 'url(' + cardImage + ')' }">
-                        <img [src]="categoria.icon" [alt]="categoria.nombre" class="category-icon">
+                    <div class="menu-item mx-1" [class.active]="isActiveCategory(categoria.route)">
+                        <img [src]="categoria.icon" [alt]="categoria.nombre" class="category-icon" width="40" height="40">
                     </div>
                     <p class="category-label">{{ categoria.nombre }}</p>
                 </a>

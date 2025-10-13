@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, firstValueFrom } from 'rxjs';
-import { Firestore, collection, getDocs, addDoc, updateDoc, deleteDoc, doc } from '@angular/fire/firestore';
+import { Firestore, collection, getDocs, addDoc, updateDoc, deleteDoc, doc, query, orderBy, where } from '@angular/fire/firestore';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 
 @Injectable({ providedIn: 'root' })
@@ -25,6 +25,29 @@ export class MenuService {
         // ✅ TTL (Time To Live) en milisegundos
         private CACHE_TTL = 5 * 60 * 1000; // 5 minutos
 
+        // ✅ Prefijo para almacenamiento persistente
+        private STORAGE_PREFIX = 'menu_cache_';
+
+        private readFromStorage<T>(key: string): { data: T; timestamp: number } | null {
+                try {
+                        const raw = localStorage.getItem(this.STORAGE_PREFIX + key);
+                        if (!raw) return null;
+                        const parsed = JSON.parse(raw);
+                        if (!parsed || typeof parsed.timestamp !== 'number') return null;
+                        return parsed;
+                } catch {
+                        return null;
+                }
+        }
+
+        private writeToStorage<T>(key: string, value: { data: T; timestamp: number }): void {
+                try {
+                        localStorage.setItem(this.STORAGE_PREFIX + key, JSON.stringify(value));
+                } catch {
+                        // storage lleno o deshabilitado: ignorar
+                }
+        }
+
         constructor(private firestore: Firestore) { }
 
         /**
@@ -38,37 +61,46 @@ export class MenuService {
          * Carga menú desde Firestore o caché
          */
         async loadMenuFirestore(cliente: string, force = false): Promise<any[]> {
-                // ✅ Evita cargas simultáneas del mismo cliente
                 const key = `menu_${cliente}`;
                 if (await this.loadingPromises[key]) {
                         return this.loadingPromises[key];
                 }
 
-                // ✅ Usa caché si es válido
+                // ✅ Mem cache
                 if (!force && this.menuCache[cliente] && this.isCacheValid(this.menuCache[cliente].timestamp)) {
                         const data = this.menuCache[cliente].data;
                         this.menuData.next(data);
                         return data;
                 }
 
-                // ✅ Crea promesa para evitar duplicados
+                // ✅ localStorage cache
+                if (!force) {
+                        const stored = this.readFromStorage<any[]>(key);
+                        if (stored && this.isCacheValid(stored.timestamp)) {
+                                this.menuCache[cliente] = { data: stored.data, timestamp: stored.timestamp };
+                                this.menuData.next(stored.data);
+                                return stored.data;
+                        }
+                }
+
+                // ✅ Evitar duplicados
                 this.loadingPromises[key] = (async () => {
                         try {
-                                const menu: any[] = [];
                                 const categoriaRef = collection(this.firestore, `clientes/${cliente}/categoria`);
-                                const categoriaSnap = await getDocs(categoriaRef);
+                                const categoriasQuery = query(categoriaRef, orderBy('displayOrder', 'asc'));
+                                const categoriaSnap = await getDocs(categoriasQuery);
 
                                 const menuPromises = categoriaSnap.docs.map(async (seccionDoc) => {
                                         const seccionData = seccionDoc.data();
                                         const productosRef = collection(this.firestore, `clientes/${cliente}/categoria/${seccionDoc.id}/productos`);
-                                        const productosSnap = await getDocs(productosRef);
+                                        const productosQuery = query(productosRef, orderBy('nombre', 'asc'));
+                                        const productosSnap = await getDocs(productosQuery);
 
-                                        let productos = productosSnap.docs.map(prod => ({
+                                        const productos = productosSnap.docs.map(prod => ({
                                                 idProducto: prod.id,
                                                 ...(prod.data() as { nombre?: string })
                                         }));
 
-                                        productos = productos.sort((a, b) => (a.nombre || '').localeCompare(b.nombre || ''));
                                         seccionData['productos'] = productos;
                                         seccionData['categoriaId'] = seccionDoc.id;
                                         return seccionData;
@@ -76,12 +108,26 @@ export class MenuService {
 
                                 let menuData = await Promise.all(menuPromises);
                                 menuData = menuData.filter(cat => cat['esVisible'] !== false);
-                                menuData = menuData.sort((a, b) => (a['displayOrder'] ?? 9999) - (b['displayOrder'] ?? 9999));
 
-                                // ✅ Almacena en caché con timestamp
-                                this.menuCache[cliente] = { data: menuData, timestamp: Date.now() };
+                                // ✅ Cache memoria + storage (MENÚ)
+                                const entry = { data: menuData, timestamp: Date.now() };
+                                this.menuCache[cliente] = entry;
+                                this.writeToStorage<any[]>(key, entry);
                                 this.menuData.next(menuData);
 
+                                // ✅ Derivar categorías desde el menú y emitir (para reuso inmediato en CategoriaComponent)
+                                const categoriasFromMenu = (menuData || []).map((item: any) => ({
+                                        id: item.categoriaId,
+                                        nombre: item.nombre,
+                                        route: item.route,
+                                        icon: item.icon,
+                                        esVisible: item.esVisible !== false,
+                                        displayOrder: item.displayOrder ?? 9999
+                                }));
+                                const categoriasEntry = { data: categoriasFromMenu, timestamp: entry.timestamp };
+                                this.categoriasCache[cliente] = categoriasEntry;
+                                this.writeToStorage<any[]>(`categorias_${cliente}`, categoriasEntry);
+                                this.categoriasData.next(categoriasFromMenu);
                                 return menuData;
                         } finally {
                                 delete this.loadingPromises[key];
@@ -107,24 +153,37 @@ export class MenuService {
                         return data;
                 }
 
+                // ✅ Intento de caché persistente (localStorage)
+                if (!force) {
+                        const stored = this.readFromStorage<any[]>(key);
+                        if (stored && this.isCacheValid(stored.timestamp) && Array.isArray(stored.data) && stored.data.length > 0) {
+                                this.categoriasCache[cliente] = { data: stored.data, timestamp: stored.timestamp };
+                                this.categoriasData.next(stored.data);
+                                return stored.data;
+                        }
+                }
+
                 this.loadingPromises[key] = (async () => {
                         try {
                                 const categorias: any[] = [];
                                 const categoriaRef = collection(this.firestore, `clientes/${cliente}/categoria`);
-                                const categoriaSnap = await getDocs(categoriaRef);
+                                // Mantener orden en servidor, pero filtrar visibilidad en cliente para
+                                // compatibilidad con docs que no tengan 'esVisible' definido (tratados como visibles)
+                                const q = query(categoriaRef, orderBy('displayOrder', 'asc'));
+                                const categoriaSnap = await getDocs(q);
 
                                 for (const categoriaDoc of categoriaSnap.docs) {
                                         categorias.push({ id: categoriaDoc.id, ...categoriaDoc.data() });
                                 }
 
-                                let categoriasFiltradas = categorias;
-                                if (soloVisibles) {
-                                        categoriasFiltradas = categorias.filter(cat => cat['esVisible'] !== false);
-                                }
-                                categoriasFiltradas = categoriasFiltradas.sort((a, b) => (a['displayOrder'] ?? 9999) - (b['displayOrder'] ?? 9999));
+                                const categoriasFiltradas = soloVisibles
+                                        ? categorias.filter(cat => cat['esVisible'] !== false)
+                                        : categorias;
 
-                                // ✅ Almacena en caché con timestamp
-                                this.categoriasCache[cliente] = { data: categoriasFiltradas, timestamp: Date.now() };
+                                // ✅ Almacena en caché con timestamp (memoria + storage)
+                                const entry = { data: categoriasFiltradas, timestamp: Date.now() };
+                                this.categoriasCache[cliente] = entry;
+                                this.writeToStorage<any[]>(key, entry);
                                 this.categoriasData.next(categoriasFiltradas);
 
                                 return categoriasFiltradas;

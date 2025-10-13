@@ -47,6 +47,7 @@ html {
 #cuerpo-card {
         font-weight: bold;
         z-index: 2;
+        background-image: var(--card-bg);
 }
 
 #card-nombre div {
@@ -1083,4 +1084,8 @@ html {
         }
 
 
+}
+
+#card-descripcion-span {
+        font-size: 35px;
 }

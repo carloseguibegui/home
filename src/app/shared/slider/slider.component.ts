@@ -1,15 +1,15 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, Input, OnInit, Output, ViewChild, EventEmitter, SimpleChanges, OnDestroy } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, Output, ViewChild, EventEmitter, SimpleChanges, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef, NgZone } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RouterModule } from '@angular/router';
 import { trigger, transition, style, animate } from '@angular/animations';
-import { HostListener } from '@angular/core';
 @Component({
         selector: 'app-slider',
         imports: [CommonModule, RouterModule],
         templateUrl: './slider.component.html',
         styleUrls: ['./slider.component.css'],
-        standalone: true
+        standalone: true,
+        changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SliderComponent implements OnInit, OnDestroy {
         @ViewChild('scrollContainer') scrollContainer!: ElementRef<HTMLDivElement>;
@@ -27,6 +27,8 @@ export class SliderComponent implements OnInit, OnDestroy {
         constructor(
                 public router: Router,
                 private route: ActivatedRoute,
+                private cdr: ChangeDetectorRef,
+                private ngZone: NgZone,
         ) { }
         ngOnInit() {
                 this.cardImage = `https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2F${this.cliente}%2Ffondo-claro.webp?alt=media`
@@ -35,28 +37,17 @@ export class SliderComponent implements OnInit, OnDestroy {
         ngAfterViewInit() {
                 this.scrollToActiveCategory();
                 setTimeout(() => this.updateScrollControls(), 0);
+                // Listeners fuera de Angular para no disparar CD por frame
+                this.addGlobalListeners();
         }
         ngOnDestroy() {
+                this.removeGlobalListeners();
         }
 
         ngOnChanges(changes: SimpleChanges) {
                 if (changes['categoriaActual'] && !changes['categoriaActual'].firstChange) {
                         this.scrollToActiveCategory();
                 }
-        }
-
-        @HostListener('window:scroll', [])
-        onWindowScroll() {
-                this.isSticky = window.scrollY > 135; // Cambia 100 por los píxeles que quieras
-        }
-        @HostListener('window:resize')
-        onResize() {
-                this.updateScrollControls();
-        }
-        @HostListener('window:touchend')
-        onTouchEnd() {
-                // Recalcula después de la inercia de desplazamiento en mobile
-                setTimeout(() => this.updateScrollControls(), 120);
         }
         get clienteClass(): string {
                 return `cliente-${this.cliente.toLowerCase()}`;
@@ -159,7 +150,62 @@ export class SliderComponent implements OnInit, OnDestroy {
                 if (!container) return;
                 const maxScrollLeft = container.scrollWidth - container.clientWidth;
                 const epsilon = 5; // tolerancia para redondeos en mobile
-                this.canScrollLeft = container.scrollLeft > epsilon;
-                this.canScrollRight = (maxScrollLeft - container.scrollLeft) > epsilon;
+                const nextLeft = container.scrollLeft > epsilon;
+                const nextRight = (maxScrollLeft - container.scrollLeft) > epsilon;
+                let changed = false;
+                if (nextLeft !== this.canScrollLeft) {
+                        this.canScrollLeft = nextLeft;
+                        changed = true;
+                }
+                if (nextRight !== this.canScrollRight) {
+                        this.canScrollRight = nextRight;
+                        changed = true;
+                }
+                if (changed) this.cdr.markForCheck();
+        }
+
+        // ---------------- Performance listeners ----------------
+        private removeFns: Array<() => void> = [];
+        private rafPending = false;
+
+        private addGlobalListeners() {
+                this.ngZone.runOutsideAngular(() => {
+                        const onScroll = () => {
+                                if (this.rafPending) return;
+                                this.rafPending = true;
+                                requestAnimationFrame(() => {
+                                        // sticky header calc
+                                        const stickyNext = window.scrollY > 135;
+                                        if (stickyNext !== this.isSticky) {
+                                                this.isSticky = stickyNext;
+                                                this.ngZone.run(() => this.cdr.markForCheck());
+                                        }
+                                        this.updateScrollControls();
+                                        this.rafPending = false;
+                                });
+                        };
+                        const onResize = () => {
+                                if (this.rafPending) return;
+                                this.rafPending = true;
+                                requestAnimationFrame(() => {
+                                        this.updateScrollControls();
+                                        this.rafPending = false;
+                                });
+                        };
+                        const onTouchEnd = () => setTimeout(() => this.updateScrollControls(), 120);
+
+                        window.addEventListener('scroll', onScroll, { passive: true });
+                        window.addEventListener('resize', onResize, { passive: true });
+                        window.addEventListener('touchend', onTouchEnd, { passive: true });
+
+                        this.removeFns.push(() => window.removeEventListener('scroll', onScroll));
+                        this.removeFns.push(() => window.removeEventListener('resize', onResize));
+                        this.removeFns.push(() => window.removeEventListener('touchend', onTouchEnd));
+                });
+        }
+
+        private removeGlobalListeners() {
+                this.removeFns.forEach(fn => fn());
+                this.removeFns = [];
         }
 }

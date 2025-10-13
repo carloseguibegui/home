@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit, OnDestroy } from '@angular/core';
+import { Component, HostListener, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { CommonModule, NgIf, NgStyle } from '@angular/common';
@@ -20,7 +20,7 @@ import { CommonModule, NgIf, NgStyle } from '@angular/common';
     ])
   ]
 })
-export class InicioComponent implements OnInit, OnDestroy {
+export class InicioComponent implements OnInit, OnDestroy, AfterViewInit {
   isScrolled = false;
   bannerImages = [
     { url: 'https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/landing%2F1.webp?alt=media', route: '/menuonline/requeterico/carta' },
@@ -39,6 +39,10 @@ export class InicioComponent implements OnInit, OnDestroy {
     this.bannerInterval = setInterval(() => {
       this.bannerIndex = (this.bannerIndex + 1) % this.bannerImages.length;
     }, 6000);
+  }
+
+  async ngAfterViewInit() {
+//     await import('bootstrap/dist/js/bootstrap.bundle.min.js');
   }
 
   ngOnDestroy() {

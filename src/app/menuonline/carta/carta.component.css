@@ -27,8 +27,8 @@
 #cat {
     font-size: 14px;
     text-transform: uppercase;
-    max-width: 190px;
-    height: 165px;
+    max-width: 185px;
+    height: 160px;
     padding: 5px 15px;
 }
 
@@ -45,6 +45,7 @@
     align-content: end;
     align-content: center;
     border-radius: 36px;
+    background-image: var(--card-bg);
 }
 
 .img-fluid {

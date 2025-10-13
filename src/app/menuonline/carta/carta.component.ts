@@ -76,18 +76,17 @@ export class CartaComponent implements OnInit, OnDestroy {
                                 return;
                         }
 
-                        // ✅ Verifica que el cliente esté activo (en paralelo)
-                        const isActive = await this.verificarClienteActivo();
-                        if (!isActive) return;
-
-                        // ✅ Configura imágenes
+                        // ✅ Configura imágenes (independiente de Firestore)
                         this.configurarImagenes();
 
-                        // ✅ Obtiene el nombre del cliente
-                        await this.obtenerNombreCliente();
+                        // ✅ Ejecutar en paralelo: (1) doc cliente (activo + nombre), (2) categorías
+                        const metaPromise = this.obtenerClienteMeta();
+                        const categoriasPromise = this.cargarCategorias();
 
-                        // ✅ Carga categorías
-                        await this.cargarCategorias();
+                        const isActive = await metaPromise;
+                        if (!isActive) return;
+
+                        await categoriasPromise;
 
                         this.loading = false;
                         this.visible = true;
@@ -96,6 +95,33 @@ export class CartaComponent implements OnInit, OnDestroy {
                         console.error('Error en ngOnInit:', error);
                         this.loading = false;
                         this.router.navigate(['/']);
+                }
+        }
+
+        /**
+         * Lee una sola vez el doc del cliente para: validar activo y obtener nombre.
+         * Retorna true si el cliente es válido/activo; false en caso contrario (y navega a inicio).
+         */
+        private async obtenerClienteMeta(): Promise<boolean> {
+                try {
+                        const clienteRef = doc(this.firestore, `clientes/${this.cliente}`);
+                        const clienteSnap = await getDoc(clienteRef);
+
+                        if (!clienteSnap.exists() || clienteSnap.data()?.['esActivo'] === false) {
+                                this.router.navigate(['/']);
+                                return false;
+                        }
+
+                        const nombre = clienteSnap.data()?.['nombreCliente'];
+                        this.nombreCliente = nombre
+                                ? String(nombre).toUpperCase()
+                                : this.cliente.charAt(0).toUpperCase() + this.cliente.slice(1);
+                        this.titleService.setTitle(`${this.nombreCliente} | Carta Digital`);
+                        this.cdr.markForCheck();
+                        return true;
+                } catch {
+                        this.router.navigate(['/']);
+                        return false;
                 }
         }
 
@@ -158,6 +184,7 @@ export class CartaComponent implements OnInit, OnDestroy {
 
                         if (categorias && categorias.length > 0) {
                                 this.categorias = categorias;
+                                console.log('Categorias cargadas:', this.categorias);
                         }
 
                         this.cdr.markForCheck();

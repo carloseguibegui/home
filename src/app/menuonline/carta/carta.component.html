@@ -4,7 +4,7 @@
 <app-spinner [@fadeInOut] *ngIf="loading"></app-spinner>
 
 <!-- Contenido -->
-<div [@fadeContent] [ngClass]="clienteClass" class="carta-container">
+<div [@fadeContent] [ngClass]="clienteClass" class="carta-container" [style.--card-bg]="'url(' + cardImage + ')'">
         <section *ngIf="!loading" class="content fade-in show" [class.fade]="true" [class.show]="visible">
                 <app-header [cliente]="cliente" [src_path]="logoImage"></app-header>
 
@@ -15,12 +15,11 @@
                                         <a [routerLink]="['/menuonline', cliente, 'carta', categoria.route]"
                                                 class="text-decoration-none"
                                                 [attr.aria-label]="'Ver ' + categoria.nombre">
-                                                <div class="text-center bg-white shadow p-3 h-100 hover-shadow transition categoria-div"
-                                                        [ngStyle]="{ 'background-image': 'url(' + cardImage + ')' }">
+                                                <div class="text-center bg-white shadow p-3 h-100 hover-shadow transition categoria-div">
                                                         <!-- ✅ loading="lazy" para diferido, decoding="async" para no bloquear -->
                                                         <img class="img-fluid icono" [src]="categoria.icon"
                                                                 [ngStyle]="{ width: categoria.icon === logoImage ? '6rem' : '4rem' }"
-                                                                alt="{{categoria.nombre}}" loading="lazy"
+                                                                alt="{{categoria.nombre}}" loading="lazy" width="64" height="64"
                                                                 decoding="async">
                                                         <div class="fw-bold text-brown mt-2 categoria-label">
                                                                 {{ categoria.nombre }}
