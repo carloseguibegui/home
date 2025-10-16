@@ -171,7 +171,6 @@ export class MenuService {
                                 // compatibilidad con docs que no tengan 'esVisible' definido (tratados como visibles)
                                 const q = query(categoriaRef, orderBy('displayOrder', 'asc'));
                                 const categoriaSnap = await getDocs(q);
-
                                 for (const categoriaDoc of categoriaSnap.docs) {
                                         categorias.push({ id: categoriaDoc.id, ...categoriaDoc.data() });
                                 }
