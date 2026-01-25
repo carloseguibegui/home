@@ -1796,17 +1796,20 @@ ol {
         transition: all 0.3s ease-out 0s;
 }
 
-.mobile-menu-btn.active .toggler-icon:nth-of-type(1) {
+.mobile-menu-btn.active .toggler-icon:nth-of-type(1),
+.mobile-menu-btn[aria-expanded="true"] .toggler-icon:nth-of-type(1) {
         -webkit-transform: rotate(45deg);
         transform: rotate(45deg);
         top: 7px;
 }
 
-.mobile-menu-btn.active .toggler-icon:nth-of-type(2) {
+.mobile-menu-btn.active .toggler-icon:nth-of-type(2),
+.mobile-menu-btn[aria-expanded="true"] .toggler-icon:nth-of-type(2) {
         opacity: 0;
 }
 
-.mobile-menu-btn.active .toggler-icon:nth-of-type(3) {
+.mobile-menu-btn.active .toggler-icon:nth-of-type(3),
+.mobile-menu-btn[aria-expanded="true"] .toggler-icon:nth-of-type(3) {
         -webkit-transform: rotate(135deg);
         transform: rotate(135deg);
         top: -7px;
@@ -2314,75 +2317,6 @@ ol {
 
 .features .single-feature p {
         line-height: 22px;
-}
-
-/*======================================
-    Our Achievement CSS
-========================================*/
-.our-achievement {
-        background-color: #8f00ff;
-        text-align: center;
-        padding: 130px 0;
-}
-
-@media only screen and (min-width: 768px) and (max-width: 991px) {
-        .our-achievement {
-                padding: 80px 0;
-        }
-}
-
-@media (max-width: 767px) {
-        .our-achievement {
-                padding: 60px 0;
-        }
-}
-
-.our-achievement .title h2 {
-        color: #fff;
-        font-weight: 700;
-        font-size: 35px;
-        margin-bottom: 10px;
-}
-
-.our-achievement .title p {
-        color: #fff;
-}
-
-.our-achievement .single-achievement {
-        margin-top: 50px;
-        text-align: center;
-        padding: 0px 10px;
-}
-
-.our-achievement .single-achievement h3 {
-        font-size: 35px;
-        font-weight: 800;
-        display: block;
-        margin-bottom: 5px;
-        color: #fff;
-}
-
-.our-achievement .single-achievement p {
-        font-size: 15px;
-        color: #fff;
-        font-weight: 500;
-        text-transform: capitalize;
-}
-
-@media only screen and (min-width: 768px) and (max-width: 991px),
-(max-width: 767px) {
-        .our-achievement .title h2 {
-                font-size: 24px;
-                line-height: 32px;
-        }
-
-        .our-achievement .single-achievement {
-                margin-top: 30px;
-        }
-
-        .our-achievement .single-achievement h3 {
-                font-size: 28px;
-        }
 }
 
 /*=============================
@@ -3012,11 +2946,11 @@ ol {
 }
 
 
-#img-banner{
+#img-banner {
         width: 604px;
 }
 
-.justify-items-center{
+.justify-items-center {
         justify-items: center;
 }
 
