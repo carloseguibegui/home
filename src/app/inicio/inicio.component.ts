@@ -5,7 +5,7 @@ import { CommonModule, NgIf, NgStyle } from '@angular/common';
 
 @Component({
   selector: 'app-inicio',
-  imports: [RouterLink, NgIf, NgStyle,CommonModule],
+  imports: [CommonModule],
   templateUrl: './inicio.component.html',
   styleUrl: './inicio.component.css',
   animations: [

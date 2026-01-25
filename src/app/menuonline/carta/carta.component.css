@@ -585,3 +585,8 @@
         line-height: normal;
     }
 }
+
+
+#a-cat{
+        display: contents;
+}

@@ -1,7 +1,8 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Injector } from '@angular/core';
 import { BehaviorSubject, firstValueFrom } from 'rxjs';
 import { Firestore, collection, getDocs, addDoc, updateDoc, deleteDoc, doc, query, orderBy, where } from '@angular/fire/firestore';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { runInInjectionContext } from '@angular/core';
 
 @Injectable({ providedIn: 'root' })
 export class MenuService {
@@ -48,7 +49,7 @@ export class MenuService {
                 }
         }
 
-        constructor(private firestore: Firestore) { }
+        constructor(private firestore: Firestore, private injector: Injector) { }
 
         /**
          * Verifica si el caché está vigente
@@ -86,49 +87,51 @@ export class MenuService {
                 // ✅ Evitar duplicados
                 this.loadingPromises[key] = (async () => {
                         try {
-                                const categoriaRef = collection(this.firestore, `clientes/${cliente}/categoria`);
-                                const categoriasQuery = query(categoriaRef, orderBy('displayOrder', 'asc'));
-                                const categoriaSnap = await getDocs(categoriasQuery);
+                                return await runInInjectionContext(this.injector, async () => {
+                                        const categoriaRef = collection(this.firestore, `clientes/${cliente}/categoria`);
+                                        const categoriasQuery = query(categoriaRef, orderBy('displayOrder', 'asc'));
+                                        const categoriaSnap = await getDocs(categoriasQuery);
 
-                                const menuPromises = categoriaSnap.docs.map(async (seccionDoc) => {
-                                        const seccionData = seccionDoc.data();
-                                        const productosRef = collection(this.firestore, `clientes/${cliente}/categoria/${seccionDoc.id}/productos`);
-                                        const productosQuery = query(productosRef, orderBy('nombre', 'asc'));
-                                        const productosSnap = await getDocs(productosQuery);
+                                        const menuPromises = categoriaSnap.docs.map(async (seccionDoc) => {
+                                                const seccionData = seccionDoc.data();
+                                                const productosRef = collection(this.firestore, `clientes/${cliente}/categoria/${seccionDoc.id}/productos`);
+                                                const productosQuery = query(productosRef, orderBy('nombre', 'asc'));
+                                                const productosSnap = await getDocs(productosQuery);
 
-                                        const productos = productosSnap.docs.map(prod => ({
-                                                idProducto: prod.id,
-                                                ...(prod.data() as { nombre?: string })
+                                                const productos = productosSnap.docs.map(prod => ({
+                                                        idProducto: prod.id,
+                                                        ...(prod.data() as { nombre?: string })
+                                                }));
+
+                                                seccionData['productos'] = productos;
+                                                seccionData['categoriaId'] = seccionDoc.id;
+                                                return seccionData;
+                                        });
+
+                                        let menuData = await Promise.all(menuPromises);
+                                        menuData = menuData.filter(cat => cat['esVisible'] !== false);
+
+                                        // ✅ Cache memoria + storage (MENÚ)
+                                        const entry = { data: menuData, timestamp: Date.now() };
+                                        this.menuCache[cliente] = entry;
+                                        this.writeToStorage<any[]>(key, entry);
+                                        this.menuData.next(menuData);
+
+                                        // ✅ Derivar categorías desde el menú y emitir (para reuso inmediato en CategoriaComponent)
+                                        const categoriasFromMenu = (menuData || []).map((item: any) => ({
+                                                id: item.categoriaId,
+                                                nombre: item.nombre,
+                                                route: item.route,
+                                                icon: item.icon,
+                                                esVisible: item.esVisible !== false,
+                                                displayOrder: item.displayOrder ?? 9999
                                         }));
-
-                                        seccionData['productos'] = productos;
-                                        seccionData['categoriaId'] = seccionDoc.id;
-                                        return seccionData;
+                                        const categoriasEntry = { data: categoriasFromMenu, timestamp: entry.timestamp };
+                                        this.categoriasCache[cliente] = categoriasEntry;
+                                        this.writeToStorage<any[]>(`categorias_${cliente}`, categoriasEntry);
+                                        this.categoriasData.next(categoriasFromMenu);
+                                        return menuData;
                                 });
-
-                                let menuData = await Promise.all(menuPromises);
-                                menuData = menuData.filter(cat => cat['esVisible'] !== false);
-
-                                // ✅ Cache memoria + storage (MENÚ)
-                                const entry = { data: menuData, timestamp: Date.now() };
-                                this.menuCache[cliente] = entry;
-                                this.writeToStorage<any[]>(key, entry);
-                                this.menuData.next(menuData);
-
-                                // ✅ Derivar categorías desde el menú y emitir (para reuso inmediato en CategoriaComponent)
-                                const categoriasFromMenu = (menuData || []).map((item: any) => ({
-                                        id: item.categoriaId,
-                                        nombre: item.nombre,
-                                        route: item.route,
-                                        icon: item.icon,
-                                        esVisible: item.esVisible !== false,
-                                        displayOrder: item.displayOrder ?? 9999
-                                }));
-                                const categoriasEntry = { data: categoriasFromMenu, timestamp: entry.timestamp };
-                                this.categoriasCache[cliente] = categoriasEntry;
-                                this.writeToStorage<any[]>(`categorias_${cliente}`, categoriasEntry);
-                                this.categoriasData.next(categoriasFromMenu);
-                                return menuData;
                         } finally {
                                 delete this.loadingPromises[key];
                         }
@@ -165,27 +168,29 @@ export class MenuService {
 
                 this.loadingPromises[key] = (async () => {
                         try {
-                                const categorias: any[] = [];
-                                const categoriaRef = collection(this.firestore, `clientes/${cliente}/categoria`);
-                                // Mantener orden en servidor, pero filtrar visibilidad en cliente para
-                                // compatibilidad con docs que no tengan 'esVisible' definido (tratados como visibles)
-                                const q = query(categoriaRef, orderBy('displayOrder', 'asc'));
-                                const categoriaSnap = await getDocs(q);
-                                for (const categoriaDoc of categoriaSnap.docs) {
-                                        categorias.push({ id: categoriaDoc.id, ...categoriaDoc.data() });
-                                }
+                                return await runInInjectionContext(this.injector, async () => {
+                                        const categorias: any[] = [];
+                                        const categoriaRef = collection(this.firestore, `clientes/${cliente}/categoria`);
+                                        // Mantener orden en servidor, pero filtrar visibilidad en cliente para
+                                        // compatibilidad con docs que no tengan 'esVisible' definido (tratados como visibles)
+                                        const q = query(categoriaRef, orderBy('displayOrder', 'asc'));
+                                        const categoriaSnap = await getDocs(q);
+                                        for (const categoriaDoc of categoriaSnap.docs) {
+                                                categorias.push({ id: categoriaDoc.id, ...categoriaDoc.data() });
+                                        }
 
-                                const categoriasFiltradas = soloVisibles
-                                        ? categorias.filter(cat => cat['esVisible'] !== false)
-                                        : categorias;
+                                        const categoriasFiltradas = soloVisibles
+                                                ? categorias.filter(cat => cat['esVisible'] !== false)
+                                                : categorias;
 
-                                // ✅ Almacena en caché con timestamp (memoria + storage)
-                                const entry = { data: categoriasFiltradas, timestamp: Date.now() };
-                                this.categoriasCache[cliente] = entry;
-                                this.writeToStorage<any[]>(key, entry);
-                                this.categoriasData.next(categoriasFiltradas);
+                                        // ✅ Almacena en caché con timestamp (memoria + storage)
+                                        const entry = { data: categoriasFiltradas, timestamp: Date.now() };
+                                        this.categoriasCache[cliente] = entry;
+                                        this.writeToStorage<any[]>(key, entry);
+                                        this.categoriasData.next(categoriasFiltradas);
 
-                                return categoriasFiltradas;
+                                        return categoriasFiltradas;
+                                });
                         } finally {
                                 delete this.loadingPromises[key];
                         }
@@ -207,46 +212,60 @@ export class MenuService {
 
         // --- CRUD CATEGORÍAS ---
         async addCategoria(cliente: string, categoria: any) {
-                const categoriaRef = collection(this.firestore, `clientes/${cliente}/categoria`);
-                const docRef = await addDoc(categoriaRef, categoria);
-                await this.loadCategorias(cliente, true);
-                return docRef.id;
+                return await runInInjectionContext(this.injector, async () => {
+                        const categoriaRef = collection(this.firestore, `clientes/${cliente}/categoria`);
+                        const docRef = await addDoc(categoriaRef, categoria);
+                        await this.loadCategorias(cliente, true);
+                        return docRef.id;
+                });
         }
 
         async updateCategoria(cliente: string, categoriaId: string, categoria: any) {
-                const categoriaDoc = doc(this.firestore, `clientes/${cliente}/categoria/${categoriaId}`);
-                await updateDoc(categoriaDoc, categoria);
-                await this.loadCategorias(cliente, true);
+                return await runInInjectionContext(this.injector, async () => {
+                        const categoriaDoc = doc(this.firestore, `clientes/${cliente}/categoria/${categoriaId}`);
+                        await updateDoc(categoriaDoc, categoria);
+                        await this.loadCategorias(cliente, true);
+                });
         }
 
         async deleteCategoria(cliente: string, categoriaId: string) {
-                const categoriaDoc = doc(this.firestore, `clientes/${cliente}/categoria/${categoriaId}`);
-                await deleteDoc(categoriaDoc);
-                await this.loadCategorias(cliente, true);
+                return await runInInjectionContext(this.injector, async () => {
+                        const categoriaDoc = doc(this.firestore, `clientes/${cliente}/categoria/${categoriaId}`);
+                        await deleteDoc(categoriaDoc);
+                        await this.loadCategorias(cliente, true);
+                });
         }
 
         // --- CRUD PRODUCTOS ---
         async addProducto(cliente: string, categoriaId: string, producto: any) {
-                const productosRef = collection(this.firestore, `clientes/${cliente}/categoria/${categoriaId}/productos`);
-                const docRef = await addDoc(productosRef, producto);
-                return docRef.id;
+                return await runInInjectionContext(this.injector, async () => {
+                        const productosRef = collection(this.firestore, `clientes/${cliente}/categoria/${categoriaId}/productos`);
+                        const docRef = await addDoc(productosRef, producto);
+                        return docRef.id;
+                });
         }
 
         async updateProducto(cliente: string, categoriaId: string, productoId: string, producto: any) {
-                const productoDoc = doc(this.firestore, `clientes/${cliente}/categoria/${categoriaId}/productos/${productoId}`);
-                await updateDoc(productoDoc, producto);
+                return await runInInjectionContext(this.injector, async () => {
+                        const productoDoc = doc(this.firestore, `clientes/${cliente}/categoria/${categoriaId}/productos/${productoId}`);
+                        await updateDoc(productoDoc, producto);
+                });
         }
 
         async deleteProducto(cliente: string, categoriaId: string, productoId: string) {
-                const productoDoc = doc(this.firestore, `clientes/${cliente}/categoria/${categoriaId}/productos/${productoId}`);
-                await deleteDoc(productoDoc);
+                return await runInInjectionContext(this.injector, async () => {
+                        const productoDoc = doc(this.firestore, `clientes/${cliente}/categoria/${categoriaId}/productos/${productoId}`);
+                        await deleteDoc(productoDoc);
+                });
         }
 
         // --- CRUD GIFTCARDS ---
         async addGiftcard(cliente: string, giftcard: any) {
-                const giftcardsRef = collection(this.firestore, `clientes/${cliente}/giftcards`);
-                const docRef = await addDoc(giftcardsRef, giftcard);
-                return docRef.id;
+                return await runInInjectionContext(this.injector, async () => {
+                        const giftcardsRef = collection(this.firestore, `clientes/${cliente}/giftcards`);
+                        const docRef = await addDoc(giftcardsRef, giftcard);
+                        return docRef.id;
+                });
         }
 
         async uploadGiftcardImage(clienteId: string, storagePath: string, blob: Blob): Promise<void> {
@@ -275,18 +294,20 @@ export class MenuService {
 
                 this.loadingPromises[key] = (async () => {
                         try {
-                                const giftcards: any[] = [];
-                                const giftcardsRef = collection(this.firestore, `clientes/${cliente}/giftcards`);
-                                const giftCardSnap = await getDocs(giftcardsRef);
+                                return await runInInjectionContext(this.injector, async () => {
+                                        const giftcards: any[] = [];
+                                        const giftcardsRef = collection(this.firestore, `clientes/${cliente}/giftcards`);
+                                        const giftCardSnap = await getDocs(giftcardsRef);
 
-                                for (const giftcardDoc of giftCardSnap.docs) {
-                                        giftcards.push({ id: giftcardDoc.id, ...giftcardDoc.data() });
-                                }
+                                        for (const giftcardDoc of giftCardSnap.docs) {
+                                                giftcards.push({ id: giftcardDoc.id, ...giftcardDoc.data() });
+                                        }
 
-                                this.giftCardsCache[cliente] = { data: giftcards, timestamp: Date.now() };
-                                this.giftCardsData.next(giftcards);
+                                        this.giftCardsCache[cliente] = { data: giftcards, timestamp: Date.now() };
+                                        this.giftCardsData.next(giftcards);
 
-                                return giftcards;
+                                        return giftcards;
+                                });
                         } finally {
                                 delete this.loadingPromises[key];
                         }
@@ -296,12 +317,16 @@ export class MenuService {
         }
 
         async updateGiftcard(cliente: string, giftcardId: string, giftcard: any) {
-                const giftcardDoc = doc(this.firestore, `clientes/${cliente}/giftcards/${giftcardId}`);
-                await updateDoc(giftcardDoc, giftcard);
+                return await runInInjectionContext(this.injector, async () => {
+                        const giftcardDoc = doc(this.firestore, `clientes/${cliente}/giftcards/${giftcardId}`);
+                        await updateDoc(giftcardDoc, giftcard);
+                });
         }
 
         async deleteGiftcard(cliente: string, giftcardId: string) {
-                const giftcardDoc = doc(this.firestore, `clientes/${cliente}/giftcards/${giftcardId}`);
-                await deleteDoc(giftcardDoc);
+                return await runInInjectionContext(this.injector, async () => {
+                        const giftcardDoc = doc(this.firestore, `clientes/${cliente}/giftcards/${giftcardId}`);
+                        await deleteDoc(giftcardDoc);
+                });
         }
 }

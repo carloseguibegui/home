@@ -12,7 +12,7 @@
                         <div class="row g-4 justify-content-center px-2">
                                 @for (categoria of categorias; track categoria.id) {
                                 <div class="col-6" id="cat">
-                                        <a [routerLink]="['/menuonline', cliente, 'carta', categoria.route]"
+                                        <a id="a-cat" [routerLink]="['/menuonline', cliente, 'carta', categoria.route]"
                                                 class="text-decoration-none"
                                                 [attr.aria-label]="'Ver ' + categoria.nombre">
                                                 <div class="text-center bg-white shadow p-3 h-100 hover-shadow transition categoria-div">

@@ -63,7 +63,7 @@
 }
 
 .gradient-custom {
-    background: linear-gradient(45deg, #5846f9 0%, color-mix(in srgb, #7c25ba, transparent 10%) 100%), url("../../../../public/assets/landing/hero-bg.webp") center center no-repeat;
+    background: linear-gradient(-45deg, #a900ff, #7a00ff, #b700ff, #a900ff);
     background-size: cover;
     /* fallback for old browsers */
     /* background: #6a11cb; */

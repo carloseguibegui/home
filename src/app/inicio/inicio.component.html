@@ -1,490 +1,504 @@
-<header id="header" class="header d-flex align-items-center fixed-top" [class.navbar-scrolled]="isScrolled">
-        <div class="container-fluid container-xl position-relative d-flex align-items-center mt-2 lg-5">
-                <a href="#" class="logo d-flex align-items-center me-auto"><img id="logo_home"
-                                src="assets/landing/FInal-02-mini.webp" alt="FInal-02-mini"></a>
-        </div>
-        <div class="lg-5 d-flex align-items-center mt-2" style="margin-right: 1rem;">
-                <a [routerLink]="['auth/login']" class="d-flex align-items-center pr-4">
-                        <!-- <img id="logo_home" src="assets/landing/login2.png" alt="login" style="height: 30px; margin-right: 8px;"> -->
-                        <span class="m-0 text-white" style="font-size: 15px;font-weight: 700;">LOGIN</span>
-                </a>
-        </div>
-</header>
-<main class="main">
-        <section id="#" class="hero section accent-background py-0">
-                <div class="container" id="seccion-1">
-                        <div class="row gy-4">
-                                <div class="col-lg-6 order-1 order-lg-1 d-flex flex-column justify-content-center">
-                                        <h1 class="pt-5 mt-5" id="titulo" style="margin-top: 4rem !important;">Carta
-                                                Digital 100% personalizada para restaurantes y cafeterías.
-                                        </h1>
-                                        <p>Imágenes que abren el apetito. Descripciones que venden.Convierte tu menú en
-                                                una experiencia digital que enamora a tus clientes.</p>
-                                        <div class="d-grid gap-2 col-12 mx-auto">
-                                                <a href="{{bannerImages[0].route}}"
-                                                        class="btn-get-started btn-lg btn-block text-center h5"
-                                                        target="_blank">¡VER EN ACCIÓN!</a>
-                                        </div>
-                                </div>
-                                <div class="col-lg-6 order-2 order-lg-2 hero-img pt-3 pb-3 d-flex flex-column justify-content-center"
-                                        style="margin-bottom: 130px;">
-                                        <ng-container *ngIf="bannerImages[bannerIndex] as banner">
-                                                <a [routerLink]="[banner.route]" target="_blank">
-                                                        <div id="banner"
-                                                                class="img-fluid animated mx-0 w-100 fade-banner"
-                                                                [ngStyle]="{'background-image': 'url(' + banner.url + ')'}">
-                                                        </div>
+<!-- Start Header Area -->
+<header class="header navbar-area">
+        <div class="container">
+                <div class="row align-items-center">
+                        <div class="col-lg-12">
+                                <div class="nav-inner">
+                                        <!-- Start Navbar -->
+                                        <nav class="navbar navbar-expand-lg">
+                                                <a class="navbar-brand" href="#home">
+                                                        <img src="assets/landing/FInal-02-mini.webp" alt="Logo">
                                                 </a>
-                                        </ng-container>
-                                </div>
-                        </div>
-                </div>
-        </section>
-        <div id="caracteristicas" class="block-feature-twentyFour pb-80 lg-pb-40">
-                <div class="container lg">
-                        <div class="row gx-xxl-5">
-                                <div class="col-lg-4 mt-4">
-                                        <div id="disenio-hecho-a-tu-medida"
-                                                class="card-style-eleven caracteristicas hover-effect"
-                                                style="background: #FFFFFF; box-shadow: 0px -25px 50px 20px rgba(0, 0, 0, 0.02); border-radius: 20px; padding: 20px; margin-top: -100px; height: 22rem; align-content: center;">
-                                                <img src="assets/landing/design.webp" alt="Diseño personalizado"
-                                                        style="max-width: 55px; display: block; margin: 0; padding: 0; box-sizing: border-box;">
-                                                <h2 class="mt-4" style="font-weight: bold;">Menú digital adaptado</h2>
-                                                <p class="m0" style="line-height: 30px; font-size: 18px;">
-                                                        Se desarrolla un menú digital ajustado a la identidad visual del
-                                                        negocio, utilizando colores,
-                                                        logotipo y fotografías proporcionadas.
-                                                </p>
-                                        </div>
-                                </div>
-                                <div class="col-lg-4 mt-4">
-                                        <div class="card-style-eleven caracteristicas hover-effect"
-                                                style="background: #FFFFFF; box-shadow: 0px -25px 50px 20px rgba(0, 0, 0, 0.02); border-radius: 20px; padding: 20px; height: auto; align-content: center;">
-                                                <img src="assets/landing/upload.webp" alt="Carga de carta"
-                                                        style="max-width: 55px; display: block; margin: 0; padding: 0; box-sizing: border-box;">
-                                                <h2 class="mt-4" style="font-weight: bold;">Envío de información</h2>
-                                                <p class="m0" style="line-height: 30px; font-size: 18px;">
-                                                        El establecimiento envía su carta y material gráfico, y se
-                                                        devuelve una versión digital
-                                                        organizada y lista para su uso.
-                                                </p>
-                                        </div>
-                                </div>
-                                <div class="col-lg-4 mt-4">
-                                        <div class="card-style-eleven caracteristicas hover-effect"
-                                                style="background: #FFFFFF; box-shadow: 0px -25px 50px 20px rgba(0, 0, 0, 0.02); border-radius: 20px; padding: 20px; margin-bottom: 4rem; height: 22rem; align-content: center;">
-                                                <img src="assets/landing/story.webp" alt="Optimización de imágenes"
-                                                        style="max-width: 55px; display: block; margin: 0; padding: 0; box-sizing: border-box;">
-                                                <h2 class="mt-4" style="font-weight: bold;">Optimización de fotografías
-                                                </h2>
-                                                <p class="m0" style="line-height: 30px; font-size: 18px;">
-                                                        Se aplican herramientas de edición y ajustes de diseño para
-                                                        mejorar la calidad de las imágenes
-                                                        de los productos.
-                                                </p>
-                                        </div>
-                                </div>
-                        </div>
-                </div>
-        </div>
-
-        <!-- <section id="about" class="about section section bg-light">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="section-title text-center">
-                    <h2>¿Quiénes somos?</h2>
-                </div>
-                <div class="col-lg-6">
-                    <img src="https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/landing%2Flogo-marketingeros3.webp?alt=media"
-                        class="img-fluid" alt="Marketingeros Team">
-                </div>
-                <div class="col-lg-6">
-                    <div class="content ps-lg-5">
-                        <p>
-                            Somos Marketingeros, especialistas en marketing digital para el sector gastronómico.
-                        </p>
-                        <p>
-                            Ayudamos a locales como el tuyo a dejar atrás los menús anticuados y a conectar con sus
-                            clientes a través de una experiencia digital única. Entendemos tu negocio, hablamos tu
-                            idioma y sabemos lo que se necesita para que tus platos no solo se vean bien, sino que se
-                            vendan mejor.
-                        </p>
-                        <p>
-                            Nuestra misión es simple: darte las herramientas para que te dediques a lo que mejor
-                            sabes hacer: cocinar. De la tecnología y el diseño, nos encargamos nosotros.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> -->
-
-        <!-- <section id="service-details" class="service-details section">
-        <div class="container">
-            <div class="row gy-5">
-                <div class="col-lg-12">
-                    <div class="service-box">
-                        <h4>Te ofrecemos un servicio integral de menú digital, diseñado para que consigas resultados
-                            reales con el menor esfuerzo de tu parte.</h4>
-                        <p>Es simple: tus clientes escanean un código QR, ven tus platos en alta calidad y se tientan a
-                            pedir más. Todo desde su móvil.</p>
-                    </div>
-                    <h3>¿Qué incluye nuestro servicio?</h3>
-                    <ul>
-                        <li><span aria-hidden="true">✔</span> <span><strong>Configuración y diseño
-                                    profesional:</strong> Creamos un menú 100% personalizado con tu logo, tus colores y
-                                tu estilo.</span></li>
-                        <li><span aria-hidden="true">✔</span> <span><strong>Fotografía de producto mejorada con
-                                    IA:</strong> Convertimos las fotos de tus platos en imágenes de alta calidad que
-                                venden solas.</span></li>
-                        <li><span aria-hidden="true">✔</span> <span><strong>Carga inicial y actualizaciones sin
-                                    cargo:</strong> Nos envías tu carta y nosotros nos encargamos de todo. ¿Cambió un
-                                precio? Lo actualizamos por ti.</span></li>
-                        <li><span aria-hidden="true">✔</span> <span><strong>Código QR y enlace
-                                    personalizado:</strong> Te entregamos todo listo para que tus clientes accedan a tu
-                                menú al instante.</span></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section> -->
-
-        <section id="what-you-get" class="section bg-light">
-                <div class="container">
-                        <div class="section-title text-center pb-5">
-                                <h2>¿Qué incluye el servicio?</h2>
-                        </div>
-                        <div class="row text-center">
-                                <div class="col-md-4">
-                                        <div class="icon-box">
-                                                <span aria-hidden="true" style="font-size: 1.4rem; color: #5846f9;">🔳</span>
-                                                <h3 class="color-violeta">Código QR</h3>
-                                                <p>Obtén un código QR listo para escanear que dirige directamente a tu
-                                                        menú digital.</p>
-                                        </div>
-                                </div>
-                                <div class="col-md-4">
-                                        <div class="icon-box">
-                                                <span aria-hidden="true" style="font-size: 1.4rem; color: #5846f9;">💎</span>
-                                                <h3 class="color-violeta">Presentación Estandarizada</h3>
-                                                <p>Se ofrece un diseño consistente que refuerza la identidad visual del
-                                                        negocio y facilita la
-                                                        comunicación de la oferta de productos o servicios.</p>
-                                        </div>
-                                </div>
-                                <div class="col-md-4">
-                                        <div class="icon-box">
-                                                <span aria-hidden="true" style="font-size: 1.4rem; color: #5846f9;">👥</span>
-                                                <h3 class="color-violeta">Experiencia de Usuario</h3>
-                                                <p>El menú está organizado para que sea sencillo de utilizar y
-                                                        consultar, lo que contribuye a una
-                                                        navegación más clara para los clientes.</p>
-                                        </div>
-                                </div>
-                        </div>
-                </div>
-        </section>
-
-
-        <!-- Sección: Cómo funciona -->
-        <section id="como-funciona" class="section py-5">
-                <div class="container">
-                        <div class="section-title text-center pb-5">
-                                <h2>¿Cómo funciona?</h2>
-                                <p class="lead">El proceso se completa en tres pasos.</p>
-                        </div>
-                        <div class="row text-center">
-                                <div class="col-md-4">
-                                        <div class="icon-box">
-                                                <span aria-hidden="true" style="font-size: 40px; color: #5846f9;">⬆</span>
-                                                <h4>1. Envío de la información</h4>
-                                                <p>El negocio comparte la carta y las fotografías a través de WhatsApp,
-                                                        correo electrónico u otro
-                                                        medio disponible.</p>
-                                        </div>
-                                </div>
-                                <div class="col-md-4">
-                                        <div class="icon-box">
-                                                <span aria-hidden="true" style="font-size: 40px; color: #5846f9;">✨</span>
-                                                <h4>2. Elaboración del menú digital</h4>
-                                                <p>Se organiza el contenido y se aplica un diseño adaptado con las
-                                                        imágenes proporcionadas.</p>
-                                        </div>
-                                </div>
-                                <div class="col-md-4">
-                                        <div class="icon-box">
-                                                <span aria-hidden="true" style="font-size: 40px; color: #5846f9;">🔳</span>
-                                                <h4>3. Entrega del acceso</h4>
-                                                <p>Se proporciona un código QR y un enlace que permiten a los clientes
-                                                        consultar el menú en sus
-                                                        dispositivos.</p>
-                                        </div>
-                                </div>
-                        </div>
-                </div>
-        </section>
-
-
-        <!-- Sección: Casos de éxito -->
-        <section id="casos-exito" class="section bg-light py-5">
-                <div class="container">
-                        <div class="section-title text-center pb-5">
-                                <h2>Casos de éxito</h2>
-                                <p class="lead">Locales que confiaron y hoy venden más gracias a su menú digital.</p>
-                        </div>
-                        <div class="row justify-content-center">
-                                <div class="col-md-4">
-                                        <div class="testimonial-box p-4 shadow-sm rounded bg-white">
-                                                <div class="d-flex align-items-center mb-3">
-                                                        <img src="https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Frequeterico%2Flogo0.webp?alt=media"
-                                                                alt="Testimonio" class="rounded-circle me-3"
-                                                                style="width: 56px; height: 56px;">
-                                                        <div>
-                                                                <strong>Josefina, Requeterico</strong><br>
-                                                                <span class="text-muted">Tandil, Argentina</span>
-                                                        </div>
+                                                <button id="btn-nav" class="navbar-toggler mobile-menu-btn" type="button"
+                                                        data-bs-toggle="collapse"
+                                                        data-bs-target="#navbarSupportedContent"
+                                                        aria-controls="navbarSupportedContent" aria-expanded="false"
+                                                        aria-label="Toggle navigation">
+                                                        <span class="toggler-icon"></span>
+                                                        <span class="toggler-icon"></span>
+                                                        <span class="toggler-icon"></span>
+                                                </button>
+                                                <div class="collapse navbar-collapse sub-menu-bar"
+                                                        id="navbarSupportedContent">
+                                                        <ul id="nav" class="navbar-nav ms-auto">
+                                                                <li class="nav-item">
+                                                                        <a href="#home" class="page-scroll active"
+                                                                                aria-label="Toggle navigation">Inicio</a>
+                                                                </li>
+                                                                <li class="nav-item">
+                                                                        <a href="#features" class="page-scroll"
+                                                                                aria-label="Toggle navigation">Características</a>
+                                                                </li>
+                                                                <li class="nav-item">
+                                                                        <a href="#pricing" class="page-scroll"
+                                                                                aria-label="Toggle navigation">Plan</a>
+                                                                </li>
+                                                                <li class="nav-item">
+                                                                        <a href="#pricing" class="page-scroll"
+                                                                                aria-label="Toggle navigation">Precio</a>
+                                                                </li>
+                                                                <li class="nav-item">
+                                                                        <a href="#contacto" class="page-scroll"
+                                                                                aria-label="Toggle navigation">Contacto</a>
+                                                                </li>
+                                                                <li class="nav-item">
+                                                                        <a href="#contacto" class="page-scroll"
+                                                                                aria-label="Toggle navigation">Reservar</a>
+                                                                </li>
+                                                        </ul>
+                                                </div> <!-- navbar collapse -->
+                                                <div class="button add-list-button">
+                                                        <a href="https://calendly.com/marketingeros/30min"
+                                                                target="_blank" class="btn">Reservar
+                                                                mi reunión</a>
                                                 </div>
-                                                <p class="mb-0">"La presentación es increíble y mis clientes lo notan.
-                                                        Ahora todos preguntan
-                                                        por los cafés y sándwiches especiales. Sin duda los recomiendo"
-                                                </p>
-                                        </div>
+                                        </nav>
+                                        <!-- End Navbar -->
                                 </div>
                         </div>
-                </div>
-        </section>
-        <section id="pricing" class="pricing section pt-5 mt-2">
-                <div class="container section-title pb-5" data-aos="fade-up">
-                        <h2>Plan disponible</h2>
-                        <p class="lead">Se ofrece un único plan con todas las funcionalidades incluidas.</p>
-                </div>
-                <div class="container">
-                        <div class="pricing-item col-12 px-4">
-                                <h3>Plan Estándar</h3>
-                                <h4 style="color: #5846f9;">
-                                        <sup>€</sup>80
-                                        <span style="font-weight: bold; color: #2c4964;">/ mes</span>
-                                </h4>
-                                <ul>
-                                        <li>
-                                                <span aria-hidden="true" class="pricing-check">✔</span>
-                                                <span>Menú digital personalizado, adaptado a la identidad visual del
-                                                        establecimiento.</span>
-                                        </li>
-                                        <li>
-                                                <span aria-hidden="true" class="pricing-check">✔</span>
-                                                <span>Carga completa del contenido a partir de la carta y fotografías
-                                                        proporcionadas.</span>
-                                        </li>
-                                        <li>
-                                                <span aria-hidden="true" class="pricing-check">✔</span>
-                                                <span>Código QR único para acceso directo al menú digital.</span>
-                                        </li>
-                                        <li>
-                                                <span aria-hidden="true" class="pricing-check">✔</span>
-                                                <span>Enlace web propio para compartir y consultar desde cualquier
-                                                        dispositivo.</span>
-                                        </li>
-                                        <li>
-                                                <span aria-hidden="true" class="pricing-check">✔</span>
-                                                <span>Optimización de imágenes para mejorar calidad y
-                                                        visualización.</span>
-                                        </li>
-                                        <li>
-                                                <span aria-hidden="true" class="pricing-check">✔</span>
-                                                <span>Compatibilidad multiplataforma: celulares, tablets y
-                                                        computadoras.</span>
-                                        </li>
-                                        <li>
-                                                <span aria-hidden="true" class="pricing-check">✔</span>
-                                                <span>Actualizaciones incluidas en platos, precios o fotografías.</span>
-                                        </li>
-                                        <li>
-                                                <span aria-hidden="true" class="pricing-check">✔</span>
-                                                <span>Archivos QR listos para impresión en cartas, mesas o
-                                                        cartelería.</span>
-                                        </li>
-                                        <li>
-                                                <span aria-hidden="true" class="pricing-check">✔</span>
-                                                <span>Soporte técnico básico para consultas de acceso y
-                                                        visualización.</span>
-                                        </li>
-                                </ul>
-                                <a href="#contacto" class="buy-btn col-12 text-center activar-carta">Solicitar
-                                        información</a>
-                        </div>
-                </div>
-        </section>
+                </div> <!-- row -->
+        </div> <!-- container -->
+</header>
+<!-- End Header Area -->
 
-        <section id="faq" class="faq section mt-0">
-                <div class="container section-title mb-5" data-aos="fade-up">
-                        <h2>Preguntas frecuentes</h2>
-                </div>
-                <div class="accordion mx-4" id="accordionExample">
-                        <div class="accordion-item">
-                                <h2 class="accordion-header" id="panelsStayOpen-headingOne"><button
-                                                class="accordion-button" type="button" data-bs-toggle="collapse"
-                                                data-bs-target="#collapseOne" aria-expanded="true"
-                                                aria-controls="collapseOne">¿Cuánto tiempo tardan en tener listo mi
-                                                menú?</button></h2>
-                                <div id="collapseOne" class="accordion-collapse collapse show"
-                                        aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                                        <div class="accordion-body">
-                                                <strong>Una vez que nos envías tu carta y tus fotos, tu nuevo menú
-                                                        digital estará listo en menos
-                                                        1 semana.</strong>
+<!-- Start Hero Area -->
+<section id="home" class="hero-area justify-items-center">
+        <div class="container align-self-center">
+                <div class="row align-items-center justify-items-center">
+                        <div class="col-lg-5 col-md-12 col-12 justify-items-center">
+                                <div class="hero-content">
+                                        <h1 class="wow fadeInLeft" data-wow-delay=".4s">Carta digital 100%
+                                                personalizada para
+                                                restaurantes y cafeterías.</h1>
+                                        <p class="wow fadeInLeft" data-wow-delay=".6s">Imágenes que abren el
+                                                apetito. Descripciones que
+                                                venden. Convierte tu menú en una experiencia digital que enamora
+                                                a tus clientes.</p>
+                                        <div class="button wow fadeInLeft div-btn-hero" data-wow-delay=".8s">
+                                                <a href="{{bannerImages[0].route}}" target="_blank" class="btn"><i
+                                                                class="lni lni-eye"></i> ¡Ver en
+                                                        acción!</a>
+                                                <a href="https://calendly.com/marketingeros/30min" target="_blank"
+                                                        class="btn btn-alt"><i class="lni lni-calendar-days"></i>
+                                                        Reservar
+                                                        reunión</a>
                                         </div>
                                 </div>
                         </div>
-                        <div class="accordion-item">
-                                <h2 class="accordion-header" id="headingTwo"><strong><button
-                                                        class="accordion-button collapsed" type="button"
-                                                        data-bs-toggle="collapse" data-bs-target="#collapseTwo"
-                                                        aria-expanded="false" aria-controls="collapseTwo">¿Qué necesitan
-                                                        de mi parte para empezar?</button></strong></h2>
-                                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
-                                        data-bs-parent="#accordionExample">
-                                        <div class="accordion-body">
-                                                <strong>Solo necesitamos tu menú actual (en cualquier formato) y las
-                                                        fotos de tus platos. Si no
-                                                        tienes fotos, ¡no te preocupes! Podemos usar imágenes de stock
-                                                        de alta calidad o darte
-                                                        consejos
-                                                        para que las hagas con tu móvil.</strong>
-                                        </div>
-                                </div>
-                        </div>
-                        <div class="accordion-item">
-                                <h2 class="accordion-header" id="headingThree"><strong><button
-                                                        class="accordion-button collapsed" type="button"
-                                                        data-bs-toggle="collapse" data-bs-target="#collapseThree"
-                                                        aria-expanded="false" aria-controls="collapseThree">¿Cómo hago
-                                                        si quiero cambiar un precio o
-                                                        añadir un plato?</button></strong></h2>
-                                <div id="collapseThree" class="accordion-collapse collapse"
-                                        aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-                                        <div class="accordion-body">
-                                                <strong>Nos envías un WhatsApp o un email y lo actualizamos por ti en el
-                                                        día, sin coste
-                                                        adicional. Así de simple.</strong>
-                                        </div>
-                                </div>
-                        </div>
-                        <div class="accordion-item">
-                                <h2 class="accordion-header" id="headingFour"><strong><button
-                                                        class="accordion-button collapsed" type="button"
-                                                        data-bs-toggle="collapse" data-bs-target="#collapseFour"
-                                                        aria-expanded="false" aria-controls="collapseFour">¿Tengo que
-                                                        firmar un contrato a largo plazo?</button></strong>
-                                </h2>
-                                <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
-                                        data-bs-parent="#accordionExample">
-                                        <div class="accordion-body">
-                                                <strong>No. Nuestro servicio es mensual y puedes darte de baja cuando
-                                                        quieras. Creemos en la
-                                                        calidad de nuestro trabajo, no en los contratos.</strong>
-                                        </div>
-                                </div>
-                        </div>
-                </div>
-        </section>
-        <section id="contacto" class="contact section py-6 bg-opacity-10">
-                <div class="container">
-                        <div class="row justify-content-center" data-aos="fade-up">
-                                <div class="col-12 col-md-10 col-lg-8 text-center">
-                                        <!-- Título destacado mejorado -->
-                                        <h2 class="display-5 fw-bold mb-4">
-                                                ¿Quieres que tu menú digital sea el motivo por el que tus clientes
-                                                vuelven una y otra vez?
-                                        </h2>
-
-                                        <!-- Texto de apoyo mejorado -->
-                                        <p class="lead mb-3">
-                                                Da el salto a lo digital y convierte cada
-                                                visita en una experiencia memorable.
-                                        </p>
-                                        <p class="mb-4">
-                                                Programa una reunión personalizada (sin compromiso) y descubre cómo
-                                                podemos ayudarte a:
-                                        </p>
-                                        <ul class="text-start d-inline-block mb-4 list-unstyled"
-                                                style="font-size:1.4rem;line-height:1.7;">
-                                                <li><i class="bi bi-check-circle-fill pricing-check"></i>Aumentar el
-                                                        ticket promedio y la cantidad de pedidos.</li>
-                                                <li><i class="bi bi-check-circle-fill pricing-check"></i>Diferenciarte
-                                                        de la competencia con una imagen profesional.</li>
-                                                <li><i class="bi bi-check-circle-fill pricing-check"></i>Ahorrar tiempo
-                                                        y dinero en cambios de carta y precios.</li>
-                                                <li><span aria-hidden="true" class="pricing-check">✔</span>Sorprender a
-                                                        tus clientes con una experiencia moderna y fácil.</li>
-                                        </ul>
-
-                                        <!-- Botón prominente con icono -->
-                                        <a href="https://calendly.com/marketingeros/30min" target="_blank"
-                                                class="btn btn-lg px-5 py-3 d-inline-flex align-items-center" style="transition: all 0.3s;border: 2px solid #5846f9; border-radius: 40px;    text-transform: uppercase;
-                        font-size: 1.4rem;
-                        font-weight: bold;">
-                                                <div style="margin-right: 1rem;">
-                                                        <span aria-hidden="true">🗓</span>
-                                                </div>
-                                                Reservar mi reunión
+                        <div class="col-lg-7 col-md-12 col-12 justify-items-center">
+                                <div class="hero-image wow fadeInRight " data-wow-delay=".8s">
+                                        <a href="{{bannerImages[0].route}}" target="_blank">
+                                                <img id="img-banner" src="{{bannerImages[0].url}}" alt="#">
                                         </a>
                                 </div>
                         </div>
                 </div>
-        </section>
+        </div>
+</section>
+<!-- End Hero Area -->
 
-</main>
-<div class="floating_btn floating_btn-calendly">
-        <strong><a target="_blank" href="https://calendly.com/marketingeros/30min" aria-label="Reservar reunión en Calendly">
-                        <div class="contact_icon contact_icon-calendly">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" role="img">
-                                        <path d="M7 2a1 1 0 0 0-1 1v1H5a3 3 0 0 0-3 3v1h20V7a3 3 0 0 0-3-3h-1V3a1 1 0 1 0-2 0v1H8V3a1 1 0 0 0-1-1z"/>
-                                        <path d="M22 9H2v9a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3V9z"/>
-                                </svg>
-                        </div>
-                </a></strong>
-</div>
-
-<div class="floating_btn floating_btn-whatsapp">
-        <strong><a target="_blank"
-                        href="https://api.whatsapp.com/send?phone=542494655254&text=%C2%A1Hola%20%F0%9F%91%8B%20Estoy%20buscando%20un%20men%C3%BA%20digital%20moderno%20para%20mi%20negocio.%20%C2%BFPodemos%20hablar%3F"
-                        aria-label="Abrir WhatsApp">
-                        <div class="contact_icon contact_icon-whatsapp">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" aria-hidden="true" role="img">
-                                        <circle cx="12" cy="12" r="11" fill="#25D366"/>
-                                        <path fill="#fff" d="M16.54 13.37c-.26-.13-1.52-.75-1.76-.84-.24-.09-.41-.13-.58.13-.17.26-.67.84-.82 1.01-.15.17-.3.2-.56.07-.26-.13-1.09-.4-2.08-1.29-.77-.69-1.29-1.54-1.44-1.8-.15-.26-.02-.4.11-.53.11-.11.26-.3.39-.45.13-.15.17-.26.26-.43.09-.17.04-.32-.02-.45-.06-.13-.58-1.4-.8-1.91-.21-.5-.42-.43-.58-.43h-.5c-.17 0-.45.06-.69.32-.24.26-.9.88-.9 2.14s.92 2.48 1.05 2.65c.13.17 1.82 2.78 4.41 3.9.62.27 1.11.43 1.49.55.63.2 1.21.17 1.67.1.51-.08 1.52-.62 1.73-1.22.21-.6.21-1.12.15-1.22-.06-.1-.24-.16-.5-.29z"/>
-                                </svg>
-                        </div>
-                </a></strong>
-</div>
-<footer id="footer" class="footer accent-background">
-
-        <div class="container footer-top">
-                <div class="row gy-4">
-                        <div class="col-lg-4 col-md-12 footer-about">
-                                <a href="#hero" class="logo d-flex align-items-center">
-                                        <span class="sitename">Marketingeros</span>
-                                </a>
-                                <div class="social-links d-flex mt-4">
-                                        <!-- <a href=""><i class="bi bi-twitter-x"></i></a> -->
-                                        <!-- <a href=""><i class="bi bi-facebook"></i></a> -->
-                                        <a href="https://www.instagram.com/marketingeros.online" target="_blank"><span aria-hidden="true">📸</span></a>
-                                        <!-- <a href=""><i class="bi bi-linkedin"></i></a> -->
+<!-- Start Features Area -->
+<section id="features" class="features section justify-items-center">
+        <div class="container">
+                <div class="row">
+                        <div class="col-12">
+                                <div class="section-title">
+                                        <h3 class="wow zoomIn" data-wow-delay=".2s">Características</h3>
+                                        <h2 class="wow fadeInUp" data-wow-delay=".4s">Todo lo que necesitas para
+                                                que tu menú venda más.
+                                        </h2>
+                                        <p class="wow fadeInUp" data-wow-delay=".6s">Diseño alineado a tu
+                                                identidad, carga inicial
+                                                completa y mejoras visuales para que tus clientes elijan más
+                                                rápido (y con más ganas).</p>
                                 </div>
                         </div>
-                        <div class="col-lg-4 col-md-12 footer-contact text-center text-md-start">
-                                <h4>Contáctanos</h4>
-                                <p><strong>Email:</strong> <span>marketingeros.ar&#64;gmail.com</span></p>
+                </div>
+                <div class="row">
+                        <div class="col-lg-4 col-md-6 col-12">
+                                <!-- Start Single Feature -->
+                                <div class="single-feature wow fadeInUp text-center" data-wow-delay=".2s">
+                                        <i class="lni lni-share-1"></i>
+                                        <h3>Envío de información</h3>
+                                        <p>Nos compartes tu carta y tus fotos por WhatsApp o email. Nosotros hacemos el
+                                                resto.</p>
+                                </div>
+                                <!-- End Single Feature -->
                         </div>
-
+                        <div class="col-lg-4 col-md-6 col-12">
+                                <!-- Start Single Feature -->
+                                <div class="single-feature wow fadeInUp text-center" data-wow-delay=".4s">
+                                        <i class="lni lni-layout-9"></i>
+                                        <h3>Menú digital adaptado</h3>
+                                        <p>Diseño ajustado a tu identidad visual: colores, logo y estilo del negocio.
+                                        </p>
+                                </div>
+                                <!-- End Single Feature -->
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-12">
+                                <!-- Start Single Feature -->
+                                <div class="single-feature wow fadeInUp text-center" data-wow-delay=".6s">
+                                        <i class="lni lni-photos"></i>
+                                        <h3>Optimización de fotografías</h3>
+                                        <p>Mejoramos la calidad de las imágenes para que tus platos se vean
+                                                irresistibles.</p>
+                                </div>
+                                <!-- End Single Feature -->
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-12">
+                                <!-- Start Single Feature -->
+                                <div class="single-feature wow fadeInUp text-center" data-wow-delay=".2s">
+                                        <i class="lni lni-link-2-angular-right"></i>
+                                        <h3>Código QR + enlace</h3>
+                                        <p>Te entregamos un QR listo para imprimir y un enlace para compartir en redes y
+                                                WhatsApp.</p>
+                                </div>
+                                <!-- End Single Feature -->
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-12">
+                                <!-- Start Single Feature -->
+                                <div class="single-feature wow fadeInUp text-center" data-wow-delay=".4s">
+                                        <i class="lni lni-menu-cheesburger"></i>
+                                        <h3>Experiencia clara</h3>
+                                        <p>Menú organizado y fácil de navegar para que tus clientes encuentren y elijan
+                                                rápido.</p>
+                                </div>
+                                <!-- End Single Feature -->
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-12">
+                                <!-- Start Single Feature -->
+                                <div class="single-feature wow fadeInUp text-center" data-wow-delay=".6s">
+                                        <i class="lni lni-refresh-circle-1-clockwise"></i>
+                                        <h3>Actualizaciones incluidas</h3>
+                                        <p>Cambios de precios, platos o fotos: nos escribes y lo actualizamos sin
+                                                vueltas.</p>
+                                </div>
+                                <!-- End Single Feature -->
+                        </div>
                 </div>
         </div>
+</section>
+<!-- End Features Area -->
 
-        <div class="container copyright text-center mt-4">
-                <p>© <span>Copyright</span> <strong class="px-1 sitename">Marketingeros</strong> <span>Todos los
-                                derechos
-                                reservados</span></p>
+<!-- Start Features Area -->
+<section id="problems-we-solve" class="features section justify-items-center">
+        <div class="container">
+                <div class="row">
+                        <div class="col-12">
+                                <div class="section-title">
+                                        <h3 class="wow zoomIn" data-wow-delay=".2s">Problemas que resolvemos</h3>
+                                        <h2 class="wow fadeInUp" data-wow-delay=".4s">Tu menú digital es la herramienta
+                                                perfecta para aumentar ventas y
+                                                mejorar la experiencia de tus clientes.
+                                        </h2>
+                                        <p class="wow fadeInUp" data-wow-delay=".6s">Diseño alineado a tu
+                                                identidad, carga inicial
+                                                completa y mejoras visuales para que tus clientes elijan más
+                                                rápido (y con más ganas).</p>
+                                </div>
+                        </div>
+                </div>
+                <div class="row">
+                        <div class="col-lg-4 col-md-6 col-12">
+                                <!-- Start Single Feature -->
+                                <div class="single-feature wow fadeInUp text-center" data-wow-delay=".2s">
+                                        <i class="lni lni-share-1"></i>
+                                        <h3>Aumenta tu ticket promedio</h3>
+                                        <p>Menús con imágenes que abren el apetito impulsan a los
+                                                clientes a pedir más y mejor.</p>
+                                </div>
+                                <!-- End Single Feature -->
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-12">
+                                <!-- Start Single Feature -->
+                                <div class="single-feature wow fadeInUp text-center" data-wow-delay=".6s">
+                                        <i class="lni lni-photos"></i>
+                                        <h3>Mejora la experiencia del cliente</h3>
+                                        <p>Navegación clara, descripciones atractivas y fotos
+                                                profesionales que generan confianza.</p>
+                                </div>
+                                <!-- End Single Feature -->
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-12">
+                                <!-- Start Single Feature -->
+                                <div class="single-feature wow fadeInUp text-center" data-wow-delay=".2s">
+                                        <i class="lni lni-link-2-angular-right"></i>
+                                        <h3>Actualizaciones sin esfuerzo</h3>
+                                        <p>Cambia precios, platos o fotos sin esperar días. Todo
+                                                actualizado en tiempo real.</p>
+                                </div>
+                                <!-- End Single Feature -->
+                        </div>
+                </div>
         </div>
+</section>
+<!-- End Features Area -->
 
+<!-- End Achievement Area -->
+
+<!-- Start Pricing Table Area -->
+<section id="pricing" class="pricing-table section">
+        <div class="container">
+                <div class="row">
+                        <div class="col-12">
+                                <div class="section-title">
+                                        <h3 class="wow zoomIn" data-wow-delay=".2s">Plan</h3>
+                                        <h2 class="wow fadeInUp" data-wow-delay=".4s">Dos opciones de pago, una misma
+                                                calidad
+                                        </h2>
+                                        <p class="wow fadeInUp" data-wow-delay=".6s">Menú digital personalizado,
+                                                QR + enlace,
+                                                optimización de imágenes y actualizaciones incluidas.</p>
+                                </div>
+                        </div>
+                </div>
+                <div class="row justify-content-center">
+                        <div class="col-lg-3 col-md-6 col-12">
+                                <!-- Single Table -->
+                                <div class="single-table wow fadeInUp" data-wow-delay=".2s">
+                                        <!-- Table Head -->
+                                        <div class="table-head">
+                                                <h4 class="title">Plan Mensual</h4>
+                                                <p>Pago mes a mes, cancela cuando quieras.</p>
+                                                <div class="price">
+                                                        <h2 class="amount">$40 USD<span class="duration">/
+                                                                        mes</span></h2>
+                                                </div>
+                                                <div class="button">
+                                                        <a href="https://calendly.com/marketingeros/30min"
+                                                                target="_blank" class="btn">Solicitar
+                                                                información</a>
+                                                </div>
+                                        </div>
+                                        <!-- End Table Head -->
+                                        <!-- Start Table Content -->
+                                        <div class="table-content">
+                                                <h4 class="middle-title">¿Qué incluye?</h4>
+                                                <!-- Table List -->
+                                                <ul class="table-list">
+                                                        <li><i class="lni lni-checkmark-circle"></i> Menú
+                                                                digital personalizado (colores, logo,
+                                                                estilo).</li>
+                                                        <li><i class="lni lni-checkmark-circle"></i> Carga
+                                                                inicial desde fotos que nos envías vía WhatsApp o email.
+                                                        </li>
+                                                        <li><i class="lni lni-checkmark-circle"></i> Código QR +
+                                                                enlace para compartir.</li>
+                                                        <li><i class="lni lni-checkmark-circle"></i>
+                                                                Optimización de imágenes para mejor visualización.</li>
+                                                        <li><i class="lni lni-checkmark-circle"></i>
+                                                                Actualizaciones incluidas (platos, precios,
+                                                                fotos).</li>
+                                                        <li><i class="lni lni-checkmark-circle"></i> Compatible
+                                                                con celulares, tablets y PC.</li>
+                                                </ul>
+                                                <!-- End Table List -->
+                                        </div>
+                                        <!-- End Table Content -->
+                                </div>
+                                <!-- End Single Table-->
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-12">
+                                <!-- Single Table -->
+                                <div class="single-table wow fadeInUp" data-wow-delay=".4s">
+                                        <!-- Table Head -->
+                                        <div class="table-head">
+                                                <h4 class="title">Plan Único</h4>
+                                                <p>Pago único dividido en 12 cuotas fijas.</p>
+                                                <div class="price">
+                                                        <h2 class="amount">$500 USD<span class="duration">
+                                                                        / 12 cuotas</span></h2>
+                                                </div>
+                                                <div class="button">
+                                                        <a href="https://api.whatsapp.com/send?phone=542494655254&text=%C2%A1Hola%20%F0%9F%91%8B%20Estoy%20buscando%20un%20men%C3%BA%20digital%20moderno%20para%20mi%20negocio.%20%C2%BFPodemos%20hablar%3F"
+                                                                target="_blank" class="btn">Hablar por
+                                                                WhatsApp</a>
+                                                </div>
+                                        </div>
+                                        <!-- End Table Head -->
+                                        <!-- Start Table Content -->
+                                        <div class="table-content">
+                                                <h4 class="middle-title">¿Qué incluye?</h4>
+                                                <!-- Table List -->
+                                                <ul class="table-list">
+                                                        <li><i class="lni lni-checkmark-circle"></i> Menú
+                                                                digital personalizado (colores, logo,
+                                                                estilo).</li>
+                                                        <li><i class="lni lni-checkmark-circle"></i> Carga
+                                                                inicial desde fotos que nos envías vía WhatsApp o email.
+                                                        </li>
+                                                        <li><i class="lni lni-checkmark-circle"></i> Código QR +
+                                                                enlace para compartir.</li>
+                                                        <li><i class="lni lni-checkmark-circle"></i>
+                                                                Optimización de imágenes para mejor visualización.</li>
+                                                        <li><i class="lni lni-checkmark-circle"></i>
+                                                                Actualizaciones incluidas (platos, precios,
+                                                                fotos).</li>
+                                                        <li><i class="lni lni-checkmark-circle"></i> Compatible
+                                                                con celulares, tablets y PC.</li>
+                                                </ul>
+                                                <!-- End Table List -->
+                                        </div>
+                                        <!-- End Table Content -->
+                                </div>
+                                <!-- End Single Table-->
+                        </div>
+                </div>
+        </div>
+</section>
+<!--/ End Pricing Table Area -->
+
+<!-- Start Call To Action Area -->
+<section id="contacto" class="section call-action">
+        <div class="container">
+                <div class="row">
+                        <div class="col-lg-8 offset-lg-2 col-md-12 col-12">
+                                <div class="cta-content">
+                                        <h2 class="wow fadeInUp" data-wow-delay=".2s">¿Quieres que tu menú
+                                                digital sea el motivo por el
+                                                que tus clientes vuelven?
+                                        </h2>
+                                        <p class="wow fadeInUp" data-wow-delay=".4s">Programa una reunión
+                                                personalizada (sin compromiso)
+                                                y descubre cómo podemos ayudarte a aumentar el ticket promedio y
+                                                mejorar la imagen de tu
+                                                local.</p>
+                                        <div class="button wow fadeInUp" data-wow-delay=".6s">
+                                                <a href="https://calendly.com/marketingeros/30min" target="_blank"
+                                                        class="btn">Reservar mi
+                                                        reunión</a>
+                                        </div>
+                                </div>
+                        </div>
+                </div>
+        </div>
+</section>
+<!-- End Call To Action Area -->
+
+<!-- Start Footer Area -->
+<footer class="footer">
+        <!-- Start Footer Top -->
+        <div class="footer-top">
+                <div class="container">
+                        <div class="row">
+                                <div class="col-lg-4 col-md-4 col-12">
+                                        <!-- Single Widget -->
+                                        <div class="single-footer f-about">
+                                                <div class="logo">
+                                                        <a href="index.html">
+                                                                <img src="assets/landing/FInal-02-mini.webp" alt="#">
+                                                        </a>
+                                                </div>
+                                                <p>Soluciones digitales para gastronomía. Menús que se ven bien,
+                                                        se entienden rápido y
+                                                        ayudan a vender más.</p>
+                                                <ul class="social">
+                                                        <li><a href="https://www.instagram.com/marketingeros.online"
+                                                                        target="_blank"><i
+                                                                                class="lni lni-instagram"></i></a>
+                                                        </li>
+                                                        <li><a href="https://api.whatsapp.com/send?phone=542494655254&text=%C2%A1Hola%20%F0%9F%91%8B%20Estoy%20buscando%20un%20men%C3%BA%20digital%20moderno%20para%20mi%20negocio.%20%C2%BFPodemos%20hablar%3F"
+                                                                        target="_blank"><i
+                                                                                class="lni lni-whatsapp"></i></a>
+                                                        </li>
+                                                </ul>
+                                                <p class="copyright-text">© <a href="https://marketingeros.online/"
+                                                                rel="nofollow" target="_blank">Marketingeros</a>. <br>
+                                                        Todos
+                                                        los derechos reservados.
+                                                </p>
+                                        </div>
+                                        <!-- End Single Widget -->
+                                </div>
+                                <div class="col-lg-8 col-md-8 col-12">
+                                        <div class="row">
+                                                <div class="col-lg-3 col-md-6 col-12">
+                                                        <!-- Single Widget -->
+                                                        <div class="single-footer f-link">
+                                                                <h3>Servicio</h3>
+                                                                <ul>
+                                                                        <li><a href="#features" class="page-scroll">¿Qué
+                                                                                        incluye?</a></li>
+                                                                        <li><a href="#pricing"
+                                                                                        class="page-scroll">Plan</a>
+                                                                        </li>
+                                                                        <li><a href="#contacto"
+                                                                                        class="page-scroll">Contacto</a>
+                                                                        </li>
+                                                                        <li><a href="https://calendly.com/marketingeros/30min"
+                                                                                        target="_blank">Reservar
+                                                                                        reunión</a></li>
+                                                                </ul>
+                                                        </div>
+                                                        <!-- End Single Widget -->
+                                                </div>
+                                                <div class="col-lg-3 col-md-6 col-12">
+                                                        <!-- Single Widget -->
+                                                        <div class="single-footer f-link">
+                                                                <h3>Contacto</h3>
+                                                                <ul>
+                                                                        <li><a href="mailto:marketingeros.ar@gmail.com">marketingeros.ar&#64;gmail.com</a>
+                                                                        </li>
+                                                                        <li><a href="https://www.instagram.com/marketingeros.online"
+                                                                                        target="_blank">Instagram</a>
+                                                                        </li>
+                                                                        <li><a href="https://api.whatsapp.com/send?phone=542494655254&text=%C2%A1Hola%20%F0%9F%91%8B%20Estoy%20buscando%20un%20men%C3%BA%20digital%20moderno%20para%20mi%20negocio.%20%C2%BFPodemos%20hablar%3F"
+                                                                                        target="_blank">WhatsApp</a>
+                                                                        </li>
+                                                                </ul>
+                                                        </div>
+                                                        <!-- End Single Widget -->
+                                                </div>
+                                                <div class="col-lg-3 col-md-6 col-12">
+                                                        <!-- Single Widget -->
+                                                        <div class="single-footer f-link">
+                                                                <h3>Marketingeros</h3>
+                                                                <ul>
+                                                                        <li><a href="#home"
+                                                                                        class="page-scroll">Inicio</a>
+                                                                        </li>
+                                                                        <li><a href="#features"
+                                                                                        class="page-scroll">Características</a>
+                                                                        </li>
+                                                                        <li><a href="#pricing"
+                                                                                        class="page-scroll">Plan</a>
+                                                                        </li>
+                                                                        <li><a href="#contacto"
+                                                                                        class="page-scroll">Contacto</a>
+                                                                        </li>
+                                                                </ul>
+                                                        </div>
+                                                        <!-- End Single Widget -->
+                                                </div>
+                                                <div class="col-lg-3 col-md-6 col-12">
+                                                        <!-- Single Widget -->
+                                                        <div class="single-footer f-link">
+                                                                <h3>Accesos</h3>
+                                                                <ul>
+                                                                        <li><a href="https://marketingeros.online/"
+                                                                                        target="_blank">Sitio
+                                                                                        actual</a>
+                                                                        </li>
+                                                                        <li><a href="https://calendly.com/marketingeros/30min"
+                                                                                        target="_blank">Calendly</a>
+                                                                        </li>
+                                                                        <li><a href="https://api.whatsapp.com/send?phone=542494655254&text=%C2%A1Hola%20%F0%9F%91%8B%20Estoy%20buscando%20un%20men%C3%BA%20digital%20moderno%20para%20mi%20negocio.%20%C2%BFPodemos%20hablar%3F"
+                                                                                        target="_blank">WhatsApp</a>
+                                                                        </li>
+                                                                </ul>
+                                                        </div>
+                                                        <!-- End Single Widget -->
+                                                </div>
+                                        </div>
+                                </div>
+                        </div>
+                </div>
+        </div>
+        <!--/ End Footer Top -->
 </footer>
+<!--/ End Footer Area -->
+
+<!-- ========================= scroll-top ========================= -->
+<a href="#" class="scroll-top">
+        <i class="lni lni-chevron-up"></i>
+</a>
