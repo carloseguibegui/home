@@ -143,7 +143,7 @@ export class MenuService {
         /**
          * Carga categorías desde Firestore o caché
          */
-        async loadCategorias(cliente: string, force = true, soloVisibles = false): Promise<any[]> {
+        async loadCategorias(cliente: string, force = false, soloVisibles = false): Promise<any[]> {
                 const key = `categorias_${cliente}`;
                 if (await this.loadingPromises[key]) {
                         return this.loadingPromises[key];
