@@ -855,3 +855,40 @@ a {
                 background: rgba(0, 0, 0, 0.55);
         }
 }
+
+
+.cliente-foster_tandil {
+        --verde: #1E382D;
+        --blanco: #edc7c4;
+        --primary-color: #feeedf;
+        --slider-bg: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Ffoster_tandil%2Fbackground_image.webp?alt=media');
+
+        * {
+                font-family: "Fraunces", sans-serif !important;
+        }
+
+        .slider-item.active .menu-item {
+                border: 2px solid var(--blanco);
+                box-shadow: 0 3px 5px var(--blanco);
+        }
+
+        p,
+        a {
+                color: var(--blanco) !important;
+                font-weight: bold;
+        }
+
+        .sticky-slider {
+                background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Ffoster_tandil%2Fbackground_image.webp?alt=media') !important;
+        }
+}
+
+.cliente-foster_tandil.sticky-slider {
+        background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Ffoster_tandil%2Fbackground_image.webp?alt=media') !important;
+        background-size: cover !important;
+}
+
+
+.menu-item {
+        background-size: cover;
+}

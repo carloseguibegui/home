@@ -200,3 +200,17 @@ input[type="text"] {
         color: var(--negro);
     }
 }
+
+/* Cliente: foster_tandil */
+.cliente-foster_tandil {
+        --blanco: #edc7c4;
+        --verde: #1E382D;
+        --font-family: 'fraunces', sans-serif;
+
+        input {
+                font-family: var(--font-family);
+                background-color: white;
+                border-color: var(--blanco);
+                color: var(--verde);
+        }
+}

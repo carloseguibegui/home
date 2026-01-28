@@ -373,3 +373,25 @@
 
   }
 }
+
+/* Cliente: foster_tandil */
+.cliente-foster_tandil {
+        --progress-bg-color: #1E382D;
+        /* --progress-border-color: #663C1F; */
+        /* --progress-arrow-color: #663C1F; */
+        --progress-circle-color: #edc7c4;
+
+        .progress-wrap {
+                box-shadow: inset 0 0 0 3px #edc7c4;
+                background: var(--progress-bg-color);
+
+                &::after {
+                        color: var(--progress-circle-color);
+                }
+
+                .progress-circle path {
+                        stroke: var(--progress-circle-color);
+                }
+
+        }
+}

@@ -1,299 +1,313 @@
 .copyright {
-    position: relative;
-    bottom: 0;
-    width: 100%;
-    text-align: center;
-    place-self: center;
-    margin-left: auto;
-    margin-right: auto;
+        position: relative;
+        bottom: 0;
+        width: 100%;
+        text-align: center;
+        place-self: center;
+        margin-left: auto;
+        margin-right: auto;
 }
 
 .copyright a img {
-    max-width: 130px;
-    vertical-align: middle;
-    margin-bottom: 3px;
-    text-align: center;
+        max-width: 130px;
+        vertical-align: middle;
+        margin-bottom: 3px;
+        text-align: center;
 }
 
 .copyright a {
-    text-transform: uppercase;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 13px;
+        text-transform: uppercase;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 13px;
 
 }
 
 .copyright-logo {
-    width: 130px;
-    height: 40px;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    display: block;
-    background-image: url('../../../../public/assets/landing/FInal-02.png');
+        width: 130px;
+        height: 40px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        display: block;
+        background-image: url('../../../../public/assets/landing/FInal-02.png');
 }
 
 
 .copyright {
-    align-items: center;
-    place-content: center;
+        align-items: center;
+        place-content: center;
 }
 
 .copyright div {
-    margin-left: 5px;
-    margin-right: 5px;
-    text-transform: uppercase;
+        margin-left: 5px;
+        margin-right: 5px;
+        text-transform: uppercase;
 }
 
 :host-context(.cliente-requeterico) {
-    color: var(--text-color);
-    font-family: 'Caveat', cursive;
+        color: var(--text-color);
+        font-family: 'Caveat', cursive;
 
-    .copyright div {
-        color: #6b4c3b;
-    }
+        .copyright div {
+                color: #6b4c3b;
+        }
 }
 
 :host-context(.cliente-requeterico) .copyright-logo {
-    background-image: url('../../../../public/assets/landing/FInal-02.png');
+        background-image: url('../../../../public/assets/landing/FInal-02.png');
 }
 
 :host-context(.cliente-city_tandil) {
-    --primary-color: #ffffff;
-    --secondary-color: #F2C057;
-    font-family: 'Montserrat', sans-serif !important;
-    color: var(--secondary-color);
-    font-family: Arial, sans-serif;
-
-    .copyright a {
+        --primary-color: #ffffff;
+        --secondary-color: #F2C057;
+        font-family: 'Montserrat', sans-serif !important;
         color: var(--secondary-color);
-    }
+        font-family: Arial, sans-serif;
+
+        .copyright a {
+                color: var(--secondary-color);
+        }
 }
 
 :host-context(.cliente-demo_cafeteria) {
-    --primary-color: #ffffff;
-    --secondary-color: #F2C057;
-    font-family: 'Montserrat', sans-serif !important;
-    color: var(--secondary-color);
-    font-family: Arial, sans-serif;
+        --primary-color: #ffffff;
+        --secondary-color: #F2C057;
+        font-family: 'Montserrat', sans-serif !important;
+        color: var(--secondary-color);
+        font-family: Arial, sans-serif;
 
-    * {
-        color: var(--primary-color);
-    }
+        * {
+                color: var(--primary-color);
+        }
 }
 
 :host-context(.cliente-capitano) {
-    --primary-color: #ffffff;
-    --secondary-color: #c8ac78;
-    font-family: 'Urbanist', sans-serif !important;
-    color: var(--secondary-color);
+        --primary-color: #ffffff;
+        --secondary-color: #c8ac78;
+        font-family: 'Urbanist', sans-serif !important;
+        color: var(--secondary-color);
 
-    .copyright a {
-        color: var(--primary-color);
-    }
+        .copyright a {
+                color: var(--primary-color);
+        }
 }
 
 :host-context(.cliente-capitano) .copyright-logo {
-    background-image: url('../../../../public/assets/landing/FInal-02.png');
+        background-image: url('../../../../public/assets/landing/FInal-02.png');
 }
 
 :host-context(.cliente-cientochenta) {
-    --verde-hoja: #4b7200;
-    --primary-color: #ffffff;
-    --secondary-color: #c8ac78;
+        --verde-hoja: #4b7200;
+        --primary-color: #ffffff;
+        --secondary-color: #c8ac78;
 
-    * {
-        color: var(--verde-hoja);
-        font-family: 'Poppins', sans-serif !important;
+        * {
+                color: var(--verde-hoja);
+                font-family: 'Poppins', sans-serif !important;
 
-    }
+        }
 
-    .copyright a {
-        color: var(--verde-hoja);
-    }
+        .copyright a {
+                color: var(--verde-hoja);
+        }
 }
 
 :host-context(.cliente-cientochenta) .copyright-logo {
-    background-image: url('../../../../public/assets/landing/logo-marketingeros3.webp');
+        background-image: url('../../../../public/assets/landing/logo-marketingeros3.webp');
 }
 
 :host-context(.cliente-demo_hotel) {
-    --negro: black;
+        --negro: black;
 
-    * {
-        color: var(--negro);
-        font-family: "GFS Didot",
-            serif !important;
+        * {
+                color: var(--negro);
+                font-family: "GFS Didot",
+                        serif !important;
 
-    }
+        }
 
-    .copyright a {
-        color: var(--negro);
-    }
+        .copyright a {
+                color: var(--negro);
+        }
 }
 
 :host-context(.cliente-demo_hotel) .copyright-logo {
-    background-image: url('../../../../public/assets/landing/logo-marketingeros3.webp');
+        background-image: url('../../../../public/assets/landing/logo-marketingeros3.webp');
 }
 
 :host-context(.cliente-nexus_cafe_tandil) {
-    --ambar: #D8A45F;
+        --ambar: #D8A45F;
 
-    * {
-        color: var(--ambar);
-        font-family: "Poppins",
-            sans-serif !important;
+        * {
+                color: var(--ambar);
+                font-family: "Poppins",
+                        sans-serif !important;
 
-    }
+        }
 
-    .copyright a {
-        color: var(--ambar);
-    }
+        .copyright a {
+                color: var(--ambar);
+        }
 }
 
 :host-context(.cliente-nexus_cafe_tandil) .copyright-logo {
-    background-image: url('../../../../public/assets/landing/FInal-02.png');
+        background-image: url('../../../../public/assets/landing/FInal-02.png');
 }
 
 :host-context(.cliente-ojo_cafe_tandil) {
-    --tipografia: #fdede0;
+        --tipografia: #fdede0;
 
-    * {
-        color: var(--tipografia);
-        font-family: "Fredoka",
-            sans-serif !important;
+        * {
+                color: var(--tipografia);
+                font-family: "Fredoka",
+                        sans-serif !important;
 
-    }
+        }
 
-    .copyright a {
-        color: var(--tipografia);
-    }
+        .copyright a {
+                color: var(--tipografia);
+        }
 }
 
 :host-context(.cliente-ojo_cafe_tandil) .copyright-logo {
-    background-image: url('../../../../public/assets/landing/FInal-02.png');
+        background-image: url('../../../../public/assets/landing/FInal-02.png');
 }
 
 
 :host-context(.cliente-1823_castillo_morisco_tandil) {
-    --tipografia: #ffffff;
+        --tipografia: #ffffff;
 
-    * {
-        color: var(--tipografia);
-        font-family: "Playfair Display",
-            sans-serif !important;
+        * {
+                color: var(--tipografia);
+                font-family: "Playfair Display",
+                        sans-serif !important;
 
-    }
+        }
 
-    .copyright a {
-        color: var(--tipografia);
-    }
+        .copyright a {
+                color: var(--tipografia);
+        }
 }
 
 :host-context(.cliente-1823_castillo_morisco_tandil) .copyright-logo {
-    background-image: url('../../../../public/assets/landing/FInal-02.png');
+        background-image: url('../../../../public/assets/landing/FInal-02.png');
 }
 
 :host-context(.cliente-time_coffee_tandil) {
-    --tipografia: #ffffff;
+        --tipografia: #ffffff;
 
-    * {
-        color: var(--tipografia);
-        font-family: "Montserrat",
-            sans-serif !important;
-        font-weight: bold;
+        * {
+                color: var(--tipografia);
+                font-family: "Montserrat",
+                        sans-serif !important;
+                font-weight: bold;
 
-    }
+        }
 
-    .copyright a {
-        color: var(--tipografia);
-    }
+        .copyright a {
+                color: var(--tipografia);
+        }
 }
 
 :host-context(.cliente-time_coffee_tandil) .copyright-logo {
-    background-image: url('../../../../public/assets/landing/FInal-02.png');
+        background-image: url('../../../../public/assets/landing/FInal-02.png');
 }
 
 
 :host-context(.cliente-beer_house_tandil) {
-    --tipografia: #ffffff;
+        --tipografia: #ffffff;
 
-    * {
-        color: var(--tipografia);
-        font-family: "Bevan", serif !important;
-        font-weight: normal;
+        * {
+                color: var(--tipografia);
+                font-family: "Bevan", serif !important;
+                font-weight: normal;
 
-    }
+        }
 
-    .copyright a {
-        color: var(--tipografia);
-    }
+        .copyright a {
+                color: var(--tipografia);
+        }
 }
 
 :host-context(.cliente-beer_house_tandil) .copyright-logo {
-    background-image: url('../../../../public/assets/landing/FInal-02.png');
-}
-
-:host-context(.cliente-tramonto_tandil) {
-    --tipografia: #ffffff;
-
-    * {
-        color: var(--tipografia);
-        font-family: "lato", sans-serif !important;
-        font-weight: normal;
-
-    }
-
-    .copyright a {
-        color: var(--tipografia);
-    }
-}
-
-:host-context(.cliente-tramonto_tandil) {
-    .copyright-logo {
         background-image: url('../../../../public/assets/landing/FInal-02.png');
-    }
+}
+
+:host-context(.cliente-tramonto_tandil) {
+        --tipografia: #ffffff;
+
+        * {
+                color: var(--tipografia);
+                font-family: "lato", sans-serif !important;
+                font-weight: normal;
+
+        }
+
+        .copyright a {
+                color: var(--tipografia);
+        }
+}
+
+:host-context(.cliente-tramonto_tandil) {
+        .copyright-logo {
+                background-image: url('../../../../public/assets/landing/FInal-02.png');
+        }
 }
 
 
 :host-context(.cliente-prego_tandil) {
-    --tipografia: #ffffff;
+        --tipografia: #ffffff;
 
-    * {
-        color: var(--tipografia);
-        font-family: "lato", sans-serif !important;
-        font-weight: bold;
+        * {
+                color: var(--tipografia);
+                font-family: "lato", sans-serif !important;
+                font-weight: bold;
 
-    }
+        }
 
-    .copyright a {
-        color: var(--tipografia);
-    }
+        .copyright a {
+                color: var(--tipografia);
+        }
 }
 
 :host-context(.cliente-flor_del_alba) {
-    --font-family: "riesling", sans-serif;
+        --font-family: "riesling", sans-serif;
 
-    * {
-        font-family: var(--font-family) !important;
-        font-weight: bold;
-    }
+        * {
+                font-family: var(--font-family) !important;
+                font-weight: bold;
+        }
 
-    .copyright-logo {
-        background-image: url('../../../../public/assets/landing/logo-marketingeros3.webp');
-    }
+        .copyright-logo {
+                background-image: url('../../../../public/assets/landing/logo-marketingeros3.webp');
+        }
 }
 
 
 :host-context(.cliente-tierra_de_azafranes) {
-    --font-family: "Playfair Display", sans-serif;
+        --font-family: "Playfair Display", sans-serif;
 
-    * {
-        font-family: var(--font-family) !important;
-        font-weight: bold;
-    }
+        * {
+                font-family: var(--font-family) !important;
+                font-weight: bold;
+        }
 
-    .copyright-logo {
-        background-image: url('../../../../public/assets/landing/logo-marketingeros3.webp');
-    }
+        .copyright-logo {
+                background-image: url('../../../../public/assets/landing/logo-marketingeros3.webp');
+        }
+}
+
+:host-context(.cliente-foster_tandil) {
+        --tipografia: #ffffff;
+        --font-family: "Fraunces", serif;
+
+        * {
+                font-family: var(--font-family) !important;
+                font-weight: bold;
+        }
+
+        .copyright {
+                color: var(--tipografia);
+        }
 }

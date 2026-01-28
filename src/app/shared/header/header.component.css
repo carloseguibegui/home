@@ -68,3 +68,9 @@
         width: 160px !important;
     }
 }
+
+:host-context(.cliente-foster_tandil) {
+        #logo {
+                width: 210px !important;
+        }
+}

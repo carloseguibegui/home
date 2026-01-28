@@ -1085,6 +1085,66 @@ html {
 
 
 }
+/* foster_tandil */
+.cliente-foster_tandil {
+        --verde: #1E382D;
+        --blanco: #edc7c4;
+
+        * {
+                color: var(--verde);
+                text-transform: uppercase;
+        }
+
+        #boton-card {
+                background-color: var(--verde);
+                color: var(--blanco);
+                font-family: 'fraunces', sans-serif !important;
+                font-size: 1.3rem;
+        }
+
+        .boton-volver {
+                font-family: 'fraunces', sans-serif !important;
+                background-color: var(--blanco);
+                color: var(--verde);
+        }
+
+        .boton-volver i {
+                color: var(--verde);
+        }
+
+        .div-carta {
+                border-color: var(--blanco);
+        }
+
+        .card-title {
+                color: var(--verde);
+                font-family: "Fraunces", sans-serif !important;
+                letter-spacing: normal !important;
+
+        }
+
+        #card-descripcion {
+                color: var(--verde);
+                font-family: 'lato', sans-serif !important;
+        }
+
+        #card-descripcion i {
+                color: var(--rojo);
+        }
+
+        .lightbox-content {
+                border: 2px solid var(--blanco);
+                box-shadow: 0 0px 10px 3px var(--blanco);
+        }
+
+        #cuerpo-card {
+                background-size: cover !important;
+        }
+
+
+}
+
+
 
 #card-descripcion-span {
         font-size: 35px;

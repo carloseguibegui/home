@@ -1,6 +1,6 @@
 import { Injectable, Injector } from '@angular/core';
 import { BehaviorSubject, firstValueFrom } from 'rxjs';
-import { Firestore, collection, getDocs, addDoc, updateDoc, deleteDoc, doc, query, orderBy, where } from '@angular/fire/firestore';
+import { Firestore, collection, getDocs, addDoc, updateDoc, deleteDoc, doc, query, orderBy, where, Query } from '@angular/fire/firestore';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { runInInjectionContext } from '@angular/core';
 
@@ -143,7 +143,7 @@ export class MenuService {
         /**
          * Carga categorías desde Firestore o caché
          */
-        async loadCategorias(cliente: string, force = false, soloVisibles = false): Promise<any[]> {
+        async loadCategorias(cliente: string, force = true, soloVisibles = false): Promise<any[]> {
                 const key = `categorias_${cliente}`;
                 if (await this.loadingPromises[key]) {
                         return this.loadingPromises[key];
@@ -169,19 +169,42 @@ export class MenuService {
                 this.loadingPromises[key] = (async () => {
                         try {
                                 return await runInInjectionContext(this.injector, async () => {
+                                        console.log('loadCategorias -> cliente:', cliente);
                                         const categorias: any[] = [];
                                         const categoriaRef = collection(this.firestore, `clientes/${cliente}/categoria`);
                                         // Mantener orden en servidor, pero filtrar visibilidad en cliente para
                                         // compatibilidad con docs que no tengan 'esVisible' definido (tratados como visibles)
-                                        const q = query(categoriaRef, orderBy('displayOrder', 'asc'));
-                                        const categoriaSnap = await getDocs(q);
-                                        for (const categoriaDoc of categoriaSnap.docs) {
-                                                categorias.push({ id: categoriaDoc.id, ...categoriaDoc.data() });
+                                        // Usar orderBy solo si hay documentos con displayOrder; si no, traer todo y ordenar en cliente
+                                        let q: Query;
+                                        try {
+                                                q = query(categoriaRef, orderBy('displayOrder', 'asc'));
+                                                const categoriaSnap = await getDocs(q);
+                                                console.log('categoriaSnap.docs.length (con orderBy):', categoriaSnap.docs.length);
+                                                for (const categoriaDoc of categoriaSnap.docs) {
+                                                        const data = categoriaDoc.data();
+                                                        categorias.push({ id: categoriaDoc.id, ...(data || {}) });
+                                                }
+                                        } catch (e) {
+                                                // Si falla por falta de displayOrder, traer todo sin ordenar
+                                                console.log('Fallback: sin orderBy (displayOrder ausente)');
+                                                const categoriaSnap = await getDocs(categoriaRef);
+                                                for (const categoriaDoc of categoriaSnap.docs) {
+                                                        const data = categoriaDoc.data();
+                                                        categorias.push({ id: categoriaDoc.id, ...(data || {}) });
+                                                }
+                                                // Ordenar en cliente: displayOrder si existe, luego alfabético
+                                                categorias.sort((a, b) => {
+                                                        const aOrder = a.displayOrder ?? 9999;
+                                                        const bOrder = b.displayOrder ?? 9999;
+                                                        if (aOrder !== bOrder) return aOrder - bOrder;
+                                                        return (a.nombre || '').localeCompare(b.nombre || '');
+                                                });
                                         }
 
                                         const categoriasFiltradas = soloVisibles
                                                 ? categorias.filter(cat => cat['esVisible'] !== false)
                                                 : categorias;
+                                        console.log('categoriasFiltradas', categoriasFiltradas)
 
                                         // ✅ Almacena en caché con timestamp (memoria + storage)
                                         const entry = { data: categoriasFiltradas, timestamp: Date.now() };
