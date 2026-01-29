@@ -110,6 +110,7 @@ p {
         display: inline-flex;
         gap: 1rem;
         padding: 0 1rem;
+        margin: auto;
 }
 
 .slider-item {
@@ -162,15 +163,20 @@ a {
 
 
 .sticky-slider {
-        position: sticky;
-        top: 0;
-        z-index: 100;
-        background-size: cover;
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        z-index: 1000 !important;
+        background-size: cover !important;
+        background-position: center !important;
+        background-repeat: no-repeat !important;
+        width: 100% !important;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
 
-        /* O el color de fondo de tu slider */
         .scroll-container {
-                padding-bottom: 0;
-                padding-top: 2rem;
+                padding-bottom: 1rem !important;
+                padding-top: 1rem !important;
         }
 }
 
@@ -878,8 +884,12 @@ a {
                 font-weight: bold;
         }
 
-        .sticky-slider {
+        /* .sticky-slider {
                 background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Ffoster_tandil%2Fbackground_image.webp?alt=media') !important;
+        } */
+        .scroll-container {
+                padding-bottom: 1.5rem !important;
+                padding-top: 1rem !important;
         }
 }
 

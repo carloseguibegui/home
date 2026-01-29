@@ -1,52 +1,52 @@
 /* spinner */
 .spinner-overlay {
-    position: fixed;
-    inset: 0;
-    z-index: 9999;
-    background: linear-gradient(95deg, #d000ff 0%, #6600ff 100%);
-    background-size: 200% 200%;
-    animation: gradientMove .8s ease-in-out infinite alternate;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        background: linear-gradient(95deg, #d000ff 0%, #6600ff 100%);
+        background-size: 200% 200%;
+        animation: gradientMove .8s ease-in-out infinite alternate;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
 }
 
 .spinner-logo {
-    width: 98px;
-    height: 98px;
-    margin-bottom: 32px;
-    animation: fadeInMove 1.2s forwards;
-    background-image: url('../../../../public/assets/landing/FInal-05.webp');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    display: block;
+        width: 98px;
+        height: 98px;
+        margin-bottom: 32px;
+        animation: fadeInMove 1.2s forwards;
+        background-image: url('../../../../public/assets/landing/FInal-05.webp');
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        display: block;
 }
 
 .spinner {
-    border: 8px solid #ffffff;
-    border-top: 8px solid #7c3aed;
-    border-radius: 50%;
-    width: 56px;
-    height: 56px;
-    animation: spin 0.7s linear infinite;
+        border: 8px solid #ffffff;
+        border-top: 8px solid #7c3aed;
+        border-radius: 50%;
+        width: 56px;
+        height: 56px;
+        animation: spin 0.7s linear infinite;
 }
 
 @keyframes spin {
-    100% {
-        transform: rotate(360deg);
-    }
+        100% {
+                transform: rotate(360deg);
+        }
 }
 
 @keyframes gradientMove {
-    0% {
-        background-position: 0% 50%;
-    }
+        0% {
+                background-position: 0% 50%;
+        }
 
-    100% {
-        background-position: 100% 50%;
-    }
+        100% {
+                background-position: 100% 50%;
+        }
 }
 
 
@@ -69,3 +69,30 @@
     background-position: center;
     display: block;
 } */
+
+
+/* foster_tandil */
+:host-context(.cliente-foster_tandil) {
+        .spinner-overlay {
+                background: linear-gradient(95deg, #1E382D 0%, #edc7c4 100%) !important;
+                position: fixed;
+                inset: 0;
+                z-index: 9999;
+                background-size: 200% 200%;
+                animation: gradientMove .8s ease-in-out infinite alternate;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+
+        }
+
+        .spinner {
+                border-top: 8px solid #1E382D !important;
+        }
+
+        .spinner-logo {
+                background-image: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Ffoster_tandil%2Flogo0.webp?alt=media') !important;
+                width: 200px;
+        }
+}
