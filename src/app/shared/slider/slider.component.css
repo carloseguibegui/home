@@ -902,3 +902,40 @@ a {
 .menu-item {
         background-size: cover;
 }
+
+
+.cliente-enris_tandil {
+        --amarillo: #FFF000;
+        --negro: black;
+        --blanco: #edc7c4;
+        --primary-color: #feeedf;
+        --slider-bg: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fenris_tandil%2Fbackground_image.webp?alt=media');
+
+        * {
+                font-family: "Fraunces", sans-serif !important;
+        }
+
+        .slider-item.active .menu-item {
+                border: 2px solid var(--amarillo);
+                box-shadow: 0 3px 5px var(--amarillo);
+        }
+
+        p,
+        a {
+                color: var(--negro) !important;
+                font-weight: bold;
+        }
+
+        /* .sticky-slider {
+                background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fenris_tandil%2Fbackground_image.webp?alt=media') !important;
+        } */
+        .scroll-container {
+                padding-bottom: 1.5rem !important;
+                padding-top: 1rem !important;
+        }
+}
+
+.cliente-enris_tandil.sticky-slider {
+        background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fenris_tandil%2Fbackground_image.webp?alt=media') !important;
+        background-size: cover !important;
+}

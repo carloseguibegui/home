@@ -1149,3 +1149,64 @@ html {
 #card-descripcion-span {
         font-size: 35px;
 }
+
+
+/* enris_tandil */
+.cliente-enris_tandil {
+        --amarillo: #FFF000;
+        --negro: black;
+        --blanco: #edc7c4;
+
+        * {
+                color: var(--negro);
+                text-transform: uppercase;
+        }
+
+        #boton-card {
+                background-color: var(--negro);
+                color: var(--amarillo);
+                font-family: 'lato', sans-serif !important;
+                font-size: 1.3rem;
+        }
+
+        .boton-volver {
+                font-family: 'lato', sans-serif !important;
+                background-color: var(--negro);
+                color: var(--amarillo);
+        }
+
+        .boton-volver span {
+                color: var(--amarillo);
+        }
+
+        .div-carta {
+                border-color: var(--negro);
+        }
+
+        .card-title {
+                color: var(--negro);
+                font-family: "lato", sans-serif !important;
+                letter-spacing: normal !important;
+
+        }
+
+        #card-descripcion {
+                color: var(--negro);
+                font-family: 'lato', sans-serif !important;
+        }
+
+        #card-descripcion i {
+                color: var(--amarillo);
+        }
+
+        .lightbox-content {
+                border: 2px solid var(--blanco);
+                box-shadow: 0 0px 10px 3px var(--blanco);
+        }
+
+        #cuerpo-card {
+                background-size: cover !important;
+        }
+
+
+}

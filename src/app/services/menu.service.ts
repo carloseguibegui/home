@@ -91,8 +91,12 @@ export class MenuService {
                                         const categoriaRef = collection(this.firestore, `clientes/${cliente}/categoria`);
                                         // Fetchear todas las categorías sin orderBy para incluir las que no tienen displayOrder
                                         const categoriaSnap = await getDocs(categoriaRef);
+                                        console.log('loadMenuFirestore -> cliente:', cliente);
+                                        console.log('categoriaSnap.docs.length:', categoriaSnap.docs.length);
+                                        console.log('categoriaSnap.docs:', categoriaSnap.docs);
 
                                         const menuPromises = categoriaSnap.docs.map(async (seccionDoc: QueryDocumentSnapshot<DocumentData>) => {
+                                                console.log('Procesando categoría:', seccionDoc.id, seccionDoc.data());
                                                 const seccionData = seccionDoc.data();
                                                 const productosRef = collection(this.firestore, `clientes/${cliente}/categoria/${seccionDoc.id}/productos`);
                                                 const productosQuery = query(productosRef, orderBy('nombre', 'asc'));
@@ -109,7 +113,9 @@ export class MenuService {
                                         });
 
                                         let menuData = await Promise.all(menuPromises);
+                                        console.log('MenuData antes de filtrar esVisible:', menuData);
                                         menuData = menuData.filter((cat: any) => cat['esVisible'] !== false);
+                                        console.log('MenuData después de filtrar esVisible:', menuData);
 
                                         // Ordenar: primero las que tienen displayOrder (ascendente), luego las que no tienen (orden aleatorio)
                                         menuData.sort((a: any, b: any) => {
@@ -191,9 +197,12 @@ export class MenuService {
                                         const categoriaRef = collection(this.firestore, `clientes/${cliente}/categoria`);
                                         // Fetchear todas las categorías sin orderBy para incluir las que no tienen displayOrder
                                         const categoriaSnap = await getDocs(categoriaRef);
+                                        console.log('loadCategorias -> categoriaSnap.docs.length:', categoriaSnap.docs.length);
+                                        console.log('loadCategorias -> categoriaSnap.docs:', categoriaSnap.docs);
 
                                         for (const categoriaDoc of categoriaSnap.docs) {
                                                 const data = categoriaDoc.data();
+                                                console.log('loadCategorias -> procesando:', categoriaDoc.id, data);
                                                 categorias.push({ id: categoriaDoc.id, ...(data || {}) });
                                         }
 
@@ -217,7 +226,8 @@ export class MenuService {
                                         const categoriasFiltradas = soloVisibles
                                                 ? categorias.filter(cat => cat['esVisible'] !== false)
                                                 : categorias;
-                                        console.log('categoriasFiltradas', categoriasFiltradas)
+                                        console.log('Categorías antes de filtrar esVisible:', categorias);
+                                        console.log('Categorías después de filtrar esVisible:', categoriasFiltradas);
 
                                         // ✅ Almacena en caché con timestamp (memoria + storage)
                                         const entry = { data: categoriasFiltradas, timestamp: Date.now() };
