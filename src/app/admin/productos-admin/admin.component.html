@@ -1,192 +1,217 @@
 <!-- DataTales Example -->
-<div [@fadeContent] *ngIf="!loading"  class="card shadow mb-4">
-    <p-toast />
-    <p-toolbar styleClass="mb-6">
-        <ng-template #start>
-            <p-button label="Agregar Producto" icon="pi pi-plus" class="mr-2" (onClick)="openNew()" />
-            <!-- <p-button severity="danger" label="Borrar" icon="pi pi-trash" outlined
+<div [@fadeContent] *ngIf="!loading" class="card shadow mb-4">
+        <p-toast />
+        <p-toolbar styleClass="mb-6">
+                <ng-template #start>
+                        <p-button label="Agregar Producto" icon="pi pi-plus" class="mr-2" (onClick)="openNew()" />
+                        <!-- <p-button severity="danger" label="Borrar" icon="pi pi-trash" outlined
                                 (onClick)="deleteSelectedProducts()"
                                 [disabled]="!selectedProducts || !selectedProducts.length" /> -->
-        </ng-template>
+                </ng-template>
 
-        <ng-template #end>
-            <p-iconfield>
-                <input pInputText type="text" (input)="dt.filterGlobal($any($event.target).value, 'contains')"
-                    placeholder="Buscar..." />
-            </p-iconfield>
-            <!-- <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Importar"
+                <ng-template #end>
+                        <p-iconfield>
+                                <input pInputText type="text"
+                                        (input)="dt.filterGlobal($any($event.target).value, 'contains')"
+                                        placeholder="Buscar..." />
+                        </p-iconfield>
+                        <!-- <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Importar"
                                 chooseLabel="Import" auto customUpload class="mr-2 inline-block"
                                 [chooseButtonProps]="{ severity: 'secondary' }" />
                             <p-button label="Exportar" icon="pi pi-upload" severity="secondary"
                                 (onClick)="exportCSV()" /> -->
-        </ng-template>
-    </p-toolbar>
+                </ng-template>
+        </p-toolbar>
 
-    <p-table #dt [value]="productos" [rows]="5" [paginator]="true" [tableStyle]="{ 'min-width': '75rem' }"
-        [(selection)]="selectedProducts" [rowHover]="true" dataKey="idProducto"
-        currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} productos"
-        [showCurrentPageReport]="true"
-        [globalFilterFields]="['nombre', 'descripcion', 'precio', 'categoria.nombre','esVisible']" sortField="nombre">
-        <ng-template pTemplate="header" #header>
-            <tr>
-                <!-- <th style="width: 3rem">
+        <p-table #dt [value]="productos" [rows]="5" [paginator]="true" [tableStyle]="{ 'min-width': '75rem' }"
+                [(selection)]="selectedProducts" [rowHover]="true" dataKey="idProducto"
+                currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} productos"
+                [showCurrentPageReport]="true"
+                [globalFilterFields]="['nombre', 'descripcion', 'precio', 'categoria.nombre','esVisible']"
+                sortField="nombre">
+                <ng-template pTemplate="header" #header>
+                        <tr>
+                                <!-- <th style="width: 3rem">
                                     <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
                                 </th> -->
-                <th pSortableColumn="nombre" style="min-width:16rem">
-                    Nombre
-                    <p-sortIcon field="nombre" />
-                </th>
-                <th pSortableColumn="descripcion" style="min-width: 8rem">
-                    Descripcion
-                    <p-sortIcon field="descripcion" />
-                </th>
-                <th>Imagen</th>
-                <th pSortableColumn="precio" style="min-width: 8rem">
-                    Precio
-                    <p-sortIcon field="precio" />
-                </th>
-                <th pSortableColumn="categoria.nombre" style="min-width:10rem">
-                    Categoria
-                    <p-sortIcon field="categoria.nombre" />
-                </th>
-                <th pSortableColumn="esVisible" style="min-width: 12rem">
-                    Estado
-                    <p-sortIcon field="esVisible" />
-                </th>
-                <th style="min-width: 12rem">
-                    Acciones
-                </th>
-                <th style="min-width: 12rem"></th>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-producto #body>
-            <tr>
-                <!-- <td style="width: 3rem">
+                                <th pSortableColumn="nombre" style="min-width:16rem">
+                                        Nombre
+                                        <p-sortIcon field="nombre" />
+                                </th>
+                                <th pSortableColumn="descripcion" style="min-width: 8rem">
+                                        Descripcion
+                                        <p-sortIcon field="descripcion" />
+                                </th>
+                                <th>Imagen</th>
+                                <th pSortableColumn="precio" style="min-width: 8rem">
+                                        Precio
+                                        <p-sortIcon field="precio" />
+                                </th>
+                                <th pSortableColumn="categoria.nombre" style="min-width:10rem">
+                                        Categoria
+                                        <p-sortIcon field="categoria.nombre" />
+                                </th>
+                                <th pSortableColumn="esVisible" style="min-width: 12rem">
+                                        Estado
+                                        <p-sortIcon field="esVisible" />
+                                </th>
+                                <th style="min-width: 12rem">
+                                        Acciones
+                                </th>
+                                <th style="min-width: 12rem"></th>
+                        </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-producto #body>
+                        <tr>
+                                <!-- <td style="width: 3rem">
                                     <p-tableCheckbox [value]="producto"></p-tableCheckbox>
                                 </td> -->
-                <td style="min-width: 16rem">{{ producto.nombre }}</td>
-                <td>{{ producto.descripcion }}</td>
-                <td>
-                    <img [src]="producto.imagen" [alt]="producto.nombre" style="width: 64px" class="rounded" />
-                </td>
-                <td>{{ producto.precio | currency:'ARS' }}</td>
-                <td>{{ producto.categoria?.nombre || producto.categoriaId }}</td>
-                <td>
-                    <p-tag [value]="(producto.esVisible) ? 'Activo' : 'Oculto'"
-                        [severity]="(producto.esVisible) ? 'success' : 'danger'"></p-tag> 
-                </td>
-                <td id="td-acciones">
-                    <p-button icon="pi pi-pencil" class="mr-2" [rounded]="true" [outlined]="true"
-                        (click)="editProduct(producto)"></p-button>
-                    <p-button icon="pi pi-trash" severity="danger" [rounded]="true" [outlined]="true"
-                        (click)="showDeleteDialog(producto)"></p-button>
-                </td>
-            </tr>
-        </ng-template>
-    </p-table>
+                                <td style="min-width: 16rem">{{ producto.nombre }}</td>
+                                <td>{{ producto.descripcion }}</td>
+                                <td>
+                                        <img [src]="producto.imagen" [alt]="producto.nombre" style="width: 64px"
+                                                class="rounded" />
+                                </td>
+                                <td>{{ producto.precio | currency:'ARS' }}</td>
+                                <td>{{ producto.categoria?.nombre || producto.categoriaId }}</td>
+                                <td>
+                                        <p-tag [value]="(producto.esVisible) ? 'Activo' : 'Oculto'"
+                                                [severity]="(producto.esVisible) ? 'success' : 'danger'"></p-tag>
+                                </td>
+                                <td id="td-acciones">
+                                        <p-button icon="pi pi-pencil" class="mr-2" [rounded]="true" [outlined]="true"
+                                                (click)="editProduct(producto)"></p-button>
+                                        <p-button icon="pi pi-trash" severity="danger" [rounded]="true"
+                                                [outlined]="true" (click)="showDeleteDialog(producto)"></p-button>
+                                </td>
+                        </tr>
+                </ng-template>
+        </p-table>
 
-    <p-dialog [(visible)]="productDialog" [style]="{ width: '750px' }" header="Detalles del producto" [modal]="true"
-        (onHide)="hideDialog()" [closable]="!isLoading" [closeOnEscape]="!isLoading" [modal]="true">
-        <ng-template #content>
-            <div class="flex flex-col gap-6">
-                <!-- <form (ngSubmit)="saveProduct()" #productForm="ngForm"> -->
-                <div class="p-fluid">
-                    <div>
-                        <label class="block font-bold mb-3" for="nombre">Nombre</label>
-                        <input pInputText id="nombre" type="text" pInputText [(ngModel)]="productoSeleccionado.nombre"
-                            name="nombre" required autofocus fluid />
-                        <small class="text-danger" *ngIf="submitted && !productoSeleccionado.nombre">El
-                            nombre es
-                            obligatorio.</small>
-                    </div>
-                    <div class="pt-4">
-                        <label class="block font-bold mb-3" for="descripcion">Descripción</label>
-                        <textarea id="descripcion" pTextarea [(ngModel)]="productoSeleccionado.descripcion"
-                            name="descripcion" required rows="3" cols="20" fluid></textarea>
-                        <small class="text-danger" *ngIf="submitted && !productoSeleccionado.descripcion">La descripcion
-                            es
-                            obligatoria.</small>
-                    </div>
-                    <div class="pt-4">
-                        <label class="block font-bold mb-3" for="categoriaId">Categoría</label>
-                        <p-select [(ngModel)]="productoSeleccionado.categoria" inputId="categoriaId"
-                            [options]="categorias" optionLabel="nombre" placeholder="Seleccione una categoría" fluid />
-                        <small class="text-danger" *ngIf="submitted && !productoSeleccionado.categoria.categoriaId">La
-                            categoria es obligatoria.</small>
-                    </div>
-                    <div class="pt-4">
-                        <label class="block font-bold mb-3" for="precio">Precio</label>
-                        <p-inputnumber id="price" [(ngModel)]="productoSeleccionado.precio" mode="currency"
-                            currency="ARS" locale="es-AR" fluid />
-                        <small class="text-danger" *ngIf="submitted && !productoSeleccionado.precio">El
-                            precio es obligatorio.</small>
-                    </div>
-                    <div class="pt-4">
-                        <label class="block font-bold mb-3">Estado</label>
-                        <p-select [(ngModel)]="productoSeleccionado.esVisible"
-                            *ngIf="productoSeleccionado.hasOwnProperty('esVisible'); else activoSelect" inputId="esVisible" [options]="estados"
-                            name="esVisible" optionLabel="estado" optionValue="value" placeholder="Seleccione un estado" fluid />
-                        <ng-template #activoSelect>
-                            <p-select [(ngModel)]="productoSeleccionado.esVisible" inputId="esVisible" [options]="estados" name="esVisible"
-                                optionLabel="estado" optionValue="value" placeholder="Seleccione un estado" fluid />        </ng-template>
-                                <small class="text-danger"
-                                    *ngIf="submitted && (productoSeleccionado.esVisible == null && productoSeleccionado.esVisible == null)">
-                                    El estado es obligatorio.                          </small>
-                    </div>
-                    <div class="pt-4" *ngIf="productoSeleccionado?.idProducto && productoSeleccionado?.imagen">
-                        <label class="block font-bold mb-3">Imagen actual</label>
-                        <div class="flex items-center gap-3">
-                            <img class="mx-5 d-block img-fluid mx-auto" [src]="productoSeleccionado.imagen"
-                                alt="Imagen actual" style="max-width: 150px; max-height: 150px; margin-bottom: 10px;">
-                            <p-button icon="pi pi-trash" label="Eliminar imagen" severity="danger" outlined
-                                (onClick)="borrarImagenActual()"></p-button>
-                        </div>
-                        <small class="text-muted">Si eliminas la imagen, se asignará una imagen por
-                            defecto al guardar.</small>
-                    </div>
-                    <div class="pt-5">
-                        <label class="block font-bold mb-3">Nueva Imagen</label>
-                        <p-fileupload name="nuevaImagenFile" [customUpload]="true" (onSelect)="onSelectImage($event)"
-                            [multiple]="false" accept="image/*" maxFileSize="1000000" mode="advanced"
-                            invalidFileSizeMessageSummary="{0}: Tamaño de imagen invalido"
-                            invalidFileSizeMessageDetail="Tamaño máximo es {0}."
-                            invalidFileTypeMessageSummary="Tipo de imagen inválido." chooseLabel="Cargar"
-                            showUploadButton="false" showCancelButton="false" [disabled]="isLoading">
-                            <ng-template #empty>
-                                <div>Arrastra imagenes aquí para cargar o haz click en el botón.</div>
-                            </ng-template>
-                        </p-fileupload>
-                    </div>
-                </div>
-                <!-- <ng-template pTemplate="footer" #footer>
+        <p-dialog [(visible)]="productDialog" [style]="{ width: '750px' }" header="Detalles del producto" [modal]="true"
+                (onHide)="hideDialog()" [closable]="!isLoading" [closeOnEscape]="!isLoading" [modal]="true">
+                <ng-template #content>
+                        <div class="flex flex-col gap-6">
+                                <!-- <form (ngSubmit)="saveProduct()" #productForm="ngForm"> -->
+                                <div class="p-fluid">
+                                        <div>
+                                                <label class="block font-bold mb-3" for="nombre">Nombre</label>
+                                                <input pInputText id="nombre" type="text" pInputText
+                                                        [(ngModel)]="productoSeleccionado.nombre" name="nombre" required
+                                                        autofocus fluid />
+                                                <small class="text-danger"
+                                                        *ngIf="submitted && !productoSeleccionado.nombre">El
+                                                        nombre es
+                                                        obligatorio.</small>
+                                        </div>
+                                        <div class="pt-4">
+                                                <label class="block font-bold mb-3"
+                                                        for="descripcion">Descripción</label>
+                                                <textarea id="descripcion" pTextarea
+                                                        [(ngModel)]="productoSeleccionado.descripcion"
+                                                        name="descripcion" required rows="3" cols="20" fluid></textarea>
+                                                <small class="text-danger"
+                                                        *ngIf="submitted && !productoSeleccionado.descripcion">La
+                                                        descripcion
+                                                        es
+                                                        obligatoria.</small>
+                                        </div>
+                                        <div class="pt-4">
+                                                <label class="block font-bold mb-3" for="categoriaId">Categoría</label>
+                                                <p-select [(ngModel)]="productoSeleccionado.categoria"
+                                                        inputId="categoriaId" [options]="categorias"
+                                                        optionLabel="nombre" placeholder="Seleccione una categoría"
+                                                        fluid />
+                                                <small class="text-danger"
+                                                        *ngIf="submitted && !productoSeleccionado.categoria.categoriaId">La
+                                                        categoria es obligatoria.</small>
+                                        </div>
+                                        <div class="pt-4">
+                                                <label class="block font-bold mb-3" for="precio">Precio</label>
+                                                <p-inputnumber id="price" [(ngModel)]="productoSeleccionado.precio"
+                                                        mode="currency" currency="ARS" locale="es-AR" fluid />
+                                                <small class="text-danger"
+                                                        *ngIf="submitted && !productoSeleccionado.precio">El
+                                                        precio es obligatorio.</small>
+                                        </div>
+                                        <div class="pt-4">
+                                                <label class="block font-bold mb-3">Estado</label>
+                                                <p-select [(ngModel)]="productoSeleccionado.esVisible"
+                                                        *ngIf="productoSeleccionado.hasOwnProperty('esVisible'); else activoSelect"
+                                                        inputId="esVisible" [options]="estados" name="esVisible"
+                                                        optionLabel="estado" optionValue="value"
+                                                        placeholder="Seleccione un estado" fluid />
+                                                <ng-template #activoSelect>
+                                                        <p-select [(ngModel)]="productoSeleccionado.esVisible"
+                                                                inputId="esVisible" [options]="estados" name="esVisible"
+                                                                optionLabel="estado" optionValue="value"
+                                                                placeholder="Seleccione un estado" fluid />
+                                                </ng-template>
+                                                <small class="text-danger"
+                                                        *ngIf="submitted && (productoSeleccionado.esVisible == null && productoSeleccionado.esVisible == null)">
+                                                        El estado es obligatorio. </small>
+                                        </div>
+                                        <div class="pt-4"
+                                                *ngIf="productoSeleccionado?.idProducto && productoSeleccionado?.imagen">
+                                                <label class="block font-bold mb-3">Imagen actual</label>
+                                                <div class="flex items-center gap-3">
+                                                        <img class="mx-5 d-block img-fluid mx-auto"
+                                                                [src]="productoSeleccionado.imagen" alt="Imagen actual"
+                                                                style="max-width: 150px; max-height: 150px; margin-bottom: 10px;">
+                                                        <p-button icon="pi pi-trash" label="Eliminar imagen"
+                                                                severity="danger" outlined
+                                                                (onClick)="borrarImagenActual()"></p-button>
+                                                </div>
+                                                <small class="text-muted">Si eliminas la imagen, se asignará una imagen
+                                                        por
+                                                        defecto al guardar.</small>
+                                        </div>
+                                        <div class="pt-5">
+                                                <label class="block font-bold mb-3">Nueva Imagen</label>
+                                                <p-fileupload name="nuevaImagenFile" [customUpload]="true"
+                                                        (onSelect)="onSelectImage($event)" [multiple]="false"
+                                                        accept="image/*" maxFileSize="1000000" mode="advanced"
+                                                        invalidFileSizeMessageSummary="{0}: Tamaño de imagen invalido"
+                                                        invalidFileSizeMessageDetail="Tamaño máximo es {0}."
+                                                        invalidFileTypeMessageSummary="Tipo de imagen inválido."
+                                                        chooseLabel="Cargar" showUploadButton="false"
+                                                        showCancelButton="false" [disabled]="isLoading">
+                                                        <ng-template #empty>
+                                                                <div>Arrastra imagenes aquí para cargar o haz click en
+                                                                        el botón.</div>
+                                                        </ng-template>
+                                                </p-fileupload>
+                                        </div>
+                                </div>
+                                <!-- <ng-template pTemplate="footer" #footer>
                                         <p-button label="Cancelar1" icon="pi pi-times"
                                              (click)="hideDialog()"/>
                                             <p-button [disabled]="isLoading"  label="Guardar1" icon="pi pi-check" (click)="saveProduct()" />
                                     </ng-template> -->
-                <!-- </form> -->
-            </div>
-        </ng-template>
-        <ng-template #footer>
-            <p-button [disabled]="isLoading" label="Cancelar" icon="pi pi-times" (click)="hideDialog()" />
-            <p-button [disabled]="isProductoInvalido()" [loading]="isLoading" label="Guardar" icon="pi pi-check"
-                (click)="saveProduct()" severity="success" />
-        </ng-template>
-    </p-dialog>
+                                <!-- </form> -->
+                        </div>
+                </ng-template>
+                <ng-template #footer>
+                        <p-button [disabled]="isLoading" label="Cancelar" icon="pi pi-times" (click)="hideDialog()" />
+                        <p-button [disabled]="isProductoInvalido()" [loading]="isLoading" label="Guardar"
+                                icon="pi pi-check" (click)="saveProduct()" severity="success" />
+                </ng-template>
+        </p-dialog>
 
-    <p-confirmDialog [style]="{ width: '750px' }" />
+        <p-confirmDialog [style]="{ width: '750px' }" />
 
 
-    <p-dialog header="Confirmar eliminación" [(visible)]="deleteDialogVisible" [closable]="!isDeleting"
-        [closeOnEscape]="!isDeleting" [modal]="true" [blockScroll]="true" [style]="{ minWidth: '750px' }">
-        <div>
-            ¿Seguro que deseas eliminar el producto <b>{{ productoAEliminar?.nombre }}</b>?
-        </div>
-        <ng-template pTemplate="footer">
-            <p-button label="Cancelar" (click)="onCancelDelete()" [disabled]="isDeleting"></p-button>
-            <p-button label="Eliminar" (click)="onAcceptDelete()" [loading]="isDeleting"
-                severity="danger"></p-button>
-        </ng-template>
-    </p-dialog>
+        <p-dialog header="Confirmar eliminación" [(visible)]="deleteDialogVisible" [closable]="!isDeleting"
+                [closeOnEscape]="!isDeleting" [modal]="true" [blockScroll]="true" [style]="{ minWidth: '750px' }">
+                <div>
+                        ¿Seguro que deseas eliminar el producto <b>{{ productoAEliminar?.nombre }}</b>?
+                </div>
+                <ng-template pTemplate="footer">
+                        <p-button label="Cancelar" (click)="onCancelDelete()" [disabled]="isDeleting"></p-button>
+                        <p-button label="Eliminar" (click)="onAcceptDelete()" [loading]="isDeleting"
+                                severity="danger"></p-button>
+                </ng-template>
+        </p-dialog>
 
 
 

@@ -1,6 +1,6 @@
 import { Injectable, Injector } from '@angular/core';
 import { BehaviorSubject, firstValueFrom } from 'rxjs';
-import { Firestore, collection, getDocs, addDoc, updateDoc, deleteDoc, doc, query, orderBy, where, Query } from '@angular/fire/firestore';
+import { Firestore, collection, getDocs, addDoc, updateDoc, deleteDoc, doc, query, orderBy, where, Query, QuerySnapshot, QueryDocumentSnapshot, DocumentData } from '@angular/fire/firestore';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { runInInjectionContext } from '@angular/core';
 
@@ -89,10 +89,10 @@ export class MenuService {
                         try {
                                 return await runInInjectionContext(this.injector, async () => {
                                         const categoriaRef = collection(this.firestore, `clientes/${cliente}/categoria`);
-                                        const categoriasQuery = query(categoriaRef, orderBy('displayOrder', 'asc'));
-                                        const categoriaSnap = await getDocs(categoriasQuery);
+                                        // Fetchear todas las categorías sin orderBy para incluir las que no tienen displayOrder
+                                        const categoriaSnap = await getDocs(categoriaRef);
 
-                                        const menuPromises = categoriaSnap.docs.map(async (seccionDoc) => {
+                                        const menuPromises = categoriaSnap.docs.map(async (seccionDoc: QueryDocumentSnapshot<DocumentData>) => {
                                                 const seccionData = seccionDoc.data();
                                                 const productosRef = collection(this.firestore, `clientes/${cliente}/categoria/${seccionDoc.id}/productos`);
                                                 const productosQuery = query(productosRef, orderBy('nombre', 'asc'));
@@ -109,7 +109,24 @@ export class MenuService {
                                         });
 
                                         let menuData = await Promise.all(menuPromises);
-                                        menuData = menuData.filter(cat => cat['esVisible'] !== false);
+                                        menuData = menuData.filter((cat: any) => cat['esVisible'] !== false);
+
+                                        // Ordenar: primero las que tienen displayOrder (ascendente), luego las que no tienen (orden aleatorio)
+                                        menuData.sort((a: any, b: any) => {
+                                                const aHasOrder = a.displayOrder !== undefined && a.displayOrder !== null;
+                                                const bHasOrder = b.displayOrder !== undefined && b.displayOrder !== null;
+
+                                                if (aHasOrder && bHasOrder) {
+                                                        return a.displayOrder - b.displayOrder;
+                                                } else if (aHasOrder && !bHasOrder) {
+                                                        return -1; // a va primero
+                                                } else if (!aHasOrder && bHasOrder) {
+                                                        return 1; // b va primero
+                                                } else {
+                                                        // Ambos no tienen displayOrder - orden aleatorio pero consistente
+                                                        return Math.random() - 0.5;
+                                                }
+                                        });
 
                                         // ✅ Cache memoria + storage (MENÚ)
                                         const entry = { data: menuData, timestamp: Date.now() };
@@ -172,34 +189,30 @@ export class MenuService {
                                         console.log('loadCategorias -> cliente:', cliente);
                                         const categorias: any[] = [];
                                         const categoriaRef = collection(this.firestore, `clientes/${cliente}/categoria`);
-                                        // Mantener orden en servidor, pero filtrar visibilidad en cliente para
-                                        // compatibilidad con docs que no tengan 'esVisible' definido (tratados como visibles)
-                                        // Usar orderBy solo si hay documentos con displayOrder; si no, traer todo y ordenar en cliente
-                                        let q: Query;
-                                        try {
-                                                q = query(categoriaRef, orderBy('displayOrder', 'asc'));
-                                                const categoriaSnap = await getDocs(q);
-                                                console.log('categoriaSnap.docs.length (con orderBy):', categoriaSnap.docs.length);
-                                                for (const categoriaDoc of categoriaSnap.docs) {
-                                                        const data = categoriaDoc.data();
-                                                        categorias.push({ id: categoriaDoc.id, ...(data || {}) });
-                                                }
-                                        } catch (e) {
-                                                // Si falla por falta de displayOrder, traer todo sin ordenar
-                                                console.log('Fallback: sin orderBy (displayOrder ausente)');
-                                                const categoriaSnap = await getDocs(categoriaRef);
-                                                for (const categoriaDoc of categoriaSnap.docs) {
-                                                        const data = categoriaDoc.data();
-                                                        categorias.push({ id: categoriaDoc.id, ...(data || {}) });
-                                                }
-                                                // Ordenar en cliente: displayOrder si existe, luego alfabético
-                                                categorias.sort((a, b) => {
-                                                        const aOrder = a.displayOrder ?? 9999;
-                                                        const bOrder = b.displayOrder ?? 9999;
-                                                        if (aOrder !== bOrder) return aOrder - bOrder;
-                                                        return (a.nombre || '').localeCompare(b.nombre || '');
-                                                });
+                                        // Fetchear todas las categorías sin orderBy para incluir las que no tienen displayOrder
+                                        const categoriaSnap = await getDocs(categoriaRef);
+
+                                        for (const categoriaDoc of categoriaSnap.docs) {
+                                                const data = categoriaDoc.data();
+                                                categorias.push({ id: categoriaDoc.id, ...(data || {}) });
                                         }
+
+                                        // Ordenar: primero las que tienen displayOrder (ascendente), luego las que no tienen (orden aleatorio)
+                                        categorias.sort((a: any, b: any) => {
+                                                const aHasOrder = a.displayOrder !== undefined && a.displayOrder !== null;
+                                                const bHasOrder = b.displayOrder !== undefined && b.displayOrder !== null;
+
+                                                if (aHasOrder && bHasOrder) {
+                                                        return a.displayOrder - b.displayOrder;
+                                                } else if (aHasOrder && !bHasOrder) {
+                                                        return -1; // a va primero
+                                                } else if (!aHasOrder && bHasOrder) {
+                                                        return 1; // b va primero
+                                                } else {
+                                                        // Ambos no tienen displayOrder - orden aleatorio pero consistente
+                                                        return Math.random() - 0.5;
+                                                }
+                                        });
 
                                         const categoriasFiltradas = soloVisibles
                                                 ? categorias.filter(cat => cat['esVisible'] !== false)

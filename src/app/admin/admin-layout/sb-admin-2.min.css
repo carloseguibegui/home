@@ -11539,7 +11539,7 @@ a:focus {
 .sidebar .nav-item .nav-link {
     text-align: center;
     padding: .75rem 1rem;
-    width: 6.5rem
+    width: 5rem
 }
 
 .sidebar .nav-item .nav-link span {
@@ -11745,7 +11745,7 @@ a:focus {
         width: 100%;
         text-align: left;
         padding: 1rem;
-        width: 14rem
+        width: 12rem
     }
 
     .sidebar .nav-item .nav-link i {

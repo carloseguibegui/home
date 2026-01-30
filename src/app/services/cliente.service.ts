@@ -17,4 +17,16 @@ export class ClienteService {
                         return '';
                 });
         }
+
+        async getLogoImage(clienteId: string): Promise<string> {
+                return runInInjectionContext(this.injector, async () => {
+                        const clienteDoc = doc(this.firestore, `clientes/${clienteId}`);
+                        const clienteSnap = await getDoc(clienteDoc);
+                        if (clienteSnap.exists()) {
+                                const data = clienteSnap.data();
+                                return data?.['logoImage'] || '';
+                        }
+                        return '';
+                });
+        }
 }

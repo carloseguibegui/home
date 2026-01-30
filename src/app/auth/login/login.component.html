@@ -1,72 +1,149 @@
 <div [@fadeInOut]>
-    <section class="vh-100 gradient-custom">
-        <div class="container py-5 h-100">
-            <div class="row d-flex justify-content-center align-items-center h-100">
-                <div class="col-12 col-md-8 col-lg-8 col-xl-6">
-                    <div class="card  text-white" style="border-radius: 1rem;background-color: #3d0053;">
-                        <div class="card-body p-4 text-center">
+        <!-- Login Section -->
+        <section class="login-section"
+                style="min-height: 100vh; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center;">
+                <div class="container py-4">
+                        <div class="row justify-content-center w-100">
+                                <div class="col-lg-6">
+                                        <div class="login-wrapper">
+                                                <div class="login-card">
+                                                        <div class="login-header text-center mb-4">
+                                                                <div class="login-logo mb-3">
+                                                                        <img src="assets/landing/FInal-05.webp"
+                                                                                alt="Marketingeros"
+                                                                                style="width: 60px; height: 60px;">
+                                                                </div>
+                                                                <h2 class="login-title wow fadeInUp"
+                                                                        data-wow-delay=".2s">
+                                                                        {{ isLogin ? 'Bienvenido' : 'Crear cuenta' }}
+                                                                </h2>
+                                                                <p class="login-subtitle wow fadeInUp"
+                                                                        data-wow-delay=".4s">
+                                                                        {{ isLogin ? 'Inicia sesión para gestionar tus
+                                                                        menús' : 'Regístrate para comenzar' }}
+                                                                </p>
+                                                        </div>
 
-                            <div class="mb-md-5 mt-md-4 pb-5">
-                                <h2 class="fw-bold mb-2 text-uppercase">{{ isLogin ? 'Login' : 'Registro' }}</h2>
-                                <p class="text-white-50 mb-5">
-                                    {{ isLogin ? 'Inicia sesión' : 'Crea una cuenta' }}
-                                </p>
+                                                        <form #loginForm="ngForm"
+                                                                (ngSubmit)="isLogin ? onLogin() : onRegister()"
+                                                                class="login-form">
+                                                                <!-- Email -->
+                                                                <div class="form-group mb-4 wow fadeInUp"
+                                                                        data-wow-delay=".6s">
+                                                                        <label for="emailInput"
+                                                                                class="form-label">Correo
+                                                                                electrónico</label>
+                                                                        <div class="input-group">
+                                                                                <span class="input-group-text">
+                                                                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                                                                                                transform="rotate(0 0 0)">
+                                                                                                <path d="M3.73592 4.5C2.77726 4.5 2.00014 5.27724 2.00031 6.2359L2.00031 6.26829C2.01064 6.81904 2.28199 7.33272 2.732 7.65165L2.74287 7.65929L10.7131 13.2171C11.3897 13.689 12.2609 13.7479 12.9861 13.3941C13.0897 13.3435 13.1904 13.2845 13.287 13.2171L21.2569 7.65949C21.7225 7.33485 21.9999 6.8031 21.9998 6.23554C21.9997 5.27702 21.2229 4.5 20.2644 4.5H3.73592Z"
+                                                                                                        fill="#ffffff" />
+                                                                                                <path d="M22.0001 8.96994L14.145 14.4475C12.8562 15.3462 11.1438 15.3462 9.85507 14.4475L2.00023 8.97012L2 17.25C2 18.4926 3.00736 19.5 4.25 19.5H19.75C20.9926 19.5 22 18.4926 22 17.25L22.0001 8.96994Z"
+                                                                                                        fill="#ffffff" />
+                                                                                        </svg>
 
-                                <form #loginForm="ngForm" (ngSubmit)="isLogin ? onLogin() : onRegister()">
-                                    <!-- Email -->
-                                    <div class="form-outline form-white mb-4">
-                                        <input name="email" type="email" [(ngModel)]="email"
-                                            placeholder="Correo electrónico" class="form-control form-control-lg"
-                                            required #emailInput="ngModel" />
-                                    </div>
+                                                                                </span>
+                                                                                <input name="email" type="email"
+                                                                                        [(ngModel)]="email"
+                                                                                        class="form-control"
+                                                                                        id="emailInput"
+                                                                                        placeholder="tu@email.com"
+                                                                                        required #emailInput="ngModel">
+                                                                        </div>
+                                                                </div>
 
-                                    <!-- Contraseña -->
-                                    <div class="form-outline form-white mb-4">
-                                        <input name="password" type="password" [(ngModel)]="password"
-                                            placeholder="Contraseña" class="form-control form-control-lg" required
-                                            #passwordInput="ngModel" />
-                                    </div>
+                                                                <!-- Contraseña -->
+                                                                <div class="form-group mb-4 wow fadeInUp"
+                                                                        data-wow-delay=".8s">
+                                                                        <label for="passwordInput"
+                                                                                class="form-label">Contraseña</label>
+                                                                        <div class="input-group">
+                                                                                <span class="input-group-text">
+                                                                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                                                                                                transform="rotate(0 0 0)">
+                                                                                                <path d="M12 2C9.10051 2 6.75 4.3505 6.75 7.25V9.125H5.5C4.25736 9.125 3.25 10.1324 3.25 11.375V17.2495C3.25 19.8729 5.37665 21.9995 8 21.9995H16C18.6234 21.9995 20.75 19.8729 20.75 17.2495V11.375C20.75 10.1324 19.7426 9.125 18.5 9.125H17.25V7.25C17.25 4.35051 14.8995 2 12 2ZM12 3.5C14.0711 3.5 15.75 5.17893 15.75 7.25V9.125H8.25V7.25C8.25 5.17893 9.92893 3.5 12 3.5ZM12 14.5C12.8284 14.5 13.5 15.1716 13.5 16V17.5C13.5 18.3284 12.8284 19 12 19C11.1716 19 10.5 18.3284 10.5 17.5V16C10.5 15.1716 11.1716 14.5 12 14.5Z"
+                                                                                                        fill="#ffffff" />
+                                                                                        </svg>
 
-                                    <!-- Confirmar contraseña (solo para registro) -->
-                                    <div *ngIf="!isLogin" class="form-outline form-white mb-4">
-                                        <input name="confirmPassword" type="password" [(ngModel)]="confirmPassword"
-                                            placeholder="Confirmar contraseña" class="form-control form-control-lg"
-                                            required #confirmPasswordInput="ngModel" />
-                                    </div>
+                                                                                </span>
+                                                                                <input name="password" type="password"
+                                                                                        [(ngModel)]="password"
+                                                                                        class="form-control"
+                                                                                        id="passwordInput"
+                                                                                        placeholder="••••••••" required
+                                                                                        #passwordInput="ngModel">
+                                                                        </div>
+                                                                </div>
 
-                                    <!-- Botón de acción -->
-                                    <button data-mdb-button-init data-mdb-ripple-init
-                                    class="btn btn-lg btn-block py-3 px-5 text-white"
-                                    style="background-color: #8e00ff;" type="submit"
-                                    [disabled]="loginForm.invalid || isLoading">
-                                        <span *ngIf="isLoading" class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
-                                    Ingresar</button>
-                                </form>
-                                <!-- <div class="divider d-flex align-items-center my-4">
-                                <p class="text-center fw-bold mx-3 mb-0 ">O</p>
-                            </div> -->
-                                <!-- <div class="d-flex justify-content-center text-center mt-4 pt-1">
-                                <button (click)="onGoogleLogin()" data-mdb-button-init data-mdb-ripple-init
-                                    class="btn btn-lg btn-block py-3 px-5 text-white"
-                                    style="background-color: #8e00ff;" type="submit"><i class="bi bi-google"></i>
-                                    Inicia sesión con Google</button>
-                            </div> -->
-                            </div>
+                                                                <!-- Confirmar contraseña (solo para registro) -->
+                                                                <div *ngIf="!isLogin"
+                                                                        class="form-group mb-4 wow fadeInUp"
+                                                                        data-wow-delay="1s">
+                                                                        <label for="confirmPasswordInput"
+                                                                                class="form-label">Confirmar
+                                                                                contraseña</label>
+                                                                        <div class="input-group">
+                                                                                <span class="input-group-text">
+                                                                                        <i class="lni lni-lock"></i>
+                                                                                </span>
+                                                                                <input name="confirmPassword"
+                                                                                        type="password"
+                                                                                        [(ngModel)]="confirmPassword"
+                                                                                        class="form-control"
+                                                                                        id="confirmPasswordInput"
+                                                                                        placeholder="••••••••" required
+                                                                                        #confirmPasswordInput="ngModel">
+                                                                        </div>
+                                                                </div>
 
-                            <!-- Alternar entre login y registro -->
-                            <!-- <div>
-                                <p class="mb-0">
-                                    {{ isLogin ? '¿No tienes una cuenta?' : '¿Ya tienes una cuenta?' }}
-                                    <a (click)="toggleMode()" class="text-white-50 fw-bold">
-                                        {{ isLogin ? 'Regístrate aquí' : 'Inicia sesión aquí' }}
-                                    </a>
-                                </p>
-                            </div> -->
+                                                                <!-- Recordarme (solo para login) -->
+                                                                <div *ngIf="isLogin"
+                                                                        class="form-group mb-4 wow fadeInUp"
+                                                                        data-wow-delay="1s">
+                                                                        <div class="form-check">
+                                                                                <input class="form-check-input"
+                                                                                        type="checkbox" id="rememberMe">
+                                                                                <label class="form-check-label"
+                                                                                        for="rememberMe">
+                                                                                        Recordarme
+                                                                                </label>
+                                                                        </div>
+                                                                </div>
 
+                                                                <!-- Botón de acción -->
+                                                                <div class="form-group mb-4 wow fadeInUp"
+                                                                        data-wow-delay="1.2s">
+                                                                        <button type="submit"
+                                                                                class="btn btn-login w-100"
+                                                                                [disabled]="loginForm.invalid || isLoading">
+                                                                                <span *ngIf="isLoading"
+                                                                                        class="spinner-border spinner-border-sm me-2"
+                                                                                        role="status"
+                                                                                        aria-hidden="true"></span>
+                                                                                {{ isLogin ? 'Iniciar sesión' : 'Crear
+                                                                                cuenta' }}
+                                                                        </button>
+                                                                </div>
+
+                                                                <!-- Alternar entre login y registro -->
+                                                                <div class="text-center wow fadeInUp"
+                                                                        data-wow-delay="1.4s">
+                                                                        <p class="toggle-text">
+                                                                                {{ isLogin ? '¿No tienes una cuenta?' :
+                                                                                '¿Ya tienes una cuenta?' }}
+                                                                                <a (click)="toggleMode()"
+                                                                                        class="toggle-link">
+                                                                                        {{ isLogin ? 'Regístrate' :
+                                                                                        'Inicia sesión' }}
+                                                                                </a>
+                                                                        </p>
+                                                                </div>
+                                                        </form>
+                                                </div>
+                                        </div>
+                                </div>
                         </div>
-                    </div>
                 </div>
-            </div>
-        </div>
-    </section>
+        </section>
 </div>

@@ -329,6 +329,9 @@ export class CategoriaComponent implements OnInit, OnDestroy {
                                 this.nombreCategoria = objetoCategoria.nombre;
                                 let productos = objetoCategoria.productos || [];
 
+                                // Filtrar productos por esVisible (excluir los que tienen esVisible: false)
+                                productos = productos.filter((p: any) => p.esVisible !== false);
+
                                 // ✅ Lógica especial para Requeterico
                                 if (
                                         this.cliente.toLowerCase() === 'requeterico' &&
