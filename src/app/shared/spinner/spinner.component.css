@@ -96,3 +96,30 @@
                 width: 200px;
         }
 }
+
+
+/* enris_tandil */
+:host-context(.cliente-enris_tandil) {
+        .spinner-overlay {
+                background: linear-gradient(95deg, #FFF000 0%, black 100%) !important;
+                position: fixed;
+                inset: 0;
+                z-index: 9999;
+                background-size: 200% 200%;
+                animation: gradientMove .8s ease-in-out infinite alternate;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+
+        }
+
+        .spinner {
+                border-top: 8px solid black !important;
+        }
+
+        .spinner-logo {
+                background-image: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fenris_tandil%2Ficono-linea-enris.webp?alt=media') !important;
+                width: 200px;
+        }
+}
