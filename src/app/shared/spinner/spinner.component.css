@@ -33,21 +33,7 @@
         animation: spin 0.7s linear infinite;
 }
 
-@keyframes spin {
-        100% {
-                transform: rotate(360deg);
-        }
-}
 
-@keyframes gradientMove {
-        0% {
-                background-position: 0% 50%;
-        }
-
-        100% {
-                background-position: 100% 50%;
-        }
-}
 
 
 /* capitano
@@ -74,10 +60,11 @@
 /* foster_tandil */
 :host-context(.cliente-foster_tandil) {
         .spinner-overlay {
-                background: linear-gradient(95deg, #1E382D 0%, #edc7c4 100%) !important;
+                /* background: linear-gradient(95deg, #1E382D 0%, #edc7c4 100%) !important;position: fixed; */
                 position: fixed;
                 inset: 0;
                 z-index: 9999;
+                background: linear-gradient(95deg, #1E382D 0%, #8f7675 100%);
                 background-size: 200% 200%;
                 animation: gradientMove .8s ease-in-out infinite alternate;
                 display: flex;
@@ -101,10 +88,10 @@
 /* enris_tandil */
 :host-context(.cliente-enris_tandil) {
         .spinner-overlay {
-                background: linear-gradient(95deg, #FFF000 0%, black 100%) !important;
                 position: fixed;
                 inset: 0;
                 z-index: 9999;
+                background: linear-gradient(95deg, #FFF000 0%, #fdf68b 100%);
                 background-size: 200% 200%;
                 animation: gradientMove .8s ease-in-out infinite alternate;
                 display: flex;
@@ -121,5 +108,23 @@
         .spinner-logo {
                 background-image: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fenris_tandil%2Ficono-linea-enris.webp?alt=media') !important;
                 width: 200px;
+        }
+}
+
+
+
+@keyframes spin {
+        100% {
+                transform: rotate(360deg);
+        }
+}
+
+@keyframes gradientMove {
+        0% {
+                background-position: 0% 50%;
+        }
+
+        100% {
+                background-position: 100% 50%;
         }
 }

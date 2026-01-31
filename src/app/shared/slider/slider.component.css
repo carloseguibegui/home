@@ -916,8 +916,8 @@ a {
         }
 
         .slider-item.active .menu-item {
-                border: 2px solid var(--amarillo);
-                box-shadow: 0 3px 5px var(--amarillo);
+                border: 2px solid var(--negro);
+                box-shadow: 0 3px 5px var(--negro);
         }
 
         p,
