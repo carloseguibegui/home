@@ -214,3 +214,15 @@ input[type="text"] {
                 color: var(--verde);
         }
 }
+
+/* Cliente: cafe_bistro_tandil */
+.cliente-cafe_bistro_tandil {
+        --marron: #72471a;
+
+        input {
+                font-family: var(--font-family);
+                background-color: white;
+                border-color: var(--marron);
+                color: var(--marron);
+        }
+}

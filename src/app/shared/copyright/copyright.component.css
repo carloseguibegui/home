@@ -311,3 +311,23 @@
                 color: var(--tipografia);
         }
 }
+
+:host-context(.cliente-cafe_bistro_tandil) {
+        --tipografia: #72471a;
+        --font-family: "Playfair Display", serif;
+
+        * {
+                color: var(--tipografia);
+                font-family: var(--font-family) !important;
+                font-optical-sizing: auto;
+                font-style: normal;
+        }
+
+        .copyright a {
+                color: var(--tipografia);
+        }
+}
+
+:host-context(.cliente-cafe_bistro_tandil) .copyright-logo {
+        background-image: url('../../../../public/assets/landing/logo-marketingeros3.webp');
+}

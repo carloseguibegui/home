@@ -1,11 +1,11 @@
 <div class="d-flex copyright pb-3" [class]="marginBotClassDiv">
     <div>Creado por</div>
     <div>
-        <ng-container *ngIf="cliente?.toLowerCase() === 'requeterico'; else notRequeterico">
+        <!-- <ng-container *ngIf="cliente?.toLowerCase() === 'requeterico'; else notRequeterico"> -->
             <a href="/" target="_blank" rel="noopener" class="copyright-link">
                 <div class="copyright-logo"></div>
             </a>
-        </ng-container>
+        <!-- </ng-container> -->
         <ng-template #notRequeterico>
             <div class="copyright-logo"></div>
         </ng-template>

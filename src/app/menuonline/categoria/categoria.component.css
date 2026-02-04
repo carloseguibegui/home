@@ -1210,3 +1210,62 @@ html {
 
 
 }
+
+/* cafe_bistro_tandil */
+.cliente-cafe_bistro_tandil {
+        --blanco: #f9f6f6;
+        --marron: #72471a;
+        --font-family: "Inter", sans-serif;
+
+        * {
+                color: var(--blanco);
+                text-transform: uppercase;
+                font-family: var(--font-family) !important;
+        }
+
+        #boton-card {
+                background-color: var(--marron);
+                color: var(--blanco);
+                font-family: var(--font-family) !important;
+                font-size: 1.3rem;
+        }
+
+        .boton-volver {
+                font-family: var(--font-family) !important;
+                background-color: var(--marron);
+                color: var(--blanco);
+                border-top-color: var(--blanco);
+        }
+
+        .boton-volver i {
+                color: var(--blanco);
+        }
+
+        .div-carta {
+                border-color: var(--marron);
+        }
+
+        .card-title {
+                color: var(--marron);
+                font-family: var(--font-family) !important;
+                letter-spacing: normal !important;
+        }
+
+        #card-descripcion {
+                color: var(--marron);
+                font-family: var(--font-family) !important;
+        }
+
+        #card-descripcion i {
+                color: var(--marron);
+        }
+
+        .lightbox-content {
+                border: 2px solid var(--blanco);
+                box-shadow: 0 0px 10px 3px var(--blanco);
+        }
+
+        #cuerpo-card {
+                background-size: cover !important;
+        }
+}

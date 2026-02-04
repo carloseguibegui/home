@@ -651,3 +651,30 @@
                 font-weight: bold !important;
         }
 }
+
+/* cafe_bistro_tandil */
+.cliente-cafe_bistro_tandil {
+        --blanco: #f9f6f6;
+        --marron: #72471a;
+        --font-family: "Inter", sans-serif;
+
+        * {
+                font-family: var(--font-family);
+                color: var(--marron);
+                font-optical-sizing: auto;
+                font-style: normal;
+                font-weight: bold;
+        }
+
+        .text-brown {
+                color: var(--marron);
+        }
+
+        .categoria-div {
+                background-size: cover;
+        }
+
+        .categoria-label {
+                font-weight: bold !important;
+        }
+}
