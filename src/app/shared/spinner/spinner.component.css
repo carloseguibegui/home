@@ -75,7 +75,8 @@
         }
 
         .spinner {
-                border-top: 8px solid #1E382D !important;
+                border: 8px solid #1E382D;
+                border-top: 8px solid #edc7c4 !important;
         }
 
         .spinner-logo {

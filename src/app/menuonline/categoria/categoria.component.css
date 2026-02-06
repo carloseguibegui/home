@@ -56,6 +56,41 @@ html {
         letter-spacing: 0px;
 }
 
+#card-nombre .card-title {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+}
+
+.card-title-text {
+        display: inline-block;
+}
+
+.share-whatsapp {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+        height: 30px;
+        border-radius: 999px;
+        color: #1e392e;
+        /* background: rgba(30, 57, 46, 0.08); */
+        transition: transform 0.15s ease, background-color 0.15s ease, opacity 0.15s ease;
+}
+
+.share-whatsapp:hover {
+        transform: scale(1.06);
+        background: rgba(30, 57, 46, 0.16);
+}
+
+.share-whatsapp svg {
+        width: 22px;
+        height: 22px;
+        fill: currentColor;
+}
+
 
 #boton-card {
         align-content: space-evenly;
@@ -1268,4 +1303,9 @@ html {
         #cuerpo-card {
                 background-size: cover !important;
         }
+}
+
+
+.extras{
+        font-size: 1rem !important;
 }

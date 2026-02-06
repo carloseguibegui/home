@@ -41,11 +41,32 @@
                                                                 id="cuerpo-card">
                                                                 <div id="card-nombre" class="pb-2 px-1">
                                                                         <div class="card-title fw-bold text-uppercase">
-                                                                                {{ item.nombre }}
+                                                                                <span class="card-title-text">{{
+                                                                                        item.nombre }}</span>
+                                                                                <a *ngIf="whatsappNumber"
+                                                                                        class="share-whatsapp"
+                                                                                        [href]="buildWhatsappLink(item)"
+                                                                                        target="_blank" rel="noopener"
+                                                                                        aria-label="Compartir producto por WhatsApp"
+                                                                                        title="Compartir por WhatsApp"
+                                                                                        (click)="$event.stopPropagation()">
+                                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 1025 1024">
+                                                                                                <path fill="#1e392e"
+                                                                                                        d="M896.428 1024h-768q-53 0-90.5-37.5T.428 896V128q0-53 37.5-90.5t90.5-37.5h448v128h-384q-27 0-45.5 19t-18.5 45v640q0 27 18.5 45.5t45.5 18.5h640q27 0 45.5-18.5t18.5-45.5V530l128-107v473q0 53-37.5 90.5t-90.5 37.5zm-200-457q-13 13-34.5 8t-21.5-19V384q-224 0-384 320v-64q0-116 30-204t83-140t121-78t150-26V22q0-14 21.5-19.5t34.5 7.5l314 246q13 13 13 32t-13 33z" />
+                                                                                        </svg>
+                                                                                        <!-- <svg xmlns="http://www.w3.org/2000/svg"
+                                                                                                viewBox="0 0 384 432"
+                                                                                                aria-hidden="true"
+                                                                                                focusable="false">
+                                                                                                <path
+                                                                                                        d="M320 303q26 0 44 18.5t18 44t-18 44t-44 18.5t-44-18.5t-18-44.5q0-6 1-14l-151-88q-19 17-44 17q-27 0-45.5-18.5T0 216t18.5-45.5T64 152q25 0 44 17l150-87q-2-9-2-15q0-27 18.5-45.5T320 3t45.5 18.5t18.5 45t-18.5 45.5t-45.5 19q-25 0-44-18l-150 88q2 9 2 15t-2 15l152 88q18-16 42-16z" />
+                                                                                        </svg> -->
+                                                                                </a>
                                                                         </div>
                                                                 </div>
                                                                 <div id="card-descripcion">
-                                                                        <span id="card-descripcion-span" aria-hidden="true">“</span>
+                                                                        <span id="card-descripcion-span"
+                                                                                aria-hidden="true">“</span>
                                                                         {{ item.descripcion }}.
                                                                 </div>
                                                                 @if (item._variantesEntries) {
@@ -59,6 +80,13 @@
                                                                 <div class="btn rounded-3 d-block" id="boton-card">
                                                                         ${{ item.precio }}
                                                                 </div>
+                                                                }
+                                                                @if (item._extrasEntries) {
+                                                                @for (e of item._extrasEntries; track e[0]) {
+                                                                <div class="btn rounded-3 d-block extras" id="boton-card">
+                                                                        {{ e[0] }}: ${{ e[1] }}
+                                                                </div>
+                                                                }
                                                                 }
                                                         </div>
                                                 </div>

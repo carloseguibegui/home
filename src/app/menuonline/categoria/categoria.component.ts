@@ -72,6 +72,7 @@ export class CategoriaComponent implements OnInit, OnDestroy {
         nombreCategoria: string = '';
         item_placeholder: string = '';
         searchTerm: string = '';
+        whatsappNumber: string = '';
 
         cardImage = '';
         logoImage = '';
@@ -251,6 +252,8 @@ export class CategoriaComponent implements OnInit, OnDestroy {
                         this.nombreCliente = nombre
                                 ? String(nombre).toUpperCase()
                                 : this.cliente.charAt(0).toUpperCase() + this.cliente.slice(1);
+                        const rawWhatsapp = clienteSnap.data()?.['whatsappNumber'] || '';
+                        this.whatsappNumber = this.normalizeWhatsappNumber(String(rawWhatsapp));
                         this.titleService.setTitle(`${this.nombreCliente} | Carta Digital`);
                         this.cdr.markForCheck();
                         return true;
@@ -348,7 +351,8 @@ export class CategoriaComponent implements OnInit, OnDestroy {
 
                                 this.items = productos.map((p: any) => ({
                                         ...p,
-                                        _variantesEntries: p?.variantes ? Object.entries(p.variantes) : null
+                                        _variantesEntries: p?.variantes ? Object.entries(p.variantes) : null,
+                                        _extrasEntries: p?.extras ? Object.entries(p.extras) : null
                                 }));
                                 console.log('items', this.items);
                                 this.itemsOriginales = this.items.map((p: any) => p);
@@ -423,6 +427,47 @@ export class CategoriaComponent implements OnInit, OnDestroy {
                 this.loading = true;
                 this.cdr.markForCheck();
                 this.router.navigate(['/menuonline', this.cliente, 'carta', categoriaRoute]);
+        }
+
+        buildWhatsappLink(item: any): string {
+                if (!this.whatsappNumber) return '#';
+                const message = this.buildWhatsappMessage(item);
+                return `https://wa.me/${this.whatsappNumber}?text=${encodeURIComponent(message)}`;
+        }
+
+        private buildWhatsappMessage(item: any): string {
+                const nombre = item?.nombre ? String(item.nombre) : 'Producto';
+                const descripcion = item?.descripcion ? String(item.descripcion) : '';
+                const variantes = item?._variantesEntries || null;
+                const precio = item?.precio && !item?.variantes ? String(item.precio) : '';
+                const categoria = this.nombreCategoria || this.categoria || '';
+                const url = typeof window !== 'undefined' ? window.location.href : '';
+
+                const lines: string[] = [];
+                lines.push(`Hola! Quiero pedir: ${nombre}`);
+                if (descripcion) {
+                        lines.push(`Detalle: ${descripcion}`);
+                }
+                if (variantes && Array.isArray(variantes) && variantes.length) {
+                        lines.push('Opciones:');
+                        variantes.forEach(([vNombre, vPrecio]: [string, any]) => {
+                                lines.push(`${vNombre}: $${vPrecio}`);
+                        });
+                }
+                if (precio) {
+                        lines.push(`Precio: $${precio}`);
+                }
+                if (categoria) {
+                        lines.push(`Categoría: ${categoria}`);
+                }
+                if (url) {
+                        lines.push(`Menú: ${url}`);
+                }
+                return lines.join('\n');
+        }
+
+        private normalizeWhatsappNumber(raw: string): string {
+                return (raw || '').replace(/[^\d]/g, '');
         }
 
         /**
