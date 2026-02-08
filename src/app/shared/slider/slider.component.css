@@ -905,10 +905,10 @@ a {
 
 
 .cliente-enris_tandil {
-        --amarillo: #FFF000;
+        --amarillo: #f9dc32;
         --negro: black;
-        --blanco: #edc7c4;
-        --primary-color: #feeedf;
+        --blanco: white;
+        --primary-color: white;
         --slider-bg: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fenris_tandil%2Fbackground_image.webp?alt=media');
 
         * {
@@ -916,8 +916,8 @@ a {
         }
 
         .slider-item.active .menu-item {
-                border: 2px solid var(--negro);
-                box-shadow: 0 3px 5px var(--negro);
+                border: 2px solid var(--blanco);
+                box-shadow: 0 3px 5px var(--blanco);
         }
 
         p,

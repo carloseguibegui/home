@@ -75,8 +75,7 @@ html {
         width: 30px;
         height: 30px;
         border-radius: 999px;
-        color: #1e392e;
-        /* background: rgba(30, 57, 46, 0.08); */
+        color: var(--primary-color, #000000);
         transition: transform 0.15s ease, background-color 0.15s ease, opacity 0.15s ease;
 }
 
@@ -88,6 +87,12 @@ html {
 .share-whatsapp svg {
         width: 22px;
         height: 22px;
+        fill: currentColor;
+}
+
+.gluten-free-icon {
+        width: 30px;
+        color: var(--primary-color, #1e392e);
         fill: currentColor;
 }
 
@@ -1188,18 +1193,22 @@ html {
 
 /* enris_tandil */
 .cliente-enris_tandil {
-        --amarillo: #FFF000;
+        --amarillo: #f9dc32;
         --negro: black;
-        --blanco: #edc7c4;
+        --blanco: white;
 
         * {
-                color: var(--negro);
+                /* color: var(--amarillo); */
                 text-transform: uppercase;
+        }
+        /* comillas */
+        #card-descripcion-span{
+                color: var(--blanco);
         }
 
         #boton-card {
-                background-color: var(--negro);
-                color: var(--amarillo);
+                background-color: var(--amarillo);
+                color: var(--negro);
                 font-family: 'lato', sans-serif !important;
                 font-size: 1.3rem;
         }
@@ -1215,19 +1224,18 @@ html {
         }
 
         .div-carta {
-                border-color: var(--negro);
+                border-color: var(--blanco);
         }
 
         .card-title {
-                color: var(--negro);
+                color: var(--amarillo);
                 font-family: "lato", sans-serif !important;
                 letter-spacing: normal !important;
 
         }
 
         #card-descripcion {
-                color: var(--negro);
-                font-family: 'lato', sans-serif !important;
+                color: var(--amarillo)
         }
 
         #card-descripcion i {
@@ -1307,5 +1315,10 @@ html {
 
 
 .extras{
-        font-size: 1rem !important;
+        font-size: .9rem !important;
+}
+
+#gluten-free{
+        /* width: 20px; */
+        /* color: var(--primary-color); */
 }

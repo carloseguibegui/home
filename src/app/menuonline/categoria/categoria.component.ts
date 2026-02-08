@@ -21,6 +21,8 @@ import { Firestore, doc, getDoc } from '@angular/fire/firestore';
 import { Title } from '@angular/platform-browser';
 import { Subject } from 'rxjs';
 import { debounceTime, takeUntil, filter } from 'rxjs/operators';
+import { ConfirmationService } from 'primeng/api';
+import { ConfirmDialog } from 'primeng/confirmdialog';
 
 @Component({
         selector: 'app-categoria',
@@ -35,10 +37,12 @@ import { debounceTime, takeUntil, filter } from 'rxjs/operators';
                 ScrollToTopComponent,
                 SliderComponent,
                 SpinnerComponent,
+                ConfirmDialog,
         ],
         templateUrl: './categoria.component.html',
         styleUrls: ['./categoria.component.css'],
         changeDetection: ChangeDetectionStrategy.OnPush,
+        providers: [ConfirmationService],
         animations: [
                 trigger('fadeInOut', [
                         transition(':enter', [
@@ -107,7 +111,8 @@ export class CategoriaComponent implements OnInit, OnDestroy {
                 private renderer: Renderer2,
                 private firestore: Firestore,
                 private titleService: Title,
-                private cdr: ChangeDetectorRef
+                private cdr: ChangeDetectorRef,
+                private confirmationService: ConfirmationService
         ) { }
 
         get clienteClass(): string {
@@ -435,19 +440,37 @@ export class CategoriaComponent implements OnInit, OnDestroy {
                 return `https://wa.me/${this.whatsappNumber}?text=${encodeURIComponent(message)}`;
         }
 
+        onShareClick(event: Event, item: any): void {
+                event.preventDefault();
+                event.stopPropagation();
+
+                this.confirmationService.confirm({
+                        header: 'Confirmar envío',
+                        message: 'Esta opción es solo para delivery/take-away. ¿Querés continuar?',
+                        icon: 'pi pi-exclamation-triangle',
+                        acceptLabel: 'Continuar',
+                        rejectLabel: 'Cancelar',
+                        accept: () => {
+                                const url = this.buildWhatsappLink(item);
+                                if (url && url !== '#') {
+                                        window.open(url, '_blank', 'noopener');
+                                }
+                        }
+                });
+        }
+
         private buildWhatsappMessage(item: any): string {
                 const nombre = item?.nombre ? String(item.nombre) : 'Producto';
-                const descripcion = item?.descripcion ? String(item.descripcion) : '';
+                // const descripcion = item?.descripcion ? String(item.descripcion) : '';
                 const variantes = item?._variantesEntries || null;
+                const extras = item?._extrasEntries || null;
                 const precio = item?.precio && !item?.variantes ? String(item.precio) : '';
                 const categoria = this.nombreCategoria || this.categoria || '';
                 const url = typeof window !== 'undefined' ? window.location.href : '';
 
                 const lines: string[] = [];
-                lines.push(`Hola! Quiero pedir: ${nombre}`);
-                if (descripcion) {
-                        lines.push(`Detalle: ${descripcion}`);
-                }
+                lines.push(`¡Hola! 👋 ${this.nombreCliente}`);
+                lines.push(`Quiero pedir: ${nombre.toUpperCase()}`);
                 if (variantes && Array.isArray(variantes) && variantes.length) {
                         lines.push('Opciones:');
                         variantes.forEach(([vNombre, vPrecio]: [string, any]) => {
@@ -456,6 +479,12 @@ export class CategoriaComponent implements OnInit, OnDestroy {
                 }
                 if (precio) {
                         lines.push(`Precio: $${precio}`);
+                }
+                if (extras && Array.isArray(extras) && extras.length) {
+                        lines.push('Extras:');
+                        extras.forEach(([vNombre, vPrecio]: [string, any]) => {
+                                lines.push(`${vNombre}: $${vPrecio}`);
+                        });
                 }
                 if (categoria) {
                         lines.push(`Categoría: ${categoria}`);
