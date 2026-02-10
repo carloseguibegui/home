@@ -459,6 +459,27 @@ export class CategoriaComponent implements OnInit, OnDestroy {
                 });
         }
 
+        showVeganInfo(event: Event): void {
+                this.showProductInfoDialog(event, 'Producto vegano', 'Este producto es vegano.');
+        }
+
+        showGlutenFreeInfo(event: Event): void {
+                this.showProductInfoDialog(event, 'Producto sin gluten', 'Este producto no contiene gluten.');
+        }
+
+        private showProductInfoDialog(event: Event, header: string, message: string): void {
+                event.preventDefault();
+                event.stopPropagation();
+
+                this.confirmationService.confirm({
+                        header,
+                        message,
+                        icon: 'pi pi-info-circle',
+                        acceptLabel: 'Entendido',
+                        rejectVisible: false,
+                });
+        }
+
         private buildWhatsappMessage(item: any): string {
                 const nombre = item?.nombre ? String(item.nombre) : 'Producto';
                 // const descripcion = item?.descripcion ? String(item.descripcion) : '';

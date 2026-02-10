@@ -68,12 +68,31 @@ html {
         display: inline-block;
 }
 
-.share-whatsapp {
+.icon-info-button {
         display: inline-flex;
         align-items: center;
         justify-content: center;
         width: 30px;
         height: 30px;
+        padding: 0;
+        border: 0;
+        border-radius: 999px;
+        background: transparent;
+        cursor: pointer;
+        color: var(--primary-color, #1e392e);
+        transition: transform 0.15s ease, background-color 0.15s ease;
+}
+
+.icon-info-button:hover {
+        transform: scale(1.06);
+        background: rgba(30, 57, 46, 0.16);
+}
+
+.share-whatsapp {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
         border-radius: 999px;
         color: var(--primary-color, #000000);
         transition: transform 0.15s ease, background-color 0.15s ease, opacity 0.15s ease;
@@ -85,8 +104,7 @@ html {
 }
 
 .share-whatsapp svg {
-        width: 22px;
-        height: 22px;
+        width: 30px;
         fill: currentColor;
 }
 
@@ -1316,9 +1334,4 @@ html {
 
 .extras{
         font-size: .9rem !important;
-}
-
-#gluten-free{
-        /* width: 20px; */
-        /* color: var(--primary-color); */
 }
