@@ -1333,6 +1333,71 @@ html {
         }
 }
 
+/* caminito_tandil */
+.cliente-caminito_tandil {
+        --negro:black;
+        --cheddar: #fc9004;
+        --crema: #f5efe6;
+        --dorado: #c9a46a;
+        --blanco: white;
+        --font-family: "Cormorant Garamond", serif;
+
+        * {
+                color: var(--cheddar);
+                text-transform: uppercase;
+                font-family: var(--font-family) !important;
+        }
+        /* comillas */
+        #card-descripcion-span{
+                color: var(--blanco);
+        }
+
+        #boton-card {
+                background-color: var(--cheddar);
+                color: var(--negro);
+                font-family: var(--font-family) !important;
+                font-size: 1.3rem;
+        }
+
+        .boton-volver {
+                font-family: var(--font-family) !important;
+                background-color: var(--negro);
+                color: var(--cheddar);
+        }
+
+        .boton-volver i {
+                color: var(--negro);
+        }
+
+        .div-carta {
+                border-color: var(--blanco);
+        }
+
+        .card-title {
+                color: var(--cheddar);
+                font-family: var(--font-family) !important;
+                letter-spacing: normal !important;
+        }
+
+        #card-descripcion {
+                color: var(--cheddar);
+                font-family: var(--font-family) !important;
+        }
+
+        #card-descripcion i {
+                color: var(--dorado);
+        }
+
+        .lightbox-content {
+                border: 2px solid var(--negro);
+                box-shadow: 0 0px 10px 3px var(--crema);
+        }
+
+        #cuerpo-card {
+                background-size: cover !important;
+        }
+}
+
 
 .extras{
         font-size: .9rem !important;

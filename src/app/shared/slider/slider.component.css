@@ -972,3 +972,38 @@ a {
         background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fcafe_bistro_tandil%2Fbackground_image.webp?alt=media') !important;
         background-size: cover !important;
 }
+
+/* caminito_tandil */
+.cliente-caminito_tandil {
+        --negro: black;
+        --blanco: white;
+        --crema: #f5efe6;
+        --dorado: #c9a46a;
+        --primary-color: var(--negro);
+        --slider-bg: linear-gradient(135deg, #f5efe6 0%, #efe4d5 100%);
+
+        * {
+                font-family: "Cormorant Garamond", serif !important;
+        }
+
+        .slider-item.active .menu-item {
+                border: 2px solid var(--blanco);
+                box-shadow: 0 3px 5px rgba(255, 255, 255, 0.99);
+        }
+
+        .category-label {
+                color: var(--negro);
+        }
+
+        p,
+        a {
+                color: var(--negro) !important;
+                font-weight: bold;
+                text-transform: uppercase;
+        }
+}
+
+.cliente-caminito_tandil.sticky-slider {
+        background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fcaminito_tandil%2Fbackground_image.webp?alt=media') !important;
+        background-size: cover !important;
+}

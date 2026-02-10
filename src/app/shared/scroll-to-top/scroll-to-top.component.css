@@ -440,3 +440,27 @@
 
         }
 }
+
+
+
+/* Cliente: caminito_tandil */
+.cliente-caminito_tandil {
+        --progress-bg-color: white;
+        /* --progress-border-color: #663C1F; */
+        /* --progress-arrow-color: #663C1F; */
+        --progress-circle-color: black;
+
+        .progress-wrap {
+                box-shadow: inset 0 0 0 3px #ffffff;
+                background: var(--progress-bg-color);
+
+                &::after {
+                        color: var(--progress-circle-color);
+                }
+
+                .progress-circle path {
+                        stroke: var(--progress-circle-color);
+                }
+
+        }
+}

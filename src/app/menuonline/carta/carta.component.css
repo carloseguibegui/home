@@ -678,3 +678,37 @@
                 font-weight: bold !important;
         }
 }
+
+/* caminito_tandil */
+.cliente-caminito_tandil {
+        --cheddar: #fc9004;
+        --crema: #f5efe6;
+        --dorado: #c9a46a;
+        --font-family: "Cormorant Garamond", serif;
+        --primary-color: var(--cheddar);
+        --secondary-color: var(--dorado);
+        --text-color: var(--cheddar);
+
+        * {
+                font-family: var(--font-family);
+                color: var(--text-color);
+                font-optical-sizing: auto;
+                font-style: normal;
+        }
+
+        .text-brown {
+                color: var(--secondary-color);
+        }
+
+        .categoria-div {
+                background-size: cover;
+        }
+
+        .categoria-label {
+                font-weight: 600 !important;
+        }
+
+        a {
+                color: var(--text-color);
+        }
+}
