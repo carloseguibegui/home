@@ -1216,7 +1216,7 @@ html {
         --blanco: white;
 
         * {
-                /* color: var(--amarillo); */
+                color: var(--amarillo);
                 text-transform: uppercase;
         }
         /* comillas */
@@ -1253,7 +1253,8 @@ html {
         }
 
         #card-descripcion {
-                color: var(--amarillo)
+                color: var(--amarillo);
+                font-family: 'lato', sans-serif !important;
         }
 
         #card-descripcion i {
