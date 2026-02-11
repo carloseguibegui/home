@@ -445,10 +445,10 @@
 
 /* Cliente: caminito_tandil */
 .cliente-caminito_tandil {
-        --progress-bg-color: white;
+        --progress-bg-color: black;
         /* --progress-border-color: #663C1F; */
         /* --progress-arrow-color: #663C1F; */
-        --progress-circle-color: black;
+        --progress-circle-color: #fc9004;
 
         .progress-wrap {
                 box-shadow: inset 0 0 0 3px #ffffff;
