@@ -450,6 +450,7 @@ export class CategoriaComponent implements OnInit, OnDestroy {
                         icon: 'pi pi-exclamation-triangle',
                         acceptLabel: 'Continuar',
                         rejectLabel: 'Cancelar',
+                        rejectVisible: true,
                         accept: () => {
                                 const url = this.buildWhatsappLink(item);
                                 if (url && url !== '#') {
