@@ -155,3 +155,29 @@
                 width: 200px;
         }
 }
+
+/* caminito_tandil */
+:host-context(.cliente-caminito_tandil) {
+        .spinner-overlay {
+                position: fixed;
+                inset: 0;
+                z-index: 9999;
+                background: linear-gradient(95deg, #fc9004 0%, #f5efe6 100%);
+                background-size: 200% 200%;
+                animation: gradientMove .8s ease-in-out infinite alternate;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+
+        }
+
+        .spinner {
+                border-top: 8px solid #fc9004 !important;
+        }
+
+        .spinner-logo {
+                background-image: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fcaminito_tandil%2Flogo0.webp?alt=media') !important;
+                width: 200px;
+        }
+}
