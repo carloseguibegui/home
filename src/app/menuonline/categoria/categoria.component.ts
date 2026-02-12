@@ -77,6 +77,13 @@ export class CategoriaComponent implements OnInit, OnDestroy {
         item_placeholder: string = '';
         searchTerm: string = '';
         whatsappNumber: string = '';
+        cartItems: Array<{
+                key: string;
+                nombre: string;
+                cantidad: number;
+                precio: string;
+                unitPrice: number | null;
+        }> = [];
 
         cardImage = '';
         logoImage = '';
@@ -86,6 +93,7 @@ export class CategoriaComponent implements OnInit, OnDestroy {
         lightboxImage = '';
         loading = true;
         visible = false;
+        scrollToTopVisible = false;
 
         zoomLevel: number = 1;
         zoomTransform: string = 'scale(1)';
@@ -102,7 +110,9 @@ export class CategoriaComponent implements OnInit, OnDestroy {
         private menuCache: any[] | null = null;
         private rafPending = false;
         private unlistenKeydown?: () => void;
+        private unlistenScroll?: () => void;
         private openerEl: Element | null = null;
+        private readonly scrollToTopOffset = 1300;
 
         constructor(
                 private menuService: MenuService,
@@ -117,6 +127,10 @@ export class CategoriaComponent implements OnInit, OnDestroy {
 
         get clienteClass(): string {
                 return `cliente-${this.cliente.toLowerCase()}`;
+        }
+
+        get cartItemsCount(): number {
+                return this.cartItems.reduce((total, item) => total + item.cantidad, 0);
         }
 
         async ngOnInit(): Promise<void> {
@@ -175,6 +189,14 @@ export class CategoriaComponent implements OnInit, OnDestroy {
                                 }
                         });
 
+                        this.unlistenScroll = this.renderer.listen('window', 'scroll', () => {
+                                const nextVisible = window.scrollY > this.scrollToTopOffset;
+                                if (nextVisible !== this.scrollToTopVisible) {
+                                        this.scrollToTopVisible = nextVisible;
+                                        this.cdr.markForCheck();
+                                }
+                        });
+
                         // ✅ Escucha cambios en la URL
                         this.route.paramMap
                                 .pipe(takeUntil(this.destroy$))
@@ -188,6 +210,7 @@ export class CategoriaComponent implements OnInit, OnDestroy {
 
                                         // ✅ Si cambió el cliente: correr en paralelo meta y, si hace falta, menú
                                         if (this.cliente !== nuevoCliente) {
+                                                this.cartItems = [];
                                                 this.cliente = nuevoCliente;
                                                 this.configurarImagenes();
 
@@ -434,27 +457,82 @@ export class CategoriaComponent implements OnInit, OnDestroy {
                 this.router.navigate(['/menuonline', this.cliente, 'carta', categoriaRoute]);
         }
 
-        buildWhatsappLink(item: any): string {
-                if (!this.whatsappNumber) return '#';
-                const message = this.buildWhatsappMessage(item);
-                return `https://wa.me/${this.whatsappNumber}?text=${encodeURIComponent(message)}`;
-        }
-
-        onShareClick(event: Event, item: any): void {
+        addToCart(event: Event, item: any): void {
                 event.preventDefault();
                 event.stopPropagation();
 
+                const key = this.getCartItemKey(item);
+                const existingItem = this.cartItems.find((cartItem) => cartItem.key === key);
+
+                if (existingItem) {
+                        existingItem.cantidad += 1;
+                } else {
+                        this.cartItems.push({
+                                key,
+                                nombre: item?.nombre ? String(item.nombre) : 'Producto',
+                                cantidad: 1,
+                                precio: this.getItemPriceLabel(item),
+                                unitPrice: this.getItemUnitPrice(item),
+                        });
+                }
+
+                this.cdr.markForCheck();
+        }
+
+        removeFromCart(event: Event, item: any): void {
+                event.preventDefault();
+                event.stopPropagation();
+
+                const key = this.getCartItemKey(item);
+                const existingIndex = this.cartItems.findIndex((cartItem) => cartItem.key === key);
+                if (existingIndex === -1) return;
+
+                const existingItem = this.cartItems[existingIndex];
+                existingItem.cantidad -= 1;
+
+                if (existingItem.cantidad <= 0) {
+                        this.cartItems.splice(existingIndex, 1);
+                }
+
+                this.cdr.markForCheck();
+        }
+
+        getItemQuantityInCart(item: any): number {
+                const key = this.getCartItemKey(item);
+                const existingItem = this.cartItems.find((cartItem) => cartItem.key === key);
+                return existingItem?.cantidad || 0;
+        }
+
+        openCartConfirmation(event?: Event): void {
+                event?.preventDefault();
+                event?.stopPropagation();
+
+                if (!this.cartItemsCount) return;
+
+                if (!this.whatsappNumber) {
+                        this.confirmationService.confirm({
+                                header: 'WhatsApp no configurado',
+                                message: 'Este menú no tiene número de WhatsApp configurado.',
+                                icon: 'pi pi-info-circle',
+                                acceptLabel: 'Entendido',
+                                rejectVisible: false,
+                        });
+                        return;
+                }
+
                 this.confirmationService.confirm({
-                        header: 'Confirmar envío',
-                        message: 'Esta opción es solo para delivery/take-away. ¿Querés continuar?',
+                        header: 'Confirmar pedido',
+                        message: `${this.buildCartSummaryForDialog()}<br><br>¿Querés enviar este pedido por WhatsApp?`,
                         icon: 'pi pi-exclamation-triangle',
-                        acceptLabel: 'Continuar',
-                        rejectLabel: 'Cancelar',
+                        acceptLabel: 'Enviar por WhatsApp',
+                        rejectLabel: 'Seguir viendo',
                         rejectVisible: true,
                         accept: () => {
-                                const url = this.buildWhatsappLink(item);
+                                const url = this.buildWhatsappCartLink();
                                 if (url && url !== '#') {
                                         window.open(url, '_blank', 'noopener');
+                                        this.cartItems = [];
+                                        this.cdr.markForCheck();
                                 }
                         }
                 });
@@ -481,40 +559,72 @@ export class CategoriaComponent implements OnInit, OnDestroy {
                 });
         }
 
-        private buildWhatsappMessage(item: any): string {
-                const nombre = item?.nombre ? String(item.nombre) : 'Producto';
-                // const descripcion = item?.descripcion ? String(item.descripcion) : '';
-                const variantes = item?._variantesEntries || null;
-                const extras = item?._extrasEntries || null;
-                const precio = item?.precio && !item?.variantes ? String(item.precio) : '';
-                const categoria = this.nombreCategoria || this.categoria || '';
-                const url = typeof window !== 'undefined' ? window.location.href : '';
+        private buildWhatsappCartLink(): string {
+                if (!this.whatsappNumber) return '#';
+                const message = this.buildWhatsappCartMessage();
+                return `https://wa.me/${this.whatsappNumber}?text=${encodeURIComponent(message)}`;
+        }
 
+        private buildWhatsappCartMessage(): string {
+                const url = typeof window !== 'undefined' ? window.location.href : '';
                 const lines: string[] = [];
-                lines.push(`¡Hola! 👋 ${this.nombreCliente}`);
-                lines.push(`Quiero pedir: ${nombre.toUpperCase()}`);
-                if (variantes && Array.isArray(variantes) && variantes.length) {
-                        lines.push('Opciones:');
-                        variantes.forEach(([vNombre, vPrecio]: [string, any]) => {
-                                lines.push(`${vNombre}: $${vPrecio}`);
-                        });
-                }
-                if (precio) {
-                        lines.push(`Precio: $${precio}`);
-                }
-                if (extras && Array.isArray(extras) && extras.length) {
-                        lines.push('Extras:');
-                        extras.forEach(([vNombre, vPrecio]: [string, any]) => {
-                                lines.push(`${vNombre}: $${vPrecio}`);
-                        });
-                }
-                if (categoria) {
-                        lines.push(`Categoría: ${categoria}`);
-                }
+
+                lines.push(`Hola! ${this.nombreCliente}`);
+                lines.push('Quiero hacer este pedido:');
+                this.cartItems.forEach((item) => {
+                        const precio = item.precio ? ` (${item.precio})` : '';
+                        lines.push(`- ${item.cantidad}x ${item.nombre}${precio}`);
+                });
+
+                lines.push('');
+                lines.push(`Total de productos: ${this.cartItemsCount}`);
+                lines.push(`*Importe total: ${this.buildTotalLabel()}*`);
                 if (url) {
-                        lines.push(`Menú: ${url}`);
+                        lines.push(`Menu: ${url}`);
                 }
+
                 return lines.join('\n');
+        }
+
+        private buildCartSummaryForDialog(): string {
+                const summaryItems = this.cartItems
+                        .map((item) => `- ${item.cantidad}x ${item.nombre}`)
+                        .join('<br>');
+
+                return `${summaryItems}<br><br>Total: ${this.cartItemsCount} producto(s).<br><strong>Importe total: ${this.buildTotalLabel()}</strong>`;
+        }
+
+        private getCartItemKey(item: any): string {
+                const id = item?.idProducto ? String(item.idProducto) : String(item?.nombre || 'producto').trim().toLowerCase();
+                return `${this.categoria}:${id}`;
+        }
+
+        private getItemPriceLabel(item: any): string {
+                if (item?.precio && !item?.variantes) {
+                        return `$${item.precio}`;
+                }
+                if (item?._variantesEntries?.length) {
+                        return 'ver opciones';
+                }
+                return '';
+        }
+
+        private getItemUnitPrice(item: any): number | null {
+                if (!item?.variantes && item?.precio != null) {
+                        const parsed = Number(item.precio);
+                        return Number.isFinite(parsed) ? parsed : null;
+                }
+                return null;
+        }
+
+        private buildTotalLabel(): string {
+                const total = this.cartItems.reduce((acc, item) => {
+                        const unit = item.unitPrice ?? 0;
+                        return acc + unit * item.cantidad;
+                }, 0);
+                const hasUnknownPrices = this.cartItems.some((item) => item.unitPrice == null);
+                const formatted = `$${total.toLocaleString('es-AR')}`;
+                return hasUnknownPrices ? `${formatted} (sin incluir productos con opciones)` : formatted;
         }
 
         private normalizeWhatsappNumber(raw: string): string {
@@ -708,5 +818,6 @@ export class CategoriaComponent implements OnInit, OnDestroy {
                 this.destroy$.next();
                 this.destroy$.complete();
                 if (this.unlistenKeydown) this.unlistenKeydown();
+                if (this.unlistenScroll) this.unlistenScroll();
         }
 }

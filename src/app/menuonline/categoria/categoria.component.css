@@ -109,10 +109,99 @@ html {
         fill: currentColor;
 }
 
+.cart-controls {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.25rem;
+}
+
+.cart-action {
+        border: 0;
+        background: transparent;
+        padding: 0;
+}
+
+.cart-qty {
+        min-width: 22px;
+        text-align: center;
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: var(--primary-color, #1e392e);
+}
+
+.cart-action.is-hidden,
+.cart-qty.is-hidden {
+        opacity: 0;
+        pointer-events: none;
+}
+
+.floating-cart {
+        position: fixed;
+        right: 1rem;
+        bottom: 4.5rem;
+        width: 58px;
+        height: 58px;
+        border: 0;
+        border-radius: 999px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--primary-color, #1e392e);
+        color: #fff;
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
+        z-index: 15;
+        cursor: pointer;
+        transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+.floating-cart.with-scroll-top {
+        bottom: 8.8rem;
+}
+
+.floating-cart:hover {
+        transform: scale(1.05);
+}
+
+.floating-cart svg {
+        width: 30px;
+        height: 30px;
+        fill: currentColor;
+}
+
+.floating-cart-badge {
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        min-width: 22px;
+        height: 22px;
+        border-radius: 999px;
+        background: #ffffff;
+        color: #000000;
+        font-size: 0.75rem;
+        font-weight: 700;
+        line-height: 22px;
+        text-align: center;
+        border: 2px solid #fff;
+        padding: 0 4px;
+}
+
 .gluten-free-icon {
         width: 30px;
         color: var(--primary-color, #1e392e);
         fill: currentColor;
+}
+
+@media (max-width: 768px) {
+        .floating-cart {
+                right: 0.8rem;
+                bottom: 4.8rem;
+                width: 54px;
+                height: 54px;
+        }
+
+        .floating-cart.with-scroll-top {
+                bottom: 8.2rem;
+        }
 }
 
 
@@ -1144,6 +1233,7 @@ html {
 
 
 }
+
 /* foster_tandil */
 .cliente-foster_tandil {
         --verde: #1E382D;
@@ -1200,6 +1290,16 @@ html {
                 background-size: cover !important;
         }
 
+        .floating-cart svg {
+                fill: var(--blanco);
+        }
+
+        .floating-cart-badge {
+                background-color: var(--blanco);
+                color: var(--verde);
+                font-size: 1rem;
+        }
+
 
 }
 
@@ -1220,8 +1320,9 @@ html {
                 color: var(--amarillo);
                 text-transform: uppercase;
         }
+
         /* comillas */
-        #card-descripcion-span{
+        #card-descripcion-span {
                 color: var(--blanco);
         }
 
@@ -1335,7 +1436,7 @@ html {
 
 /* caminito_tandil */
 .cliente-caminito_tandil {
-        --negro:black;
+        --negro: black;
         --cheddar: #fc9004;
         --crema: #f5efe6;
         --dorado: #c9a46a;
@@ -1347,8 +1448,9 @@ html {
                 text-transform: uppercase;
                 font-family: var(--font-family) !important;
         }
+
         /* comillas */
-        #card-descripcion-span{
+        #card-descripcion-span {
                 color: var(--blanco);
         }
 
@@ -1396,9 +1498,22 @@ html {
         #cuerpo-card {
                 background-size: cover !important;
         }
+
+        .floating-cart-badge {
+                color: var(--negro);
+                font-size: 1rem;
+        }
+
+        .floating-cart {
+                background-color: var(--cheddar);
+        }
+
+        .floating-cart svg {
+                fill: var(--negro);
+        }
 }
 
 
-.extras{
+.extras {
         font-size: .9rem !important;
 }

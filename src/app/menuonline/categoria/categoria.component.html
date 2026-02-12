@@ -2,7 +2,7 @@
 
 <!-- Spinner -->
 <app-spinner [@fadeInOut] *ngIf="loading"></app-spinner>
-<p-confirmDialog [style]="{ width: 'min(92vw, 460px)' }"></p-confirmDialog>
+<p-confirmDialog [style]="{ width: 'min(92vw, 460px)' }" ></p-confirmDialog>
 
 <!-- Contenido principal -->
 <div [@fadeContent]>
@@ -85,32 +85,55 @@
                                                                                         </svg>
                                                                                 </button>
                                                                                 }
-                                                                                <a *ngIf="whatsappNumber"
-                                                                                        class="share-whatsapp" href="#"
-                                                                                        (click)="onShareClick($event, item)"
-                                                                                        aria-label="Compartir producto por WhatsApp"
-                                                                                        title="Compartir por WhatsApp">
-
-                                                                                        <!-- <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 1025 1024">
-                                                                                                <path fill="#fffff"
-                                                                                                        d="M896.428 1024h-768q-53 0-90.5-37.5T.428 896V128q0-53 37.5-90.5t90.5-37.5h448v128h-384q-27 0-45.5 19t-18.5 45v640q0 27 18.5 45.5t45.5 18.5h640q27 0 45.5-18.5t18.5-45.5V530l128-107v473q0 53-37.5 90.5t-90.5 37.5zm-200-457q-13 13-34.5 8t-21.5-19V384q-224 0-384 320v-64q0-116 30-204t83-140t121-78t150-26V22q0-14 21.5-19.5t34.5 7.5l314 246q13 13 13 32t-13 33z" />
-                                                                                        </svg> -->
-                                                                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                                                                                fill="none"
-                                                                                                viewBox="0 0 30 30"
-                                                                                                id="Shopping-Cart-Add--Streamline-Core-Remix"
-                                                                                                height="30" width="30">
-                                                                                                <g
-                                                                                                        id="Free Remix/Money Shopping/shopping-cart-add--shopping-cart-checkout-add-plus-new">
-                                                                                                        <path id="Union"
-                                                                                                                fill-rule="evenodd"
-                                                                                                                d="M1.3392857142857142 0C0.5996185714285714 0 0 0.5996185714285714 0 1.3392857142857142s0.5996185714285714 1.3392857142857142 1.3392857142857142 1.3392857142857142h3.8963785714285715l0.43875 4.158385714285714 1.3802142857142856 13.081457142857143c0.18722142857142857 1.7745857142857142 1.6860000000000002 3.1172999999999997 3.4679571428571427 3.1172999999999997h13.304485714285713c1.5979285714285714 0 2.9939999999999998 -1.085142857142857 3.3827142857142856 -2.636892857142857l2.684785714285714 -10.714285714285714C30.446357142857142 7.482664285714285 28.776642857142857 5.357142857142857 26.511857142857142 5.357142857142857H8.211728571428571L7.772978571428571 1.1987592857142855C7.701064285714286 0.5172749999999999 7.1263499999999995 0 6.441085714285714 0H1.3392857142857142Zm8.379128571428572 19.637378571428574L8.494328571428571 8.035714285714285h18.01752857142857c0.5297142857142857 0 0.9105 0.49472142857142853 0.7845 0.9977571428571428l-2.684785714285714 10.714285714285714c-0.08914285714285713 0.35618571428571427 -0.4114285714285714 0.6093857142857143 -0.7845 0.6093857142857143H10.522585714285714c-0.41642142857142855 0 -0.7612714285714286 -0.3131357142857143 -0.8041714285714285 -0.7197642857142857ZM17.366764285714286 9.375c0.8876142857142857 0 1.6071428571428572 0.7195499999999999 1.6071428571428572 1.6071428571428572v1.6071428571428572h1.6071428571428572c0.8875928571428572 0 1.6071642857142856 0.7195499999999999 1.6071642857142856 1.6071428571428572s-0.7195714285714285 1.6071428571428572 -1.6071642857142856 1.6071428571428572h-1.6071428571428572v1.6071428571428572c0 0.8875928571428572 -0.7195285714285714 1.6071428571428572 -1.6071428571428572 1.6071428571428572 -0.8875928571428572 0 -1.6071428571428572 -0.7195499999999999 -1.6071428571428572 -1.6071428571428572v-1.6071428571428572h-1.6071428571428572c-0.8875928571428572 0 -1.6071428571428572 -0.7195499999999999 -1.6071428571428572 -1.6071428571428572s0.7195499999999999 -1.6071428571428572 1.6071428571428572 -1.6071428571428572h1.6071428571428572v-1.6071428571428572c0 -0.8875928571428572 0.7195499999999999 -1.6071428571428572 1.6071428571428572 -1.6071428571428572Zm8.499664285714285 18.214285714285715c0 -1.3313571428571427 -1.0791428571428572 -2.4107142857142856 -2.4107142857142856 -2.4107142857142856 -1.3313571428571427 0 -2.410628571428571 1.079357142857143 -2.410628571428571 2.4107142857142856S22.124357142857143 30 23.455714285714283 30c1.3315714285714284 0 2.4107142857142856 -1.079357142857143 2.4107142857142856 -2.4107142857142856ZM9.527228571428571 25.178571428571427c1.3314214285714285 0 2.4107142857142856 1.079357142857143 2.4107142857142856 2.4107142857142856S10.85865 30 9.527228571428571 30c-1.3314 0 -2.4107142857142856 -1.079357142857143 -2.4107142857142856 -2.4107142857142856s1.0793142857142857 -2.4107142857142856 2.4107142857142856 -2.4107142857142856Z"
-                                                                                                                clip-rule="evenodd"
-                                                                                                                stroke-width="2.1429">
-                                                                                                        </path>
-                                                                                                </g>
-                                                                                        </svg>
-                                                                                </a>
+                                                                                <div *ngIf="whatsappNumber" class="cart-controls">
+                                                                                        <button type="button"
+                                                                                                class="share-whatsapp cart-action"
+                                                                                                [class.is-hidden]="!getItemQuantityInCart(item)"
+                                                                                                (click)="removeFromCart($event, item)"
+                                                                                                aria-label="Quitar una unidad del carrito"
+                                                                                                title="Quitar una unidad">
+                                                                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                                                                        width="24" height="24"
+                                                                                                        viewBox="0 0 24 24" fill="none">
+                                                                                                        <path d="M5 12H19"
+                                                                                                                stroke="currentColor"
+                                                                                                                stroke-width="2.4"
+                                                                                                                stroke-linecap="round" />
+                                                                                                </svg>
+                                                                                        </button>
+                                                                                        <span class="cart-qty"
+                                                                                                [class.is-hidden]="!getItemQuantityInCart(item)">
+                                                                                                {{ getItemQuantityInCart(item) }}
+                                                                                        </span>
+                                                                                        <button type="button"
+                                                                                                class="share-whatsapp cart-action"
+                                                                                                (click)="addToCart($event, item)"
+                                                                                                aria-label="Agregar producto al carrito"
+                                                                                                title="Agregar al carrito">
+                                                                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                                                                        width="200" height="200"
+                                                                                                        viewBox="0 0 48 48">
+                                                                                                        <mask id="ipSAdd0">
+                                                                                                                <g fill="none"
+                                                                                                                        stroke-linejoin="round"
+                                                                                                                        stroke-width="4">
+                                                                                                                        <rect width="36"
+                                                                                                                                height="36"
+                                                                                                                                x="6" y="6"
+                                                                                                                                fill="#fff"
+                                                                                                                                stroke="#fff"
+                                                                                                                                rx="3" />
+                                                                                                                        <path stroke="#000"
+                                                                                                                                stroke-linecap="round"
+                                                                                                                                d="M24 16v16m-8-8h16" />
+                                                                                                                </g>
+                                                                                                        </mask>
+                                                                                                        <path fill="currentColor"
+                                                                                                                d="M0 0h48v48H0z"
+                                                                                                                mask="url(#ipSAdd0)" />
+                                                                                                </svg>
+                                                                                        </button>
+                                                                                </div>
                                                                         </div>
                                                                 </div>
                                                                 <div id="card-descripcion">
@@ -142,6 +165,20 @@
                                                 </div>
                                         </div>
                                         }
+
+                                        <button *ngIf="cartItemsCount"
+                                                type="button"
+                                                class="floating-cart"
+                                                [class.with-scroll-top]="scrollToTopVisible"
+                                                (click)="openCartConfirmation($event)"
+                                                aria-label="Abrir carrito y confirmar pedido"
+                                                title="Confirmar pedido">
+                                                <span class="floating-cart-badge">{{ cartItemsCount }}</span>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24" fill="none">
+                                                        <path 
+                                                                d="M9 20c0 1.1-.9 2-2 2s-1.99-.9-1.99-2S5.9 18 7 18s2 .9 2 2zm8-2c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2s2-.9 2-2s-.9-2-2-2zm.396-5a2 2 0 0 0 1.952-1.566L21 5H7V4a2 2 0 0 0-2-2H3v2h2v11a2 2 0 0 0 2 2h12a2 2 0 0 0-2-2H7v-2h10.396z" />
+                                                </svg>
+                                        </button>
 
                                         <a [routerLink]="['/menuonline', cliente, 'carta']"
                                                 class="btn button-add-cart checkout-button boton-volver">
