@@ -94,6 +94,7 @@ export class CategoriaComponent implements OnInit, OnDestroy {
         loading = true;
         visible = false;
         scrollToTopVisible = false;
+        deliveryWarningShown = false;
 
         zoomLevel: number = 1;
         zoomTransform: string = 'scale(1)';
@@ -460,6 +461,7 @@ export class CategoriaComponent implements OnInit, OnDestroy {
         addToCart(event: Event, item: any): void {
                 event.preventDefault();
                 event.stopPropagation();
+                const isFirstProductAdded = this.cartItemsCount === 0;
 
                 const key = this.getCartItemKey(item);
                 const existingItem = this.cartItems.find((cartItem) => cartItem.key === key);
@@ -474,6 +476,11 @@ export class CategoriaComponent implements OnInit, OnDestroy {
                                 precio: this.getItemPriceLabel(item),
                                 unitPrice: this.getItemUnitPrice(item),
                         });
+                }
+
+                if (isFirstProductAdded && !this.deliveryWarningShown) {
+                        this.showDeliveryTakeAwayWarning();
+                        this.deliveryWarningShown = true;
                 }
 
                 this.cdr.markForCheck();
@@ -553,6 +560,16 @@ export class CategoriaComponent implements OnInit, OnDestroy {
                 this.confirmationService.confirm({
                         header,
                         message,
+                        icon: 'pi pi-info-circle',
+                        acceptLabel: 'Entendido',
+                        rejectVisible: false,
+                });
+        }
+
+        private showDeliveryTakeAwayWarning(): void {
+                this.confirmationService.confirm({
+                        header: 'Aviso importante',
+                        message: 'Este menú es solo informativo. Los pedidos por WhatsApp son únicamente para delivery/take away. Si estás en el local, pedí al personal.',
                         icon: 'pi pi-info-circle',
                         acceptLabel: 'Entendido',
                         rejectVisible: false,
