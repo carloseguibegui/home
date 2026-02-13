@@ -2,7 +2,50 @@
 
 <!-- Spinner -->
 <app-spinner [@fadeInOut] *ngIf="loading"></app-spinner>
-<p-confirmDialog [style]="{ width: 'min(92vw, 460px)' }" ></p-confirmDialog>
+<p-confirmDialog [style]="{ width: 'min(92vw, 460px)' }"></p-confirmDialog>
+<p-dialog [(visible)]="cartDialogVisible" [modal]="true" [closable]="true" [draggable]="false" [resizable]="false"
+        [styleClass]="clienteClass"
+        [dismissableMask]="false" [closeOnEscape]="false" [style]="{ width: 'min(92vw, 520px)' }"
+        header="Confirmar pedido">
+        <div class="cart-dialog-content">
+                @for (cartItem of cartItems; track cartItem.key) {
+                <div class="cart-dialog-item">
+                        <div class="cart-dialog-item-info">
+                                <strong>{{ cartItem.nombre }}</strong>
+                                <span>{{ cartItem.precio || 'precio a confirmar' }}</span>
+                        </div>
+                        <div class="cart-dialog-qty-controls">
+                                <button type="button" class="cart-dialog-qty-btn"
+                                        (click)="updateCartQuantityFromDialog(cartItem.key, -1)"
+                                        aria-label="Restar una unidad">
+                                        -
+                                </button>
+                                <span class="cart-dialog-qty">{{ cartItem.cantidad }}</span>
+                                <button type="button" class="cart-dialog-qty-btn"
+                                        (click)="updateCartQuantityFromDialog(cartItem.key, 1)"
+                                        aria-label="Sumar una unidad">
+                                        +
+                                </button>
+                        </div>
+                </div>
+                }
+
+                <div class="cart-dialog-total">
+                        <span>Total productos: {{ cartItemsCount }}</span>
+                        <strong>Importe total: {{ cartTotalLabel }}</strong>
+                </div>
+
+                <div class="cart-dialog-actions">
+                        <button type="button" class="cart-dialog-secondary" (click)="cartDialogVisible = false">
+                                Seguir viendo
+                        </button>
+                        <button type="button" class="cart-dialog-primary" (click)="sendCartToWhatsapp()"
+                                [disabled]="!cartItemsCount">
+                                Enviar por WhatsApp
+                        </button>
+                </div>
+        </div>
+</p-dialog>
 
 <!-- Contenido principal -->
 <div [@fadeContent]>
@@ -85,7 +128,8 @@
                                                                                         </svg>
                                                                                 </button>
                                                                                 }
-                                                                                <div *ngIf="whatsappNumber" class="cart-controls">
+                                                                                <div *ngIf="whatsappNumber"
+                                                                                        class="cart-controls">
                                                                                         <button type="button"
                                                                                                 class="share-whatsapp cart-action"
                                                                                                 [class.is-hidden]="!getItemQuantityInCart(item)"
@@ -93,8 +137,10 @@
                                                                                                 aria-label="Quitar una unidad del carrito"
                                                                                                 title="Quitar una unidad">
                                                                                                 <svg xmlns="http://www.w3.org/2000/svg"
-                                                                                                        width="24" height="24"
-                                                                                                        viewBox="0 0 24 24" fill="none">
+                                                                                                        width="24"
+                                                                                                        height="24"
+                                                                                                        viewBox="0 0 24 24"
+                                                                                                        fill="none">
                                                                                                         <path d="M5 12H19"
                                                                                                                 stroke="currentColor"
                                                                                                                 stroke-width="2.4"
@@ -103,7 +149,9 @@
                                                                                         </button>
                                                                                         <span class="cart-qty"
                                                                                                 [class.is-hidden]="!getItemQuantityInCart(item)">
-                                                                                                {{ getItemQuantityInCart(item) }}
+                                                                                                {{
+                                                                                                getItemQuantityInCart(item)
+                                                                                                }}
                                                                                         </span>
                                                                                         <button type="button"
                                                                                                 class="share-whatsapp cart-action"
@@ -111,15 +159,18 @@
                                                                                                 aria-label="Agregar producto al carrito"
                                                                                                 title="Agregar al carrito">
                                                                                                 <svg xmlns="http://www.w3.org/2000/svg"
-                                                                                                        width="200" height="200"
+                                                                                                        width="200"
+                                                                                                        height="200"
                                                                                                         viewBox="0 0 48 48">
-                                                                                                        <mask id="ipSAdd0">
+                                                                                                        <mask
+                                                                                                                id="ipSAdd0">
                                                                                                                 <g fill="none"
                                                                                                                         stroke-linejoin="round"
                                                                                                                         stroke-width="4">
                                                                                                                         <rect width="36"
                                                                                                                                 height="36"
-                                                                                                                                x="6" y="6"
+                                                                                                                                x="6"
+                                                                                                                                y="6"
                                                                                                                                 fill="#fff"
                                                                                                                                 stroke="#fff"
                                                                                                                                 rx="3" />
@@ -166,16 +217,14 @@
                                         </div>
                                         }
 
-                                        <button *ngIf="cartItemsCount"
-                                                type="button"
-                                                class="floating-cart"
+                                        <button *ngIf="cartItemsCount" type="button" class="floating-cart"
                                                 [class.with-scroll-top]="scrollToTopVisible"
                                                 (click)="openCartConfirmation($event)"
-                                                aria-label="Abrir carrito y confirmar pedido"
-                                                title="Confirmar pedido">
+                                                aria-label="Abrir carrito y confirmar pedido" title="Confirmar pedido">
                                                 <span class="floating-cart-badge">{{ cartItemsCount }}</span>
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24" fill="none">
-                                                        <path 
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"
+                                                        viewBox="0 0 24 24" fill="none">
+                                                        <path
                                                                 d="M9 20c0 1.1-.9 2-2 2s-1.99-.9-1.99-2S5.9 18 7 18s2 .9 2 2zm8-2c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2s2-.9 2-2s-.9-2-2-2zm.396-5a2 2 0 0 0 1.952-1.566L21 5H7V4a2 2 0 0 0-2-2H3v2h2v11a2 2 0 0 0 2 2h12a2 2 0 0 0-2-2H7v-2h10.396z" />
                                                 </svg>
                                         </button>

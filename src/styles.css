@@ -22,3 +22,7 @@
 body {
         font-family: 'Nunito', system-ui, sans-serif;
 }
+
+html {
+        scrollbar-gutter: stable;
+}

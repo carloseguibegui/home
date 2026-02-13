@@ -23,6 +23,7 @@ import { Subject } from 'rxjs';
 import { debounceTime, takeUntil, filter } from 'rxjs/operators';
 import { ConfirmationService } from 'primeng/api';
 import { ConfirmDialog } from 'primeng/confirmdialog';
+import { Dialog } from 'primeng/dialog';
 
 @Component({
         selector: 'app-categoria',
@@ -38,6 +39,7 @@ import { ConfirmDialog } from 'primeng/confirmdialog';
                 SliderComponent,
                 SpinnerComponent,
                 ConfirmDialog,
+                Dialog,
         ],
         templateUrl: './categoria.component.html',
         styleUrls: ['./categoria.component.css'],
@@ -95,6 +97,7 @@ export class CategoriaComponent implements OnInit, OnDestroy {
         visible = false;
         scrollToTopVisible = false;
         deliveryWarningShown = false;
+        cartDialogVisible = false;
 
         zoomLevel: number = 1;
         zoomTransform: string = 'scale(1)';
@@ -132,6 +135,10 @@ export class CategoriaComponent implements OnInit, OnDestroy {
 
         get cartItemsCount(): number {
                 return this.cartItems.reduce((total, item) => total + item.cantidad, 0);
+        }
+
+        get cartTotalLabel(): string {
+                return this.buildTotalLabel();
         }
 
         async ngOnInit(): Promise<void> {
@@ -479,7 +486,7 @@ export class CategoriaComponent implements OnInit, OnDestroy {
                 }
 
                 if (isFirstProductAdded && !this.deliveryWarningShown) {
-                        this.showDeliveryTakeAwayWarning();
+                        this.showDeliveryTakeAwayWarning(key);
                         this.deliveryWarningShown = true;
                 }
 
@@ -527,30 +534,44 @@ export class CategoriaComponent implements OnInit, OnDestroy {
                         return;
                 }
 
-                this.confirmationService.confirm({
-                        header: 'Confirmar pedido',
-                        message: `${this.buildCartSummaryForDialog()}<br><br>¿Querés enviar este pedido por WhatsApp?`,
-                        icon: 'pi pi-exclamation-triangle',
-                        acceptLabel: 'Enviar por WhatsApp',
-                        rejectLabel: 'Seguir viendo',
-                        rejectVisible: true,
-                        accept: () => {
-                                const url = this.buildWhatsappCartLink();
-                                if (url && url !== '#') {
-                                        window.open(url, '_blank', 'noopener');
-                                        this.cartItems = [];
-                                        this.cdr.markForCheck();
-                                }
-                        }
-                });
+                this.cartDialogVisible = true;
+                this.cdr.markForCheck();
+        }
+
+        updateCartQuantityFromDialog(itemKey: string, delta: number): void {
+                const existingIndex = this.cartItems.findIndex((cartItem) => cartItem.key === itemKey);
+                if (existingIndex === -1) return;
+
+                const existingItem = this.cartItems[existingIndex];
+                existingItem.cantidad += delta;
+
+                if (existingItem.cantidad <= 0) {
+                        this.cartItems.splice(existingIndex, 1);
+                }
+
+                if (!this.cartItemsCount) {
+                        this.cartDialogVisible = false;
+                }
+
+                this.cdr.markForCheck();
+        }
+
+        sendCartToWhatsapp(): void {
+                const url = this.buildWhatsappCartLink();
+                if (url && url !== '#') {
+                        window.open(url, '_blank', 'noopener');
+                        this.cartItems = [];
+                        this.cartDialogVisible = false;
+                        this.cdr.markForCheck();
+                }
         }
 
         showVeganInfo(event: Event): void {
-                this.showProductInfoDialog(event, 'Producto vegano', 'Este producto es vegano.');
+                this.showProductInfoDialog(event, 'Producto vegano', 'Este producto está elaborado 100% con ingredientes de origen vegetal. No contiene carnes, lácteos, huevos ni ningún derivado animal, siendo una opción ideal para personas veganas o quienes buscan una alternativa más liviana y consciente.');
         }
 
         showGlutenFreeInfo(event: Event): void {
-                this.showProductInfoDialog(event, 'Producto sin gluten', 'Este producto no contiene gluten.');
+                this.showProductInfoDialog(event, 'Producto sin gluten', 'Nuestro cocina se adapta especialmente para evitar la contaminación cruzada, <b>de todas maneras no lo podemos garantizar 100%, ya que no somos una cocina sin TACC</b>.');
         }
 
         private showProductInfoDialog(event: Event, header: string, message: string): void {
@@ -566,13 +587,22 @@ export class CategoriaComponent implements OnInit, OnDestroy {
                 });
         }
 
-        private showDeliveryTakeAwayWarning(): void {
+        private showDeliveryTakeAwayWarning(cartItemKey: string): void {
                 this.confirmationService.confirm({
                         header: 'Aviso importante',
                         message: 'Este menú es solo informativo. Los pedidos por WhatsApp son únicamente para delivery/take away. Si estás en el local, pedí al personal.',
                         icon: 'pi pi-info-circle',
-                        acceptLabel: 'Entendido',
-                        rejectVisible: false,
+                        acceptLabel: 'Continuar',
+                        rejectLabel: 'Cancelar',
+                        rejectVisible: true,
+                        closeOnEscape: false,
+                        reject: () => {
+                                const existingIndex = this.cartItems.findIndex((cartItem) => cartItem.key === cartItemKey);
+                                if (existingIndex !== -1) {
+                                        this.cartItems.splice(existingIndex, 1);
+                                        this.cdr.markForCheck();
+                                }
+                        }
                 });
         }
 
@@ -596,19 +626,11 @@ export class CategoriaComponent implements OnInit, OnDestroy {
                 lines.push('');
                 lines.push(`Total de productos: ${this.cartItemsCount}`);
                 lines.push(`*Importe total: ${this.buildTotalLabel()}*`);
-                if (url) {
-                        lines.push(`Menu: ${url}`);
-                }
+                // if (url) {
+                //         lines.push(`Menu: ${url}`);
+                // }
 
                 return lines.join('\n');
-        }
-
-        private buildCartSummaryForDialog(): string {
-                const summaryItems = this.cartItems
-                        .map((item) => `- ${item.cantidad}x ${item.nombre}`)
-                        .join('<br>');
-
-                return `${summaryItems}<br><br>Total: ${this.cartItemsCount} producto(s).<br><strong>Importe total: ${this.buildTotalLabel()}</strong>`;
         }
 
         private getCartItemKey(item: any): string {

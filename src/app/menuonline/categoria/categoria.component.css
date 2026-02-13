@@ -191,6 +191,97 @@ html {
         fill: currentColor;
 }
 
+.cart-dialog-content {
+        display: flex;
+        flex-direction: column;
+        gap: 0.9rem;
+}
+
+.cart-dialog-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.8rem;
+        padding: 0.55rem 0;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.cart-dialog-item-info {
+        display: flex;
+        flex-direction: column;
+        gap: 0.2rem;
+}
+
+.cart-dialog-item-info strong {
+        font-size: 0.96rem;
+        line-height: 1.2;
+}
+
+.cart-dialog-item-info span {
+        font-size: 0.85rem;
+        opacity: 0.8;
+}
+
+.cart-dialog-qty-controls {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+}
+
+.cart-dialog-qty-btn {
+        width: 32px;
+        height: 32px;
+        border-radius: 999px;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        background: #fff;
+        font-weight: 700;
+        line-height: 1;
+}
+
+.cart-dialog-qty {
+        min-width: 24px;
+        text-align: center;
+        font-weight: 700;
+}
+
+.cart-dialog-total {
+        display: flex;
+        flex-direction: column;
+        gap: 0.2rem;
+        padding-top: 0.2rem;
+}
+
+.cart-dialog-actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 0.6rem;
+        padding-top: 0.3rem;
+}
+
+.cart-dialog-secondary,
+.cart-dialog-primary {
+        border: 0;
+        border-radius: 8px;
+        padding: 0.5rem 0.8rem;
+        font-size: 0.9rem;
+        font-weight: 600;
+}
+
+.cart-dialog-secondary {
+        background: #e9ecef;
+        color: #222;
+}
+
+.cart-dialog-primary {
+        background: var(--primary-color, black);
+        color: #fff;
+}
+
+.cart-dialog-primary:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+}
+
 @media (max-width: 768px) {
         .floating-cart {
                 right: 0.8rem;
@@ -201,6 +292,15 @@ html {
 
         .floating-cart.with-scroll-top {
                 bottom: 8.2rem;
+        }
+
+        .cart-dialog-actions {
+                justify-content: stretch;
+        }
+
+        .cart-dialog-secondary,
+        .cart-dialog-primary {
+                flex: 1;
         }
 }
 
@@ -1511,6 +1611,7 @@ html {
         .floating-cart svg {
                 fill: var(--negro);
         }
+
 }
 
 
