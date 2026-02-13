@@ -159,3 +159,70 @@
 #btn-nav{
         border: none;
 }
+
+.whatsapp-ecommerce {
+        background: linear-gradient(180deg, #f4f8ff 0%, #ffffff 100%);
+}
+
+.wa-value-card {
+        background: #ffffff;
+        border: 1px solid #e5ecff;
+        border-radius: 18px;
+        box-shadow: 0 16px 40px rgba(23, 34, 79, 0.08);
+        padding: 1.7rem;
+}
+
+.wa-value-card h4 {
+        margin-bottom: 1rem;
+        font-weight: 800;
+        color: #1a2250;
+}
+
+.wa-value-card ul {
+        margin: 0;
+        padding-left: 1.1rem;
+}
+
+.wa-value-card li {
+        margin-bottom: 0.55rem;
+        color: #3d476a;
+}
+
+.wa-step-card {
+        background: #ffffff;
+        border: 1px solid #dde7ff;
+        border-radius: 16px;
+        height: 100%;
+        padding: 1.4rem 1.2rem;
+        box-shadow: 0 10px 28px rgba(12, 28, 68, 0.07);
+}
+
+.wa-step-number {
+        width: 36px;
+        height: 36px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 999px;
+        background: #6f4eff;
+        color: #fff;
+        font-weight: 700;
+        margin-bottom: 0.8rem;
+}
+
+.wa-step-card h5 {
+        font-size: 1.05rem;
+        margin-bottom: 0.5rem;
+        color: #1a2250;
+}
+
+.wa-step-card p {
+        margin: 0;
+        color: #4a5473;
+}
+
+@media (max-width: 991px) {
+        #whatsapp-ecommerce .section-title {
+                text-align: center !important;
+        }
+}
