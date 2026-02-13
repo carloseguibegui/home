@@ -146,7 +146,7 @@ html {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        background: var(--primary-color, #1e392e);
+        background: var(--primary-color,black);
         color: #fff;
         box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
         z-index: 15;
@@ -273,7 +273,7 @@ html {
 }
 
 .cart-dialog-primary {
-        background: var(--primary-color, black);
+        background: #25D366;
         color: #fff;
 }
 
