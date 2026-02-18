@@ -34,7 +34,10 @@ Author: GrayGrids
 
         // show or hide the back-top-top button
         var backToTo = document.querySelector(".scroll-top");
-        if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+        var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+        var scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
+        var showAfter = scrollableHeight / 2;
+        if (scrollableHeight > 0 && scrollTop > showAfter) {
             backToTo.style.display = "flex";
         } else {
             backToTo.style.display = "none";
