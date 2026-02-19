@@ -385,6 +385,12 @@ export class CategoriaComponent implements OnInit, OnDestroy {
                                         productos = [...tostados, ...otros];
                                 }
 
+                                // ✅ Lógica especial para Foster Tandil:
+                                // productos con displayOrder se insertan en la posición indicada
+                                if (this.cliente.toLowerCase() === 'foster_tandil') {
+                                        productos = this.aplicarDisplayOrder(productos);
+                                }
+
                                 this.items = productos.map((p: any) => ({
                                         ...p,
                                         _variantesEntries: p?.variantes ? Object.entries(p.variantes) : null,
@@ -407,6 +413,50 @@ export class CategoriaComponent implements OnInit, OnDestroy {
                         this.items = [];
                         this.itemsOriginales = [];
                 }
+        }
+
+        private aplicarDisplayOrder(productos: any[]): any[] {
+                type ProductoConOrden = {
+                        producto: any;
+                        position: number | null;
+                        index: number;
+                };
+
+                type ProductoConOrdenValido = {
+                        producto: any;
+                        position: number;
+                        index: number;
+                };
+
+                const parsePosition = (value: any): number | null => {
+                        const n = Number(value);
+                        if (!Number.isFinite(n)) return null;
+                        // Se toma displayOrder como posición 1-based (1 = primer lugar)
+                        return Math.max(Math.floor(n) - 1, 0);
+                };
+
+                const conDisplayOrder = productos
+                        .map((p: any, index: number) => ({
+                                producto: p,
+                                position: parsePosition(p?.displayOrder),
+                                index
+                        }) as ProductoConOrden)
+                        .filter((entry: ProductoConOrden): entry is ProductoConOrdenValido => entry.position !== null)
+                        .sort((a: any, b: any) =>
+                                a.position === b.position ? a.index - b.index : a.position - b.position
+                        );
+
+                if (!conDisplayOrder.length) return productos;
+
+                const sinDisplayOrder = productos.filter((p: any) => parsePosition(p?.displayOrder) === null);
+                const resultado = [...sinDisplayOrder];
+
+                for (const entry of conDisplayOrder) {
+                        const targetIndex = Math.min(Math.max(entry.position, 0), resultado.length);
+                        resultado.splice(targetIndex, 0, entry.producto);
+                }
+
+                return resultado;
         }
 
         /**
