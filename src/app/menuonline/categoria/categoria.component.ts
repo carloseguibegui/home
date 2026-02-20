@@ -394,7 +394,11 @@ export class CategoriaComponent implements OnInit, OnDestroy {
                                 this.items = productos.map((p: any) => ({
                                         ...p,
                                         _variantesEntries: p?.variantes ? Object.entries(p.variantes) : null,
-                                        _extrasEntries: p?.extras ? Object.entries(p.extras) : null
+                                        _extrasEntries: p?.extras
+                                                ? Object.entries(p.extras).sort((a, b) =>
+                                                        a[0].localeCompare(b[0], 'es', { sensitivity: 'base' })
+                                                )
+                                                : null
                                 }));
                                 console.log('items', this.items);
                                 this.itemsOriginales = this.items.map((p: any) => p);
