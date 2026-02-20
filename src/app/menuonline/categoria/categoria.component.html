@@ -204,13 +204,21 @@
                                                                         ${{ item.precio }}
                                                                 </div>
                                                                 }
-                                                                @if (item._extrasEntries) {
-                                                                @for (e of item._extrasEntries; track e[0]) {
-                                                                <div class="btn rounded-3 d-block extras"
-                                                                        id="boton-card">
-                                                                        {{ e[0] }}: ${{ e[1] }}
+                                                                @if (item._extrasEntries?.length) {
+                                                                <div class="extras-list mt-3">
+                                                                        @for (e of item._extrasEntries; track $index; let i = $index) {
+                                                                        @if (i < 4) {
+                                                                        <span class="extras-chip">
+                                                                                {{ $any(e)[0] }} +${{ $any(e)[1] }}
+                                                                        </span>
+                                                                        }
+                                                                        }
+                                                                        @if (item._extrasEntries.length > 4) {
+                                                                        <span class="extras-chip extras-more">
+                                                                                +{{ item._extrasEntries.length - 4 }}
+                                                                        </span>
+                                                                        }
                                                                 </div>
-                                                                }
                                                                 }
                                                         </div>
                                                 </div>
