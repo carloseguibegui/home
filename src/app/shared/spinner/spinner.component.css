@@ -207,3 +207,29 @@
                 width: 200px;
         }
 }
+
+/* baro_tandil */
+:host-context(.cliente-baro_tandil) {
+        .spinner-overlay {
+                position: fixed;
+                inset: 0;
+                z-index: 9999;
+                background: linear-gradient(95deg, #979797 0%, #f1f1f1 100%);
+                background-size: 200% 200%;
+                animation: gradientMove .8s ease-in-out infinite alternate;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+
+        }
+
+        .spinner {
+                border-top: 8px solid #4b4b4b !important;
+        }
+
+        .spinner-logo {
+                background-image: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fbaro_tandil%2Flogo0.webp?alt=media') !important;
+                width: 200px;
+        }
+}
