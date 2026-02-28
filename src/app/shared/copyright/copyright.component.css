@@ -352,3 +352,21 @@
 :host-context(.cliente-caminito_tandil) .copyright-logo {
         background-image: url('../../../../public/assets/landing/FInal-02.png');
 }
+
+:host-context(.cliente-baro_tandil) {
+        --tipografia: black;
+
+        * {
+                color: var(--tipografia);
+                font-family: var(--font-family) !important;
+                font-optical-sizing: auto;
+                font-style: normal;
+        }
+
+        .copyright a {
+                color: var(--tipografia);
+        }
+}
+
+:host-context(.cliente-baro_tandil) .copyright-logo {
+        background-image: url('../../../../public/assets/landing/logo-marketingeros3.webp');}
