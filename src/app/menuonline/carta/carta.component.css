@@ -713,12 +713,12 @@
         }
 }
 
-/* .cliente-baro_tandil */
-.cliente-baro_tandil {
+/* .cliente-ola_pizza */
+.cliente-ola_pizza {
         --negro: black;
         --crema: #f5efe6;
         --dorado: #c9a46a;
-        --font-family: "Cormorant Garamond", serif;
+        --font-family: sans-serif;
         --primary-color: var(--negro);
         --secondary-color: var(--negro);
         --text-color: var(--negro);
