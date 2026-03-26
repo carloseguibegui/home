@@ -70,6 +70,7 @@
                                         <div class="col-md-4 px-4 text-center" id="cart-item">
                                                 <div class="card shadow-sm border-3 rounded-5 overflow-hidden div-carta position-relative"
                                                         style="max-width: 400px;">
+                                                        @if (!item.imagen?.includes('fondo-claro.webp')) {
                                                         <div class="blurred-load text-center position-relative"
                                                                 (click)="openLightbox(item.imagen)"
                                                                 [style.backgroundImage]="'url(' + item.small_imagen + ')'">
@@ -81,6 +82,7 @@
                                                                         width="800" height="667"
                                                                         (error)="item.imagen = 'assets/placeholder.png'" />
                                                         </div>
+                                                        }
                                                         <div class="blurred-img card-body text-center px-4 pb-4 position-relative"
                                                                 id="cuerpo-card">
                                                                 <div id="card-nombre" class="pb-2 px-1">
