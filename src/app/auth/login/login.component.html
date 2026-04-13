@@ -27,6 +27,12 @@
                                                         <form #loginForm="ngForm"
                                                                 (ngSubmit)="isLogin ? onLogin() : onRegister()"
                                                                 class="login-form">
+                                                                <div *ngIf="errorMessage" class="auth-message auth-message-error">
+                                                                        {{ errorMessage }}
+                                                                </div>
+                                                                <div *ngIf="successMessage" class="auth-message auth-message-success">
+                                                                        {{ successMessage }}
+                                                                </div>
                                                                 <!-- Email -->
                                                                 <div class="form-group mb-4 wow fadeInUp"
                                                                         data-wow-delay=".6s">

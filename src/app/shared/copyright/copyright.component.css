@@ -300,7 +300,7 @@
 
 :host-context(.cliente-foster_tandil) {
         --tipografia: #ffffff;
-        --font-family: "Fraunces", serif;
+        --font-family: var(--app-display-font);
 
         * {
                 font-family: var(--font-family) !important;
@@ -369,4 +369,25 @@
 }
 
 :host-context(.cliente-baro_tandil) .copyright-logo {
-        background-image: url('../../../../public/assets/landing/logo-marketingeros3.webp');}
+        background-image: url('../../../../public/assets/landing/logo-marketingeros3.webp');
+}
+
+
+:host-context(.cliente-mode_usa) {
+        --tipografia: black;
+
+        * {
+                color: var(--tipografia);
+                font-family: var(--font-family) !important;
+                font-optical-sizing: auto;
+                font-style: normal;
+        }
+
+        .copyright a {
+                color: var(--tipografia);
+        }
+}
+
+:host-context(.cliente-mode_usa) .copyright-logo {
+        background-image: url('../../../../public/assets/landing/logo-marketingeros3.webp');
+}

@@ -226,3 +226,15 @@ input[type="text"] {
                 color: var(--marron);
         }
 }
+
+/* Cliente: mode_usa */
+.cliente-mode_usa {
+        --rosa: #b3017d;
+
+        input {
+                font-family: var(--font-family);
+                background-color: white;
+                border-color: var(--rosa);
+                color: var(--rosa);
+        }
+}

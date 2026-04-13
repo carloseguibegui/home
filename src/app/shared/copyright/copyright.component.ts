@@ -12,10 +12,4 @@ export class CopyrightComponent {
   @Input() marginBotClassAnchor: string = ''; 
   @Input() marginBotClassDiv: string = ''; 
   @Input() cliente: string = ''; 
-
-
-  ngOnInit() {
-    // Aquí podrías agregar lógica adicional si es necesario
-    console.log('cliente',this.cliente)
-  }
 }

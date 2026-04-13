@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
+import { Component, DestroyRef, ViewChild, ElementRef, inject } from '@angular/core';
 import { MenuService } from '../../services/menu.service';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { Canvg } from 'canvg';
@@ -26,20 +26,8 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { AuthService } from '../../services/auth.service';
 import { ClienteService } from '../../services/cliente.service';
 import { DatePickerModule } from 'primeng/datepicker';
-
-interface Giftcard {
-  "id": string,
-  "codigo": string,                // Código único o QR/barcode
-  "beneficiario": string,              // (opcional) si se asigna a alguien
-  "descripcion": string,
-  "valor": number,                        // Cantidad de usos o valor monetario
-  "estado": string,               // vigente | usada | expirada
-  "fechaCreacion": Date,
-  "fechaUso": Date,
-  "fechaExpiracion": Date, // Fecha de expiración
-  // "historial": Array<Map<string, any>> // Array de objetos con fecha y estado
-  // { "fecha": "2025-07-08T10:00:00Z", "accion": "creada", "usuario": "admin" }
-}
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { Giftcard } from '../../models/app.models';
 
 @Component({
   selector: 'app-giftcards',
@@ -63,13 +51,14 @@ interface Giftcard {
 })
 
 export class GiftcardsComponent {
+  private readonly destroyRef = inject(DestroyRef);
 
 
   displayImageDialog: boolean = false;
   nombreCliente: string = '';
   giftcardPreviewUrl: string | null = null;
   @ViewChild('giftcardPreview') giftcardPreview!: ElementRef;
-  giftcards: any = [];
+  giftcards: Giftcard[] = [];
   qrCodeDataUrl: string | null = null;
   displayDialog = false;
   isEdit = false;
@@ -82,7 +71,7 @@ export class GiftcardsComponent {
     { estado: 'Expirada', value: 'Expirada' }
   ];
   // Para el formulario
-  giftcardSeleccionada: any = {};
+  giftcardSeleccionada: Partial<Giftcard> = {};
 
   deleteDialogVisible = false;
   logoClienteUrl = '';
@@ -111,6 +100,19 @@ export class GiftcardsComponent {
       950: '{purple.950}'
     });
     this.loading = true;
+    this.menuService.giftCardsData$
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe({
+        next: (giftcards) => {
+          this.giftcards = giftcards;
+          this.loading = false;
+        },
+        error: (error) => {
+          console.error('Error al cargar giftcards:', error);
+          this.loading = false;
+        }
+      });
+
     this.authService.getUsuarioActivo().then(async usuario => {
       if (usuario && usuario.clienteId) {
         this.clienteId = usuario.clienteId;
@@ -118,23 +120,14 @@ export class GiftcardsComponent {
         this.nombreCliente = await this.clienteService.getNombreCliente(this.clienteId);
         this.loadGiftcards();
       } else {
-        this.router.navigate(['/login']);
+        this.router.navigate(['/auth/login']);
       }
     });
   }
 
   async loadGiftcards() {
+    this.loading = true;
     this.giftcards = await this.menuService.loadGiftcards(this.clienteId, true);
-    this.menuService.giftCardsData$.subscribe({
-      next: (giftcards) => {
-        this.giftcards = giftcards;
-        this.loading = false;
-      },
-      error: (error) => {
-        console.error('Error al cargar giftcards:', error);
-        this.loading = false;
-      }
-    })
   }
 
 
@@ -163,6 +156,11 @@ export class GiftcardsComponent {
 
   async onAcceptDelete() {
     this.isLoading = true;
+    if (!this.giftcardSeleccionada.id) {
+      this.isLoading = false;
+      return;
+    }
+
     await this.menuService.deleteGiftcard(this.clienteId, this.giftcardSeleccionada.id)
       .then(async () => {
         // await this.cargarCategorias();
@@ -226,7 +224,7 @@ export class GiftcardsComponent {
       this.giftcardSeleccionada.colorFuente = '#000000';
     }
     if (this.giftcardSeleccionada.id) {
-      await this.menuService.updateGiftcard(this.clienteId, this.giftcardSeleccionada.id, this.giftcardSeleccionada)
+      await this.menuService.updateGiftcard(this.clienteId, this.giftcardSeleccionada.id, this.giftcardSeleccionada as Giftcard)
         .then(async () => {
           await this.menuService.loadGiftcards(this.clienteId, true); // Llama a Firestore y actualiza el observable
           this.messageService.add({ severity: 'success', summary: 'Actualizado', detail: 'Giftcard actualizada correctamente.' });
@@ -237,7 +235,7 @@ export class GiftcardsComponent {
     } else {
       const now = new Date();
       this.giftcardSeleccionada['fechaCreacion'] = now;
-      await this.menuService.addGiftcard(this.clienteId, this.giftcardSeleccionada)
+      await this.menuService.addGiftcard(this.clienteId, this.giftcardSeleccionada as Giftcard)
         .then(async () => {
           await this.menuService.loadGiftcards(this.clienteId, true); // Llama a Firestore y actualiza el observable
           this.messageService.add({ severity: 'success', summary: 'Creada', detail: 'Giftcard creada correctamente.' });
@@ -252,9 +250,10 @@ export class GiftcardsComponent {
   }
 
   // Llama esto cuando selecciones una giftcard
-  async generarImagenGiftcard() {
+	  async generarImagenGiftcard() {
     // Genera SVG dinámico para la giftcard
     const logoBase64 = this.logoClienteBase64 || 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAMAAACahl6sAAAAA1BMVEUAAACnej3aAAAASElEQVR4nO3BMQEAAAgDoJvc6FEOhAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgH8BzQAAZQGvVwAAAABJRU5ErkJggg==';
+    const fechaExpiracion = this.toDate(this.giftcardSeleccionada.fechaExpiracion);
     const svg = `
       <svg xmlns='http://www.w3.org/2000/svg' width='550' height='350'>
         <rect x='0' y='0' width='550' height='350' rx='16' fill='${this.giftcardSeleccionada.colorFondo || '#fff'}'/>
@@ -263,7 +262,7 @@ export class GiftcardsComponent {
         <text x='50%' y='160' text-anchor='middle' font-size='22' fill='${this.giftcardSeleccionada.colorFuente || '#000'}' font-family='Nunito'>De: ${this.giftcardSeleccionada.de}</text>
         <text x='50%' y='200' text-anchor='middle' font-size='22' fill='${this.giftcardSeleccionada.colorFuente || '#000'}' font-family='Nunito'>Para: ${this.giftcardSeleccionada.para}</text>
         <text x='50%' y='240' text-anchor='middle' font-size='22' fill='${this.giftcardSeleccionada.colorFuente || '#000'}' font-family='Nunito'>Vale por: ${this.giftcardSeleccionada.valePor}</text>
-        <text x='50%' y='280' text-anchor='middle' font-size='18' fill='${this.giftcardSeleccionada.colorFuente || '#000'}' font-family='Nunito'>Válida hasta: ${this.giftcardSeleccionada.fechaExpiracion ? (new Date(this.giftcardSeleccionada.fechaExpiracion)).toLocaleDateString() : ''}</text>
+        <text x='50%' y='280' text-anchor='middle' font-size='18' fill='${this.giftcardSeleccionada.colorFuente || '#000'}' font-family='Nunito'>Válida hasta: ${fechaExpiracion ? fechaExpiracion.toLocaleDateString() : ''}</text>
       </svg>
     `;
     // Crea canvas y renderiza SVG con canvg
@@ -285,11 +284,11 @@ export class GiftcardsComponent {
     if (!giftcardId) {
       const now = new Date();
       this.giftcardSeleccionada['fechaCreacion'] = now;
-      giftcardId = await this.menuService.addGiftcard(this.clienteId, this.giftcardSeleccionada);
+      giftcardId = await this.menuService.addGiftcard(this.clienteId, this.giftcardSeleccionada as Giftcard);
       this.messageService.add({ severity: 'success', summary: 'Creada', detail: 'Giftcard creada correctamente.' });
     } else {
       this.messageService.add({ severity: 'success', summary: 'Actualizada', detail: 'Giftcard actualizada correctamente.' });
-      await this.menuService.updateGiftcard(this.clienteId, giftcardId, this.giftcardSeleccionada);
+      await this.menuService.updateGiftcard(this.clienteId, giftcardId, this.giftcardSeleccionada as Giftcard);
     }
 
     // 2. Sube la imagen a Storage y guarda la URL en la giftcard
@@ -306,7 +305,7 @@ export class GiftcardsComponent {
       await this.menuService.updateGiftcard(this.clienteId, giftcardId, {
         ...this.giftcardSeleccionada,
         imagen: imageUrl
-      });
+      } as Giftcard);
       this.messageService.add({ severity: 'success', summary: 'Imagen subida', detail: 'Imagen de giftcard subida y guardada.' });
     }
     this.loadGiftcards()
@@ -325,9 +324,10 @@ export class GiftcardsComponent {
 
   descargarGiftcardImagen() {
     if (this.giftcardPreviewUrl) {
+      const fechaExpiracion = this.toDate(this.giftcardSeleccionada.fechaExpiracion);
       const link = document.createElement('a');
       link.href = this.giftcardPreviewUrl;
-      link.download = `giftcard_${this.giftcardSeleccionada.de.replaceAll(' ', '_').toLowerCase()}_${this.giftcardSeleccionada.para.replaceAll(' ', '_').toLowerCase()}_${this.giftcardSeleccionada.fechaExpiracion ? (new Date(this.giftcardSeleccionada.fechaExpiracion)).toLocaleDateString().replaceAll('/', '_') : ''}.png`;
+      link.download = `giftcard_${this.giftcardSeleccionada.de?.replaceAll(' ', '_').toLowerCase() || 'de'}_${this.giftcardSeleccionada.para?.replaceAll(' ', '_').toLowerCase() || 'para'}_${fechaExpiracion ? fechaExpiracion.toLocaleDateString().replaceAll('/', '_') : ''}.png`;
       link.click();
       this.messageService.add({ severity: 'success', summary: 'Descargada', detail: 'Giftcard descargada correctamente.' });
     }
@@ -418,15 +418,23 @@ export class GiftcardsComponent {
   }
 
   formatearFecha(fecha: any): string {
-    if (!fecha) return '';
-    let dateObj: Date;
-    if (fecha instanceof Date) {
-      dateObj = fecha;
-    } else if (fecha.seconds) {
-      dateObj = new Date(fecha.seconds * 1000);
-    } else {
-      dateObj = new Date(fecha);
-    }
+    const dateObj = this.toDate(fecha);
+    if (!dateObj) return '';
     return dateObj.toLocaleString('es-AR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit' });
+  }
+
+  private toDate(fecha: Giftcard['fechaExpiracion'] | Date | string | number | null | undefined): Date | null {
+    if (!fecha) return null;
+    if (fecha instanceof Date) return fecha;
+    if (typeof fecha === 'object' && 'seconds' in fecha && typeof fecha.seconds === 'number') {
+      return new Date(fecha.seconds * 1000);
+    }
+
+    if (typeof fecha !== 'string' && typeof fecha !== 'number') {
+      return null;
+    }
+
+    const parsed = new Date(fecha);
+    return Number.isNaN(parsed.getTime()) ? null : parsed;
   }
 }

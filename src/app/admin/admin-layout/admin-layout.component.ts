@@ -58,10 +58,11 @@ export class AdminLayoutComponent implements OnInit {
                                 this.logoImage = await this.clienteService.getLogoImage(this.clienteId);
                                 await this.loadStats();
                         } else {
-                                this.router.navigate(['/login']);
+                                this.router.navigate(['/auth/login']);
                         }
+                }).finally(() => {
+                        this.loading = false;
                 });
-                this.loading = false;
         }
 
         async loadStats(): Promise<void> {

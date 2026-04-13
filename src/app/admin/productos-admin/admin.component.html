@@ -123,7 +123,7 @@
                                                         optionLabel="nombre" placeholder="Seleccione una categoría"
                                                         fluid />
                                                 <small class="text-danger"
-                                                        *ngIf="submitted && !productoSeleccionado.categoria.categoriaId">La
+                                                        *ngIf="submitted && !productoSeleccionado.categoria?.categoriaId">La
                                                         categoria es obligatoria.</small>
                                         </div>
                                         <div class="pt-4">

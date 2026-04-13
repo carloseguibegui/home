@@ -598,7 +598,7 @@
         --blanco: #edc7c4;
         --secundario-beige-claro: #F4EFEA;
         --secundario-marron-oscuro: #3A2F2A;
-        --font-family: "Fraunces", serif;
+        --font-family: var(--app-display-font);
 
         * {
                 font-family: var(--font-family);
@@ -716,6 +716,39 @@
 /* .cliente-ola_pizza */
 .cliente-ola_pizza {
         --negro: black;
+        --crema: #f5efe6;
+        --dorado: #c9a46a;
+        --font-family: sans-serif;
+        --primary-color: var(--negro);
+        --secondary-color: var(--negro);
+        --text-color: var(--negro);
+
+        * {
+                font-family: var(--font-family);
+                color: var(--text-color);
+                font-optical-sizing: auto;
+                font-style: normal;
+        }
+
+        .text-brown {
+                color: var(--secondary-color);
+        }
+
+        .categoria-div {
+                background-size: cover;
+        }
+
+        .categoria-label {
+                font-weight: 600 !important;
+        }
+
+        a {
+                color: var(--text-color);
+        }
+}
+/* .cliente-mode_usa */
+.cliente-mode_usa {
+        --negro: #7a038f;
         --crema: #f5efe6;
         --dorado: #c9a46a;
         --font-family: sans-serif;

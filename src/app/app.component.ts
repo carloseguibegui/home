@@ -1,5 +1,7 @@
-import { Component, Renderer2, OnInit } from '@angular/core';
-import { RouterOutlet, ActivatedRoute, Router } from '@angular/router';
+import { Component, DestroyRef, Renderer2, inject } from '@angular/core';
+import { RouterOutlet, NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs/operators';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-root',
@@ -8,22 +10,28 @@ import { RouterOutlet, ActivatedRoute, Router } from '@angular/router';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
+  private readonly destroyRef = inject(DestroyRef);
+
   constructor(private router: Router, private renderer: Renderer2) { }
 
   ngOnInit() {
-    this.router.events.subscribe(() => {
+    this.router.events
+      .pipe(
+        filter((event): event is NavigationEnd => event instanceof NavigationEnd),
+        takeUntilDestroyed(this.destroyRef)
+      )
+      .subscribe(() => {
       const url = this.router.url;
-      // Extrae el cliente de la URL, por ejemplo: /menuonline/city_tandil/...
       const match = url.match(/menuonline\/([^\/]+)/);
+
+      document.body.classList.forEach(cls => {
+        if (cls.startsWith('cliente-')) {
+          this.renderer.removeClass(document.body, cls);
+        }
+      });
+
       if (match && match[1]) {
         const clienteClass = `cliente-${match[1].toLowerCase()}`;
-        // Limpia clases previas de cliente
-        document.body.classList.forEach(cls => {
-          if (cls.startsWith('cliente-')) {
-            this.renderer.removeClass(document.body, cls);
-          }
-        });
-        // Agrega la clase actual
         this.renderer.addClass(document.body, clienteClass);
       }
     });

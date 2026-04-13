@@ -161,9 +161,9 @@ export class CategoriaComponent implements OnInit, OnDestroy {
                         // ✅ Reusar categorías ya cargadas desde el servicio (si venimos desde carta)
                         this.menuService.categoriasData$
                                 .pipe(takeUntil(this.destroy$))
-                                .subscribe((cats: any[]) => {
+                                .subscribe((cats) => {
                                         if (cats && cats.length) {
-                                                this.categorias = cats.map((c: any) => ({
+                                                this.categorias = cats.map((c) => ({
                                                         nombre: c.nombre,
                                                         route: c.route,
                                                         icon: c.icon
@@ -175,12 +175,11 @@ export class CategoriaComponent implements OnInit, OnDestroy {
                         // ✅ Reusar menú completo (con productos) si ya fue cargado en carta
                         this.menuService.menuData$
                                 .pipe(takeUntil(this.destroy$))
-                                .subscribe((menu: any[]) => {
+                                .subscribe((menu) => {
                                         if (menu && menu.length) {
                                                 this.menuCache = menu;
-                                                // También derivar categorías si aún no están
                                                 if (!this.categorias || !this.categorias.length) {
-                                                        this.categorias = menu.map((item: any) => ({
+                                                        this.categorias = menu.map((item) => ({
                                                                 nombre: item.nombre,
                                                                 route: item.route,
                                                                 icon: item.icon
@@ -311,7 +310,6 @@ export class CategoriaComponent implements OnInit, OnDestroy {
                                 route: item.route,
                                 icon: item.icon
                         }));
-                        console.log('Categorias cargadas:', this.categorias);
                         this.cdr.markForCheck();
                 } catch (error) {
                         console.error('Error al cargar menú del cliente:', error);
@@ -400,7 +398,6 @@ export class CategoriaComponent implements OnInit, OnDestroy {
                                                 )
                                                 : null
                                 }));
-                                console.log('items', this.items);
                                 this.itemsOriginales = this.items.map((p: any) => p);
 
                                 // ✅ Placeholder aleatorio
@@ -473,7 +470,7 @@ export class CategoriaComponent implements OnInit, OnDestroy {
 
                 if (!lastCache || now - lastCache > onceDay) {
                         Object.keys(localStorage).forEach(key => {
-                                if (key.startsWith('categorias_') || key.startsWith('data_')) {
+                                if (key.startsWith('menu_cache_menu_') || key.startsWith('menu_cache_categorias_') || key.startsWith('menu_cache_giftcards_')) {
                                         localStorage.removeItem(key);
                                 }
                         });

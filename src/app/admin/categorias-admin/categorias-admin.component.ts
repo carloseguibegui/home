@@ -97,24 +97,26 @@ export class CategoriasAdminComponent implements OnInit {
         this.clienteId = usuario.clienteId;
         this.cargarCategorias();
       } else {
-        this.router.navigate(['/login']);
+        this.router.navigate(['/auth/login']);
       }
     });
   }
 
   async cargarCategorias() {
     this.loading = true;
-    await this.menuService.loadCategorias(this.clienteId, true); // Llama a Firestore y actualiza el observable
-    this.menuService.categoriasData$.subscribe({
-      next: (cats) => {
-        this.categorias = cats;
-        this.loading = false;
-      },
-      error: () => {
-        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'No se pudieron cargar las categorías' });
-        this.loading = false;
-      }
-    });
+    try {
+      const [categorias, productosPorCategoria] = await Promise.all([
+        this.menuService.loadCategorias(this.clienteId, true),
+        this.menuService.getProductosCountByCategoria(this.clienteId)
+      ]);
+
+      this.categorias = categorias;
+      this.productosPorCategoria = productosPorCategoria;
+    } catch {
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: 'No se pudieron cargar las categorías' });
+    } finally {
+      this.loading = false;
+    }
   }
 
   openNew() {
@@ -137,12 +139,14 @@ export class CategoriasAdminComponent implements OnInit {
     this.isLoading = true;
     await this.menuService.deleteCategoria(this.clienteId, this.categoriaSeleccionada.id)
       .then(async () => {
-        // await this.cargarCategorias();
-        await this.menuService.loadCategorias(this.clienteId, true); // Llama a Firestore y actualiza el observable
+        await this.cargarCategorias();
         this.messageService.add({ severity: 'success', summary: 'Eliminado', detail: 'Categoría eliminada', life: 3000 });
       },
         (error) => {
-          this.messageService.add({ severity: 'error', summary: 'Error', detail: 'No se pudo eliminar la categoría', life: 3000 });
+          const detail = error instanceof Error && error.message === 'CATEGORY_HAS_PRODUCTS'
+            ? 'No se puede eliminar una categoría que todavía tiene productos.'
+            : 'No se pudo eliminar la categoría';
+          this.messageService.add({ severity: 'error', summary: 'Error', detail, life: 3000 });
         })
       .finally(() => {
         this.isLoading = false;
@@ -211,7 +215,7 @@ export class CategoriasAdminComponent implements OnInit {
     if (this.categoriaSeleccionada.id) {
       await this.menuService.updateCategoria(this.clienteId, this.categoriaSeleccionada.id, this.categoriaSeleccionada)
         .then(async () => {
-          await this.menuService.loadCategorias(this.clienteId, true);
+          await this.cargarCategorias();
           this.messageService.add({
             severity: 'success',
             summary: 'Actualizado',
@@ -234,7 +238,7 @@ export class CategoriasAdminComponent implements OnInit {
       await this.menuService.addCategoria(this.clienteId, this.categoriaSeleccionada)
         .then(
           async () => {
-            await this.menuService.loadCategorias(this.clienteId, true);
+            await this.cargarCategorias();
             this.messageService.add({
               severity: 'success',
               summary: 'Actualizado',

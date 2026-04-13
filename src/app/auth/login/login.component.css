@@ -60,6 +60,25 @@
         margin-top: 30px;
 }
 
+.auth-message {
+        border-radius: 10px;
+        font-size: 0.95rem;
+        margin-bottom: 20px;
+        padding: 12px 14px;
+}
+
+.auth-message-error {
+        background: #fff1f2;
+        border: 1px solid #fecdd3;
+        color: #be123c;
+}
+
+.auth-message-success {
+        background: #ecfdf5;
+        border: 1px solid #a7f3d0;
+        color: #047857;
+}
+
 .form-group {
         margin-bottom: 25px;
 }

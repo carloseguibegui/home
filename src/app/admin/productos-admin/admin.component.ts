@@ -1,11 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, DestroyRef, OnInit, inject } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { MenuService } from '../../services/menu.service';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { firstValueFrom } from 'rxjs';
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 
@@ -34,6 +33,8 @@ import { Table } from 'primeng/table';
 import { DropdownModule } from 'primeng/dropdown';
 import { updatePrimaryPalette } from '@primeng/themes';
 import { BadgeModule } from 'primeng/badge';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { MenuCategory, MenuProduct } from '../../models/app.models';
 
 
 
@@ -69,16 +70,18 @@ interface ExportColumn {
         providers: [MessageService, ConfirmationService]
 })
 export class AdminComponent implements OnInit {
-        productos: any[] = [];
-        categorias: any[] = [];
-        selectedProducts: any[] = [];
+        private readonly destroyRef = inject(DestroyRef);
+
+        productos: MenuProduct[] = [];
+        categorias: MenuCategory[] = [];
+        selectedProducts: MenuProduct[] = [];
         clienteId: string = '';
         logoImage = '';
         loading = false;
         imagenPreview: string | ArrayBuffer | null = null;
         nuevaImagenFile: string | ArrayBuffer | null = null;
         isLoading: boolean = false;
-        productoSeleccionado: any = {};
+        productoSeleccionado: MenuProduct = {} as MenuProduct;
         productDialog: boolean = false;
         deleteDialogVisible = false;
         isDeleting = false;
@@ -126,57 +129,46 @@ export class AdminComponent implements OnInit {
                         950: '{purple.950}'
                 });
                 this.loading = true; // Mostrar spinner al iniciar
+                this.menuService.menuData$
+                        .pipe(takeUntilDestroyed(this.destroyRef))
+                        .subscribe((menu) => {
+                                this.actualizarDesdeMenu(menu);
+                        });
+
                 this.authService.getUsuarioActivo().then(async usuario => {
                         if (usuario && usuario.clienteId) {
                                 this.clienteId = usuario.clienteId;
                                 this.logoImage = `https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2F${this.clienteId}%2Flogo0.webp?alt=media`;
 
                                 try {
-                                        // Cargar productos (a través del menú completo)
                                         this.menuService.clearCache(this.clienteId);
                                         await this.menuService.loadMenuFirestore(this.clienteId);
-
-                                        // Obtener los datos del observable
-                                        const menu = await firstValueFrom(this.menuService.menuData$);
-
-                                        this.productos = [];
-                                        this.categorias = [];
-                                        menu.forEach(cat => {
-                                                this.categorias.push(cat);
-                                                if (cat.productos) {
-                                                        this.productos.push(...cat.productos.map((prod: any) => ({
-                                                                ...prod,
-                                                                categoria: cat
-                                                        })));
-                                                }
-                                        });
-                                        console.log('this.productos en ngOnInit()', this.productos)
                                         this.loading = false;
-
-                                        // Suscribirse para cambios futuros
-                                        this.menuService.menuData$.subscribe(menu => {
-                                                this.productos = [];
-                                                this.categorias = [];
-                                                menu.forEach(cat => {
-                                                        this.categorias.push(cat);
-                                                        if (cat.productos) {
-                                                                this.productos.push(...cat.productos.map((prod: any) => ({
-                                                                        ...prod,
-                                                                        categoria: cat
-                                                                })));
-                                                        }
-                                                });
-                                        });
                                 } catch (error) {
                                         console.error('Error al cargar productos:', error);
                                         this.loading = false;
                                 }
                         } else {
                                 // Si no hay usuario o clienteId, podrías redirigir al login
-                                this.router.navigate(['/login']);
+                                this.router.navigate(['/auth/login']);
                         }
                 });
 
+        }
+
+        private actualizarDesdeMenu(menu: MenuCategory[]) {
+                this.productos = [];
+                this.categorias = [];
+
+                menu.forEach((cat) => {
+                        this.categorias.push(cat);
+                        if (cat.productos) {
+                                this.productos.push(...cat.productos.map((prod) => ({
+                                        ...prod,
+                                        categoria: cat
+                                })));
+                        }
+                });
         }
         exportCSV() {
                 this.dt.exportCSV();
@@ -228,7 +220,7 @@ export class AdminComponent implements OnInit {
 
         // PRIMENG
         openNew() {
-                this.productoSeleccionado = {};
+                this.productoSeleccionado = {} as MenuProduct;
                 this.submitted = false;
                 this.productDialog = true;
                 this.nuevaImagenFile = null
@@ -252,7 +244,7 @@ export class AdminComponent implements OnInit {
                         categoriaOriginalId: producto.categoria.categoriaId // Guarda el id original
                 };
                 // Guarda el hash del producto original para comparar después
-                this.productoSeleccionado._hashOriginal = this.hashProducto(this.productoSeleccionado);
+                this.productoSeleccionado['_hashOriginal'] = this.hashProducto(this.productoSeleccionado);
                 this.productDialog = true;
         }
 
@@ -293,7 +285,7 @@ export class AdminComponent implements OnInit {
         hideDialog() {
                 this.productDialog = false;
                 this.submitted = false;
-                this.productoSeleccionado = {}
+                this.productoSeleccionado = {} as MenuProduct
                 this.imagenPreview = null
                 this.isLoading = false
                 this.nuevaImagenFile = null
@@ -345,14 +337,19 @@ export class AdminComponent implements OnInit {
                 this.limpiarPropsTemporales(producto);
 
                 if (categoriaOriginalId !== categoriaNuevaId) {
-                        // 1. Crear en la nueva categoría
-                        await this.menuService.addProducto(this.clienteId, categoriaNuevaId, producto)
+                        await this.menuService.moveProducto(
+                                this.clienteId,
+                                categoriaOriginalId,
+                                categoriaNuevaId,
+                                idProducto,
+                                producto
+                        )
                                 .then(
                                         () => {
                                                 this.messageService.add({
                                                         severity: 'success',
                                                         summary: 'Actualizado',
-                                                        detail: 'Producto cambiado de categoria',
+                                                        detail: 'Producto cambiado de categoría',
                                                         life: 3000
                                                 });
                                         },
@@ -361,26 +358,6 @@ export class AdminComponent implements OnInit {
                                                         severity: 'error',
                                                         summary: 'Error',
                                                         detail: 'No se pudo cambiar de categoria el producto',
-                                                        life: 3000
-                                                });
-                                        }
-                                );
-                        // 2. Borrar de la categoría original
-                        await this.menuService.deleteProducto(this.clienteId, categoriaOriginalId, idProducto)
-                                .then(
-                                        () => {
-                                                this.messageService.add({
-                                                        severity: 'success',
-                                                        summary: 'Actualizado',
-                                                        detail: 'Producto borrado de categoria antigua',
-                                                        life: 3000
-                                                });
-                                        },
-                                        (error) => {
-                                                this.messageService.add({
-                                                        severity: 'error',
-                                                        summary: 'Error',
-                                                        detail: 'No se pudo borrar la categoria del producto',
                                                         life: 3000
                                                 });
                                         }
@@ -479,10 +456,9 @@ export class AdminComponent implements OnInit {
         }
 
 
-        private esProductoSinModificarOVacio(producto_a_guardar: any) {
-                const hashOriginal = this.productoSeleccionado._hashOriginal;
+        private esProductoSinModificarOVacio(producto_a_guardar: MenuProduct) {
+                const hashOriginal = this.productoSeleccionado['_hashOriginal'];
                 const hashActual = this.hashProducto(producto_a_guardar);
-                console.log('son iguales?', hashOriginal === hashActual)
                 return (
                         !producto_a_guardar.nombre?.trim() ||
                         !producto_a_guardar.descripcion?.trim() ||

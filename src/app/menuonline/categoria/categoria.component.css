@@ -1368,7 +1368,7 @@ html {
 
         .card-title {
                 color: var(--verde);
-                font-family: "Fraunces", sans-serif !important;
+                font-family: var(--app-display-font), sans-serif !important;
                 letter-spacing: normal !important;
 
         }
@@ -1781,6 +1781,87 @@ html {
         .lightbox-content {
                 border: 2px solid var(--negro);
                 box-shadow: 0 0px 10px 3px var(--crema);
+        }
+
+        #cuerpo-card {
+                background-size: cover !important;
+        }
+
+        .floating-cart-badge {
+                color: var(--negro);
+                font-size: 1rem;
+        }
+
+        .floating-cart {
+                background-color: var(--negro);
+        }
+
+        .floating-cart svg {
+                fill: var(--blanco);
+        }
+
+}
+
+/* mode_usa */
+.cliente-mode_usa {
+        --rosa: #b3017d;
+        --negro: #7a038f;
+        --azul: #03288f;
+        --crema: #e1d4cd;
+        --dorado: #c9a46a;
+        --blanco: white;
+        --font-family: "lato", sans-serif;
+
+        * {
+                color: var(--azul);
+                text-transform: uppercase;
+                font-family: 'lato', sans-serif !important;
+        }
+
+        /* comillas */
+        #card-descripcion-span {
+                color: var(--negro);
+        }
+
+        #boton-card {
+                background-color: var(--rosa);
+                color: var(--blanco);
+                font-family: var(--font-family) !important;
+                font-size: 1.3rem;
+        }
+
+        .boton-volver {
+                font-family: var(--font-family) !important;
+                background-color: var(--negro);
+                color: var(--blanco);
+        }
+
+        .boton-volver span {
+                color: var(--blanco);
+        }
+
+        .div-carta {
+                border-color: var(--azul);
+        }
+
+        .card-title {
+                color: var(--azul);
+                font-family: var(--font-family) !important;
+                letter-spacing: normal !important;
+        }
+
+        #card-descripcion {
+                color: var(--negro);
+                font-family: var(--font-family) !important;
+        }
+
+        #card-descripcion i {
+                color: var(--dorado);
+        }
+
+        .lightbox-content {
+                border: 2px solid var(--azul);
+                box-shadow: 0 0px 10px 3px var(--azul);
         }
 
         #cuerpo-card {

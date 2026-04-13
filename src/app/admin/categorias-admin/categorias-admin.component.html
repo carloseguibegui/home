@@ -114,7 +114,7 @@
         <div>
             ¿Seguro que deseas eliminar la categoría <b>{{ categoriaSeleccionada?.nombre }}</b>?
         </div>
-        <small class="text-danger"><b>ATENCIÓN: Borrar la categoría, borrará también todos los productos de la misma. Esta acción no se puede deshacer</b></small>
+        <small class="text-danger"><b>Solo se puede eliminar una categoría sin productos. Si todavía tiene productos, muévelos o elimínalos primero.</b></small>
         <ng-template #footer>
             <p-button label="Cancelar" (click)="onCancelDelete()" [disabled]="isLoading"></p-button>
             <p-button label="Eliminar" (click)="onAcceptDelete()" [loading]="isLoading" severity="danger"></p-button>

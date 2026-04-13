@@ -870,7 +870,7 @@ a {
         --slider-bg: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Ffoster_tandil%2Fbackground_image.webp?alt=media');
 
         * {
-                font-family: "Fraunces", sans-serif !important;
+                font-family: var(--app-display-font), sans-serif !important;
         }
 
         .slider-item.active .menu-item {
@@ -912,7 +912,7 @@ a {
         --slider-bg: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fenris_tandil%2Fbackground_image.webp?alt=media');
 
         * {
-                font-family: "Fraunces", sans-serif !important;
+                font-family: var(--app-display-font), sans-serif !important;
         }
 
         .slider-item.active .menu-item {
@@ -1076,5 +1076,40 @@ a {
 
 .cliente-ola_pizza.sticky-slider {
         background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fola_pizza%2Fbackground_image.webp?alt=media') !important;
+        background-size: cover !important;
+}
+
+/* mode_usa */
+.cliente-mode_usa {
+        --negro: #03288f;
+        --blanco: rgb(133, 31, 201);
+        --crema: #e1d4cd;
+        --dorado: #c9a46a;
+        --primary-color: var(--negro);
+        --slider-bg: linear-gradient(135deg, #e1d4cd 0%, #efe4d5 100%);
+
+        * {
+                font-family: "lato", sans-serif !important;
+        }
+
+        .slider-item.active .menu-item {
+                border: 2px solid var(--blanco);
+                box-shadow: 0 3px 5px rgba(133, 31, 201, 0.99);
+        }
+
+        .category-label {
+                color: var(--negro);
+        }
+
+        p,
+        a {
+                color: var(--negro) !important;
+                font-weight: bold;
+                text-transform: uppercase;
+        }
+}
+
+.cliente-mode_usa.sticky-slider {
+        background: url('https://firebasestorage.googleapis.com/v0/b/menu-digital-e8e62.firebasestorage.app/o/clientes%2Fmode_usa%2Fbackground_image.webp?alt=media') !important;
         background-size: cover !important;
 }

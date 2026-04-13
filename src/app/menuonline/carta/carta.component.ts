@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { CopyrightComponent } from '../../shared/copyright/copyright.component';
@@ -9,7 +9,7 @@ import { Title } from '@angular/platform-browser';
 import { MenuService } from '../../services/menu.service';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { Firestore, doc, getDoc } from '@angular/fire/firestore';
-import { Subject } from 'rxjs';
+import { MenuCategory } from '../../models/app.models';
 
 @Component({
         selector: 'app-carta',
@@ -39,8 +39,8 @@ import { Subject } from 'rxjs';
                 ])
         ]
 })
-export class CartaComponent implements OnInit, OnDestroy {
-        categorias: any[] = [];
+export class CartaComponent implements OnInit {
+        categorias: MenuCategory[] = [];
         cliente: string = '';
         nombreCliente: string = '';
         cardImage = '';
@@ -48,8 +48,6 @@ export class CartaComponent implements OnInit, OnDestroy {
         backgroundImage = '';
         visible = false;
         loading = true;
-
-        private destroy$ = new Subject<void>();
 
         constructor(
                 private menuService: MenuService,
@@ -126,24 +124,6 @@ export class CartaComponent implements OnInit, OnDestroy {
         }
 
         /**
-         * Verifica si el cliente está activo en Firestore
-         */
-        private async verificarClienteActivo(): Promise<boolean> {
-                try {
-                        const clienteRef = doc(this.firestore, `clientes/${this.cliente}`);
-                        const clienteSnap = await getDoc(clienteRef);
-                        if (!clienteSnap.exists() || clienteSnap.data()?.['esActivo'] === false) {
-                                this.router.navigate(['/']);
-                                return false;
-                        }
-                        return true;
-                } catch {
-                        this.router.navigate(['/']);
-                        return false;
-                }
-        }
-
-        /**
          * Configura las URLs de imágenes
          */
         private configurarImagenes(): void {
@@ -154,37 +134,14 @@ export class CartaComponent implements OnInit, OnDestroy {
         }
 
         /**
-         * Obtiene el nombre del cliente desde Firestore
-         */
-        private async obtenerNombreCliente(): Promise<void> {
-                try {
-                        const clienteRef = doc(this.firestore, `clientes/${this.cliente}`);
-                        const clienteSnap = await getDoc(clienteRef);
-
-                        if (clienteSnap.exists() && clienteSnap.data()?.['nombreCliente']) {
-                                this.nombreCliente = clienteSnap.data()['nombreCliente'].toUpperCase();
-                        } else {
-                                this.nombreCliente = this.cliente.charAt(0).toUpperCase() + this.cliente.slice(1);
-                        }
-
-                        this.titleService.setTitle(`${this.nombreCliente} | Carta Digital`);
-                } catch {
-                        this.nombreCliente = this.cliente.charAt(0).toUpperCase() + this.cliente.slice(1);
-                        this.titleService.setTitle(`${this.nombreCliente} | Carta Digital`);
-                }
-        }
-
-        /**
          * Carga las categorías desde el servicio
          */
         private async cargarCategorias(): Promise<void> {
                 try {
-                        // ✅ Usa la promesa retornada por el servicio
                         const categorias = await this.menuService.loadCategorias(this.cliente, false, true);
 
                         if (categorias && categorias.length > 0) {
                                 this.categorias = categorias;
-                                console.log('Categorias cargadas:', this.categorias);
                         }
 
                         this.cdr.markForCheck();
@@ -192,10 +149,5 @@ export class CartaComponent implements OnInit, OnDestroy {
                         console.error('Error al cargar categorías:', error);
                         this.categorias = [];
                 }
-        }
-
-        ngOnDestroy(): void {
-                this.destroy$.next();
-                this.destroy$.complete();
         }
 }

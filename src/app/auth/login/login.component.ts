@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { Auth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, UserCredential, signOut, User } from '@angular/fire/auth';
+import { Component, DestroyRef, OnInit, inject } from '@angular/core';
+import { Auth, signInWithEmailAndPassword, createUserWithEmailAndPassword, authState, GoogleAuthProvider, signInWithPopup, UserCredential, signOut, User } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { trigger, transition, style, animate } from '@angular/animations';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 @Component({
   selector: 'app-login',
   imports: [CommonModule, FormsModule],
@@ -22,30 +23,36 @@ import { trigger, transition, style, animate } from '@angular/animations';
   ]
 })
 export class LoginComponent implements OnInit {
+  private readonly destroyRef = inject(DestroyRef);
+
   isLogin: boolean = true;
   email: string = '';
   password: string = '';
   confirmPassword: string = '';
-  currentUser: any = null;
+  currentUser: User | null = null;
   isLoading: boolean = false;
+  errorMessage = '';
+  successMessage = '';
 
   constructor(private auth: Auth, private router: Router) { }
 
   ngOnInit() {
-    // Persistencia automática de sesión (incluye Google)
-    onAuthStateChanged(this.auth, (user) => {
-      if (user) {
-        this.currentUser = user;
-        this.router.navigate(['/admin']);
-      } else {
-        this.currentUser = null;
-      }
-    });
+    authState(this.auth)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((user) => {
+        if (user) {
+          this.currentUser = user;
+          this.router.navigate(['/admin']);
+        } else {
+          this.currentUser = null;
+        }
+      });
   }
 
   toggleMode() {
     this.isLogin = !this.isLogin;
     this.clearFields();
+    this.clearMessages();
   }
 
   clearFields() {
@@ -54,7 +61,23 @@ export class LoginComponent implements OnInit {
     this.confirmPassword = '';
   }
 
+  private clearMessages() {
+    this.errorMessage = '';
+    this.successMessage = '';
+  }
+
+  private setError(message: string) {
+    this.errorMessage = message;
+    this.successMessage = '';
+  }
+
+  private setSuccess(message: string) {
+    this.successMessage = message;
+    this.errorMessage = '';
+  }
+
   onLogin() {
+    this.clearMessages();
     this.isLoading = true;
     signInWithEmailAndPassword(this.auth, this.email, this.password)
       .then((userCredential: UserCredential) => {
@@ -63,51 +86,49 @@ export class LoginComponent implements OnInit {
       })
       .catch((error) => {
         this.isLoading = false;
-        console.error('Error al iniciar sesión:', error);
-        alert('Error al iniciar sesión: ' + error.message);
+        this.setError('No se pudo iniciar sesión. Verifica tu correo y contraseña.');
       });
   }
 
   onRegister() {
+    this.clearMessages();
     if (this.password !== this.confirmPassword) {
-      alert('Las contraseñas no coinciden');
+      this.setError('Las contraseñas no coinciden.');
       return;
     }
 
     createUserWithEmailAndPassword(this.auth, this.email, this.password)
-      .then((userCredential: UserCredential) => {
-        alert('Registro exitoso');
+      .then((_userCredential: UserCredential) => {
         this.toggleMode();
+        this.setSuccess('Registro exitoso. Ahora puedes iniciar sesión.');
       })
       .catch((error) => {
-        console.error('Error al registrarse:', error);
-        alert('Error al registrarse: ' + error.message);
+        this.setError('No se pudo completar el registro.');
       });
   }
 
   onGoogleLogin() {
+    this.clearMessages();
     const provider = new GoogleAuthProvider();
     signInWithPopup(this.auth, provider)
-      .then((result) => {
-        // alert('Inicio de sesión con Google exitoso');
+      .then((_result) => {
         this.router.navigate(['/admin']); // Redirigir al componente Admin
       })
       .catch((error) => {
-        console.error('Error al iniciar sesión con Google:', error);
-        alert('Error al iniciar sesión con Google: ' + error.message);
+        this.setError('No se pudo iniciar sesión con Google.');
       });
   }
 
   // Método para cerrar sesión
   logout() {
+    this.clearMessages();
     signOut(this.auth)
       .then(() => {
         this.currentUser = null;
         this.router.navigate(['/auth/login']);
       })
       .catch((error) => {
-        console.error('Error al cerrar sesión:', error);
-        alert('Error al cerrar sesión: ' + error.message);
+        this.setError('No se pudo cerrar la sesión.');
       });
   }
 }

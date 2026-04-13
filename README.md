@@ -41,19 +41,18 @@ npm install
 3. Configura Firebase:
 
 - Crea un proyecto en [Firebase Console](https://console.firebase.google.com/).
-- Agrega tu configuración en `src/environments/environment.ts` y `environment.prod.ts`:
+- Copia `src/environments/environment.example.ts` a `src/environments/environment.ts`.
+- Completa tu configuración de Firebase en `src/environments/environment.ts`:
 
 ```ts
-export const environment = {
-  production: false,
-  firebase: {
-    apiKey: '...',
-    authDomain: '...',
-    projectId: '...',
-    storageBucket: '...',
-    messagingSenderId: '...',
-    appId: '...'
-  }
+export const firebaseConfig = {
+  apiKey: '...',
+  authDomain: '...',
+  projectId: '...',
+  storageBucket: '...',
+  messagingSenderId: '...',
+  appId: '...',
+  measurementId: '...'
 };
 ```
 
@@ -90,6 +89,8 @@ firebase init
 ```bash
 ng build --configuration production
 ```
+
+La hoja de estilos principal ya no depende de fuentes remotas para compilar, así que el build es reproducible sin acceso externo a Google Fonts.
 
 5. Deploy:
 
