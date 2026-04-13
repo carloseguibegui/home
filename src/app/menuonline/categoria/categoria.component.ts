@@ -660,7 +660,7 @@ export class CategoriaComponent implements OnInit, OnDestroy {
         private showDeliveryTakeAwayWarning(cartItemKey: string): void {
                 this.confirmationService.confirm({
                         header: 'Aviso importante',
-                        message: 'Este menú es solo informativo. Los pedidos por WhatsApp son únicamente para delivery/take away. Si estás en el local, pedí al personal.',
+                        message: this.getCartWarningMessage(),
                         icon: 'pi pi-info-circle',
                         acceptLabel: 'Continuar',
                         rejectLabel: 'Cancelar',
@@ -674,6 +674,14 @@ export class CategoriaComponent implements OnInit, OnDestroy {
                                 }
                         }
                 });
+        }
+
+        private getCartWarningMessage(): string {
+                if (this.cliente === 'mode_usa') {
+                        return 'Este es nuestro catálogo digital. Podés hacer tu pedido por WhatsApp y consultar disponibilidad, talles, medios de pago y envío.';
+                }
+
+                return 'Este menú es solo informativo. Los pedidos por WhatsApp son únicamente para delivery/take away. Si estás en el local, pedí al personal.';
         }
 
         private buildWhatsappCartLink(): string {
