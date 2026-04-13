@@ -38,6 +38,24 @@ describe('MenuService', () => {
     expect(categorias.map((categoria) => categoria.nombre)).toEqual(['Primero', 'Alpha', 'Beta']);
   });
 
+  it('publishes the client id alongside cached categorias data', async () => {
+    let emittedClient: string | null = null;
+    service.categoriasDataClient$.subscribe((cliente) => {
+      emittedClient = cliente;
+    });
+
+    spyOn(firestoreModule, 'getDocs').and.resolveTo({
+      docs: [
+        { id: 'categoria-1', data: () => ({ nombre: 'Bebidas' }) }
+      ]
+    } as any);
+
+    const categorias = await service.loadCategorias('foster_tandil', true);
+
+    expect(categorias.length).toBe(1);
+    expect(emittedClient).toBe('foster_tandil');
+  });
+
   it('prevents deleting a category that still has products', async () => {
     spyOn(firestoreModule, 'getDocs').and.resolveTo({ empty: false } as any);
     const deleteDocSpy = spyOn(firestoreModule, 'deleteDoc').and.resolveTo();

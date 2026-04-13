@@ -19,7 +19,7 @@ import { MenuService } from '../../services/menu.service';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { Firestore, doc, getDoc } from '@angular/fire/firestore';
 import { Title } from '@angular/platform-browser';
-import { Subject } from 'rxjs';
+import { Subject, combineLatest } from 'rxjs';
 import { debounceTime, takeUntil, filter } from 'rxjs/operators';
 import { ConfirmationService } from 'primeng/api';
 import { ConfirmDialog } from 'primeng/confirmdialog';
@@ -117,6 +117,7 @@ export class CategoriaComponent implements OnInit, OnDestroy {
         private unlistenScroll?: () => void;
         private openerEl: Element | null = null;
         private readonly scrollToTopOffset = 1300;
+        private menuCacheClient = '';
 
         constructor(
                 private menuService: MenuService,
@@ -159,34 +160,45 @@ export class CategoriaComponent implements OnInit, OnDestroy {
                                 });
 
                         // ✅ Reusar categorías ya cargadas desde el servicio (si venimos desde carta)
-                        this.menuService.categoriasData$
+                        combineLatest([
+                                this.menuService.categoriasData$,
+                                this.menuService.categoriasDataClient$
+                        ])
                                 .pipe(takeUntil(this.destroy$))
-                                .subscribe((cats) => {
-                                        if (cats && cats.length) {
-                                                this.categorias = cats.map((c) => ({
-                                                        nombre: c.nombre,
-                                                        route: c.route,
-                                                        icon: c.icon
-                                                }));
-                                                this.cdr.markForCheck();
+                                .subscribe(([cats, clienteCategorias]) => {
+                                        if (clienteCategorias !== this.cliente || !cats?.length) {
+                                                return;
                                         }
+
+                                        this.categorias = cats.map((c) => ({
+                                                nombre: c.nombre,
+                                                route: c.route,
+                                                icon: c.icon
+                                        }));
+                                        this.cdr.markForCheck();
                                 });
 
                         // ✅ Reusar menú completo (con productos) si ya fue cargado en carta
-                        this.menuService.menuData$
+                        combineLatest([
+                                this.menuService.menuData$,
+                                this.menuService.menuDataClient$
+                        ])
                                 .pipe(takeUntil(this.destroy$))
-                                .subscribe((menu) => {
-                                        if (menu && menu.length) {
-                                                this.menuCache = menu;
-                                                if (!this.categorias || !this.categorias.length) {
-                                                        this.categorias = menu.map((item) => ({
-                                                                nombre: item.nombre,
-                                                                route: item.route,
-                                                                icon: item.icon
-                                                        }));
-                                                }
-                                                this.cdr.markForCheck();
+                                .subscribe(([menu, clienteMenu]) => {
+                                        if (clienteMenu !== this.cliente || !menu?.length) {
+                                                return;
                                         }
+
+                                        this.menuCache = menu;
+                                        this.menuCacheClient = clienteMenu;
+                                        if (!this.categorias || !this.categorias.length) {
+                                                this.categorias = menu.map((item) => ({
+                                                        nombre: item.nombre,
+                                                        route: item.route,
+                                                        icon: item.icon
+                                                }));
+                                        }
+                                        this.cdr.markForCheck();
                                 });
 
                         // ✅ Cerrar lightbox con ESC
@@ -219,13 +231,18 @@ export class CategoriaComponent implements OnInit, OnDestroy {
                                         if (this.cliente !== nuevoCliente) {
                                                 this.cartItems = [];
                                                 this.cliente = nuevoCliente;
+                                                this.menuCache = null;
+                                                this.menuCacheClient = '';
+                                                this.categorias = [];
+                                                this.items = [];
+                                                this.itemsOriginales = [];
+                                                this.nombreCategoria = '';
+                                                this.item_placeholder = '';
                                                 this.configurarImagenes();
 
                                                 const metaPromise = this.obtenerClienteMeta();
-                                                // Solo cargar menú si aún no lo recibimos vía menuData$
-                                                menuPromise = (this.menuCache && this.menuCache.length)
-                                                        ? null
-                                                        : this.cargarMenuCliente();
+                                                // Al cambiar de cliente, siempre recargamos su menú para evitar mezclar cachés.
+                                                menuPromise = this.cargarMenuCliente();
 
                                                 const isActive = await metaPromise;
                                                 if (!isActive) return;
@@ -305,6 +322,7 @@ export class CategoriaComponent implements OnInit, OnDestroy {
                 try {
                         const menu = await this.menuService.loadMenuFirestore(this.cliente);
                         this.menuCache = menu || [];
+                        this.menuCacheClient = this.cliente;
                         this.categorias = (this.menuCache || []).map((item: any) => ({
                                 nombre: item.nombre,
                                 route: item.route,
@@ -314,6 +332,7 @@ export class CategoriaComponent implements OnInit, OnDestroy {
                 } catch (error) {
                         console.error('Error al cargar menú del cliente:', error);
                         this.menuCache = [];
+                        this.menuCacheClient = '';
                         this.categorias = [];
                 }
         }
@@ -335,7 +354,7 @@ export class CategoriaComponent implements OnInit, OnDestroy {
          */
         private async cargarCategorias(): Promise<void> {
                 try {
-                        if (!this.menuCache) {
+                        if (!this.menuCache || this.menuCacheClient !== this.cliente) {
                                 await this.cargarMenuCliente();
                                 return;
                         }
@@ -356,7 +375,7 @@ export class CategoriaComponent implements OnInit, OnDestroy {
          */
         private async cargarProductosPorCategoria(): Promise<void> {
                 try {
-                        if (!this.menuCache) {
+                        if (!this.menuCache || this.menuCacheClient !== this.cliente) {
                                 await this.cargarMenuCliente();
                         }
                         const data = this.menuCache || [];

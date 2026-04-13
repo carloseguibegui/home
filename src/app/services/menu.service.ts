@@ -9,9 +9,13 @@ import { Giftcard, MenuCategory, MenuProduct } from '../models/app.models';
 export class MenuService {
         private menuData = new BehaviorSubject<MenuCategory[]>([]);
         menuData$ = this.menuData.asObservable();
+        private menuDataClient = new BehaviorSubject<string | null>(null);
+        menuDataClient$ = this.menuDataClient.asObservable();
 
         private categoriasData = new BehaviorSubject<MenuCategory[]>([]);
         categoriasData$ = this.categoriasData.asObservable();
+        private categoriasDataClient = new BehaviorSubject<string | null>(null);
+        categoriasDataClient$ = this.categoriasDataClient.asObservable();
 
         private giftCardsData = new BehaviorSubject<Giftcard[]>([]);
         giftCardsData$ = this.giftCardsData.asObservable();
@@ -51,6 +55,16 @@ export class MenuService {
         }
 
         constructor(private firestore: Firestore, private injector: Injector) { }
+
+        private publishMenuData(cliente: string, data: MenuCategory[]): void {
+                this.menuDataClient.next(cliente);
+                this.menuData.next(data);
+        }
+
+        private publishCategoriasData(cliente: string, data: MenuCategory[]): void {
+                this.categoriasDataClient.next(cliente);
+                this.categoriasData.next(data);
+        }
 
         private getCategoriaCollection(cliente: string) {
                 return collection(this.firestore, `clientes/${cliente}/categoria`);
@@ -110,7 +124,7 @@ export class MenuService {
                 // ✅ Mem cache
                 if (!force && this.menuCache[cliente] && this.isCacheValid(this.menuCache[cliente].timestamp)) {
                         const data = this.menuCache[cliente].data;
-                        this.menuData.next(data);
+                        this.publishMenuData(cliente, data);
                         return data;
                 }
 
@@ -119,7 +133,7 @@ export class MenuService {
                         const stored = this.readFromStorage<MenuCategory[]>(key);
                         if (stored && this.isCacheValid(stored.timestamp)) {
                                 this.menuCache[cliente] = { data: stored.data, timestamp: stored.timestamp };
-                                this.menuData.next(stored.data);
+                                this.publishMenuData(cliente, stored.data);
                                 return stored.data;
                         }
                 }
@@ -157,7 +171,7 @@ export class MenuService {
                                         const entry = { data: menuData, timestamp: Date.now() };
                                         this.menuCache[cliente] = entry;
                                         this.writeToStorage<MenuCategory[]>(key, entry);
-                                        this.menuData.next(menuData);
+                                        this.publishMenuData(cliente, menuData);
 
                                         // ✅ Derivar categorías desde el menú y emitir (para reuso inmediato en CategoriaComponent)
                                         const categoriasFromMenu = (menuData || []).map((item) => ({
@@ -171,7 +185,7 @@ export class MenuService {
                                         const categoriasEntry = { data: categoriasFromMenu, timestamp: entry.timestamp };
                                         this.categoriasCache[cliente] = categoriasEntry;
                                         this.writeToStorage<MenuCategory[]>(`categorias_${cliente}`, categoriasEntry);
-                                        this.categoriasData.next(categoriasFromMenu);
+                                        this.publishCategoriasData(cliente, categoriasFromMenu);
                                         return menuData;
                                 });
                         } finally {
@@ -194,7 +208,7 @@ export class MenuService {
                 // ✅ Usa caché si es válido
                 if (!force && this.categoriasCache[cliente] && this.isCacheValid(this.categoriasCache[cliente].timestamp)) {
                         const data = this.categoriasCache[cliente].data;
-                        this.categoriasData.next(data);
+                        this.publishCategoriasData(cliente, data);
                         return data;
                 }
 
@@ -203,7 +217,7 @@ export class MenuService {
                         const stored = this.readFromStorage<MenuCategory[]>(key);
                         if (stored && this.isCacheValid(stored.timestamp) && Array.isArray(stored.data) && stored.data.length > 0) {
                                 this.categoriasCache[cliente] = { data: stored.data, timestamp: stored.timestamp };
-                                this.categoriasData.next(stored.data);
+                                this.publishCategoriasData(cliente, stored.data);
                                 return stored.data;
                         }
                 }
@@ -230,7 +244,7 @@ export class MenuService {
                                         const entry = { data: categoriasFiltradas, timestamp: Date.now() };
                                         this.categoriasCache[cliente] = entry;
                                         this.writeToStorage<MenuCategory[]>(key, entry);
-                                        this.categoriasData.next(categoriasFiltradas);
+                                        this.publishCategoriasData(cliente, categoriasFiltradas);
 
                                         return categoriasFiltradas;
                                 });
@@ -250,10 +264,22 @@ export class MenuService {
                         this.removeStorageEntry(`menu_${cliente}`);
                         this.removeStorageEntry(`categorias_${cliente}`);
                         this.removeStorageEntry(`giftcards_${cliente}`);
+                        if (this.menuDataClient.value === cliente) {
+                                this.menuDataClient.next(null);
+                                this.menuData.next([]);
+                        }
+                        if (this.categoriasDataClient.value === cliente) {
+                                this.categoriasDataClient.next(null);
+                                this.categoriasData.next([]);
+                        }
                 } else {
                         this.menuCache = {};
                         this.categoriasCache = {};
                         this.giftCardsCache = {};
+                        this.menuDataClient.next(null);
+                        this.menuData.next([]);
+                        this.categoriasDataClient.next(null);
+                        this.categoriasData.next([]);
                         Object.keys(localStorage)
                                 .filter((key) => key.startsWith(this.STORAGE_PREFIX))
                                 .forEach((key) => this.removeStorageEntry(key.replace(this.STORAGE_PREFIX, '')));
